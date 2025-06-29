@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { Navbar } from "@/components/navbar";
 
 const Home = () => {
    return (
-      <div className="container">
-         <Button variant="outline">Hello</Button>
-      </div>
+      <>
+         <Navbar />
+      </>
    );
 };
 
