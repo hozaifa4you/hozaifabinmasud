@@ -6,7 +6,7 @@ import { Quote } from './quoto';
 
 const HeroSection = () => {
    return (
-      <>
+      <section>
          <div className="container pt-14 pb-28">
             <div className="grid gap-4 xl:grid-cols-7">
                <div className="xl:col-span-4">
@@ -76,7 +76,7 @@ const HeroSection = () => {
          </div>
 
          <Quote />
-      </>
+      </section>
    );
 };
 

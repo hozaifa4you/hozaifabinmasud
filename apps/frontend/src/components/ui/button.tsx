@@ -12,6 +12,7 @@ export const buttonVariants = cva(
                'shadow-xs border-text text-text hover:text-white hover:border-white bg-text/20',
             outline: 'border-primary text-white hover:bg-primary/20',
             outlineSecondary: 'border-primary text-white bg-primary/20',
+            link: 'border-none text-white hover:text-primary',
          },
          size: {
             default: '',

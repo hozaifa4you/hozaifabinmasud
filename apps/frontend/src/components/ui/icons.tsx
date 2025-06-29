@@ -42,8 +42,8 @@ const LogoSvg = (props: React.SVGProps<SVGSVGElement>) => {
       >
          <mask id="path-1-inside-1_64_1298" fill="white">
             <path
-               fill-rule="evenodd"
-               clip-rule="evenodd"
+               fillRule="evenodd"
+               clipRule="evenodd"
                d="M0 39.75H38.75H77.5V78.5H38.75V117.25H77.5V156H38.75H0V117.25V78.5V39.75Z"
             />
          </mask>
@@ -63,8 +63,8 @@ const LogoSvg = (props: React.SVGProps<SVGSVGElement>) => {
          >
             <rect fill="white" x="76.5" width="80" height="119" />
             <path
-               fill-rule="evenodd"
-               clip-rule="evenodd"
+               fillRule="evenodd"
+               clipRule="evenodd"
                d="M77.5 1H116.25H155V39.75V78.5V117.25H116.25H77.5V78.5H116.25V39.75H77.5V1Z"
             />
          </mask>
@@ -77,4 +77,19 @@ const LogoSvg = (props: React.SVGProps<SVGSVGElement>) => {
    );
 };
 
-export { DotGridIcon, LogoSvg };
+const SquareIcon = (props: React.SVGProps<SVGSVGElement>) => {
+   return (
+      <svg
+         width="68"
+         height="155"
+         viewBox="0 0 68 155"
+         fill="none"
+         xmlns="http://www.w3.org/2000/svg"
+         {...props}
+      >
+         <rect x="0.5" y="0.5" width="154" height="154" stroke="#ABB2BF" />
+      </svg>
+   );
+};
+
+export { DotGridIcon, LogoSvg, SquareIcon };
