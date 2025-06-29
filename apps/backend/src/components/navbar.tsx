@@ -30,6 +30,10 @@ const Navbar = () => {
                </li>
             ))}
          </menu>
+
+         <div className="fixed top-0 left-4 w-5">
+            <div className="h- w-px"></div>
+         </div>
       </div>
    );
 };
