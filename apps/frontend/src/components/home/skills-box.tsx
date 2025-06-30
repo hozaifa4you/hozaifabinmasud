@@ -1,6 +1,9 @@
+import { SkillType } from '@/lib/data';
+import Image from 'next/image';
+
 interface SkillsBoxProps {
    title: string;
-   skills: string[];
+   skills: SkillType[];
 }
 
 const SkillsBox = ({ title, skills }: SkillsBoxProps) => {
@@ -9,12 +12,23 @@ const SkillsBox = ({ title, skills }: SkillsBoxProps) => {
          <div className="border-b-text border-b p-2">
             <h4 className="font-semibold text-white">{title}</h4>
          </div>
-         <div className="flex flex-wrap p-2">
-            {skills.map((skill, index) => (
-               <span key={index} className="mr-2 text-sm">
-                  {skill},
-               </span>
-            ))}
+         <div className="flex flex-wrap gap-0.5 p-2">
+            {skills.map((skill) => {
+               return (
+                  <span
+                     key={skill.id}
+                     className="bg-text/20 mr-2 inline-flex items-center gap-1 rounded-sm px-1 text-sm"
+                  >
+                     <Image
+                        src={skill.icon}
+                        alt={skill.name}
+                        width={14}
+                        height={14}
+                     />
+                     {skill.name}
+                  </span>
+               );
+            })}
          </div>
       </div>
    );

@@ -1,32 +1,22 @@
-const products = [
-   {
-      id: 1,
-      title: 'ChertNodes',
-      shortDesc: 'Minecraft servers hosting ',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
-      status: 'Live',
-      slug: 'chart-nodes',
-      image: '/alternate/products/1.png',
-   },
-   {
-      id: 2,
-      title: 'PixelHost',
-      shortDesc: 'Pixel-perfect web hosting solutions',
-      technologies: ['React', 'TypeScript', 'Docker'],
-      status: 'Beta',
-      slug: 'pixel-host',
-      image: '/alternate/products/2.png',
-   },
-   {
-      id: 3,
-      title: 'CodeForge',
-      shortDesc: 'Collaborative coding platform',
-      technologies: ['Vue.js', 'Go', 'PostgreSQL'],
-      status: 'Development',
-      slug: 'code-forge',
-      image: '/alternate/products/3.png',
-   },
+export type SkillType = { id: number; name: string; icon: string };
+
+const languages: SkillType[] = [
+   { id: 1, name: 'TypeScript', icon: '/icons/typescript.svg' },
+   { id: 2, name: 'JavaScript', icon: '/icons/javascript.svg' },
+   { id: 3, name: 'PHP', icon: '/icons/php.svg' },
+   { id: 4, name: 'Go', icon: '/icons/go.svg' },
+   { id: 5, name: 'HTML', icon: '/icons/html.svg' },
+   { id: 6, name: 'CSS', icon: '/icons/css.svg' },
+   { id: 7, name: 'SCSS', icon: '/icons/scss.svg' },
 ];
 
-export { products };
-export type ProductType = (typeof products)[number];
+const databases: SkillType[] = [
+   { id: 1.1, name: 'MongoDB', icon: '/icons/mongodb.svg' },
+   { id: 1.2, name: 'MySQL', icon: '/icons/mysql.svg' },
+   { id: 1.3, name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
+   { id: 1.4, name: 'Redis', icon: '/icons/redis.svg' },
+   { id: 1.5, name: 'Firebase', icon: '/icons/firebase.svg' },
+   { id: 1.6, name: 'Vector DB', icon: '/icons/ai.svg' },
+];
+
+export { languages, databases };

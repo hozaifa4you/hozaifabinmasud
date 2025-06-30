@@ -1,4 +1,4 @@
-import { ProductType } from '@/lib/data';
+import { ProductType } from '@/lib/mock-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../ui/button';

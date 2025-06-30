@@ -1,4 +1,4 @@
-import { products } from '@/lib/data';
+import { products } from '@/lib/mock-data';
 import { ContentHeader } from './content-header';
 import { ProductCard } from './product-card';
 import { DotGridIcon, SquareIcon } from '../ui/icons';
