@@ -3,6 +3,7 @@ import { Fira_Code } from 'next/font/google';
 
 import '@/styles/globals.css';
 import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
    title: 'Hozaifa Bin Masud - Full Stack Developer',
@@ -28,6 +29,7 @@ export default function RootLayout({
          >
             <Navbar />
             {children}
+            <Footer />
          </body>
       </html>
    );
