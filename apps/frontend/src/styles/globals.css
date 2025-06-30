@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@theme {
+   --color-bg-main: #282c33;
+   --color-primary: #c778dd;
+   --color-text: #abb2bf;
+   --color-text-secondary: #fff;
+}
+
+@utility container {
+   margin-inline: auto;
+   padding-inline: 10px;
+   max-width: 1030px;
+}
+
+.section-padding {
+   @apply py-[50px];
+}
+
+* {
+   @apply scroll-smooth;
+}
