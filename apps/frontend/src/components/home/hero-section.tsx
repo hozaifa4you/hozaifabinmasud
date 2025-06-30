@@ -3,6 +3,7 @@ import { Button, buttonVariants } from '../ui/button';
 import Image from 'next/image';
 import { DotGridIcon, LogoSvg } from '../ui/icons';
 import { Quote } from './quoto';
+import { PiReadCvLogoLight } from 'react-icons/pi';
 
 const HeroSection = () => {
    return (
@@ -12,8 +13,11 @@ const HeroSection = () => {
                <div className="xl:col-span-4">
                   <h1 className="text-text-secondary text-[32px] font-semibold">
                      Hozaifa is a{' '}
-                     <span className="text-primary">full-stack</span> and{' '}
-                     <span className="text-primary">ai developer</span>
+                     <span className="text-primary font-bold">full-stack</span>{' '}
+                     and{' '}
+                     <span className="text-primary font-bold">
+                        ai developer
+                     </span>
                   </h1>
                   <p className="pt-8 pb-6">
                      He crafts responsive websites where technologies meet
@@ -26,7 +30,7 @@ const HeroSection = () => {
                         href="/download-resume"
                         className={buttonVariants({ variant: 'default' })}
                      >
-                        Download Resume
+                        <PiReadCvLogoLight /> Download Resume
                      </Link>
                   </div>
                </div>

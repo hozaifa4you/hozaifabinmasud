@@ -9,6 +9,9 @@ import {
    FaLinkedin,
 } from 'react-icons/fa6';
 import { DotGridIcon } from '../ui/icons';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Button } from '../ui/button';
 
 const ContactSection = () => {
    return (
@@ -18,11 +21,66 @@ const ContactSection = () => {
 
             <div className="mt-5 grid gap-5 xl:grid-cols-3">
                <div className="xl:col-span-2">
-                  <p className="max-w-[510px]">
-                     I’m interested in freelance opportunities. However, if you
-                     have other request or question, don’t hesitate to contact
-                     me
-                  </p>
+                  <div>
+                     <p className="max-w-[510px]">
+                        I’m interested in freelance opportunities. However, if
+                        you have other request or question, don’t hesitate to
+                        contact me
+                     </p>
+
+                     <h4 className="mt-10 mb-5 text-2xl font-semibold">
+                        <span className="text-primary">#</span>
+                        contact-with=me
+                     </h4>
+                     <form action="#" className="grid gap-4">
+                        <div className="grid gap-4 md:grid-cols-2">
+                           <Input
+                              label={
+                                 <span>
+                                    <span className="text-primary">@</span>
+                                    your-name
+                                 </span>
+                              }
+                              autoComplete="off"
+                           />
+                           <Input
+                              label={
+                                 <span>
+                                    <span className="text-primary">@</span>
+                                    your-email
+                                 </span>
+                              }
+                              autoComplete="off"
+                           />
+                        </div>
+
+                        <Input
+                           label={
+                              <span>
+                                 <span className="text-primary">@</span>
+                                 subject
+                              </span>
+                           }
+                           autoComplete="off"
+                        />
+
+                        <Textarea
+                           label={
+                              <span>
+                                 <span className="text-primary">@</span>
+                                 message
+                              </span>
+                           }
+                           autoComplete="off"
+                        />
+
+                        <Button variant="outline" className="w-fit">
+                           <span>
+                              <span className="text-primary">@</span>send
+                           </span>
+                        </Button>
+                     </form>
+                  </div>
                </div>
                <div className="xl:col-span-1">
                   <div className="border-text border p-4">
