@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ContentHeader } from './content-header';
 import { SkillsBox } from './skills-box';
-import { databases, frameworks, languages } from '@/lib/data';
+import { databases, frameworks, languages, libraries } from '@/lib/data';
 
 const SkillsSection = () => {
    return (
@@ -31,25 +31,25 @@ const SkillsSection = () => {
                         <div className="grid gap-4">
                            <SkillsBox title="Databases" skills={databases} />
                            <SkillsBox title="Frameworks" skills={frameworks} />
+                           <SkillsBox
+                              title="Features"
+                              // skills={[
+                              //    'Rest APIs',
+                              //    'Chat Bot',
+                              //    'eCommerce',
+                              //    'Dashboard',
+                              //    'Full Stack',
+
+                              // ]}
+
+                              skills={languages}
+                           />
                         </div>
                      </div>
 
                      <div>
                         <div className="grid gap-4">
-                           <SkillsBox
-                              title="Libraries"
-                              // skills={[
-                              //    'Git',
-                              //    'Docker',
-                              //    'AI APIs',
-                              //    'CI/CD',
-                              //    'AWS',
-                              //    'ORMs',
-                              //    'GraphQL',
-                              // ]}
-
-                              skills={languages}
-                           />
+                           <SkillsBox title="Libraries" skills={libraries} />
 
                            <SkillsBox
                               title="Tools"
@@ -61,20 +61,6 @@ const SkillsSection = () => {
                               //    'AWS',
                               //    'ORMs',
                               //    'GraphQL',
-                              // ]}
-
-                              skills={languages}
-                           />
-
-                           <SkillsBox
-                              title="Features"
-                              // skills={[
-                              //    'Rest APIs',
-                              //    'Chat Bot',
-                              //    'Socket',
-                              //    'eCommerce',
-                              //    'Dashboard',
-                              //    'Full Stack',
                               // ]}
 
                               skills={languages}

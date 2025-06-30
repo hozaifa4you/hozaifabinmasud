@@ -27,8 +27,24 @@ const frameworks: SkillType[] = [
    { id: 2.5, name: 'NextJs', icon: '/icons/nextjs.svg' },
    { id: 2.6, name: 'Laravel', icon: '/icons/laravel.svg' },
    { id: 2.7, name: 'Mux', icon: '/icons/go.svg' },
+   { id: 2.8, name: 'Fastify', icon: '/icons/fastify.svg' },
+   { id: 2.9, name: 'T3 Stack', icon: '/icons/t3.svg' },
 ];
 
-const libraries: SkillType[] = [];
+const libraries: SkillType[] = [
+   { id: 3.1, name: 'MUI', icon: '/icons/mui.svg' },
+   { id: 3.5, name: 'Shadcn UI', icon: '/icons/shadcn.svg' },
+   { id: 3.2, name: 'Ant Design', icon: '/icons/ant-design.svg' },
+   { id: 3.3, name: 'Blueprint UI', icon: '/icons/blueprintui.svg' },
+   { id: 3.14, name: 'Mantine', icon: '/icons/mantine.svg' },
+   { id: 3.4, name: 'Prime React', icon: '/icons/primereact.svg' },
+   { id: 3.7, name: 'D3js', icon: '/icons/d3js.svg' },
+   { id: 3.8, name: 'Jest', icon: '/icons/jest.svg' },
+   { id: 3.9, name: 'PassportJs', icon: '/icons/passportjs.svg' },
+   { id: 3.1, name: 'Prisma', icon: '/icons/prisma.svg' },
+   { id: 3.11, name: 'Drizzle ORM', icon: '/icons/drizzle.png' },
+   { id: 3.12, name: 'Type ORM', icon: '/icons/typeorm.png' },
+   { id: 3.13, name: 'Socket.io', icon: '/icons/socket-io.svg' },
+];
 
 export { languages, databases, frameworks, libraries };
