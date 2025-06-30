@@ -32,6 +32,7 @@ const frameworks: SkillType[] = [
 ];
 
 const libraries: SkillType[] = [
+   { id: 3.0, name: 'Tailwind', icon: '/icons/tailwind.svg' },
    { id: 3.1, name: 'MUI', icon: '/icons/mui.svg' },
    { id: 3.5, name: 'Shadcn UI', icon: '/icons/shadcn.svg' },
    { id: 3.2, name: 'Ant Design', icon: '/icons/ant-design.svg' },
@@ -67,4 +68,10 @@ const tools: SkillType[] = [
    { id: 6.6, name: 'AI APIs', icon: '/icons/openai.svg' },
 ];
 
-export { languages, databases, frameworks, libraries, features, tools };
+const others: SkillType[] = [
+   { id: 7.1, name: 'Embedded System', icon: '/icons/system.svg' },
+   { id: 7.2, name: 'Arduino', icon: '/icons/arduino.svg' },
+   { id: 7.3, name: 'IoT', icon: '/icons/terminal.svg' },
+];
+
+export { languages, databases, frameworks, libraries, features, tools, others };

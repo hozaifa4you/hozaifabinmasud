@@ -18,3 +18,7 @@
 .section-padding {
    @apply py-[50px];
 }
+
+* {
+   @apply scroll-smooth;
+}

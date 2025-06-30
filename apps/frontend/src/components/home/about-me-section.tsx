@@ -6,7 +6,7 @@ import { Button } from '../ui/button';
 
 const AboutMeSection = () => {
    return (
-      <section className="section-padding relative">
+      <section id="about-me" className="section-padding relative">
          <div className="container">
             <ContentHeader text="about-me" maxLineWidth="max-w-[320px]" />
 

@@ -63,7 +63,10 @@ const Footer = () => {
                            </Link>
                         </li>
                         <li>
-                           <Link href="" target="_blank">
+                           <Link
+                              href="https://www.upwork.com/freelancers/~01361961bd46c0b936?mp_source=share"
+                              target="_blank"
+                           >
                               <FaUpwork className="size-5" />
                            </Link>
                         </li>

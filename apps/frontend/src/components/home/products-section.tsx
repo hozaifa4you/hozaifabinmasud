@@ -5,7 +5,7 @@ import { DotGridIcon, SquareIcon } from '../ui/icons';
 
 const ProductsSection = () => {
    return (
-      <section className="relative">
+      <section className="relative" id="products">
          <div className="section-padding container">
             <ContentHeader
                text="products"

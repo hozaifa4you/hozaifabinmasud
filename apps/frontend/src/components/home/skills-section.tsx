@@ -7,12 +7,13 @@ import {
    frameworks,
    languages,
    libraries,
+   others,
    tools,
 } from '@/lib/data';
 
 const SkillsSection = () => {
    return (
-      <section className="section-padding relative">
+      <section className="section-padding relative" id="skills">
          <div className="container">
             <ContentHeader text="Skills" maxLineWidth="max-w-[240px]" />
 
@@ -29,30 +30,24 @@ const SkillsSection = () => {
                <div className="xl:col-span-5">
                   <div className="grid gap-4 xl:grid-cols-3">
                      <div>
-                        <div>
+                        <div className="grid gap-4">
                            <SkillsBox title="Languages" skills={languages} />
+                           <SkillsBox title="Others" skills={others} />
                         </div>
                      </div>
 
                      <div>
                         <div className="grid gap-4">
                            <SkillsBox title="Databases" skills={databases} />
-                           <SkillsBox title="Frameworks" skills={frameworks} />
-                           <SkillsBox title="Features" skills={features} />
+                           <SkillsBox title="Libraries" skills={libraries} />
                         </div>
                      </div>
 
                      <div>
                         <div className="grid gap-4">
-                           <SkillsBox title="Libraries" skills={libraries} />
-
+                           <SkillsBox title="Frameworks" skills={frameworks} />
                            <SkillsBox title="Tools" skills={tools} />
-
-                           <SkillsBox
-                              title="Others"
-                              // skills={['Embedded System', 'Arduino', 'IoT']}
-                              skills={languages}
-                           />
+                           <SkillsBox title="Features" skills={features} />
                         </div>
                      </div>
                   </div>

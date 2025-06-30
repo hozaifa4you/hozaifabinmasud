@@ -12,7 +12,7 @@ import { DotGridIcon } from '../ui/icons';
 
 const ContactSection = () => {
    return (
-      <section className="section-padding relative">
+      <section className="section-padding relative" id="contacts">
          <div className="container">
             <ContentHeader text="contact" maxLineWidth="max-w-[130px]" />
 
