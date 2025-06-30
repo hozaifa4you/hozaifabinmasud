@@ -54,27 +54,18 @@ const HeroSection = () => {
                            className: '!text-text !font-normal',
                         })}
                      >
-                        <svg
-                           width="16"
-                           height="17"
-                           viewBox="0 0 16 17"
-                           fill="none"
-                           xmlns="http://www.w3.org/2000/svg"
-                        >
-                           <rect
-                              x="0.5"
-                              y="1"
-                              width="15"
-                              height="15"
-                              fill="#C778DD"
-                              stroke="#C778DD"
-                           />
-                        </svg>
+                        <span className="relative flex size-4">
+                           <span className="bg-primary absolute inline-flex h-full w-full animate-ping opacity-75"></span>
+                           <span className="bg-primary relative inline-flex size-4"></span>
+                        </span>
                         Currently working on{' '}
                         <Tooltip content="As Freelancer Developer">
-                           <span className="font-semibold text-white">
+                           <Link
+                              href="https://namespaceit.com"
+                              className="font-semibold text-white"
+                           >
                               Namespace IT
-                           </span>
+                           </Link>
                         </Tooltip>
                      </span>
                   </div>
