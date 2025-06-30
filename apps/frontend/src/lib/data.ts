@@ -47,4 +47,15 @@ const libraries: SkillType[] = [
    { id: 3.13, name: 'Socket.io', icon: '/icons/socket-io.svg' },
 ];
 
-export { languages, databases, frameworks, libraries };
+const features: SkillType[] = [
+   { id: 5.1, name: 'MERN Stack', icon: '/icons/mern.png' },
+   { id: 5.2, name: 'Rest APIs', icon: '/icons/api.svg' },
+   { id: 5.3, name: 'GraphQL', icon: '/icons/graphql.svg' },
+   { id: 5.8, name: 'Payment', icon: '/icons/payment.svg' },
+   { id: 5.4, name: 'Full Stack', icon: '/icons/fullstack.svg' },
+   { id: 5.5, name: 'Dashboard', icon: '/icons/dashboard.svg' },
+   { id: 5.6, name: 'Ai Chatbot', icon: '/icons/chatbot.svg' },
+   { id: 5.7, name: 'eCommerce', icon: '/icons/ecommerce.svg' },
+];
+
+export { languages, databases, frameworks, libraries, features };

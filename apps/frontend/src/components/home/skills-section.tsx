@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import { ContentHeader } from './content-header';
 import { SkillsBox } from './skills-box';
-import { databases, frameworks, languages, libraries } from '@/lib/data';
+import {
+   databases,
+   features,
+   frameworks,
+   languages,
+   libraries,
+} from '@/lib/data';
 
 const SkillsSection = () => {
    return (
@@ -34,15 +40,12 @@ const SkillsSection = () => {
                            <SkillsBox
                               title="Features"
                               // skills={[
-                              //    'Rest APIs',
-                              //    'Chat Bot',
                               //    'eCommerce',
                               //    'Dashboard',
-                              //    'Full Stack',
 
                               // ]}
 
-                              skills={languages}
+                              skills={features}
                            />
                         </div>
                      </div>
