@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { DotGridIcon, LogoSvg } from '../ui/icons';
 import { Quote } from './quoto';
 import { PiReadCvLogoLight } from 'react-icons/pi';
+import { Tooltip } from '../ui/tooltip';
 
 const HeroSection = () => {
    return (
@@ -70,9 +71,11 @@ const HeroSection = () => {
                            />
                         </svg>
                         Currently working on{' '}
-                        <span className="font-semibold text-white">
-                           Namespace IT
-                        </span>
+                        <Tooltip content="As Freelancer Developer">
+                           <span className="font-semibold text-white">
+                              Namespace IT
+                           </span>
+                        </Tooltip>
                      </span>
                   </div>
                </div>
