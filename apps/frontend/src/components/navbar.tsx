@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { Logo } from './logo';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
+import { FaUpwork } from 'react-icons/fa6';
+import { TbBrandFiverr } from 'react-icons/tb';
 
 const menuItems = [
    { id: 1, name: 'home', sign: '#', link: '#home' },
@@ -81,13 +82,7 @@ const Navbar = () => {
                            href="https://www.fiverr.com/hozaifa4you"
                            target="_blank"
                         >
-                           <Image
-                              src="/assets/fiverr.svg"
-                              alt="Fiverr Logo"
-                              width={20}
-                              height={20}
-                              className="size-4 object-contain object-center grayscale-100"
-                           />
+                           <TbBrandFiverr className="size-5" />
                         </Link>
                      </li>
                      <li>
@@ -95,13 +90,7 @@ const Navbar = () => {
                            href="https://www.upwork.com/freelancers/~01361961bd46c0b936?mp_source=share"
                            target="_blank"
                         >
-                           <Image
-                              src="/assets/upwork.svg"
-                              alt="Upwork Logo"
-                              width={20}
-                              height={20}
-                              className="size-4 object-contain object-center grayscale-100"
-                           />
+                           <FaUpwork className="size-5" />
                         </Link>
                      </li>
                   </ul>

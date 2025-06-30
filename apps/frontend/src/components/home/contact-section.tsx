@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import { ContentHeader } from './content-header';
 import {
-   FaFacebook,
+   FaFacebookF,
    FaGithub,
    FaXTwitter,
    FaWhatsapp,
    FaEnvelope,
-   FaLinkedin,
+   FaUpwork,
+   FaLinkedinIn,
 } from 'react-icons/fa6';
 import { DotGridIcon } from '../ui/icons';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
+import { TbBrandFiverr } from 'react-icons/tb';
 
 const ContactSection = () => {
    return (
@@ -92,7 +94,7 @@ const ContactSection = () => {
                            hozaifabinmasud@gmail.com
                         </p>
                         <p className="mt-1 inline-flex items-center gap-1.5">
-                           <FaWhatsapp className="size-5" /> +380 95 123 4567
+                           <FaWhatsapp className="size-5" /> +880 1918 780770
                         </p>
 
                         <ul className="mt-3 flex items-center gap-4">
@@ -109,7 +111,7 @@ const ContactSection = () => {
                                  href="https://www.linkedin.com/in/hozaifa-bin-masud-4b7835244/"
                                  target="_blank"
                               >
-                                 <FaLinkedin className="size-5" />
+                                 <FaLinkedinIn className="size-5" />
                               </Link>
                            </li>
                            <li>
@@ -117,7 +119,7 @@ const ContactSection = () => {
                                  href="https://facebook.com/hozaifa4you"
                                  target="_blank"
                               >
-                                 <FaFacebook className="size-5" />
+                                 <FaFacebookF className="size-5" />
                               </Link>
                            </li>
                            <li>
@@ -126,6 +128,22 @@ const ContactSection = () => {
                                  target="_blank"
                               >
                                  <FaXTwitter className="size-5" />
+                              </Link>
+                           </li>
+                           <li>
+                              <Link
+                                 href="https://www.upwork.com/freelancers/~01f0b1c3d4e5a6b7c8"
+                                 target="_blank"
+                              >
+                                 <FaUpwork className="size-5" />
+                              </Link>
+                           </li>
+                           <li>
+                              <Link
+                                 href="https://www.fiverr.com/hozaifa4you"
+                                 target="_blank"
+                              >
+                                 <TbBrandFiverr className="size-5" />
                               </Link>
                            </li>
                         </ul>
