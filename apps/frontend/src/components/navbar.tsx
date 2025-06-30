@@ -86,7 +86,7 @@ const Navbar = () => {
                               alt="Fiverr Logo"
                               width={20}
                               height={20}
-                              className="size-4 object-contain object-center"
+                              className="size-4 object-contain object-center grayscale-100"
                            />
                         </Link>
                      </li>
@@ -100,7 +100,7 @@ const Navbar = () => {
                               alt="Upwork Logo"
                               width={20}
                               height={20}
-                              className="size-4 object-contain object-center"
+                              className="size-4 object-contain object-center grayscale-100"
                            />
                         </Link>
                      </li>
