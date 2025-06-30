@@ -58,4 +58,13 @@ const features: SkillType[] = [
    { id: 5.7, name: 'eCommerce', icon: '/icons/ecommerce.svg' },
 ];
 
-export { languages, databases, frameworks, libraries, features };
+const tools: SkillType[] = [
+   { id: 6.1, name: 'Git', icon: '/icons/git.svg' },
+   { id: 6.2, name: 'Docker', icon: '/icons/docker.svg' },
+   { id: 6.3, name: 'CI/CD', icon: '/icons/cicd.svg' },
+   { id: 6.4, name: 'AWS', icon: '/icons/aws.svg' },
+   { id: 6.5, name: 'ORMs', icon: '/icons/prisma.svg' },
+   { id: 6.6, name: 'AI APIs', icon: '/icons/openai.svg' },
+];
+
+export { languages, databases, frameworks, libraries, features, tools };

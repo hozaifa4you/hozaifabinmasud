@@ -7,6 +7,7 @@ import {
    frameworks,
    languages,
    libraries,
+   tools,
 } from '@/lib/data';
 
 const SkillsSection = () => {
@@ -37,16 +38,7 @@ const SkillsSection = () => {
                         <div className="grid gap-4">
                            <SkillsBox title="Databases" skills={databases} />
                            <SkillsBox title="Frameworks" skills={frameworks} />
-                           <SkillsBox
-                              title="Features"
-                              // skills={[
-                              //    'eCommerce',
-                              //    'Dashboard',
-
-                              // ]}
-
-                              skills={features}
-                           />
+                           <SkillsBox title="Features" skills={features} />
                         </div>
                      </div>
 
@@ -54,20 +46,7 @@ const SkillsSection = () => {
                         <div className="grid gap-4">
                            <SkillsBox title="Libraries" skills={libraries} />
 
-                           <SkillsBox
-                              title="Tools"
-                              // skills={[
-                              //    'Git',
-                              //    'Docker',
-                              //    'AI APIs',
-                              //    'CI/CD',
-                              //    'AWS',
-                              //    'ORMs',
-                              //    'GraphQL',
-                              // ]}
-
-                              skills={languages}
-                           />
+                           <SkillsBox title="Tools" skills={tools} />
 
                            <SkillsBox
                               title="Others"
