@@ -19,4 +19,16 @@ const databases: SkillType[] = [
    { id: 1.6, name: 'Vector DB', icon: '/icons/ai.svg' },
 ];
 
-export { languages, databases };
+const frameworks: SkillType[] = [
+   { id: 2.1, name: 'NodeJs', icon: '/icons/nodejs.svg' },
+   { id: 2.2, name: 'NestJs', icon: '/icons/nestjs.svg' },
+   { id: 2.3, name: 'ExpressJs', icon: '/icons/expressjs.svg' },
+   { id: 2.4, name: 'ReactJs', icon: '/icons/reactjs.svg' },
+   { id: 2.5, name: 'NextJs', icon: '/icons/nextjs.svg' },
+   { id: 2.6, name: 'Laravel', icon: '/icons/laravel.svg' },
+   { id: 2.7, name: 'Mux', icon: '/icons/go.svg' },
+];
+
+const libraries: SkillType[] = [];
+
+export { languages, databases, frameworks, libraries };

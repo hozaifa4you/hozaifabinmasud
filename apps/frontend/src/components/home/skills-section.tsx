@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ContentHeader } from './content-header';
 import { SkillsBox } from './skills-box';
-import { databases, languages } from '@/lib/data';
+import { databases, frameworks, languages } from '@/lib/data';
 
 const SkillsSection = () => {
    return (
@@ -30,25 +30,27 @@ const SkillsSection = () => {
                      <div>
                         <div className="grid gap-4">
                            <SkillsBox title="Databases" skills={databases} />
-
-                           <SkillsBox
-                              title="Frameworks"
-                              // skills={[
-                              //    'NodeJs',
-                              //    'ExpressJs',
-                              //    'NestJs',
-                              //    'ReactJs',
-                              //    'NextJs',
-                              //    'Laravel',
-                              //    'Tailwind CSS',
-                              // ]}
-                              skills={languages}
-                           />
+                           <SkillsBox title="Frameworks" skills={frameworks} />
                         </div>
                      </div>
 
                      <div>
                         <div className="grid gap-4">
+                           <SkillsBox
+                              title="Libraries"
+                              // skills={[
+                              //    'Git',
+                              //    'Docker',
+                              //    'AI APIs',
+                              //    'CI/CD',
+                              //    'AWS',
+                              //    'ORMs',
+                              //    'GraphQL',
+                              // ]}
+
+                              skills={languages}
+                           />
+
                            <SkillsBox
                               title="Tools"
                               // skills={[

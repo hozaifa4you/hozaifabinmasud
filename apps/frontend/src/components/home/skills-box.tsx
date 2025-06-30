@@ -17,7 +17,7 @@ const SkillsBox = ({ title, skills }: SkillsBoxProps) => {
                return (
                   <span
                      key={skill.id}
-                     className="bg-text/20 mr-2 inline-flex items-center gap-1 rounded-sm px-1 text-sm"
+                     className="bg-text/20 inline-flex items-center gap-1 rounded-sm px-1 text-sm"
                   >
                      <Image
                         src={skill.icon}
