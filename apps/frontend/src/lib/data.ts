@@ -74,4 +74,39 @@ const others: SkillType[] = [
    { id: 7.3, name: 'IoT', icon: '/icons/terminal.svg' },
 ];
 
-export { languages, databases, frameworks, libraries, features, tools, others };
+const academics = [
+   {
+      id: 1,
+      title: 'B.Sc. in Computer Science & Engineering',
+      short: 'CSE',
+      startDate: '30/11/2023',
+      endDate: 'Running',
+      boardOrUniversity:
+         'Institute of Science, Trade & Technology, Dhaka - ISTT',
+      link: 'https://istt.edu.bd',
+      grade: 'CGPA-3.6',
+   },
+   {
+      id: 2,
+      title: 'Higher Secondary Certificate',
+      short: 'HSC',
+      startDate: '01/06/2019',
+      endDate: '31/12/2022',
+      boardOrUniversity: 'Shimu-Reza MP College, Satkhira.',
+      link: 'https://www.facebook.com/SRMPCOLLEGE',
+      grade: 'GPA-4.83',
+   },
+];
+
+export {
+   languages,
+   databases,
+   frameworks,
+   libraries,
+   features,
+   tools,
+   others,
+   academics,
+};
+
+export type AcademicType = (typeof academics)[number];

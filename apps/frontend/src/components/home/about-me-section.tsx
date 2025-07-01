@@ -13,7 +13,7 @@ const AboutMeSection = () => {
             <div className="gap- mt-5 grid xl:grid-cols-8">
                <div className="xl:col-span-5">
                   <div className="grid max-w-[515px] gap-6">
-                     <p>Hello, I&apos;m Hozaifa Bin Masud</p>
+                     <p>Hello, I&apos;m [Hozaifa Bin Masud]</p>
                      <p>
                         I’m a self-taught front-end developer based in Kyiv,
                         Ukraine. I can develop responsive websites from scratch

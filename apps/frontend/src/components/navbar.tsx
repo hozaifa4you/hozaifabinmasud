@@ -11,8 +11,7 @@ const menuItems = [
    { id: 1, name: 'home', sign: '#', link: '#home' },
    { id: 2, name: 'skills', sign: '#', link: '#skills' },
    { id: 3, name: 'works', sign: '#', link: '#works' },
-   { id: 6, name: 'edu', sign: '#', link: '#educations' },
-   { id: 7, name: 'trainings', sign: '#', link: '#trainings' },
+   { id: 6, name: 'edu_&_training', sign: '#', link: '#educations' },
    { id: 4, name: 'about-me', sign: '#', link: '#about-me' },
    { id: 5, name: 'contact', sign: '#', link: '#contacts' },
 ];

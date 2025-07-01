@@ -10,7 +10,7 @@ const ProductsSection = () => {
             <ContentHeader
                text="products"
                maxLineWidth="max-w-[510px]"
-               buttonText="View All"
+               buttonText="#view_all"
                navigateUrl="/products"
             />
 
