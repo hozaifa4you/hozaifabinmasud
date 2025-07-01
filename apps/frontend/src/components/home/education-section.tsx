@@ -1,9 +1,10 @@
-import { academics } from '@/lib/data';
+import { academics, trainings } from '@/lib/data';
 import { ContentHeader } from './content-header';
 import { AcademicCard } from './academic-card';
 import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import { DotGridIcon, SquareIcon } from '../ui/icons';
+import { TrainingCard } from './training-card';
 
 const EducationNTraining = () => {
    return (
@@ -42,7 +43,7 @@ const EducationNTraining = () => {
                </div>
                {/* Divider */}
                <div className="flex items-center justify-center">
-                  <div className="bg-text/50 shadow-primary h-80 w-px shadow" />
+                  <div className="bg-text/50 shadow-primary h-90 w-px shadow" />
                </div>
 
                <div className="flex-1">
@@ -63,8 +64,8 @@ const EducationNTraining = () => {
                   </div>
 
                   <div className="mt-2.5 grid gap-5">
-                     {academics.map((academic) => (
-                        <AcademicCard key={academic.id} {...academic} />
+                     {trainings.map((training) => (
+                        <TrainingCard key={training.id} {...training} />
                      ))}
                   </div>
                </div>

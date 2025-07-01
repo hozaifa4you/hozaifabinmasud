@@ -85,6 +85,7 @@ const academics = [
          'Institute of Science, Trade & Technology, Dhaka - ISTT',
       link: 'https://istt.edu.bd',
       grade: 'CGPA-3.6',
+      status: 'ongoing',
    },
    {
       id: 2,
@@ -95,6 +96,54 @@ const academics = [
       boardOrUniversity: 'Shimu-Reza MP College, Satkhira.',
       link: 'https://www.facebook.com/SRMPCOLLEGE',
       grade: 'GPA-4.83',
+      status: 'completed',
+   },
+   {
+      id: 3,
+      title: 'Secondary School Certificate',
+      short: 'SSC',
+      startDate: '01/02/2017',
+      endDate: '020/04/2019',
+      boardOrUniversity: 'Mir Nowbul Hq. M. High School',
+      link: 'https://www.facebook.com/salimuddinrezakobi',
+      grade: 'GPA-3.89',
+      status: 'completed',
+   },
+];
+
+const trainings = [
+   {
+      id: 1,
+      title: 'NestJS Zero to Hero - Modern TypeScript Back-end Development',
+      slug: 'nestjs-zero-to-hero',
+      startDate: '05/2023',
+      endDate: '07/2023',
+      host: 'Udemy',
+      hostLink: 'https://www.udemy.com/',
+      certificateLink: undefined,
+      status: 'done',
+   },
+   {
+      id: 2,
+      title: 'MERN From Scratch 2023 | eCommerce Platform',
+      slug: 'mern-from-scratch-2023',
+      startDate: '03/2023',
+      endDate: '04/2023',
+      host: 'Udemy',
+      hostLink: 'https://www.udemy.com/',
+      certificateLink: undefined,
+      status: 'done',
+   },
+   {
+      id: 3,
+      title: 'The AI Engineer Path',
+      slug: 'the-ai-engineer-path',
+      startDate: '06/2025',
+      endDate: '07/2025',
+      host: 'Scrimba',
+      hostLink: 'https://www.scrimba.com',
+      certificateLink: 'https://www.scrimba.com',
+      status: 'active',
    },
 ];
 
@@ -107,6 +156,8 @@ export {
    tools,
    others,
    academics,
+   trainings,
 };
 
 export type AcademicType = (typeof academics)[number];
+export type TrainingType = (typeof trainings)[number];

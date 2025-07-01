@@ -1,6 +1,8 @@
 import { AcademicType } from '@/lib/data';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { BiLinkExternal } from 'react-icons/bi';
+import { FaGraduationCap } from 'react-icons/fa6';
 import { LuCalendarCog } from 'react-icons/lu';
 
 const AcademicCard = ({
@@ -11,6 +13,7 @@ const AcademicCard = ({
    startDate,
    title,
    grade,
+   status,
 }: AcademicType) => {
    return (
       <div className="border-text relative border p-4">
@@ -18,17 +21,27 @@ const AcademicCard = ({
             <LuCalendarCog />{' '}
             <span>
                [<span className="font-medium">{startDate}</span> -{' '}
-               <span className="font-medium">{endDate}</span>]
+               <span
+                  className={cn('font-medium capitalize', {
+                     'text-emerald-500 text-shadow-emerald-500 text-shadow-sm':
+                        status === 'ongoing',
+                  })}
+               >
+                  {status === 'ongoing' ? status : endDate}
+               </span>
+               ]
             </span>
          </div>
 
          <div>
-            <h4 className="my-2.5 text-xl font-semibold text-white">
-               {title} - {short}
+            <h4 className="hover:text-primary my-2.5 text-xl font-semibold text-white transition-all duration-200 ease-in-out">
+               <Link href="/academics/slug">
+                  {title} - {short}
+               </Link>
             </h4>
 
             <p className="text-text/80 text-lg font-light">
-               {boardOrUniversity}{' '}
+               <FaGraduationCap className="inline" /> {boardOrUniversity}{' '}
                <Link
                   href={link}
                   className="inline transition duration-200 hover:text-white"
