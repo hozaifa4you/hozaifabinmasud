@@ -40,7 +40,7 @@ const TrainingCard = ({
                   text={`@${status}`}
                />
             </div>
-            <p className="mt-2">
+            <p className="mt-1">
                <span className="font-semibold">Host: </span>
                {host}{' '}
                <Link href={hostLink} target="_blank">
@@ -51,7 +51,7 @@ const TrainingCard = ({
                <Link
                   href={certificateLink}
                   target="_blank"
-                  className="mt-2 block text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                  className="mt-1 block text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
                >
                   <BiAward className="inline h-4 w-4" /> View Certificate
                </Link>

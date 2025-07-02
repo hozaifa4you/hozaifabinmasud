@@ -8,10 +8,10 @@ const ProductsSection = () => {
       <section className="relative" id="products">
          <div className="section-padding container">
             <ContentHeader
-               text="products"
+               text="projects"
                maxLineWidth="max-w-[510px]"
                buttonText="#view_all"
-               navigateUrl="/products"
+               navigateUrl="/projects"
             />
 
             <div className="mt-5 grid gap-4 lg:grid-cols-3">

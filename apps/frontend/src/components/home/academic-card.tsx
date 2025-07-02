@@ -40,7 +40,7 @@ const AcademicCard = ({
                </Link>
             </h4>
 
-            <p className="text-text/80 text-lg font-light">
+            <p className="text-text/80 font-light">
                <FaGraduationCap className="inline" /> {boardOrUniversity}{' '}
                <Link
                   href={link}

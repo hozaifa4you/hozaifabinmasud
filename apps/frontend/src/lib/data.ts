@@ -38,11 +38,11 @@ const libraries: SkillType[] = [
    { id: 3.2, name: 'Ant Design', icon: '/icons/ant-design.svg' },
    { id: 3.3, name: 'Blueprint UI', icon: '/icons/blueprintui.svg' },
    { id: 3.14, name: 'Mantine', icon: '/icons/mantine.svg' },
+   { id: 3.1, name: 'Prisma', icon: '/icons/prisma.svg' },
    { id: 3.4, name: 'Prime React', icon: '/icons/primereact.svg' },
    { id: 3.7, name: 'D3js', icon: '/icons/d3js.svg' },
    { id: 3.8, name: 'Jest', icon: '/icons/jest.svg' },
    { id: 3.9, name: 'PassportJs', icon: '/icons/passportjs.svg' },
-   { id: 3.1, name: 'Prisma', icon: '/icons/prisma.svg' },
    { id: 3.11, name: 'Drizzle ORM', icon: '/icons/drizzle.png' },
    { id: 3.12, name: 'Type ORM', icon: '/icons/typeorm.png' },
    { id: 3.13, name: 'Socket.io', icon: '/icons/socket-io.svg' },
@@ -72,6 +72,7 @@ const others: SkillType[] = [
    { id: 7.1, name: 'Embedded System', icon: '/icons/system.svg' },
    { id: 7.2, name: 'Arduino', icon: '/icons/arduino.svg' },
    { id: 7.3, name: 'IoT', icon: '/icons/terminal.svg' },
+   { id: 7.4, name: 'Bun', icon: '/icons/bun.svg' },
 ];
 
 const academics = [
@@ -120,7 +121,6 @@ const trainings = [
       endDate: '07/2023',
       host: 'Udemy',
       hostLink: 'https://www.udemy.com/',
-      certificateLink: undefined,
       status: 'done',
    },
    {
@@ -131,7 +131,6 @@ const trainings = [
       endDate: '04/2023',
       host: 'Udemy',
       hostLink: 'https://www.udemy.com/',
-      certificateLink: undefined,
       status: 'done',
    },
    {
@@ -142,7 +141,8 @@ const trainings = [
       endDate: '07/2025',
       host: 'Scrimba',
       hostLink: 'https://www.scrimba.com',
-      certificateLink: 'https://www.scrimba.com',
+      certificateLink:
+         'https://scrimba.com/certificate-cert2JbLs3qgAvfnFeT4StqV8rDV6jXPqFaRNX3fhk',
       status: 'active',
    },
 ];
