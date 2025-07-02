@@ -21,8 +21,8 @@ const HeroSection = () => {
                      </span>
                   </h1>
                   <p className="pt-8 pb-6">
-                     He crafts responsive websites where technologies meet
-                     creativity
+                     He engineers full-stack solutions where performance meets
+                     user experience.
                   </p>
 
                   <div className="flex items-center gap-3">

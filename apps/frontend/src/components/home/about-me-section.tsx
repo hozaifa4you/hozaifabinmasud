@@ -15,17 +15,19 @@ const AboutMeSection = () => {
                   <div className="grid max-w-[515px] gap-6">
                      <p>Hello, I&apos;m [Hozaifa Bin Masud]</p>
                      <p>
-                        I’m a self-taught front-end developer based in Kyiv,
-                        Ukraine. I can develop responsive websites from scratch
-                        and raise them into modern user-friendly web
-                        experiences.{' '}
+                        I’m a self-taught full-stack developer based in
+                        Bangladesh. I build scalable, user-friendly web
+                        applications from scratch — both frontend and backend —
+                        using modern technologies like React, Next.js, NestJS,
+                        Laravel and etc.
                      </p>
                      <p>
-                        Transforming my creativity and knowledge into a websites
-                        has been my passion for over a year. I have been helping
-                        various clients to establish their presence online. I
-                        always strive to learn about the newest technologies and
-                        frameworks.
+                        Coding has been my passion for over four years. I’ve
+                        helped clients bring their ideas to life through clean,
+                        functional, and well-structured applications. I enjoy
+                        solving real problems with code, and I’m always
+                        exploring new tools, frameworks, and AI integrations to
+                        level up my work.
                      </p>
 
                      <Link href="/about-more">

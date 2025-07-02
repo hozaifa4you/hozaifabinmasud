@@ -23,7 +23,7 @@ const AcademicCard = ({
                [<span className="font-medium">{startDate}</span> -{' '}
                <span
                   className={cn('font-medium capitalize', {
-                     'text-emerald-500 text-shadow-emerald-500 text-shadow-sm':
+                     'text-emerald-500 text-shadow-2xs text-shadow-emerald-500':
                         status === 'ongoing',
                   })}
                >
