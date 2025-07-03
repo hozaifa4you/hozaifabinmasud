@@ -143,7 +143,7 @@ const trainings = [
       hostLink: 'https://www.scrimba.com',
       certificateLink:
          'https://scrimba.com/certificate-cert2JbLs3qgAvfnFeT4StqV8rDV6jXPqFaRNX3fhk',
-      status: 'active',
+      status: 'done',
    },
 ];
 

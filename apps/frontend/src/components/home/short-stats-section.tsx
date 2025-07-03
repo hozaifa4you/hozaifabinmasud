@@ -9,23 +9,31 @@ const ShortStatsSection = () => {
                   {calculateYearsFromDate('01/08/2021')}
                   <sup className="text-primary font-semibold">+</sup>
                </div>
-               <div className="text-sm text-slate-400">$years_experience</div>
+               <div className="text-sm font-medium text-slate-400">
+                  <span className="text-primary">$</span>years_experience
+               </div>
             </div>
             <div className="text-center">
                <div className="mb-2 text-3xl font-bold text-white">
-                  15<sup>+</sup>
+                  15<sup className="text-primary font-semibold">+</sup>
                </div>
-               <div className="text-sm text-slate-400">$projects_completed</div>
+               <div className="text-sm font-medium text-slate-400">
+                  <span className="text-primary">$</span>projects_completed
+               </div>
             </div>
             <div className="text-center">
                <div className="mb-2 text-3xl font-bold text-white">
-                  32<sup>+</sup>
+                  32<sup className="text-primary font-semibold">+</sup>
                </div>
-               <div className="text-sm text-slate-400">$technologies</div>
+               <div className="text-sm font-medium text-slate-400">
+                  <span className="text-primary">$</span>technologies
+               </div>
             </div>
             <div className="text-center">
                <div className="mb-2 text-3xl font-bold text-white">2</div>
-               <div className="text-sm text-slate-400">$companies</div>
+               <div className="text-sm font-medium text-slate-400">
+                  <span className="text-primary">$</span>companies
+               </div>
             </div>
          </div>
       </section>
