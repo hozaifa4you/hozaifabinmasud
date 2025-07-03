@@ -147,6 +147,41 @@ const trainings = [
    },
 ];
 
+const works = [
+   {
+      id: 2,
+      company: 'Namespace IT',
+      title: 'Junior Software Engineer',
+      startDate: 'Sep 2021',
+      status: 'present',
+      responsibilities:
+         'Developed and maintained web applications using MERN stack, collaborated with cross-functional teams, and implemented RESTful APIs.',
+      type: 'On-site',
+      skills: [
+         'nodejs',
+         'reactjs',
+         'typescript',
+         'mongodb',
+         'nextjs',
+         'openai',
+         'langchain',
+         'pinecone',
+      ],
+   },
+   {
+      id: 1,
+      company: 'AI Power IT',
+      title: 'Full Stack Developer',
+      startDate: 'Dec 2023',
+      endDate: 'Oct 2023',
+      status: 'ended',
+      responsibilities:
+         'Developing AI-powered web applications, and optimizing performance.',
+      type: 'On-site',
+      skills: ['nodejs', 'reactjs', 'typescript', 'mongodb', 'nextjs'],
+   },
+];
+
 export {
    languages,
    databases,
@@ -157,7 +192,9 @@ export {
    others,
    academics,
    trainings,
+   works,
 };
 
 export type AcademicType = (typeof academics)[number];
 export type TrainingType = (typeof trainings)[number];
+export type WorkType = (typeof works)[number];

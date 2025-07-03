@@ -22,3 +22,7 @@
 * {
    @apply scroll-smooth;
 }
+
+section {
+   overflow: hidden;
+}

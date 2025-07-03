@@ -16,7 +16,7 @@ const Quote = () => {
             </span>
          </div>
          <span className="border-text ml-auto block size-fit border border-t-0 p-4 text-xl">
-            - Dr. Unknown
+            - Dr. AI
          </span>
       </div>
    );

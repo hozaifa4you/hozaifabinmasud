@@ -37,7 +37,7 @@ const ContentHeader = ({
                   })}
                   href={navigateUrl}
                >
-                  {buttonText} <span>~~{'>'}</span>
+                  {buttonText}
                </Link>
             </div>
          )}

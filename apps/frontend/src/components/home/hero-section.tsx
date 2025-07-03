@@ -13,7 +13,7 @@ const HeroSection = () => {
             <div className="grid gap-4 xl:grid-cols-7">
                <div className="xl:col-span-4">
                   <h1 className="text-text-secondary text-[32px] font-semibold">
-                     Hozaifa is a{' '}
+                     [Hozaifa] is a{' '}
                      <span className="text-primary font-bold">full-stack</span>{' '}
                      and{' '}
                      <span className="text-primary font-bold">
