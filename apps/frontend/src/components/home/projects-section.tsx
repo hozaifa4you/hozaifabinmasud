@@ -1,11 +1,11 @@
 import { products } from '@/lib/mock-data';
 import { ContentHeader } from './content-header';
-import { ProductCard } from './product-card';
+import { ProjectCard } from './project-card';
 import { DotGridIcon, SquareIcon } from '../ui/icons';
 
-const ProductsSection = () => {
+const ProjectsSection = () => {
    return (
-      <section className="relative" id="products">
+      <section className="relative" id="projects">
          <div className="section-padding container">
             <ContentHeader
                text="projects"
@@ -16,7 +16,7 @@ const ProductsSection = () => {
 
             <div className="mt-5 grid gap-4 lg:grid-cols-3">
                {products.map((product) => (
-                  <ProductCard {...product} key={product.id} />
+                  <ProjectCard {...product} key={product.id} />
                ))}
             </div>
          </div>
@@ -27,4 +27,4 @@ const ProductsSection = () => {
    );
 };
 
-export { ProductsSection };
+export { ProjectsSection };

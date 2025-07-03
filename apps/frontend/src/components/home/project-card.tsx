@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 
-const ProductCard = ({
+const ProjectCard = ({
    image,
    shortDesc,
    slug,
@@ -44,4 +44,4 @@ const ProductCard = ({
    );
 };
 
-export { ProductCard };
+export { ProjectCard };
