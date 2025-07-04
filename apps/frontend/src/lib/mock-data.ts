@@ -1,4 +1,4 @@
-const products = [
+const projects = [
    {
       id: 1,
       title: 'ChertNodes',
@@ -28,5 +28,5 @@ const products = [
    },
 ];
 
-export { products };
-export type ProductType = (typeof products)[number];
+export { projects };
+export type ProjectType = (typeof projects)[number];

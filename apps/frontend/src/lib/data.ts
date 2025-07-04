@@ -1,3 +1,5 @@
+import { projects, ProjectType } from './mock-data';
+
 export type SkillType = { id: number; name: string; icon: string };
 
 const languages: SkillType[] = [
@@ -182,6 +184,28 @@ const works = [
    },
 ];
 
+const projectsAll: ProjectType[] = [
+   ...projects,
+   {
+      id: 4,
+      title: 'Kotik Bot',
+      image: '/alternate/products/4.png',
+      shortDesc: 'A Discord bot for managing server tasks',
+      slug: 'kotik-bot',
+      status: 'active',
+      technologies: ['FastAPI', 'Python', 'PostgreSQL'],
+   },
+   {
+      id: 5,
+      image: '/alternate/products/5.png',
+      shortDesc: 'My personal portfolio showcasing my work',
+      slug: 'portfolio',
+      status: 'active',
+      technologies: ['NodeJs', 'ReactJs', 'TypeScript', 'MongoDB'],
+      title: 'Portfolio',
+   },
+];
+
 export {
    languages,
    databases,
@@ -193,6 +217,7 @@ export {
    academics,
    trainings,
    works,
+   projectsAll,
 };
 
 export type AcademicType = (typeof academics)[number];

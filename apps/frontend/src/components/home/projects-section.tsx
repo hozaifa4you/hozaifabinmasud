@@ -1,4 +1,4 @@
-import { products } from '@/lib/mock-data';
+import { projects } from '@/lib/mock-data';
 import { ContentHeader } from './content-header';
 import { ProjectCard } from './project-card';
 import { DotGridIcon, SquareIcon } from '../ui/icons';
@@ -15,8 +15,8 @@ const ProjectsSection = () => {
             />
 
             <div className="mt-5 grid gap-4 lg:grid-cols-3">
-               {products.map((product) => (
-                  <ProjectCard {...product} key={product.id} />
+               {projects.map((project) => (
+                  <ProjectCard {...project} key={project.id} />
                ))}
             </div>
          </div>
