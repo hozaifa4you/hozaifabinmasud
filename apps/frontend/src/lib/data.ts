@@ -287,6 +287,16 @@ const smallProjects = [
    },
 ];
 
+const funFacts = [
+   { id: 1, text: 'I like winter more than summer' },
+   { id: 2, text: 'I often bike with my friends' },
+   { id: 3, text: 'I like pizza and pasta' },
+   { id: 4, text: 'I was in Egypt, Poland and Turkey' },
+   { id: 5, text: 'My favorite movie is The Green Mile' },
+   { id: 6, text: 'I am still in school' },
+   { id: 7, text: 'I don’t have any siblings' },
+];
+
 export {
    languages,
    databases,
@@ -300,9 +310,11 @@ export {
    works,
    projectsAll,
    smallProjects,
+   funFacts,
 };
 
 export type AcademicType = (typeof academics)[number];
 export type TrainingType = (typeof trainings)[number];
 export type WorkType = (typeof works)[number];
 export type SmallProjectType = (typeof smallProjects)[number];
+export type FunFactType = (typeof funFacts)[number];

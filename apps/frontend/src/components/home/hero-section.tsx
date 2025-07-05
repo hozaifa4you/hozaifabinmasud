@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button, buttonVariants } from '../ui/button';
 import Image from 'next/image';
-import { DotGridIcon, LogoSvg } from '../ui/icons';
+import { DotGridLarge, LogoSvg } from '../ui/icons';
 import { Quote } from './quoto';
 import { PiReadCvLogoLight } from 'react-icons/pi';
 import { Tooltip } from '../ui/tooltip';
@@ -45,7 +45,7 @@ const HeroSection = () => {
                         quality={100}
                      />
 
-                     <DotGridIcon className="absolute top-[13.5rem] right-2" />
+                     <DotGridLarge className="absolute top-[13.5rem] right-2" />
                      <LogoSvg className="absolute top-16 left-0 -z-10 size-[155px]" />
 
                      <span

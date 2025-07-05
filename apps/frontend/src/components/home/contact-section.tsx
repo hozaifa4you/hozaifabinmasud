@@ -9,7 +9,7 @@ import {
    FaUpwork,
    FaLinkedinIn,
 } from 'react-icons/fa6';
-import { DotGridIcon } from '../ui/icons';
+import { DotGridLarge } from '../ui/icons';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
@@ -153,7 +153,7 @@ const ContactSection = () => {
             </div>
          </div>
 
-         <DotGridIcon className="absolute top-1/2 -left-5" />
+         <DotGridLarge className="absolute top-1/2 -left-5" />
       </section>
    );
 };

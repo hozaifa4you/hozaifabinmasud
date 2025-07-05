@@ -3,7 +3,7 @@ import { ContentHeader } from './content-header';
 import { WorkCard } from './work-card';
 import { Badge } from '../ui/badge';
 import { calculateYearsFromDate } from '@/lib/utils';
-import { DotGridIcon } from '../ui/icons';
+import { DotGridLarge } from '../ui/icons';
 import Image from 'next/image';
 
 const WorksSection = () => {
@@ -41,7 +41,7 @@ const WorksSection = () => {
             </div>
          </div>
 
-         <DotGridIcon className="absolute top-1/2 left-10 rotate-90" />
+         <DotGridLarge className="absolute top-1/2 left-10 rotate-90" />
       </section>
    );
 };

@@ -1,4 +1,4 @@
-const DotGridIcon = (props: React.SVGProps<SVGSVGElement>) => {
+const DotGridLarge = (props: React.SVGProps<SVGSVGElement>) => {
    return (
       <svg width="84" height="84" viewBox="0 0 84 84" {...props}>
          <circle cx="2" cy="2" r="2" fill="#ABB2BF" />
@@ -30,7 +30,7 @@ const DotGridIcon = (props: React.SVGProps<SVGSVGElement>) => {
    );
 };
 
-const DotGridRectIcon = (props: React.SVGProps<SVGSVGElement>) => {
+const DotGridRect = (props: React.SVGProps<SVGSVGElement>) => {
    return (
       <svg
          width="104"
@@ -111,7 +111,7 @@ const LogoSvg = (props: React.SVGProps<SVGSVGElement>) => {
    );
 };
 
-const SquareIcon = (props: React.SVGProps<SVGSVGElement>) => {
+const SquareBox = (props: React.SVGProps<SVGSVGElement>) => {
    return (
       <svg
          width="68"
@@ -126,4 +126,4 @@ const SquareIcon = (props: React.SVGProps<SVGSVGElement>) => {
    );
 };
 
-export { DotGridIcon, LogoSvg, SquareIcon, DotGridRectIcon };
+export { DotGridLarge, LogoSvg, SquareBox, DotGridRect };

@@ -1,7 +1,7 @@
 import { projects } from '@/lib/mock-data';
 import { ContentHeader } from './content-header';
 import { ProjectCard } from './project-card';
-import { DotGridIcon, SquareIcon } from '../ui/icons';
+import { DotGridLarge, SquareBox } from '../ui/icons';
 
 const ProjectsSection = () => {
    return (
@@ -21,8 +21,8 @@ const ProjectsSection = () => {
             </div>
          </div>
 
-         <SquareIcon className="absolute top-1/2 right-0" />
-         <DotGridIcon className="absolute top-1/3 -left-12" />
+         <SquareBox className="absolute top-1/2 right-0" />
+         <DotGridLarge className="absolute top-1/3 -left-12" />
       </section>
    );
 };

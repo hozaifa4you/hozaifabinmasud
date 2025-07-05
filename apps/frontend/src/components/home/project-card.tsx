@@ -1,4 +1,4 @@
-import { ProductType } from '@/lib/mock-data';
+import { ProjectType } from '@/lib/mock-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -10,7 +10,7 @@ const ProjectCard = ({
    status,
    technologies,
    title,
-}: ProductType) => {
+}: ProjectType) => {
    return (
       <div className="border-text border">
          <div>

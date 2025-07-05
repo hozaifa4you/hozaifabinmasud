@@ -3,7 +3,7 @@ import { ContentHeader } from './content-header';
 import { AcademicCard } from './academic-card';
 import { Badge } from '../ui/badge';
 import Link from 'next/link';
-import { DotGridIcon, SquareIcon } from '../ui/icons';
+import { DotGridLarge, SquareBox } from '../ui/icons';
 import { TrainingCard } from './training-card';
 
 const EducationNTraining = () => {
@@ -72,8 +72,8 @@ const EducationNTraining = () => {
             </div>
          </div>
 
-         <DotGridIcon className="absolute top-2/3 -right-5" />
-         <SquareIcon className="absolute top-1/3 -left-5 rotate-180" />
+         <DotGridLarge className="absolute top-2/3 -right-5" />
+         <SquareBox className="absolute top-1/3 -left-5 rotate-180" />
       </section>
    );
 };

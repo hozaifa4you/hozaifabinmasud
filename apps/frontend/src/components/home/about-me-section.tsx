@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ContentHeader } from './content-header';
-import { DotGridIcon, DotGridRectIcon, SquareIcon } from '../ui/icons';
+import { DotGridLarge, DotGridRect, SquareBox } from '../ui/icons';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 
@@ -46,14 +46,14 @@ const AboutMeSection = () => {
                      />
                   </div>
 
-                  <DotGridIcon className="absolute top-5 left-5 size-[84px]" />
-                  <DotGridRectIcon className="absolute right-10 bottom-1/3" />
+                  <DotGridLarge className="absolute top-5 left-5 size-[84px]" />
+                  <DotGridRect className="absolute right-10 bottom-1/3" />
                </div>
             </div>
          </div>
 
-         <SquareIcon className="absolute top-1/3 left-0 rotate-180" />
-         <DotGridIcon className="absolute top-2/3 -right-10" />
+         <SquareBox className="absolute top-1/3 left-0 rotate-180" />
+         <DotGridLarge className="absolute top-2/3 -right-10" />
       </section>
    );
 };
