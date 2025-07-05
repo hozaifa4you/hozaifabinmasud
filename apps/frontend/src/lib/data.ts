@@ -114,6 +114,8 @@ const academics = [
    },
 ];
 
+const academicAll: AcademicType[] = [...academics, ...academics, academics[0]];
+
 const trainings = [
    {
       id: 1,
@@ -148,6 +150,8 @@ const trainings = [
       status: 'done',
    },
 ];
+
+const trainingAll: TrainingType[] = [...trainings, ...trainings, trainings[0]];
 
 const works = [
    {
@@ -311,6 +315,8 @@ export {
    projectsAll,
    smallProjects,
    funFacts,
+   academicAll,
+   trainingAll,
 };
 
 export type AcademicType = (typeof academics)[number];
