@@ -6,18 +6,11 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
 import { FaUpwork } from 'react-icons/fa6';
 import { TbBrandFiverr } from 'react-icons/tb';
-
-const menuItems = [
-   { id: 1, name: 'home', sign: '#', link: '#home' },
-   { id: 2, name: 'skills', sign: '#', link: '#skills' },
-   { id: 3, name: 'works', sign: '#', link: '#works' },
-   { id: 6, name: 'edu-&-training', sign: '#', link: '#edu' },
-   { id: 4, name: 'about-me', sign: '#', link: '#about-me' },
-   { id: 5, name: 'contact', sign: '#', link: '#contacts' },
-];
+import { useMenu } from '@/hooks/use-menu';
 
 const Navbar = () => {
    const [isSticky, setIsSticky] = useState(false);
+   const menuItems = useMenu();
 
    useEffect(() => {
       const handleScroll = () => {

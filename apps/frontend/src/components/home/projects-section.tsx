@@ -11,7 +11,9 @@ const ProjectsSection = () => {
             <ContentHeader
                text="projects"
                maxLineWidth="max-w-[510px]"
-               buttonText={<Badge text="#15_projects" variant="gradient" />}
+               buttonText={
+                  <Badge text="#more_projects (15+)" variant="gradient" />
+               }
                navigateUrl="/projects"
             />
 

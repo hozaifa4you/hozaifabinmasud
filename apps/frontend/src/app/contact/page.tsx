@@ -160,7 +160,7 @@ const ContactPage = () => {
 
                         <div className="border-text border">
                            <p className="px-4 pt-4 font-bold text-white">
-                              Support now!!
+                              Support me!!
                            </p>
 
                            <div className="p-4">

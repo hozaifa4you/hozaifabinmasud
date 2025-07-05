@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, buttonVariants } from '../ui/button';
+import { buttonVariants } from '../ui/button';
 import Image from 'next/image';
 import { DotGridLarge, LogoSvg } from '../ui/icons';
 import { Quote } from './quoto';
@@ -26,7 +26,12 @@ const HeroSection = () => {
                   </p>
 
                   <div className="flex items-center gap-3">
-                     <Button variant="outline">Contact me!!</Button>
+                     <Link
+                        href="/contact"
+                        className={buttonVariants({ variant: 'outline' })}
+                     >
+                        Contact me!!
+                     </Link>
                      <Link
                         href="/download-resume"
                         className={buttonVariants({ variant: 'default' })}
