@@ -30,7 +30,7 @@ const AboutMeSection = () => {
                         level up my work.
                      </p>
 
-                     <Link href="/about-more">
+                     <Link href="/about-me">
                         <Button variant="outline">Read more!!</Button>
                      </Link>
                   </div>

@@ -13,7 +13,7 @@ const EducationNTraining = () => {
             <ContentHeader
                text="academic-&-trainings"
                buttonText="#show_more"
-               navigateUrl="/educations-trainings"
+               navigateUrl="/educations"
                maxLineWidth="max-w-[240px]"
             />
 
@@ -30,7 +30,7 @@ const EducationNTraining = () => {
                         </sup>
                      </h3>
 
-                     <Link href="/academics">
+                     <Link href="/educations#academics">
                         <Badge text="#show_more" />
                      </Link>
                   </div>
@@ -58,7 +58,7 @@ const EducationNTraining = () => {
                         </sup>
                      </h3>
 
-                     <Link href="/trainings">
+                     <Link href="/educations#trainings">
                         <Badge text="#show_more" />
                      </Link>
                   </div>

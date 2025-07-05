@@ -2,6 +2,7 @@ import { projects } from '@/lib/mock-data';
 import { ContentHeader } from './content-header';
 import { ProjectCard } from './project-card';
 import { DotGridLarge, SquareBox } from '../ui/icons';
+import { Badge } from '../ui/badge';
 
 const ProjectsSection = () => {
    return (
@@ -10,7 +11,7 @@ const ProjectsSection = () => {
             <ContentHeader
                text="projects"
                maxLineWidth="max-w-[510px]"
-               buttonText="#view_all"
+               buttonText={<Badge text="#15_projects" variant="gradient" />}
                navigateUrl="/projects"
             />
 
