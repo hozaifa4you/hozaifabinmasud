@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { BiLinkExternal } from 'react-icons/bi';
 import { CiCalendarDate } from 'react-icons/ci';
-import { FaFacebook, FaGlobe, FaLink } from 'react-icons/fa';
+import { FaFacebook, FaGlobe } from 'react-icons/fa';
 import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 
 const WorksPage = () => {
@@ -20,11 +20,12 @@ const WorksPage = () => {
                {works.map((work) => (
                   <div
                      key={work.id}
-                     className="border-b-primary/30 grid gap-0 border-b pb-10 last:border-b-0 last:pb-0 xl:grid-cols-4"
+                     className="border-b-primary/30 grid gap-3 border-b pb-10 last:border-b-0 last:pb-0 xl:grid-cols-4"
                   >
                      <div className="xl:col-span-1">
-                        <div className="flex items-center gap-1 text-sm">
-                           [<CiCalendarDate /> $
+                        <div className="text-right text-sm">
+                           [<CiCalendarDate className="inline" />{' '}
+                           <span className="text-primary">$</span>
                            {work.startDate.toLowerCase().replaceAll(' ', '_')}
                            <span
                               className={cn('', {
@@ -33,7 +34,7 @@ const WorksPage = () => {
                               })}
                            >
                               {' '}
-                              - $
+                              - <span className="text-primary">$</span>
                               {work.endDate
                                  ? work.endDate
                                       .toLowerCase()
@@ -42,6 +43,10 @@ const WorksPage = () => {
                            </span>
                            ]
                         </div>
+                        <p className="mt-1.5 text-right">
+                           <span className="text-primary">@</span>
+                           {work.duration.toLowerCase().replaceAll(' ', '-')}
+                        </p>
                      </div>
                      <div className="xl:col-span-3">
                         <h4 className="mb-2.5 text-lg leading-none font-semibold">
@@ -52,7 +57,7 @@ const WorksPage = () => {
                         </h4>
 
                         <h3 className="my-4 text-2xl leading-none font-semibold text-white">
-                           <span className="text-primary">##</span>
+                           <span className="text-primary">@</span>
                            {work.title.toLowerCase().replaceAll(' ', '_')}
                         </h3>
 

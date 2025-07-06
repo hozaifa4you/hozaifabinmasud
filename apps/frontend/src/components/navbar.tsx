@@ -31,7 +31,7 @@ const Navbar = () => {
          <div className="container flex items-center justify-between gap-4 pt-8">
             <Logo />
 
-            <menu className="flex items-center gap-8">
+            <menu className="flex items-center gap-5">
                {menuItems.map((item) => (
                   <li
                      key={item.id}

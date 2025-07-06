@@ -12,19 +12,21 @@ const useMenu = () => {
 
    const homeMenu: MenuItems[] = [
       { id: 1, name: 'home', sign: '#', link: '#home' },
-      { id: 2, name: 'skills', sign: '#', link: '#skills' },
-      { id: 3, name: 'works', sign: '#', link: '#works' },
-      { id: 6, name: 'edu-&-training', sign: '#', link: '#edu' },
-      { id: 4, name: 'about-me', sign: '#', link: '#about-me' },
-      { id: 5, name: 'contact', sign: '#', link: '#contacts' },
+      { id: 2, name: 'projects', sign: '@', link: '#projects' },
+      { id: 3, name: 'skills', sign: '#', link: '#skills' },
+      { id: 4, name: 'works', sign: '#', link: '#works' },
+      { id: 5, name: 'edu-&-training', sign: '#', link: '#edu' },
+      { id: 6, name: 'about-me', sign: '#', link: '#about-me' },
+      { id: 7, name: 'contact', sign: '#', link: '#contacts' },
    ];
 
    const commonMenuItems: MenuItems[] = [
       { id: 1, name: 'home', sign: '#', link: '/' },
+      { id: 2, name: 'projects', sign: '@', link: '/projects' },
       { id: 3, name: 'works', sign: '#', link: '/works' },
-      { id: 6, name: 'edu-&-training', sign: '#', link: '/educations' },
-      { id: 4, name: 'about-me', sign: '#', link: '/about-me' },
-      { id: 5, name: 'contact', sign: '#', link: '/contact' },
+      { id: 4, name: 'edu-&-training', sign: '#', link: '/educations' },
+      { id: 5, name: 'about-me', sign: '#', link: '/about-me' },
+      { id: 6, name: 'contact', sign: '#', link: '/contact' },
    ];
 
    const menuItems = pathname === '/' ? homeMenu : commonMenuItems;

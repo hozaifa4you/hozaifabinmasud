@@ -160,6 +160,7 @@ const works = [
       title: 'Junior Software Engineer',
       startDate: 'Sep 2021',
       status: 'present',
+      duration: '2.5 years',
       responsibilities:
          'Developed and maintained web applications using MERN stack, collaborated with cross-functional teams, and implemented RESTful APIs.',
       type: 'On-site',
@@ -188,6 +189,7 @@ const works = [
       startDate: 'Dec 2023',
       endDate: 'Oct 2023',
       status: 'ended',
+      duration: '1.5 years',
       responsibilities:
          'Developing AI-powered web applications, and optimizing performance.',
       type: 'On-site',
