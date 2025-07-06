@@ -12,7 +12,7 @@ const ProjectsSection = () => {
                text="projects"
                maxLineWidth="max-w-[510px]"
                buttonText={
-                  <Badge text="#more_projects (15+)" variant="gradient" />
+                  <Badge text="#more_projects (15+) ~>" variant="gradient" />
                }
                navigateUrl="/projects"
             />

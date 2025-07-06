@@ -26,7 +26,7 @@ const Navbar = () => {
    return (
       <header
          id="home"
-         className={cn('sticky top-0', { 'bg-bg-main z-40': isSticky })}
+         className={cn('sticky top-0', { 'bg-bg-main z-40 pb-2.5': isSticky })}
       >
          <div className="container flex items-center justify-between gap-4 pt-8">
             <Logo />

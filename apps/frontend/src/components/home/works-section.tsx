@@ -16,10 +16,10 @@ const WorksSection = () => {
                buttonText={
                   <Badge
                      variant="active"
-                     text={`#${calculateYearsFromDate('01/08/2021')}_years`}
+                     text={`#${calculateYearsFromDate('01/08/2021')}_years ~>`}
                   />
                }
-               navigateUrl="#"
+               navigateUrl="/works"
             />
 
             <div className="mt-5 grid gap-5 xl:grid-cols-3">

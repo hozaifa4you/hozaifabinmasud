@@ -173,6 +173,13 @@ const works = [
          'langchain',
          'pinecone',
       ],
+      address: 'Lift 5, House 10, Uttara 10, Dhaka, Bangladesh.',
+      website: 'https://namespaceit.com',
+      social: [
+         { id: 1, name: 'facebook', url: '#' },
+         { id: 2, name: 'linkedin', url: '#' },
+         { id: 3, name: 'x', url: '#' },
+      ],
    },
    {
       id: 1,
@@ -185,6 +192,12 @@ const works = [
          'Developing AI-powered web applications, and optimizing performance.',
       type: 'On-site',
       skills: ['nodejs', 'reactjs', 'typescript', 'mongodb', 'nextjs'],
+      address: 'Lift 4, House 13, Road 11, Uttara 11, Dhaka, Bangladesh.',
+      website: 'https://aipowerit.com',
+      social: [
+         { id: 1, name: 'facebook', url: '#' },
+         { id: 3, name: 'x', url: '#' },
+      ],
    },
 ];
 
