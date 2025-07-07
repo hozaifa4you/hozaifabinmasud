@@ -316,6 +316,58 @@ const funFacts = [
    { id: 7, text: 'I don’t have any siblings' },
 ];
 
+const projectDetails = [
+   {
+      id: 1,
+      title: 'Office AI - Chat with your documents',
+      slug: 'office-ai-chat-with-your-documents',
+      status: 'on archive',
+      designation: 'Junior Software Engineer',
+      duration: '6 months',
+      teamMembers: '3 members',
+      liveUrl: 'https://officeai.com',
+      sourceCode: undefined,
+      description:
+         'A full stack web application made with Openai. For chat with uploaded documents like pdf, docs, txt, csv, url and images',
+      mainImage: '/alternate/products/1.png',
+      images: [
+         '/alternate/products/1.png',
+         '/alternate/products/2.png',
+         '/alternate/products/3.png',
+         '/alternate/products/4.png',
+         '/alternate/products/5.png',
+      ],
+      location: 'Dhaka, Bangladesh',
+      keyFeatures: [''],
+      technologies: [{ backend: ['NodeJs', 'ExpressJs', 'NestJs', 'MongoDB'] }],
+      company: {
+         name: 'Namespace IT',
+         address: 'Lift 4, House 13, Road 11, Uttara 11, Dhaka, Bangladesh',
+         website: 'https://namespaceit.com',
+      },
+      members: [
+         {
+            name: 'Nasir Khan',
+            designation: 'Project Manager',
+            github: 'https://github.com/nasirkhannstu',
+            fb: 'https://fb.com/nasirkhannstu',
+         },
+         {
+            name: 'Jewel Khan',
+            designation: 'Developer',
+            github: 'https://github.com/jewelkhan',
+            fb: 'https://fb.com/jewelkhan',
+         },
+         {
+            name: 'Hozaifa Bin Masud',
+            designation: 'Developer',
+            github: 'https://github.com/hozaifa4you',
+            fb: 'https://fb.com/hozaifabinmasud',
+         },
+      ],
+   },
+];
+
 export {
    languages,
    databases,
@@ -332,6 +384,7 @@ export {
    funFacts,
    academicAll,
    trainingAll,
+   projectDetails,
 };
 
 export type AcademicType = (typeof academics)[number];
@@ -339,3 +392,4 @@ export type TrainingType = (typeof trainings)[number];
 export type WorkType = (typeof works)[number];
 export type SmallProjectType = (typeof smallProjects)[number];
 export type FunFactType = (typeof funFacts)[number];
+export type projectDetailsType = (typeof projectDetails)[number];

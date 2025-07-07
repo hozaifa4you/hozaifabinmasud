@@ -1,7 +1,7 @@
 import { ProjectType } from '@/lib/mock-data';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 
 const ProjectCard = ({
    image,
@@ -12,7 +12,10 @@ const ProjectCard = ({
    title,
 }: ProjectType) => {
    return (
-      <div className="border-text border">
+      <Link
+         href={`/projects/${slug}`}
+         className="border-text hover:border-primary group border transition-colors duration-200 ease-in-out"
+      >
          <div>
             <Image
                src={image}
@@ -28,7 +31,7 @@ const ProjectCard = ({
             </div>
 
             <div className="p-4">
-               <h3 className="text-text-secondary text-2xl font-medium">
+               <h3 className="text-text-secondary text-2xl font-medium transition-all duration-200 ease-in-out group-hover:underline">
                   {title}
                </h3>
                <p className="py-4">{shortDesc}</p>
@@ -40,7 +43,7 @@ const ProjectCard = ({
                </Link>
             </div>
          </div>
-      </div>
+      </Link>
    );
 };
 
