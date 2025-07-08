@@ -1,7 +1,12 @@
 'use client';
+import { Breadcrumb } from '@/components/breadcrumb';
+import { ContentHeader } from '@/components/home/content-header';
+import { buttonVariants } from '@/components/ui/button';
 import { projectDetails } from '@/lib/data';
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
-import { LuArrowLeft, LuX } from 'react-icons/lu';
+import { LuX } from 'react-icons/lu';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
@@ -11,7 +16,7 @@ function App() {
    const project = projectDetails[0];
 
    // Prepare images for gallery
-   const allImages = [project.mainImage, ...project.additionalImages];
+   const allImages = [...project.additionalImages];
    const galleryImages = allImages.map((image, index) => ({
       original: image,
       thumbnail: image,
@@ -31,79 +36,82 @@ function App() {
    };
 
    return (
-      <div className="bg-main min-h-screen">
-         {/* Header */}
-         <header className="border-b border-gray-600 py-6">
-            <div className="container">
-               <button className="hover:text-primary flex items-center space-x-2 font-mono text-gray-400 transition-colors">
-                  <LuArrowLeft size={18} />
-                  <span>Back to Portfolio</span>
-               </button>
-            </div>
-         </header>
+      <div className="bg-main mb-10 min-h-screen">
+         <Breadcrumb
+            title="project-overview"
+            size="md"
+            subtitle={<Link href="/projects">{'<'}- back_to_projects</Link>}
+         />
 
          {/* Main Content */}
-         <main className="container py-8 lg:py-12">
+         <main className="container">
             {/* Hero Section */}
             <div className="mb-12 lg:mb-16">
                <div className="mb-8 flex flex-col gap-6 lg:mb-12 lg:flex-row lg:items-start lg:justify-between">
                   <div className="flex-1">
-                     <h1 className="mb-4 font-mono text-3xl leading-tight font-bold text-white lg:text-4xl xl:text-5xl">
+                     <h2 className="mb-4 font-mono text-3xl leading-tight font-bold text-white lg:text-4xl xl:text-5xl">
                         {project.title}
-                     </h1>
+                     </h2>
                      <p className="max-w-2xl text-base leading-relaxed text-gray-400 lg:text-lg">
                         {project.description}
                      </p>
                   </div>
                   <div className="flex flex-col gap-3 sm:flex-row lg:flex-shrink-0">
-                     <a
+                     <Link
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-primary text-center"
+                        className={buttonVariants({
+                           variant: 'outlineSecondary',
+                           size: 'xl',
+                        })}
                      >
                         Live &lt;~&gt;
-                     </a>
-                     <a
+                     </Link>
+
+                     <Link
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-secondary text-center"
+                        className={buttonVariants({
+                           variant: 'secondary',
+                           size: 'xl',
+                        })}
                      >
                         Cached &gt;
-                     </a>
+                     </Link>
                   </div>
                </div>
 
                {/* Project Info Cards */}
                <div className="mb-8 grid grid-cols-2 gap-4 lg:mb-12 lg:grid-cols-4">
-                  <div className="project-info-card">
+                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
                      <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                        Role
+                        <span className="text-white">@</span>Role
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
                         {project.role}
                      </div>
                   </div>
-                  <div className="project-info-card">
+                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
                      <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                        Duration
+                        <span className="text-white">@</span>Duration
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
                         {project.duration}
                      </div>
                   </div>
-                  <div className="project-info-card">
+                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
                      <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                        Team
+                        <span className="text-white">@</span>Team
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
                         {project.teamSize}
                      </div>
                   </div>
-                  <div className="project-info-card">
+                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
                      <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                        Location
+                        <span className="text-white">@</span>Location
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
                         {project.location}
@@ -114,11 +122,15 @@ function App() {
 
             {/* Main Image */}
             <div className="mb-12 lg:mb-16">
-               <div className="section-header mb-6 lg:mb-8">
-                  #project-preview
-               </div>
-               <div className="project-card overflow-hidden">
-                  <img
+               <ContentHeader
+                  text="project-overview"
+                  maxLineWidth="max-w-[220px]"
+                  size="md"
+               />
+               <div className="project-card mt-5 overflow-hidden">
+                  <Image
+                     width={1000}
+                     height={385}
                      src={project.mainImage}
                      alt={project.title}
                      className="h-64 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-80 xl:h-96"
@@ -133,16 +145,20 @@ function App() {
                <div className="space-y-8 lg:space-y-12 xl:col-span-2">
                   {/* Screenshots */}
                   <div>
-                     <div className="section-header mb-6 lg:mb-8">
-                        #screenshots
-                     </div>
-                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+                     <ContentHeader
+                        text="medias"
+                        maxLineWidth="max-w-[180px]"
+                        size="md"
+                     />
+                     <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
                         {project.additionalImages.map((image, index) => (
                            <div
                               key={index}
                               className="project-card overflow-hidden"
                            >
-                              <img
+                              <Image
+                                 width={315}
+                                 height={225}
                                  src={image}
                                  alt={`Screenshot ${index + 1}`}
                                  className="h-48 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-56"
@@ -155,17 +171,21 @@ function App() {
 
                   {/* Features */}
                   <div>
-                     <div className="section-header mb-6 lg:mb-8">
-                        #features
-                     </div>
-                     <div className="project-card p-6 lg:p-8">
-                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+                     <ContentHeader
+                        text="features"
+                        maxLineWidth="max-w-[190px]"
+                        size="md"
+                     />
+                     <div className="project-card mt-5 p-4 lg:p-8">
+                        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:gap-6">
                            {project.features.map((feature, index) => (
                               <div
                                  key={index}
                                  className="flex items-center space-x-3"
                               >
-                                 <div className="bg-primary h-2 w-2 flex-shrink-0 rounded-full"></div>
+                                 <div className="text-primary flex-shrink-0">
+                                    *
+                                 </div>
                                  <span className="text-sm text-gray-300 lg:text-base">
                                     {feature}
                                  </span>
@@ -177,10 +197,12 @@ function App() {
 
                   {/* Technologies */}
                   <div>
-                     <div className="section-header mb-6 lg:mb-8">
-                        #technologies
-                     </div>
-                     <div className="project-card p-6 lg:p-8">
+                     <ContentHeader
+                        text="technologies"
+                        maxLineWidth="max-w-[150px]"
+                        size="md"
+                     />
+                     <div className="project-card mt-5 p-4 lg:p-8">
                         <div className="space-y-6 lg:space-y-8">
                            {[
                               'Frontend',
@@ -204,8 +226,14 @@ function App() {
                                        {categoryTechs.map((tech, index) => (
                                           <span
                                              key={index}
-                                             className="tech-tag"
+                                             className="tech-tag border-text text-text font-main hover:border-primary hover:text-primary flex items-center gap-x-1.5 border bg-transparent px-3 py-1.5 whitespace-nowrap transition-all duration-300 ease-in-out"
                                           >
+                                             <Image
+                                                src={tech.img}
+                                                alt={tech.name}
+                                                width={16}
+                                                height={16}
+                                             />
                                              {tech.name}
                                           </span>
                                        ))}
@@ -222,12 +250,17 @@ function App() {
                <div className="space-y-8 lg:space-y-12">
                   {/* Company Info */}
                   <div>
-                     <div className="section-header mb-6 lg:mb-8">#company</div>
-                     <div className="project-card p-6 lg:p-8">
+                     <ContentHeader
+                        text="company"
+                        maxLineWidth="max-w-[100px]"
+                        size="sm"
+                     />
+
+                     <div className="project-card mt-5 p-4 lg:p-8">
                         <div className="space-y-4 lg:space-y-6">
                            <div>
                               <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                 Name
+                                 <span className="text-white">@</span>Name
                               </div>
                               <div className="text-sm font-medium text-white lg:text-base">
                                  {project.company.name}
@@ -235,7 +268,7 @@ function App() {
                            </div>
                            <div>
                               <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                 Address
+                                 <span className="text-white">@</span>Address
                               </div>
                               <div className="text-xs leading-relaxed text-gray-300 lg:text-sm">
                                  {project.company.address}
@@ -243,7 +276,7 @@ function App() {
                            </div>
                            <div>
                               <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                 Website
+                                 <span className="text-white">@</span>Website
                               </div>
                               <a
                                  href={project.company.website}
@@ -260,8 +293,13 @@ function App() {
 
                   {/* Team Members */}
                   <div>
-                     <div className="section-header mb-6 lg:mb-8">#team</div>
-                     <div className="project-card p-6 lg:p-8">
+                     <ContentHeader
+                        text="team"
+                        maxLineWidth="max-w-[100px]"
+                        size="sm"
+                     />
+
+                     <div className="project-card mt-5 p-4 lg:p-8">
                         <div className="space-y-4 lg:space-y-5">
                            {project.teamMembers.map((member, index) => (
                               <div
@@ -292,8 +330,13 @@ function App() {
 
                   {/* Status */}
                   <div>
-                     <div className="section-header mb-6 lg:mb-8">#status</div>
-                     <div className="project-card p-6 lg:p-8">
+                     <ContentHeader
+                        text="status"
+                        maxLineWidth="max-w-[100px]"
+                        size="sm"
+                     />
+
+                     <div className="project-card mt-5 p-4 lg:p-8">
                         <div className="mb-3 flex items-center space-x-3">
                            <div className="h-3 w-3 flex-shrink-0 rounded-full bg-green-500"></div>
                            <span className="text-sm font-medium text-white lg:text-base">

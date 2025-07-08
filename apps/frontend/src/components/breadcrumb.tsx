@@ -1,12 +1,22 @@
+import { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+
 interface BreadcrumbProps {
    title: string;
-   subtitle?: string;
+   subtitle?: string | ReactNode;
+   size?: 'sm' | 'md' | 'lg';
 }
 
-const Breadcrumb = ({ title, subtitle }: BreadcrumbProps) => {
+const Breadcrumb = ({ title, subtitle, size = 'lg' }: BreadcrumbProps) => {
    return (
       <section className="container my-6">
-         <h1 className="text-[32px] font-semibold text-white">
+         <h1
+            className={cn('font-semibold text-white', {
+               'text-[32px]': size === 'lg',
+               'text-[26px]': size === 'md',
+               'text-[20px]': size === 'sm',
+            })}
+         >
             <span className="text-primary">/</span>
             {title}
          </h1>

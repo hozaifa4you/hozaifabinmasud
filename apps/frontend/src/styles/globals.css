@@ -7,6 +7,7 @@
    --color-primary: #c778dd;
    --color-text: #abb2bf;
    --color-text-secondary: #fff;
+   --font-main: var(--font-main);
 }
 
 @utility container {
@@ -15,6 +16,25 @@
    max-width: 1030px;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+   width: 8px;
+}
+
+::-webkit-scrollbar-track {
+   background: #1e2227;
+}
+
+::-webkit-scrollbar-thumb {
+   background: var(--color-primary);
+   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: #b366d1;
+}
+
+/* Section padding */
 .section-padding {
    @apply py-[50px];
 }
@@ -25,4 +45,113 @@
 
 section {
    overflow: hidden;
+}
+
+/* project details */
+.project-card {
+   @apply border-text hover:border-primary border bg-transparent transition-all duration-300 ease-in-out;
+}
+
+/* Focus states */
+button:focus-visible,
+a:focus-visible {
+   outline: 2px solid var(--color-primary);
+   outline-offset: 2px;
+}
+
+/* Custom styles for react-image-gallery */
+.custom-gallery .image-gallery-content {
+   background: transparent;
+}
+
+.custom-gallery .image-gallery-slide img {
+   max-height: 75vh !important;
+   object-fit: contain;
+   border: 1px solid #abb2bf;
+}
+
+@media (max-width: 768px) {
+   .custom-gallery .image-gallery-slide img {
+      max-height: 80vh !important;
+   }
+}
+
+.custom-gallery .image-gallery-thumbnails-wrapper {
+   background: rgba(40, 44, 51, 0.9);
+   backdrop-filter: blur(16px);
+   margin-top: 2rem;
+   padding: 1rem;
+   border: 1px solid #abb2bf;
+}
+
+.custom-gallery .image-gallery-thumbnail {
+   border: 1px solid #abb2bf;
+   transition: all 0.3s ease;
+}
+
+.custom-gallery .image-gallery-thumbnail.active {
+   border-color: var(--color-primary);
+}
+
+.custom-gallery .image-gallery-thumbnail:hover {
+   border-color: var(--color-primary);
+}
+
+.custom-gallery .image-gallery-left-nav,
+.custom-gallery .image-gallery-right-nav {
+   background: rgba(40, 44, 51, 0.8);
+   backdrop-filter: blur(16px);
+   color: var(--color-text-secondary);
+   font-size: 1.5rem;
+   padding: 1rem;
+   transition: all 0.3s ease;
+   border: 1px solid #abb2bf;
+}
+
+@media (min-width: 768px) {
+   .custom-gallery .image-gallery-left-nav,
+   .custom-gallery .image-gallery-right-nav {
+      font-size: 2rem;
+      padding: 1.5rem;
+   }
+}
+
+.custom-gallery .image-gallery-left-nav:hover,
+.custom-gallery .image-gallery-right-nav:hover {
+   border-color: var(--color-primary);
+   color: var(--color-primary);
+}
+
+.custom-gallery .image-gallery-description {
+   background: rgba(40, 44, 51, 0.9);
+   backdrop-filter: blur(16px);
+   color: var(--color-text-secondary);
+   padding: 1rem 1.5rem;
+   margin-top: 1.5rem;
+   font-weight: 500;
+   border: 1px solid #abb2bf;
+   font-family: 'Fira Code', monospace;
+   font-size: 14px;
+}
+
+@media (min-width: 768px) {
+   .custom-gallery .image-gallery-description {
+      font-size: 16px;
+   }
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+   .section-header {
+      font-size: 1.25rem;
+   }
+
+   .section-header::after {
+      display: none;
+   }
+}
+
+/* Ensure proper text wrapping */
+.break-all {
+   word-break: break-all;
 }

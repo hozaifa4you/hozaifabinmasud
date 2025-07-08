@@ -17,6 +17,7 @@ export const buttonVariants = cva(
          size: {
             default: '',
             lg: 'py-4',
+            xl: 'py-5',
          },
       },
       defaultVariants: {

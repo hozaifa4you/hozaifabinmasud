@@ -336,6 +336,9 @@ const projectDetails = [
          'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
          'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
          'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+         'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+         'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+         'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       ],
 
       features: [
@@ -347,16 +350,36 @@ const projectDetails = [
          'Mobile-responsive design',
       ],
       technologies: [
-         { name: 'React', category: 'Frontend' },
-         { name: 'TypeScript', category: 'Frontend' },
-         { name: 'Tailwind CSS', category: 'Frontend' },
-         { name: 'Node.js', category: 'Backend' },
-         { name: 'Express.js', category: 'Backend' },
-         { name: 'PostgreSQL', category: 'Database' },
-         { name: 'Redis', category: 'Database' },
-         { name: 'Socket.io', category: 'Real-time' },
-         { name: 'Docker', category: 'DevOps' },
-         { name: 'AWS', category: 'Cloud' },
+         { name: 'React', category: 'Frontend', img: '/icons/reactjs.svg' },
+         {
+            name: 'TypeScript',
+            category: 'Frontend',
+            img: '/icons/typescript.svg',
+         },
+         {
+            name: 'Tailwind CSS',
+            category: 'Frontend',
+            img: '/icons/tailwind.svg',
+         },
+         { name: 'Node.js', category: 'Backend', img: '/icons/nodejs.svg' },
+         {
+            name: 'Express.js',
+            category: 'Backend',
+            img: '/icons/expressjs.svg',
+         },
+         {
+            name: 'PostgreSQL',
+            category: 'Database',
+            img: '/icons/postgresql.svg',
+         },
+         { name: 'Redis', category: 'Database', img: '/icons/redis.svg' },
+         {
+            name: 'Socket.io',
+            category: 'Real-time',
+            img: '/icons/socket-io.svg',
+         },
+         { name: 'Docker', category: 'DevOps', img: '/icons/docker.svg' },
+         { name: 'AWS', category: 'Cloud', img: '/icons/aws.svg' },
       ],
       teamMembers: [
          { name: 'John Smith', role: 'Project Manager' },

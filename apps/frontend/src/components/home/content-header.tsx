@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { buttonVariants } from '../ui/button';
+import { cn } from '@/lib/utils';
 
 interface ContentHeaderProps {
    maxLineWidth?: string;
    text: string;
    navigateUrl?: string;
    buttonText?: React.ReactNode;
+   size?: 'sm' | 'lg' | 'md';
 }
 
 const ContentHeader = ({
@@ -13,12 +15,19 @@ const ContentHeader = ({
    maxLineWidth = 'max-w-[510px]',
    buttonText,
    navigateUrl,
+   size = 'lg',
 }: ContentHeaderProps) => {
    return (
       <div className="flex">
          <div className="w-full">
             <div className="flex items-center gap-4">
-               <h2 className="text-[32px] font-medium">
+               <h2
+                  className={cn('font-medium', {
+                     'text-[32px]': size === 'lg',
+                     'text-[26px]': size === 'md',
+                     'text-[20px]': size === 'sm',
+                  })}
+               >
                   <span className="text-primary">#</span>
                   {text}
                </h2>
