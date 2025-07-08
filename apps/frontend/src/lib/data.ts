@@ -318,53 +318,55 @@ const funFacts = [
 
 const projectDetails = [
    {
-      id: 1,
-      title: 'Office AI - Chat with your documents',
-      slug: 'office-ai-chat-with-your-documents',
-      status: 'on archive',
-      designation: 'Junior Software Engineer',
-      duration: '6 months',
-      teamMembers: '3 members',
-      liveUrl: 'https://officeai.com',
-      sourceCode: undefined,
-      description:
-         'A full stack web application made with Openai. For chat with uploaded documents like pdf, docs, txt, csv, url and images',
-      mainImage: '/alternate/products/1.png',
-      images: [
-         '/alternate/products/1.png',
-         '/alternate/products/2.png',
-         '/alternate/products/3.png',
-         '/alternate/products/4.png',
-         '/alternate/products/5.png',
-      ],
-      location: 'Dhaka, Bangladesh',
-      keyFeatures: [''],
-      technologies: [{ backend: ['NodeJs', 'ExpressJs', 'NestJs', 'MongoDB'] }],
+      title: 'TaskFlow - Project Management Platform',
       company: {
          name: 'Namespace IT',
          address: 'Lift 4, House 13, Road 11, Uttara 11, Dhaka, Bangladesh',
          website: 'https://namespaceit.com',
       },
-      members: [
-         {
-            name: 'Nasir Khan',
-            designation: 'Project Manager',
-            github: 'https://github.com/nasirkhannstu',
-            fb: 'https://fb.com/nasirkhannstu',
-         },
-         {
-            name: 'Jewel Khan',
-            designation: 'Developer',
-            github: 'https://github.com/jewelkhan',
-            fb: 'https://fb.com/jewelkhan',
-         },
-         {
-            name: 'Hozaifa Bin Masud',
-            designation: 'Developer',
-            github: 'https://github.com/hozaifa4you',
-            fb: 'https://fb.com/hozaifabinmasud',
-         },
+      role: 'Senior Full Stack Developer',
+      location: 'Dhaka, Bangladesh',
+      duration: '6 months',
+      teamSize: '5 developers',
+      description:
+         'A comprehensive project management platform designed to streamline team collaboration and project tracking. Built with modern technologies to handle complex workflows and real-time updates.',
+      mainImage:
+         'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop',
+      additionalImages: [
+         'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+         'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+         'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       ],
+
+      features: [
+         'Real-time task collaboration',
+         'Advanced project analytics',
+         'Team performance tracking',
+         'File sharing and version control',
+         'Custom workflow automation',
+         'Mobile-responsive design',
+      ],
+      technologies: [
+         { name: 'React', category: 'Frontend' },
+         { name: 'TypeScript', category: 'Frontend' },
+         { name: 'Tailwind CSS', category: 'Frontend' },
+         { name: 'Node.js', category: 'Backend' },
+         { name: 'Express.js', category: 'Backend' },
+         { name: 'PostgreSQL', category: 'Database' },
+         { name: 'Redis', category: 'Database' },
+         { name: 'Socket.io', category: 'Real-time' },
+         { name: 'Docker', category: 'DevOps' },
+         { name: 'AWS', category: 'Cloud' },
+      ],
+      teamMembers: [
+         { name: 'John Smith', role: 'Project Manager' },
+         { name: 'Sarah Johnson', role: 'UI/UX Designer' },
+         { name: 'Mike Chen', role: 'Backend Developer' },
+         { name: 'Emily Davis', role: 'Frontend Developer' },
+         { name: 'Alex Rodriguez', role: 'DevOps Engineer' },
+      ],
+      liveUrl: 'https://taskflow-demo.com',
+      githubUrl: 'https://github.com/yourusername/taskflow',
    },
 ];
 

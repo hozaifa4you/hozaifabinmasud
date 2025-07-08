@@ -1,131 +1,341 @@
-import { Breadcrumb } from '@/components/breadcrumb';
-import { buttonVariants } from '@/components/ui/button';
+'use client';
 import { projectDetails } from '@/lib/data';
-import Image from 'next/image';
-import Link from 'next/link';
-import {
-   FaExternalLinkAlt,
-   FaRegCalendar,
-   FaRegClock,
-   FaUsersCog,
-} from 'react-icons/fa';
-import { LuGithub } from 'react-icons/lu';
+import React, { useState } from 'react';
+import { LuArrowLeft, LuX } from 'react-icons/lu';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
-const ProjectDetailsPage = () => {
+function App() {
+   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+   const [currentImageIndex, setCurrentImageIndex] = useState(0);
    const project = projectDetails[0];
 
+   // Prepare images for gallery
+   const allImages = [project.mainImage, ...project.additionalImages];
+   const galleryImages = allImages.map((image, index) => ({
+      original: image,
+      thumbnail: image,
+      description:
+         index === 0
+            ? `${project.title} - Main Screenshot`
+            : `${project.title} - Screenshot ${index}`,
+   }));
+
+   const openGallery = (imageIndex: number) => {
+      setCurrentImageIndex(imageIndex);
+      setIsGalleryOpen(true);
+   };
+
+   const closeGallery = () => {
+      setIsGalleryOpen(false);
+   };
+
    return (
-      <>
-         <Breadcrumb title={project.title} subtitle="Project Details" />
-
-         <section className="relative">
+      <div className="bg-main min-h-screen">
+         {/* Header */}
+         <header className="border-b border-gray-600 py-6">
             <div className="container">
-               <div className="border-text grid gap-4 border xl:grid-cols-8">
-                  <div className="p-4 xl:col-span-6">
-                     <Image
-                        src={project.mainImage}
-                        alt={project.title}
-                        width={200}
-                        height={200}
-                        quality={100}
-                        className="h-auto max-h-[380px] w-full object-cover object-center"
-                     />
+               <button className="hover:text-primary flex items-center space-x-2 font-mono text-gray-400 transition-colors">
+                  <LuArrowLeft size={18} />
+                  <span>Back to Portfolio</span>
+               </button>
+            </div>
+         </header>
 
-                     <div className="mt-4 flex items-center gap-5">
-                        <div className="flex items-center gap-1.5">
-                           <FaRegCalendar className="text-primary" />{' '}
-                           <span>
-                              <span className="text-primary">@</span>
-                              {project.designation
-                                 .toLowerCase()
-                                 .replaceAll(' ', '_')}
-                           </span>
-                        </div>
+         {/* Main Content */}
+         <main className="container py-8 lg:py-12">
+            {/* Hero Section */}
+            <div className="mb-12 lg:mb-16">
+               <div className="mb-8 flex flex-col gap-6 lg:mb-12 lg:flex-row lg:items-start lg:justify-between">
+                  <div className="flex-1">
+                     <h1 className="mb-4 font-mono text-3xl leading-tight font-bold text-white lg:text-4xl xl:text-5xl">
+                        {project.title}
+                     </h1>
+                     <p className="max-w-2xl text-base leading-relaxed text-gray-400 lg:text-lg">
+                        {project.description}
+                     </p>
+                  </div>
+                  <div className="flex flex-col gap-3 sm:flex-row lg:flex-shrink-0">
+                     <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary text-center"
+                     >
+                        Live &lt;~&gt;
+                     </a>
+                     <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary text-center"
+                     >
+                        Cached &gt;
+                     </a>
+                  </div>
+               </div>
 
-                        <div className="flex items-center gap-1.5">
-                           <FaRegClock className="text-primary" />
-                           <span>
-                              <span className="text-primary">@</span>
-                              {project.duration
-                                 .toLowerCase()
-                                 .replaceAll(' ', '_')}
-                           </span>
-                        </div>
+               {/* Project Info Cards */}
+               <div className="mb-8 grid grid-cols-2 gap-4 lg:mb-12 lg:grid-cols-4">
+                  <div className="project-info-card">
+                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                        Role
+                     </div>
+                     <div className="text-sm font-medium text-white lg:text-base">
+                        {project.role}
+                     </div>
+                  </div>
+                  <div className="project-info-card">
+                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                        Duration
+                     </div>
+                     <div className="text-sm font-medium text-white lg:text-base">
+                        {project.duration}
+                     </div>
+                  </div>
+                  <div className="project-info-card">
+                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                        Team
+                     </div>
+                     <div className="text-sm font-medium text-white lg:text-base">
+                        {project.teamSize}
+                     </div>
+                  </div>
+                  <div className="project-info-card">
+                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                        Location
+                     </div>
+                     <div className="text-sm font-medium text-white lg:text-base">
+                        {project.location}
+                     </div>
+                  </div>
+               </div>
+            </div>
 
-                        <div className="flex items-center gap-1.5">
-                           <FaUsersCog className="text-primary" />
-                           <span>
-                              <span className="text-primary">@</span>
-                              {project.teamMembers
-                                 .toLowerCase()
-                                 .replaceAll(' ', '_')}
-                           </span>
+            {/* Main Image */}
+            <div className="mb-12 lg:mb-16">
+               <div className="section-header mb-6 lg:mb-8">
+                  #project-preview
+               </div>
+               <div className="project-card overflow-hidden">
+                  <img
+                     src={project.mainImage}
+                     alt={project.title}
+                     className="h-64 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-80 xl:h-96"
+                     onClick={() => openGallery(0)}
+                  />
+               </div>
+            </div>
+
+            {/* Content Grid */}
+            <div className="grid grid-cols-1 gap-8 lg:gap-12 xl:grid-cols-3">
+               {/* Left Column */}
+               <div className="space-y-8 lg:space-y-12 xl:col-span-2">
+                  {/* Screenshots */}
+                  <div>
+                     <div className="section-header mb-6 lg:mb-8">
+                        #screenshots
+                     </div>
+                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+                        {project.additionalImages.map((image, index) => (
+                           <div
+                              key={index}
+                              className="project-card overflow-hidden"
+                           >
+                              <img
+                                 src={image}
+                                 alt={`Screenshot ${index + 1}`}
+                                 className="h-48 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-56"
+                                 onClick={() => openGallery(index + 1)}
+                              />
+                           </div>
+                        ))}
+                     </div>
+                  </div>
+
+                  {/* Features */}
+                  <div>
+                     <div className="section-header mb-6 lg:mb-8">
+                        #features
+                     </div>
+                     <div className="project-card p-6 lg:p-8">
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+                           {project.features.map((feature, index) => (
+                              <div
+                                 key={index}
+                                 className="flex items-center space-x-3"
+                              >
+                                 <div className="bg-primary h-2 w-2 flex-shrink-0 rounded-full"></div>
+                                 <span className="text-sm text-gray-300 lg:text-base">
+                                    {feature}
+                                 </span>
+                              </div>
+                           ))}
                         </div>
                      </div>
                   </div>
 
-                  <div className="xl:col-span-2">
-                     <div className="space-y-4 p-4">
-                        <Link
-                           className={buttonVariants({
-                              variant: 'outlineSecondary',
-                              className: 'w-full',
-                              size: 'lg',
-                           })}
-                           href={project.liveUrl}
-                        >
-                           <FaExternalLinkAlt className="size-4" /> Live Url
-                        </Link>
+                  {/* Technologies */}
+                  <div>
+                     <div className="section-header mb-6 lg:mb-8">
+                        #technologies
+                     </div>
+                     <div className="project-card p-6 lg:p-8">
+                        <div className="space-y-6 lg:space-y-8">
+                           {[
+                              'Frontend',
+                              'Backend',
+                              'Database',
+                              'Real-time',
+                              'DevOps',
+                              'Cloud',
+                           ].map((category) => {
+                              const categoryTechs = project.technologies.filter(
+                                 (tech) => tech.category === category,
+                              );
+                              if (categoryTechs.length === 0) return null;
 
-                        <Link
-                           className={buttonVariants({
-                              variant: 'secondary',
-                              className: 'w-full',
-                              size: 'lg',
+                              return (
+                                 <div key={category}>
+                                    <div className="text-primary mb-3 font-mono text-sm lg:mb-4 lg:text-base">
+                                       {category}
+                                    </div>
+                                    <div className="flex flex-wrap gap-2 lg:gap-3">
+                                       {categoryTechs.map((tech, index) => (
+                                          <span
+                                             key={index}
+                                             className="tech-tag"
+                                          >
+                                             {tech.name}
+                                          </span>
+                                       ))}
+                                    </div>
+                                 </div>
+                              );
                            })}
-                           href={project?.sourceCode ?? ''}
-                        >
-                           <LuGithub className="size-4" /> Source Code
-                        </Link>
+                        </div>
                      </div>
                   </div>
                </div>
 
-               {/*  */}
-
-               <div className="mt-4 grid gap-4 xl:grid-cols-3">
-                  <div className="xl:col-span-2">
-                     <div className="grid w-full gap-4">
-                        <div className="border-text border p-4">
-                           <p>
-                              <strong>
-                                 <span className="text-primary">@</span>Details:
-                              </strong>{' '}
-                              {project.description}
-                           </p>
+               {/* Right Sidebar */}
+               <div className="space-y-8 lg:space-y-12">
+                  {/* Company Info */}
+                  <div>
+                     <div className="section-header mb-6 lg:mb-8">#company</div>
+                     <div className="project-card p-6 lg:p-8">
+                        <div className="space-y-4 lg:space-y-6">
+                           <div>
+                              <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                 Name
+                              </div>
+                              <div className="text-sm font-medium text-white lg:text-base">
+                                 {project.company.name}
+                              </div>
+                           </div>
+                           <div>
+                              <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                 Address
+                              </div>
+                              <div className="text-xs leading-relaxed text-gray-300 lg:text-sm">
+                                 {project.company.address}
+                              </div>
+                           </div>
+                           <div>
+                              <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                 Website
+                              </div>
+                              <a
+                                 href={project.company.website}
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 className="text-primary text-xs break-all transition-colors hover:text-white lg:text-sm"
+                              >
+                                 {project.company.website}
+                              </a>
+                           </div>
                         </div>
                      </div>
                   </div>
 
-                  <div className="border-text border xl:col-span-1">
-                     <div className="grid w-full gap-4">
-                        <div className="border-text border p-4">
-                           <h4>Project Details</h4>
+                  {/* Team Members */}
+                  <div>
+                     <div className="section-header mb-6 lg:mb-8">#team</div>
+                     <div className="project-card p-6 lg:p-8">
+                        <div className="space-y-4 lg:space-y-5">
+                           {project.teamMembers.map((member, index) => (
+                              <div
+                                 key={index}
+                                 className="flex items-center space-x-3"
+                              >
+                                 <div className="bg-primary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded lg:h-10 lg:w-10">
+                                    <span className="font-mono text-xs font-bold text-black lg:text-sm">
+                                       {member.name
+                                          .split(' ')
+                                          .map((n) => n[0])
+                                          .join('')}
+                                    </span>
+                                 </div>
+                                 <div className="min-w-0 flex-1">
+                                    <div className="truncate text-sm font-medium text-white lg:text-base">
+                                       {member.name}
+                                    </div>
+                                    <div className="text-xs text-gray-400 lg:text-sm">
+                                       {member.role}
+                                    </div>
+                                 </div>
+                              </div>
+                           ))}
+                        </div>
+                     </div>
+                  </div>
 
-                           <ul>
-                              <li>
-                                 <span>Role</span>
-                                 <span>{project.designation}</span>
-                              </li>
-                           </ul>
+                  {/* Status */}
+                  <div>
+                     <div className="section-header mb-6 lg:mb-8">#status</div>
+                     <div className="project-card p-6 lg:p-8">
+                        <div className="mb-3 flex items-center space-x-3">
+                           <div className="h-3 w-3 flex-shrink-0 rounded-full bg-green-500"></div>
+                           <span className="text-sm font-medium text-white lg:text-base">
+                              Currently working on
+                           </span>
+                        </div>
+                        <div className="text-primary font-mono text-xs lg:text-sm">
+                           Production
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-         </section>
-      </>
-   );
-};
+         </main>
 
-export default ProjectDetailsPage;
+         {/* Photo Gallery Modal */}
+         {isGalleryOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm">
+               <div className="relative h-full max-h-full w-full max-w-7xl">
+                  <button
+                     onClick={closeGallery}
+                     className="absolute top-4 right-4 z-10 rounded-lg border border-gray-600 bg-gray-800/80 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-gray-700/80"
+                  >
+                     <LuX size={20} />
+                  </button>
+                  <ImageGallery
+                     items={galleryImages}
+                     startIndex={currentImageIndex}
+                     showThumbnails={true}
+                     showFullscreenButton={false}
+                     showPlayButton={false}
+                     showBullets={false}
+                     showNav={true}
+                     autoPlay={false}
+                     slideOnThumbnailOver={false}
+                     additionalClass="custom-gallery"
+                  />
+               </div>
+            </div>
+         )}
+      </div>
+   );
+}
+
+export default App;
