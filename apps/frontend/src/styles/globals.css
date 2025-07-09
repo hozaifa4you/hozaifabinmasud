@@ -52,13 +52,6 @@ section {
    @apply border-text hover:border-primary border bg-transparent transition-all duration-300 ease-in-out;
 }
 
-/* Focus states */
-button:focus-visible,
-a:focus-visible {
-   outline: 2px solid var(--color-primary);
-   outline-offset: 2px;
-}
-
 /* Custom styles for react-image-gallery */
 .custom-gallery .image-gallery-content {
    background: transparent;
@@ -137,17 +130,6 @@ a:focus-visible {
 @media (min-width: 768px) {
    .custom-gallery .image-gallery-description {
       font-size: 16px;
-   }
-}
-
-/* Responsive improvements */
-@media (max-width: 640px) {
-   .section-header {
-      font-size: 1.25rem;
-   }
-
-   .section-header::after {
-      display: none;
    }
 }
 
