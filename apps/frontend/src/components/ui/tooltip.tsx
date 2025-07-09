@@ -34,7 +34,7 @@ export function Tooltip({ content, children, position = 'top' }: TooltipProps) {
          {children}
 
          <div
-            className={`tooltip-content absolute z-50 px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out ${positionClasses[position]} ${isVisible ? 'visible opacity-100' : 'invisible opacity-0'} `}
+            className={`tooltip-content absolute z-40 px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out ${positionClasses[position]} ${isVisible ? 'visible opacity-100' : 'invisible opacity-0'} `}
             style={{
                backgroundColor: 'var(--color-bg-main)',
                color: 'var(--color-text)',

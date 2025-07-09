@@ -1,13 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Logo } from './logo';
+import { Logo } from '@/components/navbar/logo';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
 import { FaUpwork } from 'react-icons/fa6';
 import { TbBrandFiverr } from 'react-icons/tb';
 import { useMenu } from '@/hooks/use-menu';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { ResponsiveMenu } from './responsive-menu';
 
 const Navbar = () => {
    const [isSticky, setIsSticky] = useState(false);
@@ -29,7 +30,9 @@ const Navbar = () => {
    return (
       <header
          id="home"
-         className={cn('sticky top-0', { 'bg-bg-main z-40 pb-2.5': isSticky })}
+         className={cn('sticky top-0', {
+            'bg-bg-main shadow-primary z-40 pb-2.5 shadow-xs': isSticky,
+         })}
       >
          <div className="relative container flex items-center justify-between gap-4 pt-8">
             <Logo />
@@ -85,7 +88,10 @@ const Navbar = () => {
                   ))}
                </menu>
 
-               <button className="cursor-pointer lg:hidden">
+               <button
+                  onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                  className="cursor-pointer lg:hidden"
+               >
                   <GiHamburgerMenu className="size-5" />
                </button>
             </nav>
@@ -129,6 +135,12 @@ const Navbar = () => {
                   </ul>
                </div>
             </div>
+
+            <ResponsiveMenu
+               isOpen={isMobileMenuOpen}
+               setIsOpen={setIsMobileMenuOpen}
+               items={mobileMenu.responsiveItems ?? []}
+            />
          </div>
       </header>
    );

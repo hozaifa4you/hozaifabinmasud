@@ -12,88 +12,77 @@ export interface MenuItems {
    responsiveItems?: MenuItem[];
 }
 
+// Base menu items used across different layouts
+const BASE_MENU_ITEMS = [
+   { name: 'home', link: '' },
+   { name: 'projects', link: 'projects' },
+   { name: 'works', link: 'works' },
+   { name: 'edu-&-training', link: 'educations' },
+   { name: 'about-me', link: 'about-me' },
+   { name: 'contact', link: 'contact' },
+];
+
+// Special items just for home page
+const HOME_ADDITIONAL_ITEMS = [{ name: 'skills', link: 'skills' }];
+
 const useMenu = () => {
    const pathname = usePathname();
+   const isHomePage = pathname === '/';
 
-   const homeLgMenuItems: MenuItems = {
-      items: [
-         { id: 1, name: 'home', sign: '#', link: '#home' },
-         { id: 2, name: 'projects', sign: '#', link: '#projects' },
-         { id: 3, name: 'skills', sign: '#', link: '#skills' },
-         { id: 4, name: 'works', sign: '#', link: '#works' },
-         { id: 5, name: 'edu-&-training', sign: '#', link: '#edu' },
-         { id: 6, name: 'about-me', sign: '#', link: '#about-me' },
-         { id: 7, name: 'contact', sign: '#', link: '#contacts' },
-      ],
+   // Helper function to generate menu items based on page type
+   const generateMenuItems = (
+      items: typeof BASE_MENU_ITEMS,
+      isHash = false,
+   ) => {
+      return items.map((item, idx) => ({
+         id: idx + 1,
+         name: item.name,
+         sign: '#',
+         link: isHash
+            ? `#${item.link === '' ? 'home' : item.link}`
+            : `/${item.link}`,
+      }));
    };
 
-   const commonLgMenuItems: MenuItems = {
-      items: [
-         { id: 1, name: 'home', sign: '#', link: '/' },
-         { id: 2, name: 'projects', sign: '#', link: '/projects' },
-         { id: 3, name: 'works', sign: '#', link: '/works' },
-         { id: 4, name: 'edu-&-training', sign: '#', link: '/educations' },
-         { id: 5, name: 'about-me', sign: '#', link: '/about-me' },
-         { id: 6, name: 'contact', sign: '#', link: '/contact' },
-      ],
+   // Generate menu items based on current page
+   const getItems = (isHome: boolean) => {
+      const items = [...BASE_MENU_ITEMS];
+
+      // For homepage, add skills after projects
+      if (isHome) {
+         items.splice(2, 0, HOME_ADDITIONAL_ITEMS[0]);
+      }
+
+      return generateMenuItems(items, isHome);
    };
 
-   const homeMdMenuItems: MenuItems = {
-      items: [
-         { id: 1, name: 'home', sign: '#', link: '#home' },
-         { id: 2, name: 'projects', sign: '#', link: '#projects' },
-         { id: 3, name: 'skills', sign: '#', link: '#skills' },
-         { id: 4, name: 'works', sign: '#', link: '#works' },
-         { id: 5, name: 'edu-&-training', sign: '#', link: '#edu' },
-      ],
-      responsiveItems: [
-         { id: 6, name: 'about-me', sign: '#', link: '#about-me' },
-         { id: 7, name: 'contact', sign: '#', link: '#contacts' },
-      ],
+   // Common resume download item for mobile
+   const resumeItem = [
+      { id: 1, link: '/resume', name: 'download-resume', sign: '@' },
+   ];
+
+   // Generate specific menu configurations
+   const homeMenuItems = getItems(true);
+   const commonMenuItems = getItems(false);
+
+   // Create menu structure
+   const lgMenuItems = {
+      items: isHomePage ? homeMenuItems : commonMenuItems,
    };
 
-   const commonMdMenuItems: MenuItems = {
-      items: [
-         { id: 1, name: 'home', sign: '#', link: '/' },
-         { id: 2, name: 'projects', sign: '#', link: '/projects' },
-         { id: 3, name: 'works', sign: '#', link: '/works' },
-         { id: 4, name: 'edu-&-training', sign: '#', link: '/educations' },
-         { id: 5, name: 'about-me', sign: '#', link: '/about-me' },
-      ],
-      responsiveItems: [
-         { id: 6, name: 'contact', sign: '#', link: '/contact' },
-      ],
+   const mdMenuItems = {
+      items: isHomePage
+         ? homeMenuItems.slice(0, 5)
+         : commonMenuItems.slice(0, 5),
+      responsiveItems: isHomePage
+         ? homeMenuItems.slice(5)
+         : commonMenuItems.slice(5),
    };
 
-   const homeMobileMenuItems: MenuItems = {
-      items: [{ id: 1, link: '/resume', name: 'download-resume', sign: '@' }],
-      responsiveItems: [
-         { id: 1, name: 'home', sign: '#', link: '#home' },
-         { id: 2, name: 'projects', sign: '#', link: '#projects' },
-         { id: 3, name: 'skills', sign: '#', link: '#skills' },
-         { id: 4, name: 'works', sign: '#', link: '#works' },
-         { id: 5, name: 'edu-&-training', sign: '#', link: '#edu' },
-         { id: 6, name: 'about-me', sign: '#', link: '#about-me' },
-         { id: 7, name: 'contact', sign: '#', link: '#contacts' },
-      ],
+   const mobileMenuItems = {
+      items: resumeItem,
+      responsiveItems: isHomePage ? homeMenuItems : commonMenuItems,
    };
-
-   const commonMobileMenuItems: MenuItems = {
-      items: [{ id: 1, link: '/resume', name: 'download-resume', sign: '@' }],
-      responsiveItems: [
-         { id: 1, name: 'home', sign: '#', link: '/' },
-         { id: 2, name: 'projects', sign: '#', link: '/projects' },
-         { id: 3, name: 'works', sign: '#', link: '/works' },
-         { id: 4, name: 'edu-&-training', sign: '#', link: '/educations' },
-         { id: 5, name: 'about-me', sign: '#', link: '/about-me' },
-         { id: 6, name: 'contact', sign: '#', link: '/contact' },
-      ],
-   };
-
-   const lgMenuItems = pathname === '/' ? homeLgMenuItems : commonLgMenuItems;
-   const mdMenuItems = pathname === '/' ? homeMdMenuItems : commonMdMenuItems;
-   const mobileMenuItems =
-      pathname === '/' ? homeMobileMenuItems : commonMobileMenuItems;
 
    return {
       lgMenu: lgMenuItems,
