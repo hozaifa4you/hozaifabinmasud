@@ -12,7 +12,7 @@ const Breadcrumb = ({ title, subtitle, size = 'lg' }: BreadcrumbProps) => {
       <section className="container my-6">
          <h1
             className={cn('font-semibold text-white', {
-               'text-[32px]': size === 'lg',
+               'text-[26px] md:text-[28px] lg:text-[32px]': size === 'lg',
                'text-[26px]': size === 'md',
                'text-[20px]': size === 'sm',
             })}

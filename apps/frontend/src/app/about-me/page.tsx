@@ -65,7 +65,7 @@ const AboutMePage = () => {
 
          <section className="section-padding relative">
             <div className="container">
-               <h4 className="text-[32px] font-medium text-white">
+               <h4 className="text-[26px] font-medium text-white md:text-[28px] lg:text-[32px]">
                   <span className="text-primary">#</span>skills
                </h4>
 
