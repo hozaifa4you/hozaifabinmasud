@@ -1,3 +1,4 @@
+import { StatType } from './education-data';
 import { projects, ProjectType } from './mock-data';
 
 export type SkillType = { id: number; name: string; icon: string };
@@ -393,6 +394,25 @@ const projectDetails = [
    },
 ];
 
+const professionalStats: StatType[] = [
+   {
+      label: 'Years of Experience',
+      value: '5+',
+   },
+   {
+      label: 'Projects Completed',
+      value: '30+',
+   },
+   {
+      label: 'Technologies Mastered',
+      value: '10+',
+   },
+   {
+      label: 'Happy Clients',
+      value: '20+',
+   },
+];
+
 export {
    languages,
    databases,
@@ -410,6 +430,7 @@ export {
    academicAll,
    trainingAll,
    projectDetails,
+   professionalStats,
 };
 
 export type AcademicType = (typeof academics)[number];

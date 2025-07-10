@@ -34,7 +34,9 @@ const AboutMeSection = () => {
                      </p>
 
                      <Link href="/about-me">
-                        <Button variant="outline">Read more!!</Button>
+                        <Button variant="outline" size="lg">
+                           Read more!!
+                        </Button>
                      </Link>
                   </div>
                </div>
