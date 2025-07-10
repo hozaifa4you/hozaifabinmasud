@@ -324,7 +324,7 @@ const projectDetails = [
          address: 'Lift 4, House 13, Road 11, Uttara 11, Dhaka, Bangladesh',
          website: 'https://namespaceit.com',
       },
-      role: 'Senior Full Stack Developer',
+      role: 'Full Stack Developer',
       location: 'Dhaka, Bangladesh',
       duration: '6 months',
       teamSize: '5 developers',

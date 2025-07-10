@@ -15,10 +15,13 @@ const SkillsSection = () => {
    return (
       <section className="section-padding relative" id="skills">
          <div className="container">
-            <ContentHeader text="Skills" maxLineWidth="max-w-[240px]" />
+            <ContentHeader
+               text="Skills"
+               maxLineWidth="max-w-[150px] sm:max-w-[200px] md:max-w-[240px]"
+            />
 
-            <div className="mt-5 grid xl:grid-cols-8 xl:gap-14">
-               <div className="xl:col-span-3">
+            <div className="mt-5 grid lg:grid-cols-8 lg:gap-14">
+               <div className="hidden lg:col-span-3 lg:block">
                   <Image
                      src="/assets/boxs.png"
                      alt="Boxs"
@@ -27,24 +30,25 @@ const SkillsSection = () => {
                      className="h-auto w-full object-cover object-center"
                   />
                </div>
-               <div className="xl:col-span-5">
-                  <div className="grid gap-4 xl:grid-cols-3">
+
+               <div className="lg:col-span-5">
+                  <div className="grid gap-4 sm:grid-cols-3 md:grid-cols-3">
                      <div>
-                        <div className="grid gap-4">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-1">
                            <SkillsBox title="Languages" skills={languages} />
                            <SkillsBox title="Others" skills={others} />
                         </div>
                      </div>
 
                      <div>
-                        <div className="grid gap-4">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-1">
                            <SkillsBox title="Databases" skills={databases} />
                            <SkillsBox title="Libraries" skills={libraries} />
                         </div>
                      </div>
 
                      <div>
-                        <div className="grid gap-4">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-1">
                            <SkillsBox title="Frameworks" skills={frameworks} />
                            <SkillsBox title="Tools" skills={tools} />
                            <SkillsBox title="Features" skills={features} />

@@ -2,9 +2,9 @@ import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 
 const Quote = () => {
    return (
-      <div className="m-auto w-full max-w-[725px]">
-         <div className="border-text relative w-full border bg-transparent p-8">
-            <span className="text-xl leading-none font-medium">
+      <div className="m-auto w-full max-w-[725px] px-2.5">
+         <div className="border-text relative w-full border bg-transparent p-4 md:p-6 lg:p-8">
+            <span className="text-lg leading-none font-medium md:text-xl">
                Turning coffee into clean code — one bug at a time...
             </span>
 
@@ -15,7 +15,7 @@ const Quote = () => {
                <FaQuoteRight />
             </span>
          </div>
-         <span className="border-text ml-auto block size-fit border border-t-0 p-4 text-xl">
+         <span className="border-text ml-auto block size-fit border border-t-0 p-3 text-lg md:p-4 md:text-xl">
             - Dr. AI
          </span>
       </div>

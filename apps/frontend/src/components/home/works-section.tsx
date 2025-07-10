@@ -12,7 +12,7 @@ const WorksSection = () => {
          <div className="container">
             <ContentHeader
                text="works"
-               maxLineWidth="max-w-[350px]"
+               maxLineWidth="max-w-0 md:max-w-[350px]"
                buttonText={
                   <Badge
                      variant="active"
@@ -22,14 +22,14 @@ const WorksSection = () => {
                navigateUrl="/works"
             />
 
-            <div className="mt-5 grid gap-5 xl:grid-cols-3">
-               <div className="grid flex-col-reverse gap-4 xl:col-span-2">
+            <div className="mt-5 grid gap-5 lg:grid-cols-3">
+               <div className="grid flex-col-reverse gap-4 lg:col-span-2">
                   {works.map((work) => (
                      <WorkCard key={work.id} {...work} />
                   ))}
                </div>
 
-               <div className="w-full xl:col-span-1">
+               <div className="hidden w-full lg:col-span-1 lg:block">
                   <Image
                      src="/assets/boxs.png"
                      alt="Boxs"

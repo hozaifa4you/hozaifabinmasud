@@ -9,10 +9,10 @@ import { Tooltip } from '../ui/tooltip';
 const HeroSection = () => {
    return (
       <section id="hero">
-         <div className="container pt-14 pb-28">
-            <div className="grid gap-4 xl:grid-cols-7">
-               <div className="xl:col-span-4">
-                  <h1 className="text-text-secondary text-[32px] font-semibold">
+         <div className="container pt-14 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+               <div className="lg:col-span-4">
+                  <h1 className="text-text-secondary text-[26px] font-semibold md:text-[28px] lg:text-[32px]">
                      [Hozaifa] is a{' '}
                      <span className="text-primary font-bold">full-stack</span>{' '}
                      and{' '}
@@ -33,14 +33,14 @@ const HeroSection = () => {
                         Contact me!!
                      </Link>
                      <Link
-                        href="/download-resume"
+                        href="/resume"
                         className={buttonVariants({ variant: 'default' })}
                      >
                         <PiReadCvLogoLight /> Download Resume
                      </Link>
                   </div>
                </div>
-               <div className="xl:col-span-3">
+               <div className="lg:col-span-3">
                   <div className="relative flex flex-col items-center gap-0">
                      <Image
                         src="/alternate/me.png"

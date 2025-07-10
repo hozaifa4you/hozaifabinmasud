@@ -18,12 +18,12 @@ const ContentHeader = ({
    size = 'lg',
 }: ContentHeaderProps) => {
    return (
-      <div className="flex">
+      <div className="flex items-center gap-5">
          <div className="w-full">
             <div className="flex items-center gap-4">
                <h2
                   className={cn('font-medium', {
-                     'text-[32px]': size === 'lg',
+                     'text-[26px] md:text-[28px] lg:text-[32px]': size === 'lg',
                      'text-[26px]': size === 'md',
                      'text-[20px]': size === 'sm',
                   })}

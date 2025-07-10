@@ -8,10 +8,13 @@ const AboutMeSection = () => {
    return (
       <section id="about-me" className="section-padding relative">
          <div className="container">
-            <ContentHeader text="about-me" maxLineWidth="max-w-[320px]" />
+            <ContentHeader
+               text="about-me"
+               maxLineWidth="sm:max-w-[250px] max-w-[150px] md:max-w-[320px]"
+            />
 
-            <div className="gap- mt-5 grid xl:grid-cols-8">
-               <div className="xl:col-span-5">
+            <div className="gap- mt-5 grid md:grid-cols-2 lg:grid-cols-8">
+               <div className="lg:col-span-5">
                   <div className="grid max-w-[515px] gap-6">
                      <p>Hello, I&apos;m [Hozaifa Bin Masud]</p>
                      <p>
@@ -35,8 +38,8 @@ const AboutMeSection = () => {
                      </Link>
                   </div>
                </div>
-               <div className="relative xl:col-span-3">
-                  <div className="-mt-18 flex w-full items-center justify-center">
+               <div className="relative lg:col-span-3">
+                  <div className="flex w-full items-center justify-center md:-mt-18">
                      <Image
                         src="/alternate/me2.png"
                         alt="Hozaifa"

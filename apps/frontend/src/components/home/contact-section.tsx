@@ -9,10 +9,10 @@ import {
    FaUpwork,
    FaLinkedinIn,
 } from 'react-icons/fa6';
-import { DotGridLarge } from '../ui/icons';
-import { Input } from '../ui/input';
-import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
+import { DotGridLarge } from '@/components/ui/icons';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 import { TbBrandFiverr } from 'react-icons/tb';
 
 const ContactSection = () => {
@@ -21,8 +21,8 @@ const ContactSection = () => {
          <div className="container">
             <ContentHeader text="contact" maxLineWidth="max-w-[130px]" />
 
-            <div className="mt-5 grid gap-5 xl:grid-cols-3">
-               <div className="xl:col-span-2">
+            <div className="mt-5 grid gap-10 md:grid-cols-3 md:gap-5">
+               <div className="md:col-span-2">
                   <div>
                      <p className="max-w-[510px]">
                         I’m interested in freelance opportunities. However, if
@@ -32,10 +32,11 @@ const ContactSection = () => {
 
                      <h4 className="mt-10 mb-5 text-2xl font-semibold">
                         <span className="text-primary">#</span>
-                        contact-with=me
+                        contact-with<span className="text-primary">{'>='}</span>
+                        me
                      </h4>
                      <form action="#" className="grid gap-4">
-                        <div className="grid gap-4 md:grid-cols-2">
+                        <div className="grid gap-4 sm:grid-cols-2">
                            <Input
                               label={
                                  <span>
@@ -84,16 +85,16 @@ const ContactSection = () => {
                      </form>
                   </div>
                </div>
-               <div className="xl:col-span-1">
+               <div className="md:col-span-1">
                   <div className="border-text border p-4">
                      <p className="mb-4 font-bold text-white">Message here!!</p>
 
                      <div>
-                        <p className="inline-flex items-center gap-1.5">
-                           <FaEnvelope className="size-5" />{' '}
+                        <p className="line-clamp-1 inline-flex items-center gap-1.5 md:text-sm lg:text-base">
+                           <FaEnvelope className="size-5" />
                            hozaifabinmasud@gmail.com
                         </p>
-                        <p className="mt-1 inline-flex items-center gap-1.5">
+                        <p className="mt-1 inline-flex items-center gap-1.5 md:text-sm lg:text-base">
                            <FaWhatsapp className="size-5" /> +880 1918 780770
                         </p>
 

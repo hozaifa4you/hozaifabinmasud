@@ -10,14 +10,12 @@ const ProjectsSection = () => {
          <div className="section-padding container">
             <ContentHeader
                text="projects"
-               maxLineWidth="max-w-[510px]"
-               buttonText={
-                  <Badge text="#more_projects (15+) ~>" variant="gradient" />
-               }
+               maxLineWidth="lg:max-w-[510px] md:max-w-[250px] max-w-0 sm:max-w-[150px]"
+               buttonText={<Badge text="#show_more" variant="gradient" />}
                navigateUrl="/projects"
             />
 
-            <div className="mt-5 grid gap-4 lg:grid-cols-3">
+            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                {projects.map((project) => (
                   <ProjectCard {...project} key={project.id} />
                ))}

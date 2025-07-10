@@ -8,7 +8,7 @@ const Footer = () => {
       <footer>
          <hr />
          <div className="container py-5">
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid gap-5 sm:grid-cols-2">
                <div>
                   <div className="flex items-center gap-5">
                      <Link
@@ -31,7 +31,8 @@ const Footer = () => {
                      Full-Stack Developer & AI Developer
                   </p>
                </div>
-               <div className="flex justify-end">
+
+               <div className="flex sm:justify-end">
                   <div>
                      <span className="block font-semibold text-white">
                         Media
