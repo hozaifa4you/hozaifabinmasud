@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaUpwork } from 'react-icons/fa6';
-import { SiFiverr } from 'react-icons/si';
+import { TbBrandFiverr } from 'react-icons/tb';
 
 const Footer = () => {
    return (
@@ -35,7 +35,7 @@ const Footer = () => {
                <div className="flex sm:justify-end">
                   <div>
                      <span className="block font-semibold text-white">
-                        Media
+                        Medias
                      </span>
 
                      <ul className="mt-3 flex items-center gap-4">
@@ -43,6 +43,7 @@ const Footer = () => {
                            <Link
                               href="https://github.com/hozaifa4you"
                               target="_blank"
+                              className="hover:text-primary transition-all duration-200 ease-in-out"
                            >
                               <FaGithub className="size-5" />
                            </Link>
@@ -51,6 +52,7 @@ const Footer = () => {
                            <Link
                               href="https://www.linkedin.com/in/hozaifa-bin-masud-4b7835244/"
                               target="_blank"
+                              className="hover:text-primary transition-all duration-200 ease-in-out"
                            >
                               <FaLinkedin className="size-5" />
                            </Link>
@@ -59,14 +61,16 @@ const Footer = () => {
                            <Link
                               href="https://www.fiverr.com/hozaifa4you"
                               target="_blank"
+                              className="hover:text-primary transition-all duration-200 ease-in-out"
                            >
-                              <SiFiverr className="size-5" />
+                              <TbBrandFiverr className="size-5" />
                            </Link>
                         </li>
                         <li>
                            <Link
                               href="https://www.upwork.com/freelancers/~01361961bd46c0b936?mp_source=share"
                               target="_blank"
+                              className="hover:text-primary transition-all duration-200 ease-in-out"
                            >
                               <FaUpwork className="size-5" />
                            </Link>

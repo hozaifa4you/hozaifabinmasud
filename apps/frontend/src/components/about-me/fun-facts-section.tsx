@@ -6,23 +6,22 @@ const FunFactSection = () => {
    return (
       <section className="section-padding relative mb-10">
          <div className="container">
-            <h4 className="text-[32px] font-medium text-white">
+            <h4 className="text-[26px] font-medium text-white md:text-[28px] lg:text-[32px]">
                <span className="text-primary">#</span>my-fun-facts
             </h4>
 
-            <div className="grid grid-cols-3 gap-5">
-               <div className="mt-5 flex flex-wrap gap-4 xl:col-span-2">
+            <div className="grid md:grid-cols-3 md:gap-5">
+               <div className="mt-5 flex flex-wrap gap-4 md:col-span-2">
                   {funFacts.map((fact) => (
                      <p
                         className="border-text border p-2 leading-none"
                         key={fact.id}
-                     >
-                        {fact.text}
-                     </p>
+                        dangerouslySetInnerHTML={{ __html: fact.text }}
+                     />
                   ))}
                </div>
 
-               <div className="xl:col-span-1">
+               <div className="hidden md:col-span-1 md:block">
                   <Image
                      src="/assets/logo-box.svg"
                      alt="Logo Box"

@@ -125,10 +125,12 @@ export const trainingData = [
 ];
 
 export const educationStats = [
-   { value: '2', label: 'Degrees' },
-   { value: '4', label: 'Certifications' },
-   { value: '17', label: 'Months Training' },
-   { value: '4.8', label: 'Avg Rating' },
+   { id: 3, value: '2', label: 'Companies' },
+   { id: 6, value: '16+', label: 'Projects' },
+   { id: 1, value: '2', label: 'Degrees' },
+   { id: 2, value: '4', label: 'Certifications' },
+   { id: 4, value: '3.9', label: 'Year Experiences' },
+   { id: 5, value: '32+', label: 'Technologies' },
 ];
 
 export type StatType = (typeof educationStats)[number];

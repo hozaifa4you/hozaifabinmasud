@@ -20,8 +20,8 @@ const AboutMePage = () => {
 
          <section className="relative w-full">
             <div className="container">
-               <div className="mt-5 grid xl:grid-cols-8">
-                  <div className="xl:col-span-5">
+               <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-8">
+                  <div className="lg:col-span-5">
                      <div className="grid max-w-[515px] gap-6">
                         <p>Hello, I&apos;m [Hozaifa Bin Masud]</p>
                         <p>
@@ -41,8 +41,8 @@ const AboutMePage = () => {
                         </p>
                      </div>
                   </div>
-                  <div className="relative xl:col-span-3">
-                     <div className="-mt-18 flex w-full items-center justify-center">
+                  <div className="relative lg:col-span-3">
+                     <div className="flex w-full items-center justify-center md:-mt-14">
                         <Image
                            src="/alternate/me2.png"
                            alt="Hozaifa"
@@ -69,8 +69,8 @@ const AboutMePage = () => {
                   <span className="text-primary">#</span>skills
                </h4>
 
-               <div className="mt-5 grid xl:grid-cols-8 xl:gap-14">
-                  <div className="xl:col-span-3">
+               <div className="mt-5 grid gap-5 md:grid-cols-8 md:gap-8 lg:gap-14">
+                  <div className="hidden md:col-span-3 md:block">
                      <Image
                         src="/assets/boxs.png"
                         alt="Boxs"
@@ -79,24 +79,24 @@ const AboutMePage = () => {
                         className="h-auto w-full object-cover object-center"
                      />
                   </div>
-                  <div className="xl:col-span-5">
-                     <div className="grid gap-4 xl:grid-cols-3">
+                  <div className="md:col-span-5">
+                     <div className="grid gap-4 md:grid-cols-3">
                         <div>
-                           <div className="grid gap-4">
+                           <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
                               <SkillsBox title="Languages" skills={languages} />
                               <SkillsBox title="Others" skills={others} />
                            </div>
                         </div>
 
                         <div>
-                           <div className="grid gap-4">
+                           <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
                               <SkillsBox title="Databases" skills={databases} />
                               <SkillsBox title="Libraries" skills={libraries} />
                            </div>
                         </div>
 
                         <div>
-                           <div className="grid gap-4">
+                           <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
                               <SkillsBox
                                  title="Frameworks"
                                  skills={frameworks}

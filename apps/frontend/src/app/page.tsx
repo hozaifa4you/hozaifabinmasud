@@ -4,7 +4,7 @@ import { EducationTrainingSectionV2 } from '@/components/home/education-section-
 import { HeroSection } from '@/components/home/hero-section';
 import { ProjectsSection } from '@/components/home/projects-section';
 import { SkillsSection } from '@/components/home/skills-section';
-import { StatsGrid } from '@/components/home/stats-grid';
+import { StatsGrid } from '@/components/home/stats-section';
 import { WorksSection } from '@/components/home/works-section';
 import { educationStats } from '@/lib/education-data';
 
