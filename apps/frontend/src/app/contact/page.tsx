@@ -12,21 +12,19 @@ import {
    FaLink,
 } from 'react-icons/fa6';
 import { DotGridLarge } from '@/components/ui/icons';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
 import { TbBrandFiverr } from 'react-icons/tb';
 import { FaEthereum } from 'react-icons/fa';
+import { ContactForm } from '@/components/about-me/contact-form';
 
 const ContactPage = () => {
    return (
       <>
          <Breadcrumb title="contact" subtitle="Are your interested?" />
 
-         <section className="section-padding relative">
+         <section className="relative mb-10">
             <div className="container">
-               <div className="grid gap-5 xl:grid-cols-3">
-                  <div className="xl:col-span-2">
+               <div className="grid gap-8 md:grid-cols-3 md:gap-5">
+                  <div className="md:col-span-2">
                      <div>
                         <p className="max-w-[510px]">
                            I’m interested in freelance opportunities. However,
@@ -34,62 +32,11 @@ const ContactPage = () => {
                            to contact me
                         </p>
 
-                        <h4 className="mt-10 mb-5 text-2xl font-semibold">
-                           <span className="text-primary">#</span>
-                           contact-with=me
-                        </h4>
-                        <form action="#" className="grid gap-4">
-                           <div className="grid gap-4 md:grid-cols-2">
-                              <Input
-                                 label={
-                                    <span>
-                                       <span className="text-primary">@</span>
-                                       your-name
-                                    </span>
-                                 }
-                                 autoComplete="off"
-                              />
-                              <Input
-                                 label={
-                                    <span>
-                                       <span className="text-primary">@</span>
-                                       your-email
-                                    </span>
-                                 }
-                                 autoComplete="off"
-                              />
-                           </div>
-
-                           <Input
-                              label={
-                                 <span>
-                                    <span className="text-primary">@</span>
-                                    subject
-                                 </span>
-                              }
-                              autoComplete="off"
-                           />
-
-                           <Textarea
-                              label={
-                                 <span>
-                                    <span className="text-primary">@</span>
-                                    message
-                                 </span>
-                              }
-                              autoComplete="off"
-                           />
-
-                           <Button variant="outline" className="w-fit">
-                              <span>
-                                 <span className="text-primary">@</span>send
-                              </span>
-                           </Button>
-                        </form>
+                        <ContactForm />
                      </div>
                   </div>
-                  <div className="xl:col-span-1">
-                     <div className="grid gap-4">
+                  <div className="md:col-span-1">
+                     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1">
                         <div className="border-text border p-4">
                            <p className="mb-4 font-bold text-white">
                               Message here!!
@@ -110,6 +57,7 @@ const ContactPage = () => {
                                     <Link
                                        href="https://github.com/hozaifa4you"
                                        target="_blank"
+                                       className="hover:text-primary transition-all duration-200 ease-in-out"
                                     >
                                        <FaGithub className="size-5" />
                                     </Link>
@@ -118,6 +66,7 @@ const ContactPage = () => {
                                     <Link
                                        href="https://www.linkedin.com/in/hozaifa-bin-masud-4b7835244/"
                                        target="_blank"
+                                       className="hover:text-primary transition-all duration-200 ease-in-out"
                                     >
                                        <FaLinkedinIn className="size-5" />
                                     </Link>
@@ -126,6 +75,7 @@ const ContactPage = () => {
                                     <Link
                                        href="https://facebook.com/hozaifa4you"
                                        target="_blank"
+                                       className="hover:text-primary transition-all duration-200 ease-in-out"
                                     >
                                        <FaFacebookF className="size-5" />
                                     </Link>
@@ -134,6 +84,7 @@ const ContactPage = () => {
                                     <Link
                                        href="https://x.com/hozaifa4you"
                                        target="_blank"
+                                       className="hover:text-primary transition-all duration-200 ease-in-out"
                                     >
                                        <FaXTwitter className="size-5" />
                                     </Link>
@@ -142,6 +93,7 @@ const ContactPage = () => {
                                     <Link
                                        href="https://www.upwork.com/freelancers/~01f0b1c3d4e5a6b7c8"
                                        target="_blank"
+                                       className="hover:text-primary transition-all duration-200 ease-in-out"
                                     >
                                        <FaUpwork className="size-5" />
                                     </Link>
@@ -150,6 +102,7 @@ const ContactPage = () => {
                                     <Link
                                        href="https://www.fiverr.com/hozaifa4you"
                                        target="_blank"
+                                       className="hover:text-primary transition-all duration-200 ease-in-out"
                                     >
                                        <TbBrandFiverr className="size-5" />
                                     </Link>

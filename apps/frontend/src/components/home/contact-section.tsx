@@ -10,10 +10,8 @@ import {
    FaLinkedinIn,
 } from 'react-icons/fa6';
 import { DotGridLarge } from '@/components/ui/icons';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
 import { TbBrandFiverr } from 'react-icons/tb';
+import { ContactForm } from '../about-me/contact-form';
 
 const ContactSection = () => {
    return (
@@ -30,59 +28,7 @@ const ContactSection = () => {
                         contact me
                      </p>
 
-                     <h4 className="mt-10 mb-5 text-2xl font-semibold">
-                        <span className="text-primary">#</span>
-                        contact-with<span className="text-primary">{'>='}</span>
-                        me
-                     </h4>
-                     <form action="#" className="grid gap-4">
-                        <div className="grid gap-4 sm:grid-cols-2">
-                           <Input
-                              label={
-                                 <span>
-                                    <span className="text-primary">@</span>
-                                    your-name
-                                 </span>
-                              }
-                              autoComplete="off"
-                           />
-                           <Input
-                              label={
-                                 <span>
-                                    <span className="text-primary">@</span>
-                                    your-email
-                                 </span>
-                              }
-                              autoComplete="off"
-                           />
-                        </div>
-
-                        <Input
-                           label={
-                              <span>
-                                 <span className="text-primary">@</span>
-                                 subject
-                              </span>
-                           }
-                           autoComplete="off"
-                        />
-
-                        <Textarea
-                           label={
-                              <span>
-                                 <span className="text-primary">@</span>
-                                 message
-                              </span>
-                           }
-                           autoComplete="off"
-                        />
-
-                        <Button variant="outline" className="w-fit">
-                           <span>
-                              <span className="text-primary">@</span>send
-                           </span>
-                        </Button>
-                     </form>
+                     <ContactForm />
                   </div>
                </div>
                <div className="md:col-span-1">
