@@ -16,8 +16,8 @@ const ProjectsSection = () => {
             />
 
             <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-               {projects.map((project) => (
-                  <ProjectCard {...project} key={project.id} />
+               {projects.map((project, index) => (
+                  <ProjectCard {...project} key={index} />
                ))}
             </div>
          </div>

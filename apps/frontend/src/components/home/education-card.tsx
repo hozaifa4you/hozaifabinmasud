@@ -39,27 +39,27 @@ export function EducationCard({
    index,
 }: EducationItemProps) {
    return (
-      <div className="project-card p-6 transition-all duration-300 lg:p-8">
+      <div className="project-card p-4 transition-all duration-300">
          <div className="mb-4 flex items-start justify-between">
             <div className="flex-1">
-               <h3 className="mb-2 font-mono text-lg font-bold text-white lg:text-xl">
+               <h3 className="mb-2 font-mono text-lg font-bold text-white">
                   {degree}
                </h3>
                <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-primary text-sm font-medium lg:text-base">
+                  <span className="text-primary text-sm font-medium">
                      {institution}
                   </span>
-                  <div className="flex items-center space-x-2 font-mono text-xs text-gray-400 lg:text-sm">
+                  <div className="flex items-center space-x-2 font-mono text-xs text-gray-400">
                      <LuCalendar size={14} />
                      <span>{duration}</span>
                   </div>
                </div>
                <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center space-x-2 text-xs text-gray-300 lg:text-sm">
+                  <div className="flex items-center space-x-2 text-xs text-gray-300">
                      <LuMapPin size={14} />
                      <span>{location}</span>
                   </div>
-                  <div className="text-primary flex items-center space-x-2 font-mono text-xs font-bold lg:text-sm">
+                  <div className="text-primary flex items-center space-x-2 font-mono text-xs font-bold">
                      <LuAward size={14} />
                      <span>{grade}</span>
                   </div>
@@ -79,7 +79,7 @@ export function EducationCard({
             </button>
          </div>
 
-         <p className="mb-4 text-sm leading-relaxed text-gray-400 lg:text-base">
+         <p className="mb-4 text-sm leading-relaxed text-gray-400">
             {description}
          </p>
 

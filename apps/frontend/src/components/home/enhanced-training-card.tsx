@@ -43,26 +43,24 @@ export function EnhancedTrainingCard({
    index,
 }: TrainingItemProps) {
    return (
-      <div className="project-card hover:border-primary p-6 transition-all duration-300 lg:p-8">
+      <div className="project-card hover:border-primary p-4 transition-all duration-300">
          <div className="mb-4 flex items-start justify-between">
             <div className="flex-1">
-               <h3 className="mb-2 font-mono text-base font-bold text-white lg:text-lg">
+               <h3 className="mb-2 font-mono text-base font-bold text-white">
                   {title}
                </h3>
                <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-primary text-sm font-medium lg:text-base">
+                  <span className="text-primary text-sm font-medium">
                      {provider}
                   </span>
-                  <div className="flex items-center space-x-2 font-mono text-xs text-gray-400 lg:text-sm">
+                  <div className="flex items-center space-x-2 font-mono text-xs text-gray-400">
                      <LuCalendar size={14} />
                      <span>{duration}</span>
                   </div>
                </div>
                <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-xs text-gray-300 lg:text-sm">
-                     {platform}
-                  </span>
-                  <span className="text-xs text-gray-400 lg:text-sm">
+                  <span className="text-xs text-gray-300">{platform}</span>
+                  <span className="text-xs text-gray-400">
                      Completed: {completedDate}
                   </span>
                </div>
@@ -71,7 +69,7 @@ export function EnhancedTrainingCard({
                      href={certificate}
                      target="_blank"
                      rel="noopener noreferrer"
-                     className="text-primary flex items-center space-x-2 font-mono text-xs transition-colors hover:text-white lg:text-sm"
+                     className="text-primary flex items-center space-x-2 font-mono text-xs transition-colors hover:text-white"
                   >
                      <LuExternalLink size={14} />
                      <span>View Certificate</span>
@@ -96,7 +94,7 @@ export function EnhancedTrainingCard({
             </button>
          </div>
 
-         <p className="mb-4 text-sm leading-relaxed text-gray-400 lg:text-base">
+         <p className="mb-4 text-sm leading-relaxed text-gray-400">
             {description}
          </p>
 

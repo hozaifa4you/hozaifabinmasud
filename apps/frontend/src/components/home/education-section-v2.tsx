@@ -1,18 +1,19 @@
 'use client';
 import React, { useState, useCallback } from 'react';
-import { SectionHeader } from './education-components';
-import { educationData, trainingData } from '../../lib/education-data';
+import { educationData, trainingData } from '@/lib/education-data';
 import { EducationCard } from './education-card';
 import { EnhancedTrainingCard } from './enhanced-training-card';
 import { TabNavigation } from './tab-navigation';
 import { ContentHeader } from './content-header';
 import { Badge } from '../ui/badge';
 import { DotGridLarge, SquareBox } from '../ui/icons';
+import Link from 'next/link';
+import { buttonVariants } from '../ui/button';
 
 function EducationTrainingSectionV2() {
    // State management
-   const [activeTab, setActiveTab] = useState<'education' | 'training'>(
-      'education',
+   const [activeTab, setActiveTab] = useState<'educations' | 'trainings'>(
+      'educations',
    );
    const [expandedEducation, setExpandedEducation] = useState<number | null>(
       null,
@@ -35,25 +36,21 @@ function EducationTrainingSectionV2() {
    }, []);
 
    return (
-      <section
-         className="section-padding relative min-h-screen"
-         id="educations"
-      >
+      <section className="section-padding relative" id="educations">
          <div className="container">
             <ContentHeader
                text="edu-&-trainings"
                maxLineWidth="max-w-[250px]"
                buttonText={<Badge text="#viewAll ~>" variant="done" />}
-               navigateUrl="/educations"
+               navigateUrl={`/${activeTab}`}
             />
          </div>
 
          <div className="container">
             <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
 
-            {activeTab === 'education' && (
-               <div className="space-y-4">
-                  <SectionHeader text="academics" count={5} />
+            {activeTab === 'educations' && (
+               <div className="grid gap-4 md:grid-cols-2">
                   {educationData.map((edu, index) => (
                      <EducationCard
                         key={index}
@@ -66,9 +63,8 @@ function EducationTrainingSectionV2() {
                </div>
             )}
 
-            {activeTab === 'training' && (
-               <div className="space-y-4">
-                  <SectionHeader text="trainings" count={12} />
+            {activeTab === 'trainings' && (
+               <div className="grid gap-4 md:grid-cols-2">
                   {trainingData.slice(0, 3).map((course, index) => (
                      <EnhancedTrainingCard
                         key={index}
@@ -82,8 +78,21 @@ function EducationTrainingSectionV2() {
             )}
          </div>
 
-         <DotGridLarge className="absolute top-2/3 -right-5" />
-         <SquareBox className="absolute top-1/3 -left-5 rotate-180" />
+         <div className="mt-5 flex items-center justify-center">
+            <Link
+               href={`/${activeTab}`}
+               className={buttonVariants({
+                  variant: 'outlineSecondary',
+                  size: 'lg',
+                  class: '!gap-0',
+               })}
+            >
+               <span className="text-primary">#</span>viewAll
+            </Link>
+         </div>
+
+         <DotGridLarge className="absolute top-2/3 -right-5 hidden lg:block" />
+         <SquareBox className="absolute top-1/3 -left-5 hidden rotate-180 lg:block" />
       </section>
    );
 }

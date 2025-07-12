@@ -1,25 +1,5 @@
 import { ReactNode } from 'react';
 
-interface SectionHeaderProps {
-   text: string;
-   count: number;
-}
-
-export function SectionHeader({ text, count }: SectionHeaderProps) {
-   return (
-      <h3 className="text-2xl font-semibold">
-         <span className="text-primary">@</span>
-         {text}
-         <sup
-            className="text-primary text-base font-medium"
-            title={`${count}+ academic qualifications`}
-         >
-            {count}+
-         </sup>
-      </h3>
-   );
-}
-
 interface BulletItemProps {
    children: ReactNode;
 }
@@ -40,7 +20,7 @@ interface StatItemProps {
 
 export function StatItem({ value, label }: StatItemProps) {
    return (
-      <div className="project-info-card text-center">
+      <div className="project-info-card border-primary border p-6 text-center">
          <div className="text-primary mb-2 font-mono text-2xl font-bold lg:text-3xl">
             {value}
          </div>

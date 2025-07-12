@@ -128,8 +128,8 @@ export const educationStats = [
    { id: 3, value: '2', label: 'Companies' },
    { id: 6, value: '16+', label: 'Projects' },
    { id: 1, value: '2', label: 'Degrees' },
-   { id: 2, value: '4', label: 'Certifications' },
-   { id: 4, value: '3.9', label: 'Year Experiences' },
+   { id: 2, value: '4', label: 'Certifi.' },
+   { id: 4, value: '3.9', label: 'Year Expe.' },
    { id: 5, value: '32+', label: 'Technologies' },
 ];
 
