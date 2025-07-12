@@ -1,5 +1,105 @@
+'use client';
+import { useCallback, useState } from 'react';
+import { EnhancedTrainingCard } from '@/components/home/enhanced-training-card';
+import { StatusType, trainingData } from '@/lib/education-data';
+import { Breadcrumb } from '@/components/breadcrumb';
+import { DotGridLarge, SquareBox } from '@/components/ui/icons';
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
+import { useSearchParams } from 'next/navigation';
+
 const TrainingsPage = () => {
-   return <div>TrainingsPage</div>;
+   const searchParams = useSearchParams();
+   const [expandedTraining, setExpandedTraining] = useState<number | null>(
+      null,
+   );
+
+   const toggleTrainingExpand = useCallback((index: number) => {
+      setExpandedTraining((prevExpanded) =>
+         prevExpanded === index ? null : index,
+      );
+   }, []);
+
+   const type = searchParams.get('type');
+
+   return (
+      <>
+         <Breadcrumb
+            title="trainings"
+            subtitle="Which trainings I have participate"
+         />
+
+         <section className="mb-10 overflow-hidden">
+            <div className="container">
+               <div className="mb-5 flex flex-wrap items-center gap-3">
+                  <Link
+                     className={buttonVariants({
+                        variant:
+                           !type || type == 'all'
+                              ? 'outlineSecondary'
+                              : 'default',
+                     })}
+                     href="?type=all"
+                  >
+                     All
+                  </Link>
+                  <Link
+                     className={buttonVariants({
+                        variant:
+                           type === 'professional'
+                              ? 'outlineSecondary'
+                              : 'default',
+                     })}
+                     href="?type=professional"
+                  >
+                     Professional
+                  </Link>
+                  <Link
+                     className={buttonVariants({
+                        variant:
+                           type === 'bhootcamp'
+                              ? 'outlineSecondary'
+                              : 'default',
+                     })}
+                     href="?type=bhootcamp"
+                  >
+                     Bhootcamp
+                  </Link>
+               </div>
+
+               <div className="grid gap-4 md:grid-cols-2">
+                  {trainingData.map((course, index) => (
+                     <div key={index}>
+                        <EnhancedTrainingCard
+                           {...course}
+                           status={course.status as StatusType}
+                           isExpanded={expandedTraining === index}
+                           onToggleExpand={() => toggleTrainingExpand(index)}
+                           index={index}
+                        />
+                     </div>
+                  ))}
+               </div>
+
+               <div className="mt-5 flex items-center justify-center">
+                  <Link
+                     href="#"
+                     className={buttonVariants({
+                        variant: 'outlineSecondary',
+                        size: 'lg',
+                        class: '!gap-0',
+                     })}
+                  >
+                     <span className="text-primary">#</span>load_more
+                  </Link>
+               </div>
+            </div>
+
+            <DotGridLarge className="absolute top-2/3 -left-5 hidden lg:block" />
+            <SquareBox className="absolute top-1/3 -right-5 hidden lg:block" />
+         </section>
+      </>
+   );
 };
 
 export default TrainingsPage;

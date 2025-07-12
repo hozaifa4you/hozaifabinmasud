@@ -1,4 +1,3 @@
-// Education and training data
 export const educationData = [
    {
       degree: 'Bachelor of Science in Computer Science',
@@ -70,6 +69,7 @@ export const trainingData = [
          'Implemented custom hooks library',
       ],
       rating: '4.9/5.0',
+      status: 'running',
    },
    {
       title: 'AWS Solutions Architect',
@@ -87,6 +87,7 @@ export const trainingData = [
          'Built serverless application with Lambda',
       ],
       rating: '4.8/5.0',
+      status: 'completed',
    },
    {
       title: 'Full Stack Web Development',
@@ -104,6 +105,7 @@ export const trainingData = [
          'Task management system with team collaboration',
       ],
       rating: '4.7/5.0',
+      status: 'canceled',
    },
    {
       title: 'Docker & Kubernetes Mastery',
@@ -121,6 +123,7 @@ export const trainingData = [
          'CI/CD pipeline with Docker',
       ],
       rating: '4.9/5.0',
+      status: 'completed',
    },
 ];
 
@@ -134,3 +137,5 @@ export const educationStats = [
 ];
 
 export type StatType = (typeof educationStats)[number];
+export type StatusType = 'running' | 'canceled' | 'completed';
+export type TrainingType = (typeof trainingData)[number];

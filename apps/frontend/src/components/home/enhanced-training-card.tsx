@@ -10,6 +10,8 @@ import {
    ExpandableContent,
    SectionSubheader,
 } from './education-components';
+import { Badge } from '../ui/badge';
+import { StatusType } from '@/lib/education-data';
 
 export interface TrainingItemProps {
    title: string;
@@ -25,6 +27,7 @@ export interface TrainingItemProps {
    isExpanded: boolean;
    onToggleExpand: () => void;
    index: number;
+   status: StatusType;
 }
 
 export function EnhancedTrainingCard({
@@ -41,13 +44,24 @@ export function EnhancedTrainingCard({
    isExpanded,
    onToggleExpand,
    index,
+   status,
 }: TrainingItemProps) {
    return (
       <div className="project-card hover:border-primary p-4 transition-all duration-300">
          <div className="mb-4 flex items-start justify-between">
             <div className="flex-1">
                <h3 className="mb-2 font-mono text-base font-bold text-white">
-                  {title}
+                  {title}{' '}
+                  <Badge
+                     text={status}
+                     variant={
+                        status === 'running'
+                           ? 'active'
+                           : status === 'completed'
+                             ? 'done'
+                             : 'default'
+                     }
+                  />
                </h3>
                <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-primary text-sm font-medium">
@@ -94,14 +108,18 @@ export function EnhancedTrainingCard({
             </button>
          </div>
 
-         <p className="mb-4 text-sm leading-relaxed text-gray-400">
+         <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-400">
             {description}
          </p>
 
          {/* Skills Tags */}
          <div className="mb-4 flex flex-wrap gap-2">
             {skills.map((skill, skillIndex) => (
-               <span key={skillIndex} className="tech-tag text-xs">
+               <span
+                  key={skillIndex}
+                  className="tech-tag rounded-full border px-1 py-0.5 text-xs"
+               >
+                  <span className="text-primary">#</span>
                   {skill}
                </span>
             ))}

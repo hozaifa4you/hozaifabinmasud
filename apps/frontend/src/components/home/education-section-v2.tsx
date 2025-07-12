@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useCallback } from 'react';
-import { educationData, trainingData } from '@/lib/education-data';
+import { educationData, StatusType, trainingData } from '@/lib/education-data';
 import { EducationCard } from './education-card';
 import { EnhancedTrainingCard } from './enhanced-training-card';
 import { TabNavigation } from './tab-navigation';
@@ -69,6 +69,7 @@ function EducationTrainingSectionV2() {
                      <EnhancedTrainingCard
                         key={index}
                         {...course}
+                        status={course.status as StatusType}
                         isExpanded={expandedTraining === index}
                         onToggleExpand={() => toggleTrainingExpand(index)}
                         index={index}
