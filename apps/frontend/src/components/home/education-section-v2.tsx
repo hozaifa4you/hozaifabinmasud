@@ -7,11 +7,8 @@ import { TabNavigation } from './tab-navigation';
 import { ContentHeader } from './content-header';
 import { Badge } from '../ui/badge';
 import { DotGridLarge, SquareBox } from '../ui/icons';
-import Link from 'next/link';
-import { buttonVariants } from '../ui/button';
 
 function EducationTrainingSectionV2() {
-   // State management
    const [activeTab, setActiveTab] = useState<'educations' | 'trainings'>(
       'educations',
    );
@@ -22,7 +19,6 @@ function EducationTrainingSectionV2() {
       null,
    );
 
-   // Event handlers with useCallback for better performance
    const toggleEducationExpand = useCallback((index: number) => {
       setExpandedEducation((prevExpanded) =>
          prevExpanded === index ? null : index,
@@ -41,7 +37,7 @@ function EducationTrainingSectionV2() {
             <ContentHeader
                text="edu-&-trainings"
                maxLineWidth="max-w-[250px]"
-               buttonText={<Badge text="#viewAll ~>" variant="done" />}
+               buttonText={<Badge text="#show_more ~>" variant="done" />}
                navigateUrl={`/${activeTab}`}
             />
          </div>
@@ -77,19 +73,6 @@ function EducationTrainingSectionV2() {
                   ))}
                </div>
             )}
-         </div>
-
-         <div className="mt-5 flex items-center justify-center">
-            <Link
-               href={`/${activeTab}`}
-               className={buttonVariants({
-                  variant: 'outlineSecondary',
-                  size: 'lg',
-                  class: '!gap-0',
-               })}
-            >
-               <span className="text-primary">#</span>viewAll
-            </Link>
          </div>
 
          <DotGridLarge className="absolute top-2/3 -right-5 hidden lg:block" />

@@ -117,7 +117,7 @@ export function EnhancedTrainingCard({
             {skills.map((skill, skillIndex) => (
                <span
                   key={skillIndex}
-                  className="tech-tag rounded-full border px-1 py-0.5 text-xs"
+                  className="tech-tag rounded-full border border-gray-200/30 px-1 py-0.5 text-xs"
                >
                   <span className="text-primary">#</span>
                   {skill}
@@ -126,7 +126,6 @@ export function EnhancedTrainingCard({
          </div>
 
          <ExpandableContent isExpanded={isExpanded}>
-            {/* Projects */}
             <div>
                <SectionSubheader title="Projects Completed" />
                <div className="space-y-3">

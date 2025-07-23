@@ -11,7 +11,7 @@ const WorksPage = () => {
    return (
       <>
          <Breadcrumb
-            title="work-history"
+            title="work-histories"
             subtitle="The short details about my employment"
          />
 
@@ -20,9 +20,9 @@ const WorksPage = () => {
                {works.map((work) => (
                   <div
                      key={work.id}
-                     className="border-b-primary/30 grid gap-3 border-b pb-10 last:border-b-0 last:pb-0 xl:grid-cols-4"
+                     className="border-b-primary/30 grid gap-3 border-b pb-10 last:border-b-0 last:pb-0 md:grid-cols-4"
                   >
-                     <div className="xl:col-span-1">
+                     <div className="md:col-span-1">
                         <div className="text-right text-sm">
                            [<CiCalendarDate className="inline" />{' '}
                            <span className="text-primary">$</span>
@@ -48,7 +48,7 @@ const WorksPage = () => {
                            {work.duration.toLowerCase().replaceAll(' ', '-')}
                         </p>
                      </div>
-                     <div className="xl:col-span-3">
+                     <div className="md:col-span-3">
                         <h4 className="mb-2.5 text-lg leading-none font-semibold">
                            {work.company}
                            <span className="text-primary text-xs font-light text-pretty">

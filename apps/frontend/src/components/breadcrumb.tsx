@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface BreadcrumbProps {
-   title: string;
+   title: ReactNode;
    subtitle?: string | ReactNode;
    size?: 'sm' | 'md' | 'lg';
 }
