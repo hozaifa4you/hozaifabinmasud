@@ -52,6 +52,7 @@ const ContactSection = () => {
                               <Link
                                  href="https://github.com/hozaifa4you"
                                  target="_blank"
+                                 className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
                                  <FaGithub className="size-5" />
                               </Link>
@@ -60,6 +61,7 @@ const ContactSection = () => {
                               <Link
                                  href="https://www.linkedin.com/in/hozaifa-bin-masud-4b7835244/"
                                  target="_blank"
+                                 className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
                                  <FaLinkedinIn className="size-5" />
                               </Link>
@@ -68,6 +70,7 @@ const ContactSection = () => {
                               <Link
                                  href="https://facebook.com/hozaifa4you"
                                  target="_blank"
+                                 className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
                                  <FaFacebookF className="size-5" />
                               </Link>
@@ -76,6 +79,7 @@ const ContactSection = () => {
                               <Link
                                  href="https://x.com/hozaifa4you"
                                  target="_blank"
+                                 className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
                                  <FaXTwitter className="size-5" />
                               </Link>
@@ -84,6 +88,7 @@ const ContactSection = () => {
                               <Link
                                  href="https://www.upwork.com/freelancers/~01f0b1c3d4e5a6b7c8"
                                  target="_blank"
+                                 className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
                                  <FaUpwork className="size-5" />
                               </Link>
@@ -92,6 +97,7 @@ const ContactSection = () => {
                               <Link
                                  href="https://www.fiverr.com/hozaifa4you"
                                  target="_blank"
+                                 className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
                                  <TbBrandFiverr className="size-5" />
                               </Link>
