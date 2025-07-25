@@ -6,7 +6,7 @@ import { calculateYearsFromDate } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 import { DotGridLarge } from '../ui/icons';
 import { ContentHeader } from './content-header';
-import { WorkCard } from './work-card';
+import { WorkCardV2 } from './work-card-v2';
 
 const WorksSection = () => {
    return (
@@ -26,8 +26,8 @@ const WorksSection = () => {
 
             <div className="mt-5 grid gap-5 lg:grid-cols-3">
                <div className="grid flex-col-reverse gap-4 lg:col-span-2">
-                  {works.map((work) => (
-                     <WorkCard key={work.id} {...work} />
+                  {works.map((exp, index) => (
+                     <WorkCardV2 key={index} {...exp} />
                   ))}
                </div>
 

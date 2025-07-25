@@ -99,7 +99,7 @@ const works = [
          'pinecone',
       ],
       address: 'Lift 5, House 10, Uttara 10, Dhaka, Bangladesh.',
-      website: 'https://namespaceit.com',
+      website: 'namespaceit.com',
       social: [
          { id: 1, name: 'facebook', url: '#' },
          { id: 2, name: 'linkedin', url: '#' },
@@ -119,7 +119,7 @@ const works = [
       type: 'On-site',
       skills: ['nodejs', 'reactjs', 'typescript', 'mongodb', 'nextjs'],
       address: 'Lift 4, House 13, Road 11, Uttara 11, Dhaka, Bangladesh.',
-      website: 'https://aipowerit.com',
+      website: 'aipowerit.com',
       social: [
          { id: 1, name: 'facebook', url: '#' },
          { id: 3, name: 'x', url: '#' },
