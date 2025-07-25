@@ -5,6 +5,8 @@ import { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+
 import { Breadcrumb } from '@/components/breadcrumb';
 import { EnhancedTrainingCard } from '@/components/home/enhanced-training-card';
 import { buttonVariants } from '@/components/ui/button';
@@ -67,23 +69,25 @@ const TrainingsPage = () => {
                      })}
                      href="?type=bhootcamp"
                   >
-                     Bhootcamp
+                     Bootcamp
                   </Link>
                </div>
 
-               <div className="grid gap-4 md:grid-cols-2">
-                  {trainingData.map((course, index) => (
-                     <div key={index}>
-                        <EnhancedTrainingCard
-                           {...course}
-                           status={course.status as StatusType}
-                           isExpanded={expandedTraining === index}
-                           onToggleExpand={() => toggleTrainingExpand(index)}
-                           index={index}
-                        />
-                     </div>
-                  ))}
-               </div>
+               <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
+                  <Masonry>
+                     {trainingData.map((course, index) => (
+                        <div key={index}>
+                           <EnhancedTrainingCard
+                              {...course}
+                              status={course.status as StatusType}
+                              isExpanded={expandedTraining === index}
+                              onToggleExpand={() => toggleTrainingExpand(index)}
+                              index={index}
+                           />
+                        </div>
+                     ))}
+                  </Masonry>
+               </ResponsiveMasonry>
 
                <div className="mt-5 flex items-center justify-center">
                   <Link

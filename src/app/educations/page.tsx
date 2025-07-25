@@ -4,6 +4,8 @@ import { useCallback, useState } from 'react';
 
 import Link from 'next/link';
 
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+
 import { Breadcrumb } from '@/components/breadcrumb';
 import { EducationCard } from '@/components/home/education-card';
 import { buttonVariants } from '@/components/ui/button';
@@ -31,17 +33,19 @@ const EduAndTrainingsPage = () => {
 
          <section className="relative mb-10">
             <div className="container">
-               <div className="grid gap-4 md:grid-cols-2">
-                  {[...educationData, ...educationData].map((edu, index) => (
-                     <EducationCard
-                        key={index}
-                        {...edu}
-                        isExpanded={expandedEducation === index}
-                        onToggleExpand={() => toggleEducationExpand(index)}
-                        index={index}
-                     />
-                  ))}
-               </div>
+               <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
+                  <Masonry>
+                     {[...educationData, ...educationData].map((edu, index) => (
+                        <EducationCard
+                           key={index}
+                           {...edu}
+                           isExpanded={expandedEducation === index}
+                           onToggleExpand={() => toggleEducationExpand(index)}
+                           index={index}
+                        />
+                     ))}
+                  </Masonry>
+               </ResponsiveMasonry>
 
                <div className="mt-5 flex items-center justify-center">
                   <Link
