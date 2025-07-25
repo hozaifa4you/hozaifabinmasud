@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Logo = () => {
    return (
-      <Link href="/" className="inline-flex gap-2 items-center">
+      <Link href="/" className="inline-flex items-center gap-2">
          <Image
             src="/assets/logo.svg"
             alt="Hozaifa Bin Masud"

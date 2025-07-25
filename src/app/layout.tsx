@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { Fira_Code } from 'next/font/google';
+
 import { Analytics } from '@vercel/analytics/next';
-import '@/styles/globals.css';
-import { Navbar } from '@/components/navbar/navbar';
+
 import { Footer } from '@/components/footer';
+import { Navbar } from '@/components/navbar/navbar';
+
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
    title: 'Hozaifa Bin Masud - Full Stack Developer',

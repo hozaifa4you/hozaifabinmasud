@@ -1,10 +1,12 @@
+import Image from 'next/image';
+
 import { works } from '@/lib/data';
+import { calculateYearsFromDate } from '@/lib/utils';
+
+import { Badge } from '../ui/badge';
+import { DotGridLarge } from '../ui/icons';
 import { ContentHeader } from './content-header';
 import { WorkCard } from './work-card';
-import { Badge } from '../ui/badge';
-import { calculateYearsFromDate } from '@/lib/utils';
-import { DotGridLarge } from '../ui/icons';
-import Image from 'next/image';
 
 const WorksSection = () => {
    return (

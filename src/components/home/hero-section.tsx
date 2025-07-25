@@ -1,10 +1,12 @@
-import Link from 'next/link';
-import { buttonVariants } from '../ui/button';
 import Image from 'next/image';
-import { DotGridLarge, LogoSvg } from '../ui/icons';
-import { Quote } from './quoto';
+import Link from 'next/link';
+
 import { PiReadCvLogoLight } from 'react-icons/pi';
+
+import { buttonVariants } from '../ui/button';
+import { DotGridLarge, LogoSvg } from '../ui/icons';
 import { Tooltip } from '../ui/tooltip';
+import { Quote } from './quoto';
 
 const HeroSection = () => {
    return (

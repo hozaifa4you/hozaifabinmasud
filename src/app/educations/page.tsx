@@ -1,11 +1,15 @@
 'use client';
+
+import { useCallback, useState } from 'react';
+
+import Link from 'next/link';
+
 import { Breadcrumb } from '@/components/breadcrumb';
 import { EducationCard } from '@/components/home/education-card';
 import { buttonVariants } from '@/components/ui/button';
 import { DotGridLarge, SquareBox } from '@/components/ui/icons';
+
 import { educationData } from '@/lib/education-data';
-import Link from 'next/link';
-import { useCallback, useState } from 'react';
 
 const EduAndTrainingsPage = () => {
    const [expandedEducation, setExpandedEducation] = useState<number | null>(

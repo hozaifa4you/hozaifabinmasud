@@ -1,7 +1,10 @@
 'use client';
-import { FaSpinner } from 'react-icons/fa6';
-import { Button } from './ui/button';
+
 import { useEffect, useState } from 'react';
+
+import { FaSpinner } from 'react-icons/fa6';
+
+import { Button } from './ui/button';
 
 interface PaginationProps {
    isLoading?: boolean;

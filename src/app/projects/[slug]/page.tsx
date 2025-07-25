@@ -1,14 +1,19 @@
 'use client';
-import { Breadcrumb } from '@/components/breadcrumb';
-import { ContentHeader } from '@/components/home/content-header';
-import { buttonVariants } from '@/components/ui/button';
-import { projectDetails } from '@/lib/data';
+
+import React, { useState } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+
 import { LuX } from 'react-icons/lu';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
+
+import { Breadcrumb } from '@/components/breadcrumb';
+import { ContentHeader } from '@/components/home/content-header';
+import { buttonVariants } from '@/components/ui/button';
+
+import { projectDetails } from '@/lib/data';
 
 function App() {
    const [isGalleryOpen, setIsGalleryOpen] = useState(false);

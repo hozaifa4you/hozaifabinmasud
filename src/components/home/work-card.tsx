@@ -1,6 +1,7 @@
+import { CiCalendarDate } from 'react-icons/ci';
+
 import { WorkType } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { CiCalendarDate } from 'react-icons/ci';
 
 const WorkCard = ({
    company,

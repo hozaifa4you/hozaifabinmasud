@@ -5,6 +5,7 @@ import {
    LuChevronUp,
    LuMapPin,
 } from 'react-icons/lu';
+
 import {
    BulletItem,
    ExpandableContent,

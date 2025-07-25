@@ -1,20 +1,22 @@
-import { Breadcrumb } from '@/components/breadcrumb';
 import Link from 'next/link';
+
+import { FaEthereum } from 'react-icons/fa';
 import {
+   FaBitcoin,
+   FaEnvelope,
    FaFacebookF,
    FaGithub,
-   FaXTwitter,
-   FaWhatsapp,
-   FaEnvelope,
-   FaUpwork,
-   FaLinkedinIn,
-   FaBitcoin,
    FaLink,
+   FaLinkedinIn,
+   FaUpwork,
+   FaWhatsapp,
+   FaXTwitter,
 } from 'react-icons/fa6';
-import { DotGridLarge } from '@/components/ui/icons';
 import { TbBrandFiverr } from 'react-icons/tb';
-import { FaEthereum } from 'react-icons/fa';
+
 import { ContactForm } from '@/components/about-me/contact-form';
+import { Breadcrumb } from '@/components/breadcrumb';
+import { DotGridLarge } from '@/components/ui/icons';
 
 const ContactPage = () => {
    return (

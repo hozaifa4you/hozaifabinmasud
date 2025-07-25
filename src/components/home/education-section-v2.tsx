@@ -1,12 +1,17 @@
 'use client';
-import React, { useState, useCallback } from 'react';
+
+import { useCallback, useState } from 'react';
+
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+
 import { educationData, StatusType, trainingData } from '@/lib/education-data';
+
+import { Badge } from '../ui/badge';
+import { DotGridLarge, SquareBox } from '../ui/icons';
+import { ContentHeader } from './content-header';
 import { EducationCard } from './education-card';
 import { EnhancedTrainingCard } from './enhanced-training-card';
 import { TabNavigation } from './tab-navigation';
-import { ContentHeader } from './content-header';
-import { Badge } from '../ui/badge';
-import { DotGridLarge, SquareBox } from '../ui/icons';
 
 function EducationTrainingSectionV2() {
    const [activeTab, setActiveTab] = useState<'educations' | 'trainings'>(
@@ -46,32 +51,36 @@ function EducationTrainingSectionV2() {
             <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
 
             {activeTab === 'educations' && (
-               <div className="grid gap-4 md:grid-cols-2">
-                  {educationData.map((edu, index) => (
-                     <EducationCard
-                        key={index}
-                        {...edu}
-                        isExpanded={expandedEducation === index}
-                        onToggleExpand={() => toggleEducationExpand(index)}
-                        index={index}
-                     />
-                  ))}
-               </div>
+               <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
+                  <Masonry>
+                     {educationData.map((edu, index) => (
+                        <EducationCard
+                           key={index}
+                           {...edu}
+                           isExpanded={expandedEducation === index}
+                           onToggleExpand={() => toggleEducationExpand(index)}
+                           index={index}
+                        />
+                     ))}
+                  </Masonry>
+               </ResponsiveMasonry>
             )}
 
             {activeTab === 'trainings' && (
-               <div className="grid gap-4 md:grid-cols-2">
-                  {trainingData.slice(0, 3).map((course, index) => (
-                     <EnhancedTrainingCard
-                        key={index}
-                        {...course}
-                        status={course.status as StatusType}
-                        isExpanded={expandedTraining === index}
-                        onToggleExpand={() => toggleTrainingExpand(index)}
-                        index={index}
-                     />
-                  ))}
-               </div>
+               <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
+                  <Masonry>
+                     {trainingData.slice(0, 3).map((course, index) => (
+                        <EnhancedTrainingCard
+                           key={index}
+                           {...course}
+                           status={course.status as StatusType}
+                           isExpanded={expandedTraining === index}
+                           onToggleExpand={() => toggleTrainingExpand(index)}
+                           index={index}
+                        />
+                     ))}
+                  </Masonry>
+               </ResponsiveMasonry>
             )}
          </div>
 

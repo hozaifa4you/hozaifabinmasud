@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import { ContentHeader } from './content-header';
-import { DotGridLarge, DotGridRect, SquareBox } from '../ui/icons';
 import Link from 'next/link';
+
 import { Button } from '../ui/button';
+import { DotGridLarge, DotGridRect, SquareBox } from '../ui/icons';
+import { ContentHeader } from './content-header';
 
 const AboutMeSection = () => {
    return (

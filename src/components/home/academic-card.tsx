@@ -1,9 +1,11 @@
-import { AcademicType } from '@/lib/data';
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
+
 import { BiLinkExternal } from 'react-icons/bi';
 import { FaGraduationCap } from 'react-icons/fa6';
 import { LuCalendarCog } from 'react-icons/lu';
+
+import { AcademicType } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
 const AcademicCard = ({
    boardOrUniversity,

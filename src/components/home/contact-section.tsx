@@ -1,17 +1,20 @@
 import Link from 'next/link';
-import { ContentHeader } from './content-header';
+
 import {
+   FaEnvelope,
    FaFacebookF,
    FaGithub,
-   FaXTwitter,
-   FaWhatsapp,
-   FaEnvelope,
-   FaUpwork,
    FaLinkedinIn,
+   FaUpwork,
+   FaWhatsapp,
+   FaXTwitter,
 } from 'react-icons/fa6';
-import { DotGridLarge } from '@/components/ui/icons';
 import { TbBrandFiverr } from 'react-icons/tb';
+
+import { DotGridLarge } from '@/components/ui/icons';
+
 import { ContactForm } from '../about-me/contact-form';
+import { ContentHeader } from './content-header';
 
 const ContactSection = () => {
    return (

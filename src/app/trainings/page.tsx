@@ -1,12 +1,16 @@
 'use client';
+
 import { useCallback, useState } from 'react';
-import { EnhancedTrainingCard } from '@/components/home/enhanced-training-card';
-import { StatusType, trainingData } from '@/lib/education-data';
-import { Breadcrumb } from '@/components/breadcrumb';
-import { DotGridLarge, SquareBox } from '@/components/ui/icons';
+
 import Link from 'next/link';
-import { buttonVariants } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
+
+import { Breadcrumb } from '@/components/breadcrumb';
+import { EnhancedTrainingCard } from '@/components/home/enhanced-training-card';
+import { buttonVariants } from '@/components/ui/button';
+import { DotGridLarge, SquareBox } from '@/components/ui/icons';
+
+import { StatusType, trainingData } from '@/lib/education-data';
 
 const TrainingsPage = () => {
    const searchParams = useSearchParams();
