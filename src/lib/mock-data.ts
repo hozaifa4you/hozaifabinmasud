@@ -7,6 +7,8 @@ const projects = [
       status: 'Live',
       slug: 'chart-nodes',
       image: '/alternate/products/1.png',
+      website: 'chertnodes.org',
+      code: 'hozaifa/chertnodes',
    },
    {
       id: 2,
@@ -16,6 +18,8 @@ const projects = [
       status: 'Beta',
       slug: 'pixel-host',
       image: '/alternate/products/2.png',
+      website: 'pixelhost.net',
+      code: 'hostnet/pixelhost',
    },
    {
       id: 3,
@@ -25,6 +29,8 @@ const projects = [
       status: 'Development',
       slug: 'code-forge',
       image: '/alternate/products/3.png',
+      website: 'codeforge.ru',
+      code: 'ghostbudge/codeforge',
    },
 ];
 
