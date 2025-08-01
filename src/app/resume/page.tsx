@@ -72,7 +72,7 @@ const ResumePage = () => {
 
                   <div className="mt-5 flex items-center gap-4">
                      <Link
-                        href="/download-cv"
+                        href="/resume.pdf"
                         className={buttonVariants({
                            variant: 'outlineSecondary',
                         })}
@@ -81,7 +81,7 @@ const ResumePage = () => {
                         Download CV
                      </Link>
                      <Link
-                        href="/customize-cv-download"
+                        href="/resume.pdf"
                         className={buttonVariants({
                            variant: 'default',
                         })}

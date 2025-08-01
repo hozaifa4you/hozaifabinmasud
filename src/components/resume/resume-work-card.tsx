@@ -22,7 +22,7 @@ const ResumeWorkCard = ({
             <div className="border-text bg-bg-main w-full space-y-2 border p-2">
                <p>
                   {endDate ?? (
-                     <span className="font-semibold text-emerald-500 uppercase">
+                     <span className="bg-emerald-500 px-2 py-1 text-sm font-semibold text-white/95 uppercase">
                         {status}
                      </span>
                   )}
