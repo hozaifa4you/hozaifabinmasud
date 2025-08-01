@@ -4,7 +4,6 @@ import { FunFactSection } from '@/components/about-me/fun-facts-section';
 import { Breadcrumb } from '@/components/breadcrumb';
 import { SkillsBox } from '@/components/home/skills-box';
 import { DotGridLarge, DotGridRect, SquareBox } from '@/components/ui/icons';
-
 import {
    databases,
    features,

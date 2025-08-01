@@ -6,14 +6,13 @@ import {
    LuExternalLink,
 } from 'react-icons/lu';
 
-import { StatusType } from '@/lib/education-data';
-
 import { Badge } from '../ui/badge';
 import {
    BulletItem,
    ExpandableContent,
    SectionSubheader,
 } from './education-components';
+import { StatusType } from '@/lib/education-data';
 
 export interface TrainingItemProps {
    title: string;

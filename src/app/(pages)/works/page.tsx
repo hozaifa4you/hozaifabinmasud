@@ -1,12 +1,10 @@
 import Link from 'next/link';
-
 import { BiLinkExternal } from 'react-icons/bi';
 import { CiCalendarDate } from 'react-icons/ci';
 import { FaFacebook, FaGlobe } from 'react-icons/fa';
 import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 
 import { Breadcrumb } from '@/components/breadcrumb';
-
 import { works } from '@/lib/data';
 import { cn } from '@/lib/utils';
 

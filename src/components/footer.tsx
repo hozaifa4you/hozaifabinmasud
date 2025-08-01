@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { FaGithub, FaLinkedin, FaUpwork } from 'react-icons/fa6';
 import { TbBrandFiverr } from 'react-icons/tb';
 

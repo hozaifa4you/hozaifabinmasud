@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { FaEthereum } from 'react-icons/fa';
 import {
    FaBitcoin,

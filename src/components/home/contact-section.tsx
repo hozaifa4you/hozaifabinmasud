@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import {
    FaEnvelope,
    FaFacebookF,
@@ -11,10 +10,9 @@ import {
 } from 'react-icons/fa6';
 import { TbBrandFiverr } from 'react-icons/tb';
 
-import { DotGridLarge } from '@/components/ui/icons';
-
 import { ContactForm } from '../about-me/contact-form';
 import { ContentHeader } from './content-header';
+import { DotGridLarge } from '@/components/ui/icons';
 
 const ContactSection = () => {
    return (

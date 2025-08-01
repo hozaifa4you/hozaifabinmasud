@@ -2,7 +2,6 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import { ProjectCard } from '@/components/home/project-card';
 import { Pagination } from '@/components/pagination';
 import { ProjectCardSmall } from '@/components/projects/project-card-small';
-
 import { projectsAll, smallProjects } from '@/lib/data';
 
 const ProjectsPage = () => {

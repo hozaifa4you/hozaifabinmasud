@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { ContentHeader } from './content-header';
+import { SkillsBox } from './skills-box';
 import {
    databases,
    features,
@@ -9,9 +11,6 @@ import {
    others,
    tools,
 } from '@/lib/data';
-
-import { ContentHeader } from './content-header';
-import { SkillsBox } from './skills-box';
 
 const SkillsSection = () => {
    return (

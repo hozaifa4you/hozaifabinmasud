@@ -7,7 +7,7 @@
       "prettier-plugin-tailwindcss"
    ],
    "printWidth": 80,
-   "importOrder": ["^react$", "^next", "^@/(.*)$", "^[./]"],
+   "importOrder": ["^@?\\w", "^[.@/]"],
    "importOrderSeparation": true,
    "importOrderSortSpecifiers": true,
    "importOrderCaseInsensitive": true

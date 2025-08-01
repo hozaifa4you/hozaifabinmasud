@@ -1,16 +1,13 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-
 import Link from 'next/link';
-
+import { useCallback, useState } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import { Breadcrumb } from '@/components/breadcrumb';
 import { EducationCard } from '@/components/home/education-card';
 import { buttonVariants } from '@/components/ui/button';
 import { DotGridLarge, SquareBox } from '@/components/ui/icons';
-
 import { educationData } from '@/lib/education-data';
 
 const EduAndTrainingsPage = () => {

@@ -1,10 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-
-import { educationData, StatusType, trainingData } from '@/lib/education-data';
 
 import { Badge } from '../ui/badge';
 import { DotGridLarge, SquareBox } from '../ui/icons';
@@ -12,6 +9,7 @@ import { ContentHeader } from './content-header';
 import { EducationCard } from './education-card';
 import { EnhancedTrainingCard } from './enhanced-training-card';
 import { TabNavigation } from './tab-navigation';
+import { educationData, StatusType, trainingData } from '@/lib/education-data';
 
 function EducationTrainingSectionV2() {
    const [activeTab, setActiveTab] = useState<'educations' | 'trainings'>(

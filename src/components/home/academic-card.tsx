@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { BiLinkExternal } from 'react-icons/bi';
 import { FaGraduationCap } from 'react-icons/fa6';
 import { LuCalendarCog } from 'react-icons/lu';

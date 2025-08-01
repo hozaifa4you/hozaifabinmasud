@@ -1,14 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import Link from 'next/link';
-
+import { Dispatch, SetStateAction } from 'react';
 import { FaX } from 'react-icons/fa6';
 
 import { Logo } from '@/components/navbar/logo';
 import { Button } from '@/components/ui/button';
-
 import { MenuItem } from '@/hooks/use-menu';
-
 import { cn } from '@/lib/utils';
 
 interface ResponsiveMenuProps {

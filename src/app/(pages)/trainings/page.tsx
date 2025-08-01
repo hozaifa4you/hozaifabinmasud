@@ -1,17 +1,14 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-
+import { useCallback, useState } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import { Breadcrumb } from '@/components/breadcrumb';
 import { EnhancedTrainingCard } from '@/components/home/enhanced-training-card';
 import { buttonVariants } from '@/components/ui/button';
 import { DotGridLarge, SquareBox } from '@/components/ui/icons';
-
 import { StatusType, trainingData } from '@/lib/education-data';
 
 const TrainingsPage = () => {

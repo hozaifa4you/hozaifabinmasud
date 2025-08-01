@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { BiLinkExternal } from 'react-icons/bi';
 import { LuBuilding, LuCalendar, LuExternalLink } from 'react-icons/lu';
 

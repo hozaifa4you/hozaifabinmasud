@@ -1,9 +1,8 @@
-import { projects } from '@/lib/mock-data';
-
 import { Badge } from '../ui/badge';
 import { DotGridLarge, SquareBox } from '../ui/icons';
 import { ContentHeader } from './content-header';
 import { ProjectCard } from './project-card';
+import { projects } from '@/lib/mock-data';
 
 const ProjectsSection = () => {
    return (

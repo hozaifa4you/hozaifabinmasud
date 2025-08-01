@@ -1,8 +1,7 @@
 import Image from 'next/image';
 
-import { funFacts } from '@/lib/data';
-
 import { DotGridLarge, SquareBox } from '../ui/icons';
+import { funFacts } from '@/lib/data';
 
 const FunFactSection = () => {
    return (

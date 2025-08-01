@@ -1,21 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import Link from 'next/link';
-
+import { useEffect, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaUpwork } from 'react-icons/fa6';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { TbBrandFiverr } from 'react-icons/tb';
 
-import { Logo } from '@/components/navbar/logo';
-
-import { useMenu } from '@/hooks/use-menu';
-
-import { cn } from '@/lib/utils';
-
 import { ResponsiveMenu } from './responsive-menu';
+import { Logo } from '@/components/navbar/logo';
+import { useMenu } from '@/hooks/use-menu';
+import { cn } from '@/lib/utils';
 
 const Navbar = () => {
    const [isSticky, setIsSticky] = useState(false);

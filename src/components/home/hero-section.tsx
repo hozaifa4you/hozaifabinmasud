@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { PiReadCvLogoLight } from 'react-icons/pi';
 
 import { buttonVariants } from '../ui/button';

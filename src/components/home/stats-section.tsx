@@ -1,6 +1,5 @@
-import { StatType } from '@/lib/education-data';
-
 import { StatItem } from './education-components';
+import { StatType } from '@/lib/education-data';
 
 interface StatProps {
    stats: StatType[];

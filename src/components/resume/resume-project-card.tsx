@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { FaGithub } from 'react-icons/fa6';
 
 import { ProjectType } from '@/lib/mock-data';

@@ -1,7 +1,6 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Fira_Code } from 'next/font/google';
-
-import { Analytics } from '@vercel/analytics/next';
 
 import '@/styles/globals.css';
 
