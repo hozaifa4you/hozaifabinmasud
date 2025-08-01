@@ -1,14 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { LuGithub, LuLinkedin, LuMail, LuMapPin, LuSend } from 'react-icons/lu';
+import { TbWorldWww } from 'react-icons/tb';
 
 import { BoxWithTitle } from '@/components/box-with-title';
+import { ResumeEducationCard } from '@/components/resume/resume-education-card';
 import { ResumeProjectCard } from '@/components/resume/resume-project-card';
+import { ResumeTrainingCard } from '@/components/resume/resume-training-card';
 import { ResumeWorkCard } from '@/components/resume/resume-work-card';
 import { buttonVariants } from '@/components/ui/button';
 import { LogoSvg } from '@/components/ui/icons';
 import { appConfig } from '@/config/app.config';
 import { works } from '@/lib/data';
+import { educationData, trainingData } from '@/lib/education-data';
 import { projects } from '@/lib/mock-data';
 import { calculateYearsFromDate } from '@/lib/utils';
 
@@ -36,6 +40,11 @@ const basicInfo = [
       Icon: LuSend,
       label: appConfig.PHONE,
       url: `tell:${appConfig.PHONE}`,
+   },
+   {
+      Icon: TbWorldWww,
+      label: appConfig.WEBSITE,
+      url: `https://${appConfig.WEBSITE}`,
    },
 ];
 
@@ -269,6 +278,16 @@ const ResumePage = () => {
                         9+ educations -{'>'}
                      </Link>
                   </div>
+                  {educationData.splice(0, 2).map((edu, index) => (
+                     <ResumeEducationCard
+                        key={index}
+                        degree={edu.degree}
+                        description={edu.description}
+                        duration={edu.duration}
+                        grade={edu.grade}
+                        institution={edu.institution}
+                     />
+                  ))}
                </div>
                <div className="space-y-4">
                   <div className="border-text mt-4 flex items-center justify-between border p-2">
@@ -282,6 +301,17 @@ const ResumePage = () => {
                         15+ trainings -{'>'}
                      </Link>
                   </div>
+                  {trainingData.slice(0, 2).map((training, index) => (
+                     <ResumeTrainingCard
+                        key={index}
+                        completedDate={training.completedDate}
+                        duration={training.duration}
+                        platform={training.platform}
+                        provider={training.provider}
+                        skills={training.skills}
+                        title={training.title}
+                     />
+                  ))}
                </div>
             </div>
          </div>
