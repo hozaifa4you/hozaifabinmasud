@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { BiArrowBack } from 'react-icons/bi';
 import { LuGithub, LuLinkedin, LuMail, LuMapPin, LuSend } from 'react-icons/lu';
 import { TbWorldWww } from 'react-icons/tb';
 
@@ -51,6 +52,9 @@ const basicInfo = [
 const ResumePage = () => {
    return (
       <main>
+         <Link href="/" className="text-primary my-5 block">
+            <BiArrowBack className="mr-2.5 inline" /> Back to homepage
+         </Link>
          <div className="container max-w-[1000px] p-10">
             {/* header */}
             <div className="mb-10 grid gap-5 md:grid-cols-2">
