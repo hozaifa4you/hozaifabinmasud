@@ -58,7 +58,7 @@ const AboutMeSection = () => {
             </div>
          </div>
 
-         <SquareBox className="absolute top-1/3 left-0 rotate-180" />
+         <SquareBox className="absolute top-1/3 left-0 hidden rotate-180 lg:block" />
          <DotGridLarge className="absolute top-2/3 -right-10" />
       </section>
    );

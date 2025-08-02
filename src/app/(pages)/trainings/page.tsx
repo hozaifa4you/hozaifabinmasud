@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useState } from 'react';
+import { BsArrowLeft } from 'react-icons/bs';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import { Breadcrumb } from '@/components/breadcrumb';
@@ -34,7 +35,17 @@ const TrainingsPage = () => {
 
          <section className="mb-10 overflow-hidden">
             <div className="container">
-               <div className="mb-5 flex flex-wrap items-center gap-3">
+               <Link
+                  href="/educations"
+                  className={buttonVariants({
+                     size: 'xl',
+                     variant: 'outlineSecondary',
+                  })}
+               >
+                  <BsArrowLeft /> Educations
+               </Link>
+
+               <div className="my-5 flex flex-wrap items-center gap-3">
                   <Link
                      className={buttonVariants({
                         variant:

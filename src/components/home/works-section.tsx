@@ -42,7 +42,7 @@ const WorksSection = () => {
             </div>
          </div>
 
-         <DotGridLarge className="absolute top-1/2 left-10 rotate-90" />
+         <DotGridLarge className="absolute top-1/2 left-10 hidden rotate-90 xl:block" />
       </section>
    );
 };

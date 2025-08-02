@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
+import { BsArrowLeft } from 'react-icons/bs';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import { Breadcrumb } from '@/components/breadcrumb';
@@ -28,9 +29,22 @@ const EduAndTrainingsPage = () => {
             subtitle="My academics qualifications"
          />
 
-         <section className="relative mb-10">
+         <section className="relative">
             <div className="container">
-               <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
+               <Link
+                  href="/trainings"
+                  className={buttonVariants({
+                     size: 'xl',
+                     variant: 'outlineSecondary',
+                  })}
+               >
+                  <BsArrowLeft /> Trainings
+               </Link>
+
+               <ResponsiveMasonry
+                  className="mt-10"
+                  columnsCountBreakPoints={{ 750: 1, 900: 2 }}
+               >
                   <Masonry>
                      {[...educationData, ...educationData].map((edu, index) => (
                         <EducationCard

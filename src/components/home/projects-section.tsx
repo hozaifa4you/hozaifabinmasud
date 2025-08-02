@@ -22,8 +22,8 @@ const ProjectsSection = () => {
             </div>
          </div>
 
-         <SquareBox className="absolute top-1/2 right-0" />
-         <DotGridLarge className="absolute top-1/3 -left-12" />
+         <SquareBox className="absolute top-1/2 right-0 hidden lg:block" />
+         <DotGridLarge className="absolute top-1/3 -left-12 hidden lg:block" />
       </section>
    );
 };

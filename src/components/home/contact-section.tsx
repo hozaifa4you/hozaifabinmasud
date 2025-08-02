@@ -107,7 +107,7 @@ const ContactSection = () => {
             </div>
          </div>
 
-         <DotGridLarge className="absolute top-1/2 -left-5" />
+         <DotGridLarge className="absolute top-1/2 -left-5 hidden lg:block" />
       </section>
    );
 };
