@@ -71,11 +71,11 @@ const TrainingsPage = () => {
                   <Link
                      className={buttonVariants({
                         variant:
-                           type === 'bhootcamp'
+                           type === 'bootcamp'
                               ? 'outlineSecondary'
                               : 'default',
                      })}
-                     href="?type=bhootcamp"
+                     href="?type=bootcamp"
                   >
                      Bootcamp
                   </Link>
