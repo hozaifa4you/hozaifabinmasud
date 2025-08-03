@@ -268,7 +268,7 @@ const projectDetails = [
       company: {
          name: 'Company Name',
          address: 'Street, Road, City, Country',
-         website: 'https://exampel.com',
+         website: 'https://example.com',
       },
       role: 'Full Stack Developer',
       location: 'New Orangeland, Downtown',
