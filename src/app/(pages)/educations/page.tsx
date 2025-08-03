@@ -29,7 +29,7 @@ const EduAndTrainingsPage = () => {
             subtitle="My academics qualifications"
          />
 
-         <section className="relative">
+         <section className="relative mb-10">
             <div className="container">
                <Link
                   href="/trainings"

@@ -6,7 +6,6 @@ import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 
 import { Breadcrumb } from '@/components/breadcrumb';
 import { works } from '@/lib/data';
-import { cn } from '@/lib/utils';
 
 const WorksPage = () => {
    return (
@@ -26,21 +25,17 @@ const WorksPage = () => {
                      <div className="md:col-span-1">
                         <div className="text-right text-sm">
                            [<CiCalendarDate className="inline" />{' '}
-                           <span className="text-primary">$</span>
                            {work.startDate.toLowerCase().replaceAll(' ', '_')}
-                           <span
-                              className={cn('', {
-                                 'text-emerald-500 text-shadow-2xs':
-                                    work.status === 'present',
-                              })}
-                           >
+                           <span>
                               {' '}
-                              - <span className="text-primary">$</span>
-                              {work.endDate
-                                 ? work.endDate
-                                      .toLowerCase()
-                                      .replaceAll(' ', '_')
-                                 : work.status}
+                              - <span className="text-primary"></span>
+                              {work.endDate ? (
+                                 work.endDate.toLowerCase().replaceAll(' ', '_')
+                              ) : (
+                                 <span className="bg-emerald-500 px-1 py-0.5 text-white uppercase">
+                                    {work.status}
+                                 </span>
+                              )}
                            </span>
                            ]
                         </div>

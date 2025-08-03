@@ -13,6 +13,7 @@ import { TbBrandFiverr } from 'react-icons/tb';
 import { ContactForm } from '../about-me/contact-form';
 import { ContentHeader } from './content-header';
 import { DotGridLarge } from '@/components/ui/icons';
+import { appConfig } from '@/config/app.config';
 
 const ContactSection = () => {
    return (
@@ -39,16 +40,16 @@ const ContactSection = () => {
                      <div>
                         <p className="line-clamp-1 inline-flex items-center gap-1.5 md:text-sm lg:text-base">
                            <FaEnvelope className="size-5" />
-                           hozaifabinmasud@gmail.com
+                           {appConfig.EMAIL}
                         </p>
                         <p className="mt-1 inline-flex items-center gap-1.5 md:text-sm lg:text-base">
-                           <FaWhatsapp className="size-5" /> +880 1918 780770
+                           <FaWhatsapp className="size-5" /> {appConfig.PHONE}
                         </p>
 
                         <ul className="mt-3 flex items-center gap-4">
                            <li>
                               <Link
-                                 href="https://github.com/hozaifa4you"
+                                 href={`https://github.com/${appConfig.GITHUB_USERNAME}`}
                                  target="_blank"
                                  className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
@@ -57,7 +58,7 @@ const ContactSection = () => {
                            </li>
                            <li>
                               <Link
-                                 href="https://www.linkedin.com/in/hozaifa-bin-masud-4b7835244/"
+                                 href={`https://www.linkedin.com/in/${appConfig.LINKEDIN_USERNAME}`}
                                  target="_blank"
                                  className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
@@ -66,7 +67,7 @@ const ContactSection = () => {
                            </li>
                            <li>
                               <Link
-                                 href="https://facebook.com/hozaifa4you"
+                                 href={`https://facebook.com/${appConfig.FACEBOOK_USERNAME}`}
                                  target="_blank"
                                  className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
@@ -75,7 +76,7 @@ const ContactSection = () => {
                            </li>
                            <li>
                               <Link
-                                 href="https://x.com/hozaifa4you"
+                                 href={`https://x.com/${appConfig.X_USERNAME}`}
                                  target="_blank"
                                  className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
@@ -84,7 +85,7 @@ const ContactSection = () => {
                            </li>
                            <li>
                               <Link
-                                 href="https://www.upwork.com/freelancers/~01f0b1c3d4e5a6b7c8"
+                                 href={`https://www.upwork.com/freelancers/${appConfig.UPWORK_USERNAME}`}
                                  target="_blank"
                                  className="hover:text-primary transition-all duration-200 ease-in-out"
                               >
@@ -93,7 +94,7 @@ const ContactSection = () => {
                            </li>
                            <li>
                               <Link
-                                 href="https://www.fiverr.com/hozaifa4you"
+                                 href={`https://www.fiverr.com/${appConfig.FIVERR_USERNAME}`}
                                  target="_blank"
                                  className="hover:text-primary transition-all duration-200 ease-in-out"
                               >

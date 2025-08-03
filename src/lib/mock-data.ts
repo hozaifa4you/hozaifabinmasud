@@ -8,7 +8,7 @@ const projects = [
       slug: 'chart-nodes',
       image: '/alternate/products/1.png',
       website: 'chertnodes.org',
-      code: 'hozaifa/chertnodes',
+      code: 'example/chertnodes',
    },
    {
       id: 2,

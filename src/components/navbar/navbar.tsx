@@ -9,6 +9,7 @@ import { TbBrandFiverr } from 'react-icons/tb';
 
 import { ResponsiveMenu } from './responsive-menu';
 import { Logo } from '@/components/navbar/logo';
+import { appConfig } from '@/config/app.config';
 import { useMenu } from '@/hooks/use-menu';
 import { cn } from '@/lib/utils';
 
@@ -104,23 +105,23 @@ const Navbar = () => {
                   <ul className="flex flex-col gap-2">
                      <li>
                         <Link
-                           href="https://github.com/hozaifa4you"
+                           href={`https://github.com/${appConfig.GITHUB_USERNAME}`}
                            target="_blank"
                         >
-                           <FaGithub className="sie-5" />
+                           <FaGithub className="w-5 h-5" />
                         </Link>
                      </li>
                      <li>
                         <Link
-                           href="https://www.linkedin.com/in/hozaifa-bin-masud-4b7835244/"
+                           href={`https://www.linkedin.com/in/${appConfig.LINKEDIN_USERNAME}/`}
                            target="_blank"
                         >
-                           <FaLinkedin className="sie-5" />
+                           <FaLinkedin className="size-5" />
                         </Link>
                      </li>
                      <li>
                         <Link
-                           href="https://www.fiverr.com/hozaifa4you"
+                           href={`https://www.fiverr.com/${appConfig.FIVERR_USERNAME}`}
                            target="_blank"
                         >
                            <TbBrandFiverr className="size-5" />
@@ -128,7 +129,7 @@ const Navbar = () => {
                      </li>
                      <li>
                         <Link
-                           href="https://www.upwork.com/freelancers/~01361961bd46c0b936?mp_source=share"
+                           href={`https://www.upwork.com/freelancers/~${appConfig.UPWORK_USERNAME}?mp_source=share`}
                            target="_blank"
                         >
                            <FaUpwork className="size-5" />

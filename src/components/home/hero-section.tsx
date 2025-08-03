@@ -6,6 +6,7 @@ import { buttonVariants } from '../ui/button';
 import { DotGridLarge, LogoSvg } from '../ui/icons';
 import { Tooltip } from '../ui/tooltip';
 import { Quote } from './quoto';
+import { appConfig } from '@/config/app.config';
 
 const HeroSection = () => {
    return (
@@ -14,7 +15,7 @@ const HeroSection = () => {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                <div className="lg:col-span-4">
                   <h1 className="text-text-secondary text-[26px] font-semibold md:text-[28px] lg:text-[32px]">
-                     [Hozaifa] is a{' '}
+                     [{appConfig.APP_NAME_SHORT}] is a{' '}
                      <span className="text-primary font-bold">full-stack</span>{' '}
                      and{' '}
                      <span className="text-primary font-bold">
@@ -45,7 +46,7 @@ const HeroSection = () => {
                   <div className="relative flex flex-col items-center gap-0">
                      <Image
                         src="/alternate/me.png"
-                        alt="Hozaifa"
+                        alt="#"
                         width={457}
                         height={386}
                         quality={100}
@@ -65,12 +66,12 @@ const HeroSection = () => {
                            <span className="bg-primary relative inline-flex size-4"></span>
                         </span>
                         Currently working on{' '}
-                        <Tooltip content="As Freelancer Developer">
+                        <Tooltip content={appConfig.DESIGNATION}>
                            <Link
-                              href="https://namespaceit.com"
+                              href={appConfig.COMPANY_WEBSITE}
                               className="font-semibold text-white"
                            >
-                              Namespace IT
+                              {appConfig.COMPANY}
                            </Link>
                         </Tooltip>
                      </span>

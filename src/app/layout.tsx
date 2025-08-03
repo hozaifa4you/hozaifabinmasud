@@ -2,12 +2,12 @@ import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Fira_Code } from 'next/font/google';
 
+import { appConfig } from '@/config/app.config';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-   title: 'Hozaifa Bin Masud - Full Stack Developer',
-   description:
-      'Hozaifa Bin Masud is a skilled full stack developer specializing in building modern, scalable web applications. Explore projects, skills, and expertise in frontend and backend development.',
+   title: appConfig.APP_NAME,
+   description: `${appConfig.APP_NAME_SHORT} is a skilled full stack developer specializing in building modern, scalable web applications. Explore projects, skills, and expertise in frontend and backend development.`,
 };
 
 const firaCode = Fira_Code({

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import { DotGridLarge, DotGridRect, SquareBox } from '../ui/icons';
 import { ContentHeader } from './content-header';
+import { appConfig } from '@/config/app.config';
 
 const AboutMeSection = () => {
    return (
@@ -17,7 +18,11 @@ const AboutMeSection = () => {
             <div className="gap- mt-5 grid md:grid-cols-2 lg:grid-cols-8">
                <div className="lg:col-span-5">
                   <div className="grid max-w-[515px] gap-6">
-                     <p>Hello, I&apos;m [Hozaifa Bin Masud]</p>
+                     <p>
+                        Hello, I&apos;m <span className="text-primary">[</span>
+                        {appConfig.APP_NAME_SHORT}
+                        <span className="text-primary">]</span>
+                     </p>
                      <p>
                         I’m a self-taught full-stack developer based in
                         Bangladesh. I build scalable, user-friendly web
@@ -45,7 +50,7 @@ const AboutMeSection = () => {
                   <div className="flex w-full items-center justify-center md:-mt-18">
                      <Image
                         src="/alternate/me2.png"
-                        alt="Hozaifa"
+                        alt="#"
                         width={340}
                         height={505}
                         className="mx-auto w-full max-w-[340px] object-contain object-center"
