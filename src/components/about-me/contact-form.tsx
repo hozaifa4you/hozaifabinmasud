@@ -1,8 +1,15 @@
+'use client';
+
+import { useActionState } from 'react';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { contactAction } from '@/lib/action';
 
 const ContactForm = () => {
+   const [state, action, pending] = useActionState(contactAction, null);
+
    return (
       <>
          <h4 className="mt-10 mb-5 text-2xl font-semibold">
@@ -10,57 +17,89 @@ const ContactForm = () => {
             contact-with<span className="text-primary">{'>='}</span>
             me
          </h4>
-         <form action="#" className="grid gap-4">
+         <form action={action} className="grid gap-4">
             <div className="grid gap-4 sm:grid-cols-2">
-               <Input
-                  label={
-                     <span>
-                        <span className="text-primary">@</span>
-                        your-name
-                     </span>
-                  }
-                  autoComplete="off"
-                  required
-               />
-               <Input
-                  type="email"
-                  label={
-                     <span>
-                        <span className="text-primary">@</span>
-                        your-email
-                     </span>
-                  }
-                  autoComplete="off"
-                  required
-               />
+               <div>
+                  <Input
+                     label={
+                        <span>
+                           <span className="text-primary">@</span>
+                           your-name
+                        </span>
+                     }
+                     autoComplete="off"
+                     name="name"
+                  />
+                  {state?.errors?.name && state.errors.name.length > 0 && (
+                     <p className="text-primary mt-2 text-sm">
+                        {state.errors.name[0]}
+                     </p>
+                  )}
+               </div>
+               <div>
+                  <Input
+                     type="email"
+                     label={
+                        <span>
+                           <span className="text-primary">@</span>
+                           your-email
+                        </span>
+                     }
+                     name="email"
+                  />
+                  {state?.errors?.email && state.errors.email.length > 0 && (
+                     <p className="text-primary mt-2 text-sm">
+                        {state.errors.email[0]}
+                     </p>
+                  )}
+               </div>
             </div>
 
-            <Input
-               label={
-                  <span>
-                     <span className="text-primary">@</span>
-                     subject
-                  </span>
-               }
-               autoComplete="off"
-               required
-            />
+            <div>
+               <Input
+                  label={
+                     <span>
+                        <span className="text-primary">@</span>
+                        subject
+                     </span>
+                  }
+                  name="subject"
+               />
+               {state?.errors?.subject && state.errors.subject.length > 0 && (
+                  <p className="text-primary mt-2 text-sm">
+                     {state.errors.subject[0]}
+                  </p>
+               )}
+            </div>
 
-            <Textarea
-               label={
-                  <span>
-                     <span className="text-primary">@</span>
-                     message
-                  </span>
-               }
-               autoComplete="off"
-               className="resize-none"
-               required
-            />
+            <div>
+               <Textarea
+                  label={
+                     <span>
+                        <span className="text-primary">@</span>
+                        message
+                     </span>
+                  }
+                  className="resize-none"
+                  name="message"
+               />
+               {state?.errors?.message && state.errors.message.length > 0 && (
+                  <p className="text-primary mt-2 text-sm">
+                     {state.errors.message[0]}
+                  </p>
+               )}
+            </div>
 
-            <Button type="submit" variant="outline" size="lg" className="w-fit">
+            <Button
+               type="submit"
+               variant="outline"
+               size="lg"
+               className="w-fit"
+               disabled={pending}
+            >
                <span>
-                  <span className="text-primary">@</span>send ~{'>'}
+                  <span className="text-primary">@</span>
+                  {pending ? 'Sending...' : 'Send'}
                </span>
             </Button>
          </form>

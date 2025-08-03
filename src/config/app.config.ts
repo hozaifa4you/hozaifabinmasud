@@ -25,4 +25,5 @@ export const appConfig = {
    SMTP_PASSWORD: process.env.SMTP_PASSWORD,
    SMTP_PORT: process.env.SMTP_PORT,
    SMTP_EMAIL: process.env.SMTP_EMAIL,
+   APP_URL: process.env.APP_URL!,
 };
