@@ -35,7 +35,7 @@ const basicInfo = [
    {
       Icon: LuLinkedin,
       label: appConfig.LINKEDIN_USERNAME,
-      url: `https://linkeding/in/${appConfig.LINKEDIN_USERNAME}`,
+      url: `https://linkedin.com/in/${appConfig.LINKEDIN_USERNAME}`,
    },
    {
       Icon: LuSend,
