@@ -66,12 +66,12 @@ const HeroSection = () => {
                            <span className="bg-primary relative inline-flex size-4"></span>
                         </span>
                         Currently working on{' '}
-                        <Tooltip content="As Freelancer Developer">
+                        <Tooltip content={appConfig.DESIGNATION}>
                            <Link
-                              href="https://namespaceit.com"
+                              href={appConfig.COMPANY_WEBSITE}
                               className="font-semibold text-white"
                            >
-                              Namespace IT
+                              {appConfig.COMPANY}
                            </Link>
                         </Tooltip>
                      </span>

@@ -18,4 +18,11 @@ export const appConfig = {
    ADDRESS: process.env.ADDRESS!,
    PHONE: process.env.PHONE!,
    WEBSITE: process.env.WEBSITE!,
+   COMPANY: process.env.COMPANY!,
+   COMPANY_WEBSITE: process.env.COMPANY_WEBSITE!,
+   SMTP_HOST: process.env.SMTP_HOST,
+   SMTP_USERNAME: process.env.SMTP_HOST,
+   SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+   SMTP_PORT: process.env.SMTP_PORT,
+   SMTP_EMAIL: process.env.SMTP_EMAIL,
 };

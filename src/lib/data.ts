@@ -266,12 +266,12 @@ const projectDetails = [
    {
       title: 'TaskFlow - Project Management Platform',
       company: {
-         name: 'Namespace IT',
-         address: 'Lift 4, House 13, Road 11, Uttara 11, Dhaka, Bangladesh',
-         website: 'https://namespaceit.com',
+         name: 'Company Name',
+         address: 'Street, Road, City, Country',
+         website: 'https://exampel.com',
       },
       role: 'Full Stack Developer',
-      location: 'Dhaka, Bangladesh',
+      location: 'New Orangeland, Downtown',
       duration: '6 months',
       teamSize: '5 developers',
       description:
@@ -334,7 +334,7 @@ const projectDetails = [
          { name: 'Emily Davis', role: 'Frontend Developer' },
          { name: 'Alex Rodriguez', role: 'DevOps Engineer' },
       ],
-      liveUrl: 'https://taskflow-demo.com',
+      liveUrl: 'https://example.com',
       githubUrl: 'https://github.com/yourusername/taskflow',
    },
 ];

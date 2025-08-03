@@ -86,7 +86,7 @@ function App() {
                </div>
 
                {/* Project Info Cards */}
-               <div className="mb-8 grid grid-cols-2 gap-4 lg:mb-12 lg:grid-cols-4">
+               <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4 lg:mb-12">
                   <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
                      <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
                         <span className="text-white">@</span>Role
@@ -142,9 +142,9 @@ function App() {
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 gap-8 lg:gap-12 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
                {/* Left Column */}
-               <div className="space-y-8 lg:space-y-12 xl:col-span-2">
+               <div className="space-y-8 lg:col-span-2 lg:space-y-12">
                   {/* Screenshots */}
                   <div>
                      <ContentHeader
@@ -152,7 +152,7 @@ function App() {
                         maxLineWidth="max-w-[180px]"
                         size="md"
                      />
-                     <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+                     <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                         {project.additionalImages.map((image, index) => (
                            <div
                               key={index}
@@ -160,10 +160,10 @@ function App() {
                            >
                               <Image
                                  width={315}
-                                 height={225}
+                                 height={100}
                                  src={image}
                                  alt={`Screenshot ${index + 1}`}
-                                 className="h-48 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-56"
+                                 className="h-24 w-full cursor-pointer object-cover transition-opacity hover:opacity-80"
                                  onClick={() => openGallery(index + 1)}
                               />
                            </div>
@@ -249,104 +249,106 @@ function App() {
                </div>
 
                {/* Right Sidebar */}
-               <div className="space-y-8 lg:space-y-12">
-                  {/* Company Info */}
-                  <div>
-                     <ContentHeader
-                        text="company"
-                        maxLineWidth="max-w-[100px]"
-                        size="sm"
-                     />
+               <div>
+                  <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-1">
+                     {/* Company Info */}
+                     <div>
+                        <ContentHeader
+                           text="company"
+                           maxLineWidth="max-w-[100px]"
+                           size="sm"
+                        />
 
-                     <div className="project-card mt-5 p-4 lg:p-8">
-                        <div className="space-y-4 lg:space-y-6">
-                           <div>
-                              <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                 <span className="text-white">@</span>Name
+                        <div className="project-card mt-5 p-4 lg:p-8">
+                           <div className="space-y-4 lg:space-y-6">
+                              <div>
+                                 <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                    <span className="text-white">@</span>Name
+                                 </div>
+                                 <div className="text-sm font-medium text-white lg:text-base">
+                                    {project.company.name}
+                                 </div>
                               </div>
-                              <div className="text-sm font-medium text-white lg:text-base">
-                                 {project.company.name}
+                              <div>
+                                 <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                    <span className="text-white">@</span>Address
+                                 </div>
+                                 <div className="text-xs leading-relaxed text-gray-300 lg:text-sm">
+                                    {project.company.address}
+                                 </div>
                               </div>
-                           </div>
-                           <div>
-                              <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                 <span className="text-white">@</span>Address
+                              <div>
+                                 <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                    <span className="text-white">@</span>Website
+                                 </div>
+                                 <a
+                                    href={project.company.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-primary text-xs break-all transition-colors hover:text-white lg:text-sm"
+                                 >
+                                    {project.company.website}
+                                 </a>
                               </div>
-                              <div className="text-xs leading-relaxed text-gray-300 lg:text-sm">
-                                 {project.company.address}
-                              </div>
-                           </div>
-                           <div>
-                              <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                 <span className="text-white">@</span>Website
-                              </div>
-                              <a
-                                 href={project.company.website}
-                                 target="_blank"
-                                 rel="noopener noreferrer"
-                                 className="text-primary text-xs break-all transition-colors hover:text-white lg:text-sm"
-                              >
-                                 {project.company.website}
-                              </a>
                            </div>
                         </div>
                      </div>
-                  </div>
 
-                  {/* Team Members */}
-                  <div>
-                     <ContentHeader
-                        text="team"
-                        maxLineWidth="max-w-[100px]"
-                        size="sm"
-                     />
+                     {/* Team Members */}
+                     <div>
+                        <ContentHeader
+                           text="team"
+                           maxLineWidth="max-w-[100px]"
+                           size="sm"
+                        />
 
-                     <div className="project-card mt-5 p-4 lg:p-8">
-                        <div className="space-y-4 lg:space-y-5">
-                           {project.teamMembers.map((member, index) => (
-                              <div
-                                 key={index}
-                                 className="flex items-center space-x-3"
-                              >
-                                 <div className="bg-primary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded lg:h-10 lg:w-10">
-                                    <span className="font-mono text-xs font-bold text-black lg:text-sm">
-                                       {member.name
-                                          .split(' ')
-                                          .map((n) => n[0])
-                                          .join('')}
-                                    </span>
-                                 </div>
-                                 <div className="min-w-0 flex-1">
-                                    <div className="truncate text-sm font-medium text-white lg:text-base">
-                                       {member.name}
+                        <div className="project-card mt-5 p-4 lg:p-8">
+                           <div className="space-y-4 lg:space-y-5">
+                              {project.teamMembers.map((member, index) => (
+                                 <div
+                                    key={index}
+                                    className="flex items-center space-x-3"
+                                 >
+                                    <div className="bg-primary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded lg:h-10 lg:w-10">
+                                       <span className="font-mono text-xs font-bold text-black lg:text-sm">
+                                          {member.name
+                                             .split(' ')
+                                             .map((n) => n[0])
+                                             .join('')}
+                                       </span>
                                     </div>
-                                    <div className="text-xs text-gray-400 lg:text-sm">
-                                       {member.role}
+                                    <div className="min-w-0 flex-1">
+                                       <div className="truncate text-sm font-medium text-white lg:text-base">
+                                          {member.name}
+                                       </div>
+                                       <div className="text-xs text-gray-400 lg:text-sm">
+                                          {member.role}
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
-                           ))}
+                              ))}
+                           </div>
                         </div>
                      </div>
-                  </div>
 
-                  {/* Status */}
-                  <div>
-                     <ContentHeader
-                        text="status"
-                        maxLineWidth="max-w-[100px]"
-                        size="sm"
-                     />
+                     {/* Status */}
+                     <div>
+                        <ContentHeader
+                           text="status"
+                           maxLineWidth="max-w-[100px]"
+                           size="sm"
+                        />
 
-                     <div className="project-card mt-5 p-4 lg:p-8">
-                        <div className="mb-3 flex items-center space-x-3">
-                           <div className="h-3 w-3 flex-shrink-0 rounded-full bg-green-500"></div>
-                           <span className="text-sm font-medium text-white lg:text-base">
-                              Currently working on
-                           </span>
-                        </div>
-                        <div className="text-primary font-mono text-xs lg:text-sm">
-                           Production
+                        <div className="project-card mt-5 p-4 lg:p-8">
+                           <div className="mb-3 flex items-center space-x-3">
+                              <div className="h-3 w-3 flex-shrink-0 rounded-full bg-green-500"></div>
+                              <span className="text-sm font-medium text-white lg:text-base">
+                                 Currently working on
+                              </span>
+                           </div>
+                           <div className="text-primary font-mono text-xs lg:text-sm">
+                              Production
+                           </div>
                         </div>
                      </div>
                   </div>

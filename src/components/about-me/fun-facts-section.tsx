@@ -33,8 +33,8 @@ const FunFactSection = () => {
             </div>
          </div>
 
-         <DotGridLarge className="absolute top-1/3 right-0" />
-         <SquareBox className="absolute top-1/2 left-0 rotate-180" />
+         <DotGridLarge className="absolute top-1/3 right-0 hidden lg:block" />
+         <SquareBox className="absolute top-1/2 left-0 hidden rotate-180 lg:block" />
       </section>
    );
 };

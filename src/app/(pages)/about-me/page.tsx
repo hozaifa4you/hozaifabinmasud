@@ -4,6 +4,7 @@ import { FunFactSection } from '@/components/about-me/fun-facts-section';
 import { Breadcrumb } from '@/components/breadcrumb';
 import { SkillsBox } from '@/components/home/skills-box';
 import { DotGridLarge, DotGridRect, SquareBox } from '@/components/ui/icons';
+import { appConfig } from '@/config/app.config';
 import {
    databases,
    features,
@@ -24,7 +25,12 @@ const AboutMePage = () => {
                <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-8">
                   <div className="lg:col-span-5">
                      <div className="grid max-w-[515px] gap-6">
-                        <p>Hello, I&apos;m [Hozaifa Bin Masud]</p>
+                        <p>
+                           Hello, I&apos;m{' '}
+                           <span className="text-primary">[</span>
+                           {appConfig.APP_NAME_SHORT}
+                           <span className="text-primary">]</span>
+                        </p>
                         <p>
                            I’m a self-taught full-stack developer based in
                            Bangladesh. I build scalable, user-friendly web
@@ -59,9 +65,9 @@ const AboutMePage = () => {
                </div>
             </div>
 
-            <DotGridLarge className="absolute top-1/3 left-0 size-[50px]" />
-            <SquareBox className="absolute top-1/6 right-0" />
-            <DotGridLarge className="absolute -right-8 -bottom-10" />
+            <DotGridLarge className="absolute top-1/3 left-0 hidden size-[50px] lg:block" />
+            <SquareBox className="absolute top-1/6 right-0 hidden lg:block" />
+            <DotGridLarge className="absolute -right-8 -bottom-10 hidden lg:block" />
          </section>
 
          <section className="section-padding relative">
