@@ -80,7 +80,7 @@ const others: SkillType[] = [
 const works = [
    {
       id: 2,
-      company: 'Namespace IT',
+      company: 'Unknown IT',
       title: 'Junior Software Engineer',
       startDate: 'Sep 2021',
       status: 'present',
@@ -98,8 +98,8 @@ const works = [
          'langchain',
          'pinecone',
       ],
-      address: 'Lift 5, House 10, Uttara 10, Dhaka, Bangladesh.',
-      website: 'namespaceit.com',
+      address: 'Street, Road, City, Country',
+      website: 'example.com',
       social: [
          { id: 1, name: 'facebook', url: '#' },
          { id: 2, name: 'linkedin', url: '#' },
@@ -108,7 +108,7 @@ const works = [
    },
    {
       id: 1,
-      company: 'AI Power IT',
+      company: 'Unknown Soft Ltd.',
       title: 'Full Stack Developer',
       startDate: 'Dec 2023',
       endDate: 'Oct 2023',
@@ -118,8 +118,8 @@ const works = [
          'Developing AI-powered web applications, and optimizing performance.',
       type: 'On-site',
       skills: ['nodejs', 'reactjs', 'typescript', 'mongodb', 'nextjs'],
-      address: 'Lift 4, House 13, Road 11, Uttara 11, Dhaka, Bangladesh.',
-      website: 'aipowerit.com',
+      address: 'Street, City, Country.',
+      website: 'example.com',
       social: [
          { id: 1, name: 'facebook', url: '#' },
          { id: 3, name: 'x', url: '#' },

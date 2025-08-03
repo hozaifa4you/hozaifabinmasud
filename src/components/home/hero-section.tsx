@@ -6,6 +6,7 @@ import { buttonVariants } from '../ui/button';
 import { DotGridLarge, LogoSvg } from '../ui/icons';
 import { Tooltip } from '../ui/tooltip';
 import { Quote } from './quoto';
+import { appConfig } from '@/config/app.config';
 
 const HeroSection = () => {
    return (
@@ -14,7 +15,7 @@ const HeroSection = () => {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                <div className="lg:col-span-4">
                   <h1 className="text-text-secondary text-[26px] font-semibold md:text-[28px] lg:text-[32px]">
-                     [Hozaifa] is a{' '}
+                     [{appConfig.APP_NAME_SHORT}] is a{' '}
                      <span className="text-primary font-bold">full-stack</span>{' '}
                      and{' '}
                      <span className="text-primary font-bold">
