@@ -108,7 +108,7 @@ const Navbar = () => {
                            href={`https://github.com/${appConfig.GITHUB_USERNAME}`}
                            target="_blank"
                         >
-                           <FaGithub className="size-5" />
+                           <FaGithub className="w-5 h-5" />
                         </Link>
                      </li>
                      <li>
