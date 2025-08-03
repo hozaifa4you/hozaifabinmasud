@@ -52,7 +52,7 @@ const AboutMePage = () => {
                      <div className="flex w-full items-center justify-center md:-mt-14">
                         <Image
                            src="/alternate/me2.png"
-                           alt="Hozaifa"
+                           alt="#"
                            width={340}
                            height={505}
                            className="mx-auto w-full max-w-[340px] object-contain object-center"

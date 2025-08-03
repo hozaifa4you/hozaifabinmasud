@@ -46,7 +46,7 @@ const HeroSection = () => {
                   <div className="relative flex flex-col items-center gap-0">
                      <Image
                         src="/alternate/me.png"
-                        alt="Hozaifa"
+                        alt="#"
                         width={457}
                         height={386}
                         quality={100}

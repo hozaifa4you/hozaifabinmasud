@@ -19,7 +19,7 @@ const Footer = () => {
                      >
                         <Image
                            src="/assets/logo-2.svg"
-                           alt="Hozaifa"
+                           alt="#"
                            width={16}
                            height={16}
                         />

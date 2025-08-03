@@ -137,7 +137,7 @@ const projectsAll: ProjectType[] = [
       slug: 'kotik-bot',
       status: 'active',
       technologies: ['FastAPI', 'Python', 'PostgreSQL'],
-      code: 'hozaifa/kotik-bot',
+      code: 'username/kotik-bot',
       website: 'kotikbot.com',
    },
    {
@@ -148,8 +148,8 @@ const projectsAll: ProjectType[] = [
       status: 'active',
       technologies: ['NodeJs', 'ReactJs', 'TypeScript', 'MongoDB'],
       title: 'Portfolio',
-      code: 'hozaifa/portfolio',
-      website: 'hozaifa.dev',
+      code: 'username/portfolio',
+      website: 'example.dev',
    },
 ];
 
