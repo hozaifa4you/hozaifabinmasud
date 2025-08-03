@@ -15,7 +15,7 @@ const Logo = () => {
             quality={100}
          />
          <span className="text-base font-bold text-white">
-            ${appConfig.FIRST_NAME}
+            {appConfig.FIRST_NAME}
          </span>
       </Link>
    );
