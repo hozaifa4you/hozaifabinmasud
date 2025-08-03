@@ -40,7 +40,7 @@ const basicInfo = [
    {
       Icon: LuSend,
       label: appConfig.PHONE,
-      url: `tell:${appConfig.PHONE}`,
+      url: `tel:${appConfig.PHONE}`,
    },
    {
       Icon: TbWorldWww,
