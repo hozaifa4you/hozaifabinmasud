@@ -4,6 +4,7 @@ export const appConfig = {
    APP_NAME_SHORT: process.env.APP_NAME_SHORT!,
    NEXT_PUBLIC_APP_NAME_SHORT: process.env.NEXT_PUBLIC_APP_NAME_SHORT!,
    FIRST_NAME: process.env.FIRST_NAME,
+   NEXT_PUBLIC_FIRST_NAME: process.env.NEXT_PUBLIC_FIRST_NAME!,
    AUTHOR: process.env.AUTHOR!,
    NEXT_PUBLIC_AUTHOR: process.env.NEXT_PUBLIC_AUTHOR!,
    DESIGNATION: process.env.DESIGNATION!,

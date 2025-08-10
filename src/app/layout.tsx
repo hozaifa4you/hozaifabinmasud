@@ -2,6 +2,8 @@ import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Fira_Code } from 'next/font/google';
 
+import { Footer } from '@/components/footer';
+import { Navbar } from '@/components/navbar/navbar';
 import { appConfig } from '@/config/app.config';
 import '@/styles/globals.css';
 
@@ -26,8 +28,10 @@ export default function RootLayout({
          <body
             className={`bg-bg-main text-text antialiased ${firaCode.className}`}
          >
+            <Navbar />
             {children}
             <Analytics />
+            <Footer />
          </body>
       </html>
    );
