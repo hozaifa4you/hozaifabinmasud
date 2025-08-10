@@ -16,8 +16,10 @@ const ProjectsSection = () => {
             />
 
             <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-               {projects.map((project, index) => (
-                  <ProjectCard {...project} key={index} />
+               {projects.slice(0, 3).map((project) => (
+                  <div key={project.id}>
+                     <ProjectCard {...project} />
+                  </div>
                ))}
             </div>
          </div>

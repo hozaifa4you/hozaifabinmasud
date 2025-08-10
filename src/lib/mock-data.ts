@@ -1,38 +1,65 @@
-const projects = [
+const projects: ProjectType[] = [
    {
       id: 1,
-      title: 'ChertNodes',
-      shortDesc: 'Minecraft servers hosting ',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
-      status: 'Live',
-      slug: 'chart-nodes',
+      title: 'Aionlinecourse.com',
+      shortDesc: 'AI ML learning and project selling platform.',
+      technologies: [
+         'Laravel',
+         'NextJs',
+         'JS & TS',
+         'GraphQL',
+         'MySQL',
+         'D3',
+         'Redux',
+      ],
+      status: 'live',
+      slug: 'aionlinecourse',
       image: '/alternate/products/1.png',
-      website: 'chertnodes.org',
-      code: 'example/chertnodes',
+      website: 'aionlinecourse.com',
    },
    {
       id: 2,
       title: 'PixelHost',
       shortDesc: 'Pixel-perfect web hosting solutions',
       technologies: ['React', 'TypeScript', 'Docker'],
-      status: 'Beta',
+      status: 'archive',
       slug: 'pixel-host',
       image: '/alternate/products/2.png',
       website: 'pixelhost.net',
-      code: 'hostnet/pixelhost',
+      // code: 'hostnet/pixelhost',
+      code: {
+         host: 'github',
+         repo: 'hostnet/pixelhost',
+      },
    },
    {
       id: 3,
       title: 'CodeForge',
       shortDesc: 'Collaborative coding platform',
       technologies: ['Vue.js', 'Go', 'PostgreSQL'],
-      status: 'Development',
+      status: 'developing',
       slug: 'code-forge',
       image: '/alternate/products/3.png',
       website: 'codeforge.ru',
-      code: 'ghostbudge/codeforge',
+      code: {
+         host: 'gitlab',
+         repo: 'codeforge/codeforge',
+      },
    },
 ];
 
 export { projects };
-export type ProjectType = (typeof projects)[number];
+export interface ProjectType {
+   id: number;
+   title: string;
+   shortDesc: string;
+   technologies: string[];
+   status: 'live' | 'archive' | 'developing';
+   slug: string;
+   image: string;
+   website?: string;
+   code?: {
+      host: 'github' | 'gitlab';
+      repo: string;
+   };
+}

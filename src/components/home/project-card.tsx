@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { AiOutlineLink } from 'react-icons/ai';
 
 import { Button } from '@/components/ui/button';
 import { ProjectType } from '@/lib/mock-data';
@@ -11,12 +12,11 @@ const ProjectCard = ({
    status,
    technologies,
    title,
+   website,
+   code,
 }: ProjectType) => {
    return (
-      <Link
-         href={`/projects/${slug}`}
-         className="border-text hover:border-primary group border transition-colors duration-200 ease-in-out"
-      >
+      <div className="border-text hover:border-primary group border transition-colors duration-200 ease-in-out">
          <div>
             <Image
                src={image}
@@ -33,18 +33,33 @@ const ProjectCard = ({
 
             <div className="p-4">
                <h3 className="text-text-secondary text-2xl font-medium transition-all duration-200 ease-in-out group-hover:underline">
-                  {title}
+                  <Link href={`/projects/${slug}`}>{title}</Link>
+                  <AiOutlineLink className="inline size-4 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100" />
                </h3>
                <p className="py-4">{shortDesc}</p>
 
-               <Link href={`/products/${slug}`}>
-                  <Button variant="outline">
-                     {status} {'<'}~{'>'}
-                  </Button>
-               </Link>
+               {status === 'live' && (
+                  <Link
+                     href={`https://${website}`}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                  >
+                     <Button variant="outline" className="capitalize">
+                        {status} {'<'}~{'>'}
+                     </Button>
+                  </Link>
+               )}
+
+               {code && (
+                  <Link href={`https://${code.host}.com/${code.repo}`}>
+                     <Button variant="outline" className="capitalize">
+                        Code {'<'}~{'>'}
+                     </Button>
+                  </Link>
+               )}
             </div>
          </div>
-      </Link>
+      </div>
    );
 };
 
