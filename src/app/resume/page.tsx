@@ -72,7 +72,7 @@ const ResumePage = () => {
 
                   <div className="mt-5 flex items-center gap-4">
                      <Link
-                        href="/resume.pdf"
+                        href="/hozaifa-resume-page.pdf"
                         className={buttonVariants({
                            variant: 'outlineSecondary',
                         })}
@@ -81,7 +81,7 @@ const ResumePage = () => {
                         Download CV
                      </Link>
                      <Link
-                        href="/resume.pdf"
+                        href="/hozaifa-resume.pdf"
                         className={buttonVariants({
                            variant: 'default',
                         })}
@@ -267,7 +267,7 @@ const ResumePage = () => {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-               <div className="space-y-4">
+               <div className="mb-5 space-y-4">
                   <div className="border-text mt-4 flex items-center justify-between border p-2">
                      <h3
                         className="font-semibold text-white"
