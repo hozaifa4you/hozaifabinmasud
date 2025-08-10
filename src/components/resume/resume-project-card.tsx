@@ -3,7 +3,7 @@ import { FaCode, FaGithub } from 'react-icons/fa6';
 import { GoArchive } from 'react-icons/go';
 import { HiOutlineStatusOnline } from 'react-icons/hi';
 
-import { ProjectType } from '@/lib/mock-data';
+import { ProjectType } from '@/lib/data/projects';
 
 const ResumeProjectCard = ({
    technologies,

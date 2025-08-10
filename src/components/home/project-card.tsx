@@ -5,7 +5,7 @@ import { FaCode } from 'react-icons/fa6';
 import { GoArchive } from 'react-icons/go';
 
 import { Button, buttonVariants } from '@/components/ui/button';
-import { ProjectType } from '@/lib/mock-data';
+import { ProjectType } from '@/lib/data/projects';
 
 const ProjectCard = ({
    image,

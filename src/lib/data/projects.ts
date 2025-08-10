@@ -75,7 +75,88 @@ const projects: ProjectType[] = [
    },
 ];
 
-export { projects };
+const smallProjects = [
+   {
+      id: 1,
+      title: 'Bot Boilerplate',
+      slug: 'bot-boilerplate',
+      tags: ['Discordjs', 'Ts', 'Nodejs', 'Express'],
+      shortDesc:
+         'Start creating scalable discord.js bot with typescript in seconds',
+      link: {
+         title: 'Github',
+         url: 'https//github.com/example',
+      },
+   },
+   {
+      id: 2,
+      title: 'my Blog',
+      slug: 'my-blog',
+      tags: ['Nodejs', 'Expressjs', 'Reactjs', 'Mongodb'],
+      shortDesc: 'Front-end of my future blog website written in mern',
+      link: {
+         title: 'Github',
+         url: 'https//github.com/example',
+      },
+   },
+   {
+      id: 3,
+      title: 'Weather App',
+      slug: 'weather-app',
+      tags: ['Reactjs', 'Typescript', 'Api', 'Css'],
+      shortDesc: 'A simple weather app using OpenWeatherMap API',
+      link: {
+         title: 'Github',
+         url: 'https://github.com/example/weather-app',
+      },
+   },
+   {
+      id: 4,
+      title: 'Task Tracker',
+      slug: 'task-tracker',
+      tags: ['Nextjs', 'Mongodb', 'Tailwind', 'Typescript'],
+      shortDesc: 'A minimal task tracker with Next.js and MongoDB',
+      link: {
+         title: 'Github',
+         url: 'https://github.com/example/task-tracker',
+      },
+   },
+   {
+      id: 5,
+      title: 'Markdown Previewer',
+      slug: 'markdown-previewer',
+      tags: ['Reactjs', 'Typescript', 'Markdown'],
+      shortDesc: 'Live markdown previewer built with React and TypeScript',
+      link: {
+         title: 'Github',
+         url: 'https://github.com/example/markdown-previewer',
+      },
+   },
+   {
+      id: 6,
+      title: 'Expense Tracker',
+      slug: 'expense-tracker',
+      tags: ['Vuejs', 'Typescript', 'Localstorage'],
+      shortDesc: 'Track your expenses with a simple Vue.js app',
+      link: {
+         title: 'Github',
+         url: 'https://github.com/example/expense-tracker',
+      },
+   },
+   {
+      id: 7,
+      title: 'Chat Widget',
+      slug: 'chat-widget',
+      tags: ['Socket.io', 'Nodejs', 'Reactjs'],
+      shortDesc: 'A real-time chat widget using Socket.io and React',
+      link: {
+         title: 'Github',
+         url: 'https://github.com/example/chat-widget',
+      },
+   },
+];
+
+export type SmallProjectType = (typeof smallProjects)[number];
 export interface ProjectType {
    id: number;
    title: string;
@@ -90,3 +171,4 @@ export interface ProjectType {
       repo: string;
    };
 }
+export { projects, smallProjects };

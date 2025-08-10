@@ -12,8 +12,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { LogoSvg } from '@/components/ui/icons';
 import { appConfig } from '@/config/app.config';
 import { works } from '@/lib/data';
+import { projects } from '@/lib/data/projects';
 import { educationData, trainingData } from '@/lib/education-data';
-import { projects } from '@/lib/mock-data';
 import { calculateYearsFromDate } from '@/lib/utils';
 
 const basicInfo = [
@@ -158,7 +158,7 @@ const ResumePage = () => {
                         className="text-primary font-medium"
                         target="_blank"
                      >
-                        23+ projects -{'>'}
+                        {projects.length}+ projects -{'>'}
                      </Link>
                   </div>
 

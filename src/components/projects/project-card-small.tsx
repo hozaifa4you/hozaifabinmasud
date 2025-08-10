@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { buttonVariants } from '../ui/button';
-import { SmallProjectType } from '@/lib/data';
+import { SmallProjectType } from '@/lib/data/projects';
 
 const ProjectCardSmall = ({
    link,

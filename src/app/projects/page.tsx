@@ -2,7 +2,7 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import { ProjectCard } from '@/components/home/project-card';
 import { Pagination } from '@/components/pagination';
 import { ProjectCardSmall } from '@/components/projects/project-card-small';
-import { projectsAll, smallProjects } from '@/lib/data';
+import { projects, smallProjects } from '@/lib/data/projects';
 
 const ProjectsPage = () => {
    return (
@@ -14,7 +14,7 @@ const ProjectsPage = () => {
 
          <div className="container mt-5">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-               {projectsAll.map((project) => (
+               {projects.map((project) => (
                   <ProjectCard key={project.id} {...project} />
                ))}
             </div>
