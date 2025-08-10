@@ -92,7 +92,7 @@ const ResumePage = () => {
                   </div>
                </div>
                <div>
-                  <div className="flex flex-wrap items-center justify-end gap-2.5">
+                  <div className="flex flex-wrap items-center gap-2.5 md:justify-end">
                      {basicInfo.map((info) => (
                         <Link
                            key={info.label}
@@ -112,7 +112,7 @@ const ResumePage = () => {
             <BoxWithTitle
                title={
                   <h4 className="text-text-secondary text-base font-medium">
-                     Summary
+                     Objective
                   </h4>
                }
                content={
@@ -156,6 +156,7 @@ const ResumePage = () => {
                      <Link
                         href="/projects"
                         className="text-primary font-medium"
+                        target="_blank"
                      >
                         23+ projects -{'>'}
                      </Link>
@@ -274,7 +275,11 @@ const ResumePage = () => {
                      >
                         Academic
                      </h3>
-                     <Link href="/works" className="text-primary font-medium">
+                     <Link
+                        href="/educations"
+                        className="text-primary font-medium"
+                        target="_blank"
+                     >
                         9+ educations -{'>'}
                      </Link>
                   </div>
@@ -297,7 +302,11 @@ const ResumePage = () => {
                      >
                         Trainings
                      </h3>
-                     <Link href="/works" className="text-primary font-medium">
+                     <Link
+                        href="/trainings"
+                        target="_blank"
+                        className="text-primary font-medium"
+                     >
                         15+ trainings -{'>'}
                      </Link>
                   </div>
