@@ -1,6 +1,9 @@
+'use client';
+
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+
 import { Breadcrumb } from '@/components/breadcrumb';
 import { ProjectCard } from '@/components/home/project-card';
-import { Pagination } from '@/components/pagination';
 import { ProjectCardSmall } from '@/components/projects/project-card-small';
 import { projects, smallProjects } from '@/lib/data/projects';
 
@@ -13,13 +16,13 @@ const ProjectsPage = () => {
          />
 
          <div className="container mt-5">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-               {projects.map((project) => (
-                  <ProjectCard key={project.id} {...project} />
-               ))}
-            </div>
-
-            <Pagination />
+            <ResponsiveMasonry columnsCountBreakPoints={{ 640: 2, 1024: 3 }}>
+               <Masonry gutter="16px" className="gap-4">
+                  {projects.map((project) => (
+                     <ProjectCard key={project.id} {...project} />
+                  ))}
+               </Masonry>
+            </ResponsiveMasonry>
          </div>
 
          <div className="section-padding container">
@@ -32,8 +35,6 @@ const ProjectsPage = () => {
                   <ProjectCardSmall key={project.id} {...project} />
                ))}
             </div>
-
-            <Pagination />
          </div>
       </>
    );

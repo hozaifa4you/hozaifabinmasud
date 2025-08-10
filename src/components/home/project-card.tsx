@@ -65,7 +65,11 @@ const ProjectCard = ({
                   )}
 
                   {code && (
-                     <Link href={`https://${code.host}.com/${code.repo}`}>
+                     <Link
+                        href={`https://${code.host}.com/${code.repo}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                     >
                         <Button variant="outline" className="capitalize">
                            Code {'<'}~{'>'}
                         </Button>
