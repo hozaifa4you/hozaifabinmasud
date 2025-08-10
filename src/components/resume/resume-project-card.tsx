@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { FaGithub } from 'react-icons/fa6';
+import { FaCode, FaGithub } from 'react-icons/fa6';
+import { GoArchive } from 'react-icons/go';
+import { HiOutlineStatusOnline } from 'react-icons/hi';
 
 import { ProjectType } from '@/lib/mock-data';
 
@@ -9,6 +11,8 @@ const ResumeProjectCard = ({
    website,
    slug,
    code,
+   status,
+   shortDesc,
 }: ProjectType) => {
    return (
       <div className="border-text border">
@@ -23,17 +27,36 @@ const ResumeProjectCard = ({
          </div>
 
          <div className="p-2">
-            <p>
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-               Doloremque vero expedita maiores quae ipsum praesentium quidem
-               dicta voluptatum placeat ratione?
-            </p>
+            <p>{shortDesc}</p>
 
-            <div className="mt-4">
-               <Link href={code} className="flex items-center gap-1">
-                  <FaGithub className="mr-1 inline" />
-                  {code}
-               </Link>
+            <div className="mt-4 flex items-center gap-4">
+               {status === 'live' && (
+                  <Link
+                     href={`https://${website}`}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="flex items-center gap-1 capitalize"
+                  >
+                     <HiOutlineStatusOnline /> {status}
+                  </Link>
+               )}
+
+               {status !== 'live' && (
+                  <span className="flex items-center gap-1 capitalize">
+                     {status === 'archive' && <GoArchive />}{' '}
+                     {status === 'developing' && <FaCode />} {status}
+                  </span>
+               )}
+
+               {code && (
+                  <Link
+                     href={`https://${code.host}.com/${code.repo}`}
+                     className="flex items-center gap-1"
+                  >
+                     <FaGithub className="mr-1 inline" />
+                     {code.repo}
+                  </Link>
+               )}
             </div>
          </div>
       </div>

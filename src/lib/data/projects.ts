@@ -26,7 +26,6 @@ const projects: ProjectType[] = [
       slug: 'pixel-host',
       image: '/alternate/products/2.png',
       website: 'pixelhost.net',
-      // code: 'hostnet/pixelhost',
       code: {
          host: 'github',
          repo: 'hostnet/pixelhost',
@@ -45,6 +44,34 @@ const projects: ProjectType[] = [
          host: 'gitlab',
          repo: 'codeforge/codeforge',
       },
+   },
+   {
+      id: 4,
+      title: 'Kotik Bot',
+      image: '/alternate/products/4.png',
+      shortDesc: 'A Discord bot for managing server tasks',
+      slug: 'kotik-bot',
+      status: 'live',
+      technologies: ['FastAPI', 'Python', 'PostgreSQL'],
+      code: {
+         host: 'github',
+         repo: 'ghostbudge/kotik-bot',
+      },
+      website: 'kotikbot.com',
+   },
+   {
+      id: 5,
+      image: '/alternate/products/5.png',
+      shortDesc: 'My personal portfolio showcasing my work',
+      slug: 'portfolio',
+      status: 'live',
+      technologies: ['NodeJs', 'ReactJs', 'TypeScript', 'MongoDB'],
+      title: 'Portfolio',
+      code: {
+         host: 'github',
+         repo: 'ghostbudge/portfolio',
+      },
+      website: 'example.dev',
    },
 ];
 
