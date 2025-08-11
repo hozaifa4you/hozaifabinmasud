@@ -95,7 +95,7 @@ const ContactPage = () => {
                                  </li>
                                  <li>
                                     <Link
-                                       href={`https://www.upwork.com/freelancers/${appConfig.UPWORK_USERNAME}`}
+                                       href={`https://www.upwork.com/freelancers/~${appConfig.UPWORK_USERNAME}?mp_source=share`}
                                        target="_blank"
                                        className="hover:text-primary transition-all duration-200 ease-in-out"
                                     >
