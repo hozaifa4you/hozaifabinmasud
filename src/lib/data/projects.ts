@@ -143,7 +143,7 @@ const projects: ProjectType[] = [
    },
    {
       id: 11,
-      title: 'AIPDFQuery/Office Ai',
+      title: 'Office Ai',
       image: '/assets/projects/officeai.png',
       shortDesc:
          'AI Chatbot application on uploaded file (pdf, images, text, docx, URL). User can upload those files and question about the files.',
