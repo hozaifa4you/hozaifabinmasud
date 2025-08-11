@@ -9,6 +9,7 @@ interface ContentHeaderProps {
    navigateUrl?: string;
    buttonText?: React.ReactNode;
    size?: 'sm' | 'lg' | 'md';
+   count?: number;
 }
 
 const ContentHeader = ({
@@ -17,6 +18,7 @@ const ContentHeader = ({
    buttonText,
    navigateUrl,
    size = 'lg',
+   count,
 }: ContentHeaderProps) => {
    return (
       <div className="flex items-center gap-5">
@@ -31,6 +33,7 @@ const ContentHeader = ({
                >
                   <span className="text-primary">#</span>
                   {text}
+                  {count && <sup className="text-primary">{count}+</sup>}
                </h2>
                <span
                   className={`bg-primary ${maxLineWidth} block h-px w-full`}

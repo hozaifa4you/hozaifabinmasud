@@ -14,7 +14,7 @@ const projects: ProjectType[] = [
       ],
       status: 'live',
       slug: 'aionlinecourse',
-      image: '/alternate/products/1.png',
+      image: '/assets/projects/aionlinecourse.png',
       website: 'aionlinecourse.com',
    },
    {
@@ -36,13 +36,13 @@ const projects: ProjectType[] = [
       technologies: ['NextJs', 'PostgreSQL', 'Prisma', 'TailwindCSS', 'MySQL'],
       status: 'live',
       slug: 'uppercodes',
-      image: '/alternate/products/3.png',
+      image: '/assets/projects/uppercodes.png',
       website: 'typing.uppercodes.com',
    },
    {
       id: 4,
       title: 'Windowsestimates',
-      image: '/alternate/products/4.png',
+      image: '/assets/projects/windowsestimates.png',
       shortDesc:
          "A window buying project for US customers. (For security I can't share more details)",
       slug: 'windowsestimates',
@@ -51,7 +51,7 @@ const projects: ProjectType[] = [
    },
    {
       id: 5,
-      image: '/alternate/products/5.png',
+      image: '/assets/projects/hozaifabinmasud.png',
       shortDesc: 'My personal portfolio website.',
       slug: 'portfolio',
       status: 'live',
@@ -191,4 +191,5 @@ export interface ProjectType {
       repo: string;
    };
 }
-export { projects, smallProjects };
+const projectCount = projects.length;
+export { projects, smallProjects, projectCount };
