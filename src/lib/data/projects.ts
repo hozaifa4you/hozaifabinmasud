@@ -22,10 +22,10 @@ const projects: ProjectType[] = [
       title: 'CasePDF',
       shortDesc:
          'A case document website for a US. Lawyer. Upload case documents and query, search, analyze them using AI.',
-      technologies: ['Laravel', 'MySQL', 'OpenAI', 'PDF.Js'],
+      technologies: ['Laravel', 'MySQL', 'OpenAI', 'PDF.Js', 'Bootstrap'],
       status: 'live',
       slug: 'case-pdf',
-      image: '/alternate/products/2.png',
+      image: '/assets/projects/casepdf.png',
       website: 'casepdf.mashpy.me',
    },
    {
@@ -33,7 +33,14 @@ const projects: ProjectType[] = [
       title: 'Uppercodes',
       shortDesc:
          'A typing practices platform for improving typing speed and accuracy. With interactive admin and user dashboards.',
-      technologies: ['NextJs', 'PostgreSQL', 'Prisma', 'TailwindCSS', 'MySQL'],
+      technologies: [
+         'NextJs',
+         'PostgreSQL',
+         'Prisma',
+         'TailwindCSS',
+         'MySQL',
+         'ShadcnUI',
+      ],
       status: 'live',
       slug: 'uppercodes',
       image: '/assets/projects/uppercodes.png',
@@ -55,25 +62,14 @@ const projects: ProjectType[] = [
       shortDesc: 'My personal portfolio website.',
       slug: 'portfolio',
       status: 'live',
-      technologies: ['NextJs', 'ReactJs', 'TypeScript'],
+      technologies: ['NextJs', 'ReactJs', 'TypeScript', 'TailwindCss'],
       title: 'My Portfolio',
       website: 'hozaifabinmasud.vercel.app',
    },
    {
       id: 6,
-      image: '/alternate/products/5.png',
+      image: '/assets/projects/baseecom.png',
       shortDesc: 'Company website for BaseEcom.',
-      slug: 'baseecom',
-      status: 'live',
-      technologies: ['Laravel', 'MySQL', 'TypeScript', 'ReactJs'],
-      title: 'BaseEcom',
-      website: 'baseecom.com',
-   },
-   {
-      id: 7,
-      image: '/alternate/products/5.png',
-      shortDesc:
-         'Company website for BaseEcom. A fully-functional, backend-ready company profile website',
       slug: 'baseecom',
       status: 'live',
       technologies: ['Laravel', 'MySQL', 'TypeScript', 'ReactJs'],
@@ -116,6 +112,7 @@ const projects: ProjectType[] = [
          'TypeScript',
          'Prisma',
          'OpenAI',
+         'Shadcn',
       ],
       title: 'AI Daily Planner',
       code: {
@@ -128,22 +125,8 @@ const projects: ProjectType[] = [
       title: 'AIDBQuery',
       image: '/alternate/products/5.png',
       shortDesc:
-         'A tool for data analysis using natural language. But the project was archive due to AI token limit',
+         'An AI Chatbot for data analysis using natural language. But the project was archive due to AI token limit',
       slug: 'ai-db-query',
-      status: 'archive',
-      technologies: ['NextJs', 'MySQL', 'TypeScript', 'Drizzle-ORM', 'OpenAI'],
-      code: {
-         host: 'github',
-         repo: 'nasirkhannstu/aidbquery',
-      },
-   },
-   {
-      id: 11,
-      title: 'Office AI',
-      image: '/alternate/products/5.png',
-      shortDesc:
-         'AI Query application on uploaded file (pdf, images, text, images). User can upload those files and question about the files.',
-      slug: 'office-ai',
       status: 'archive',
       technologies: [
          'NextJs',
@@ -151,8 +134,31 @@ const projects: ProjectType[] = [
          'TypeScript',
          'Drizzle-ORM',
          'OpenAI',
+         'AntD',
+      ],
+      code: {
+         host: 'github',
+         repo: 'nasirkhannstu/aidbquery',
+      },
+   },
+   {
+      id: 11,
+      title: 'AIPDFQuery/Office Ai',
+      image: '/assets/projects/officeai.png',
+      shortDesc:
+         'AI Chatbot application on uploaded file (pdf, images, text, docx, URL). User can upload those files and question about the files.',
+      slug: 'ai-pdf-query',
+      status: 'archive',
+      technologies: [
+         'NextJs',
+         'MySQL',
+         'TypeScript',
+         'OpenAI',
          'LangChain',
          'VectorDB',
+         'Stripe',
+         'Prisma',
+         'Shadcn',
       ],
       code: {
          host: 'github',
