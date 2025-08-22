@@ -41,7 +41,7 @@ const WorksPage = () => {
                         </div>
                         <p className="mt-1.5 text-right">
                            <span className="text-primary">@</span>
-                           {work.duration.toLowerCase().replaceAll(' ', '-')}
+                           {work.duration}_years
                         </p>
                      </div>
                      <div className="md:col-span-3">

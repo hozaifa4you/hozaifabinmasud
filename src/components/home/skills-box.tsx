@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { SkillType } from '@/lib/data';
+import { SkillType } from '@/lib/data/skills';
 
 interface SkillsBoxProps {
    title: string;

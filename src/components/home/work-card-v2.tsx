@@ -19,7 +19,9 @@ const WorkCardV2 = ({ ...work }: WorkType) => {
                            {work.status}
                         </span>
                      )}
-                     ][{work.duration}_years]
+                     ]<span className="text-primary">[</span>
+                     {work.duration}_years
+                     <span className="text-primary">]</span>
                   </span>
                </div>
                <h3 className="my-2 font-mono text-xl font-bold text-white">

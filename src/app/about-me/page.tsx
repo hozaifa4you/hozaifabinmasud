@@ -13,7 +13,7 @@ import {
    libraries,
    others,
    tools,
-} from '@/lib/data';
+} from '@/lib/data/skills';
 
 const AboutMePage = () => {
    return (
