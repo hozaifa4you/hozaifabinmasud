@@ -75,56 +75,6 @@ const others: SkillType[] = [
    { id: 7.4, name: 'Bun', icon: '/icons/bun.svg' },
 ];
 
-const works = [
-   {
-      id: 2,
-      company: 'Unknown IT',
-      title: 'Junior Software Engineer',
-      startDate: 'Sep 2021',
-      status: 'present',
-      duration: '2.5 years',
-      responsibilities:
-         'Developed and maintained web applications using MERN stack, collaborated with cross-functional teams, and implemented RESTful APIs.',
-      type: 'On-site',
-      skills: [
-         'nodejs',
-         'reactjs',
-         'typescript',
-         'mongodb',
-         'nextjs',
-         'openai',
-         'langchain',
-         'pinecone',
-      ],
-      address: 'Street, Road, City, Country',
-      website: 'example.com',
-      social: [
-         { id: 1, name: 'facebook', url: '#' },
-         { id: 2, name: 'linkedin', url: '#' },
-         { id: 3, name: 'x', url: '#' },
-      ],
-   },
-   {
-      id: 1,
-      company: 'Unknown Soft Ltd.',
-      title: 'Full Stack Developer',
-      startDate: 'Dec 2023',
-      endDate: 'Oct 2023',
-      status: 'ended',
-      duration: '1.5 years',
-      responsibilities:
-         'Developing AI-powered web applications, and optimizing performance.',
-      type: 'On-site',
-      skills: ['nodejs', 'reactjs', 'typescript', 'mongodb', 'nextjs'],
-      address: 'Street, City, Country.',
-      website: 'example.com',
-      social: [
-         { id: 1, name: 'facebook', url: '#' },
-         { id: 3, name: 'x', url: '#' },
-      ],
-   },
-];
-
 const funFacts = [
    {
       id: 1,
@@ -238,11 +188,9 @@ export {
    features,
    tools,
    others,
-   works,
    funFacts,
    projectDetails,
 };
 
-export type WorkType = (typeof works)[number];
 export type FunFactType = (typeof funFacts)[number];
 export type projectDetailsType = (typeof projectDetails)[number];

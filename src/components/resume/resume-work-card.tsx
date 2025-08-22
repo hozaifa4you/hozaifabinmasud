@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { BiLinkExternal } from 'react-icons/bi';
 
 import { BoxWithTitle } from '@/components/box-with-title';
-import { WorkType } from '@/lib/data';
+import { WorkType } from '@/lib/data/works';
 
 const ResumeWorkCard = ({
    startDate,

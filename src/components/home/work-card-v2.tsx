@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { BiLinkExternal } from 'react-icons/bi';
 import { LuBuilding, LuCalendar, LuExternalLink } from 'react-icons/lu';
 
-import { WorkType } from '@/lib/data';
+import { WorkType } from '@/lib/data/works';
 
 const WorkCardV2 = ({ ...work }: WorkType) => {
    return (
@@ -15,11 +15,11 @@ const WorkCardV2 = ({ ...work }: WorkType) => {
                      <span className="text-primary font-semibold">!</span>[
                      {work.startDate} -{' '}
                      {work.endDate ?? (
-                        <span className="text-emerald-500 capitalize">
+                        <span className="bg-emerald-500 px-1.5 py-0.5 text-white capitalize">
                            {work.status}
                         </span>
                      )}
-                     ][{work.duration}]
+                     ][{work.duration}_years]
                   </span>
                </div>
                <h3 className="my-2 font-mono text-xl font-bold text-white">

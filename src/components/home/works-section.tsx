@@ -4,7 +4,7 @@ import { Badge } from '../ui/badge';
 import { DotGridLarge } from '../ui/icons';
 import { ContentHeader } from './content-header';
 import { WorkCardV2 } from './work-card-v2';
-import { works } from '@/lib/data';
+import { getEmpDuration, works } from '@/lib/data/works';
 import { calculateYearsFromDate } from '@/lib/utils';
 
 const WorksSection = () => {
@@ -21,11 +21,12 @@ const WorksSection = () => {
                   />
                }
                navigateUrl="/works"
+               count={getEmpDuration()}
             />
 
             <div className="mt-5 grid gap-5 lg:grid-cols-3">
-               <div className="grid flex-col-reverse gap-4 lg:col-span-2">
-                  {works.map((exp, index) => (
+               <div className="grid flex-col gap-4 lg:col-span-2">
+                  {works.reverse().map((exp, index) => (
                      <WorkCardV2 key={index} {...exp} />
                   ))}
                </div>

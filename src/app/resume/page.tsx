@@ -11,8 +11,8 @@ import { ResumeWorkCard } from '@/components/resume/resume-work-card';
 import { buttonVariants } from '@/components/ui/button';
 import { LogoSvg } from '@/components/ui/icons';
 import { appConfig } from '@/config/app.config';
-import { works } from '@/lib/data';
 import { projects } from '@/lib/data/projects';
+import { works } from '@/lib/data/works';
 import { educationData, trainingData } from '@/lib/education-data';
 import { calculateYearsFromDate } from '@/lib/utils';
 

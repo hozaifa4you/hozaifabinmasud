@@ -5,7 +5,7 @@ import { FaFacebook, FaGlobe } from 'react-icons/fa';
 import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 
 import { Breadcrumb } from '@/components/breadcrumb';
-import { works } from '@/lib/data';
+import { works } from '@/lib/data/works';
 
 const WorksPage = () => {
    return (
