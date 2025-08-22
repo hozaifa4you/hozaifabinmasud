@@ -11,11 +11,17 @@ const projects: ProjectType[] = [
          'MySQL',
          'D3',
          'Redux',
+         'Lemon Squeeze',
       ],
       status: 'live',
       slug: 'aionlinecourse',
       image: '/assets/projects/aionlinecourse.png',
       website: 'aionlinecourse.com',
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
    {
       id: 2,
@@ -27,6 +33,11 @@ const projects: ProjectType[] = [
       slug: 'case-pdf',
       image: '/assets/projects/casepdf.png',
       website: 'casepdf.mashpy.me',
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
    {
       id: 3,
@@ -45,6 +56,11 @@ const projects: ProjectType[] = [
       slug: 'uppercodes',
       image: '/assets/projects/uppercodes.png',
       website: 'typing.uppercodes.com',
+      owner: {
+         name: 'Uppercodes Soft',
+         type: 'Company',
+         website: 'uppercodes.com',
+      },
    },
    {
       id: 4,
@@ -55,6 +71,11 @@ const projects: ProjectType[] = [
       slug: 'windowsestimates',
       status: 'developing',
       technologies: ['FastAPI', 'Python', 'MySQL', 'NextJs', 'JavaScript'],
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
    {
       id: 5,
@@ -65,6 +86,10 @@ const projects: ProjectType[] = [
       technologies: ['NextJs', 'ReactJs', 'TypeScript', 'TailwindCss'],
       title: 'My Portfolio',
       website: 'hozaifabinmasud.vercel.app',
+      owner: {
+         name: 'My Self',
+         type: 'Personal',
+      },
    },
    {
       id: 6,
@@ -75,6 +100,11 @@ const projects: ProjectType[] = [
       technologies: ['Laravel', 'MySQL', 'TypeScript', 'ReactJs'],
       title: 'BaseEcom',
       website: 'baseecom.com',
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
    {
       id: 8,
@@ -96,6 +126,11 @@ const projects: ProjectType[] = [
       code: {
          host: 'github',
          repo: 'nasirkhannstu/taskman',
+      },
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
       },
    },
    {
@@ -119,6 +154,11 @@ const projects: ProjectType[] = [
          host: 'github',
          repo: 'nasirkhannstu/dailyplanai',
       },
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
    {
       id: 10,
@@ -140,6 +180,11 @@ const projects: ProjectType[] = [
          host: 'github',
          repo: 'nasirkhannstu/aidbquery',
       },
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
    {
       id: 11,
@@ -147,7 +192,7 @@ const projects: ProjectType[] = [
       image: '/assets/projects/officeai.png',
       shortDesc:
          'AI Chatbot application on uploaded file (pdf, images, text, docx, URL). User can upload those files and question about the files.',
-      slug: 'ai-pdf-query',
+      slug: 'office-ai',
       status: 'archive',
       technologies: [
          'NextJs',
@@ -164,6 +209,11 @@ const projects: ProjectType[] = [
          host: 'github',
          repo: 'nasirkhannstu/officeai',
       },
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
 ];
 
@@ -179,6 +229,11 @@ const smallProjects = [
          title: 'Github',
          url: 'https//github.com/example',
       },
+      owner: {
+         name: 'Namespace It',
+         type: 'Employment',
+         website: 'namespaceit.com',
+      },
    },
 ];
 
@@ -192,6 +247,11 @@ export interface ProjectType {
    slug: string;
    image: string;
    website?: string;
+   owner?: {
+      type: 'Employment' | 'Company' | 'Personal' | 'Self' | 'Freelance';
+      name: string;
+      website?: string;
+   };
    code?: {
       host: 'github' | 'gitlab';
       repo: string;

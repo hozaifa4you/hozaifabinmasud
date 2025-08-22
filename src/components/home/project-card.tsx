@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { AiOutlineLink } from 'react-icons/ai';
+import { BiBuilding } from 'react-icons/bi';
 import { FaCode } from 'react-icons/fa6';
 import { GoArchive } from 'react-icons/go';
 
+import { Tooltip } from '../ui/tooltip';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { ProjectType } from '@/lib/data/projects';
 
@@ -16,6 +18,7 @@ const ProjectCard = ({
    title,
    website,
    code,
+   owner,
 }: ProjectType) => {
    return (
       <div className="border-text hover:border-primary group border transition-colors duration-200 ease-in-out">
@@ -39,6 +42,17 @@ const ProjectCard = ({
                   <AiOutlineLink className="inline size-4 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100" />
                </h3>
                <p className="py-4">{shortDesc}</p>
+
+               {owner && (
+                  <Tooltip content={`Under ${owner.type}`}>
+                     <Link
+                        href={owner.website ? `https://${owner.website}` : '#'}
+                        className="mb-5 flex items-center gap-2.5 font-semibold text-white"
+                     >
+                        <BiBuilding /> {owner.name}
+                     </Link>
+                  </Tooltip>
+               )}
 
                <div className="flex items-center gap-3">
                   {status === 'live' && (
