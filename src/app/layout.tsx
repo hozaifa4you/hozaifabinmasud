@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Fira_Code } from 'next/font/google';
 
@@ -33,8 +34,9 @@ export default function RootLayout({
             {/* Maintenance notice for first-time visitors */}
             <MaintenanceNotice />
             {children}
-            <Analytics />
             <Footer />
+            <Analytics />
+            <SpeedInsights />
          </body>
       </html>
    );
