@@ -20,17 +20,23 @@ export const POST = async (request: NextRequest) => {
       });
    }
 
-   transporter.sendMail({
-      from: `${appConfig.APP_NAME_SHORT} <${appConfig.SMTP_EMAIL}>`,
-      to: data.email,
-      subject: `New message from ${data.name} - ${data.subject}`,
-      text: data.message,
-      html: `<p><strong>Name:</strong> ${data.name}</p>
+   try {
+      transporter.sendMail({
+         from: `${appConfig.APP_NAME_SHORT} <${data.email}>`,
+         to: appConfig.SMTP_EMAIL,
+         subject: `${data.subject}`,
+         text: data.message,
+         html: `<p><strong>Name:</strong> ${data.name}</p>
              <p><strong>Email:</strong> ${data.email}</p>
              <p><strong>Subject:</strong> ${data.subject}</p>
              <p><strong>Message:</strong></p>
              <p>${data.message}</p>`,
-   });
+      });
+   } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+      return NextResponse.json({ message: 'Something went wrong' });
+   }
 
    return NextResponse.json({ success: true });
 };
