@@ -10,7 +10,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import { Breadcrumb } from '@/components/breadcrumb';
 import { ContentHeader } from '@/components/home/content-header';
 import { buttonVariants } from '@/components/ui/button';
-import { projectDetails } from '@/lib/data';
+import { projectDetails } from '@/lib/data/project-details';
 
 function App() {
    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
