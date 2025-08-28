@@ -60,7 +60,7 @@ function App() {
                   </div>
                   <div className="flex flex-col gap-3 sm:flex-row lg:flex-shrink-0">
                      <Link
-                        href={project.liveUrl}
+                        href={project.liveUrl ?? '#'}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={buttonVariants({
@@ -72,7 +72,7 @@ function App() {
                      </Link>
 
                      <Link
-                        href={project.githubUrl}
+                        href={project.githubUrl ?? '#'}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={buttonVariants({
@@ -304,7 +304,7 @@ function App() {
 
                         <div className="project-card mt-5 p-4 lg:p-8">
                            <div className="space-y-4 lg:space-y-5">
-                              {project.teamMembers.map((member, index) => (
+                              {project?.teamMembers?.map((member, index) => (
                                  <div
                                     key={index}
                                     className="flex items-center space-x-3"

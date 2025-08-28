@@ -1,11 +1,37 @@
-export type projectDetailsType = (typeof projectDetails)[number];
-export type PDCompanyType={
-   name:string
-   address: string
-   website?:string
+export type PDCompanyType = {
+   name: string;
+   address: string;
+   website?: string;
+};
+export type PDTechnologyType = {
+   name: string;
+   category: string;
+   img: string;
+};
+export type PDTeamMemberType = {
+   avatar?: string;
+   name: string;
+   role: string;
+};
+export interface ProjectDetailsType {
+   title: string;
+   company: PDCompanyType;
+   role: string;
+   location: string;
+   duration: string;
+   teamSize?: string;
+   description: string;
+   mainImage: string;
+   additionalImages: Array<string>;
+   features: Array<string>;
+   technologies: Array<PDTechnologyType>;
+   teamMembers?: Array<PDTeamMemberType>;
+   liveUrl?: string;
+   githubUrl?: string;
+   status: 'completed' | 'in-progress' | 'on-hold' | 'archived';
 }
 
-const projectDetails = [
+const projectDetails: Array<ProjectDetailsType> = [
    {
       title: 'TaskFlow - Project Management Platform',
       company: {
@@ -29,7 +55,6 @@ const projectDetails = [
          'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
          'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
       ],
-
       features: [
          'Real-time task collaboration',
          'Advanced project analytics',
@@ -79,8 +104,8 @@ const projectDetails = [
       ],
       liveUrl: 'https://example.com',
       githubUrl: 'https://github.com/yourusername/taskflow',
+      status: 'completed',
    },
 ];
 
-
-export{projectDetails}
+export { projectDetails };
