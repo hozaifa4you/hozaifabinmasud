@@ -1,81 +1,311 @@
+import { medias } from './medias';
+
 export type SkillType = { id: number; name: string; icon: string };
 
 const languages: SkillType[] = [
-   { id: 0.1, name: 'TypeScript', icon: '/icons/typescript.svg' },
-   { id: 0.2, name: 'JavaScript', icon: '/icons/javascript.svg' },
-   { id: 0.3, name: 'PHP', icon: '/icons/php.svg' },
-   { id: 0.4, name: 'Go', icon: '/icons/go.svg' },
-   { id: 0.9, name: 'C', icon: '/icons/c.svg' },
-   { id: 0.5, name: 'C++', icon: '/icons/cpp.svg' },
-   { id: 0.6, name: 'HTML', icon: '/icons/html.svg' },
-   { id: 0.7, name: 'CSS', icon: '/icons/css.svg' },
-   { id: 0.8, name: 'SCSS', icon: '/icons/scss.svg' },
+   {
+      id: 0.1,
+      name: medias.languages.typescript.name,
+      icon: medias.languages.typescript.icon,
+   },
+   {
+      id: 0.2,
+      name: medias.languages.javascript.name,
+      icon: medias.languages.javascript.icon,
+   },
+   {
+      id: 0.3,
+      name: medias.languages.php.name,
+      icon: medias.languages.php.icon,
+   },
+   {
+      id: 0.4,
+      name: medias.languages.go.name,
+      icon: medias.languages.go.icon,
+   },
+   {
+      id: 0.9,
+      name: medias.languages.c.name,
+      icon: medias.languages.c.icon,
+   },
+   {
+      id: 0.5,
+      name: medias.languages.cpp.name,
+      icon: medias.languages.cpp.icon,
+   },
+   {
+      id: 0.6,
+      name: medias.languages.html.name,
+      icon: medias.languages.html.icon,
+   },
+   {
+      id: 0.7,
+      name: medias.languages.css.name,
+      icon: medias.languages.css.icon,
+   },
+   {
+      id: 0.8,
+      name: medias.languages.scss.name,
+      icon: medias.languages.scss.icon,
+   },
 ];
 
 const databases: SkillType[] = [
-   { id: 1.1, name: 'MongoDB', icon: '/icons/mongodb.svg' },
-   { id: 1.2, name: 'MySQL', icon: '/icons/mysql.svg' },
-   { id: 1.3, name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
-   { id: 1.4, name: 'Redis', icon: '/icons/redis.svg' },
-   { id: 1.5, name: 'Firebase', icon: '/icons/firebase.svg' },
-   { id: 1.6, name: 'Vector DB', icon: '/icons/ai.svg' },
+   {
+      id: 1.1,
+      name: medias.database.mongodb.name,
+      icon: medias.database.mongodb.icon,
+   },
+   {
+      id: 1.2,
+      name: medias.database.mysql.name,
+      icon: medias.database.mysql.icon,
+   },
+   {
+      id: 1.3,
+      name: medias.database.postgresql.name,
+      icon: medias.database.postgresql.icon,
+   },
+   {
+      id: 1.4,
+      name: medias.database.redis.name,
+      icon: medias.database.redis.icon,
+   },
+   {
+      id: 1.5,
+      name: medias.database.firebase.name,
+      icon: medias.database.firebase.icon,
+   },
+   {
+      id: 1.6,
+      name: medias.database.vectordb.name,
+      icon: medias.database.vectordb.icon,
+   },
 ];
 
 const frameworks: SkillType[] = [
-   { id: 2.1, name: 'NodeJs', icon: '/icons/nodejs.svg' },
-   { id: 2.2, name: 'NestJs', icon: '/icons/nestjs.svg' },
-   { id: 2.3, name: 'ExpressJs', icon: '/icons/expressjs.svg' },
-   { id: 2.4, name: 'ReactJs', icon: '/icons/reactjs.svg' },
-   { id: 2.5, name: 'Svelte', icon: '/icons/svelte.svg' },
-   { id: 2.6, name: 'NextJs', icon: '/icons/nextjs.svg' },
-   { id: 2.7, name: 'Laravel', icon: '/icons/laravel.svg' },
-   { id: 2.8, name: 'Mux', icon: '/icons/go.svg' },
-   { id: 2.9, name: 'Fastify', icon: '/icons/fastify.svg' },
-   { id: 2.11, name: 'T3 Stack', icon: '/icons/t3.svg' },
+   {
+      id: 2.1,
+      name: medias.frameworks.nodejs.name,
+      icon: medias.frameworks.nodejs.icon,
+   },
+   {
+      id: 2.2,
+      name: medias.frameworks.nestjs.name,
+      icon: medias.frameworks.nestjs.icon,
+   },
+   {
+      id: 2.3,
+      name: medias.frameworks.expressjs.name,
+      icon: medias.frameworks.expressjs.icon,
+   },
+   {
+      id: 2.4,
+      name: medias.frameworks.reactjs.name,
+      icon: medias.frameworks.reactjs.icon,
+   },
+   {
+      id: 2.5,
+      name: medias.frameworks.svelte.name,
+      icon: medias.frameworks.svelte.icon,
+   },
+   {
+      id: 2.6,
+      name: medias.frameworks.nextjs.name,
+      icon: medias.frameworks.nextjs.icon,
+   },
+   {
+      id: 2.7,
+      name: medias.frameworks.laravel.name,
+      icon: medias.frameworks.laravel.icon,
+   },
+   {
+      id: 2.8,
+      name: medias.frameworks.mux.name,
+      icon: medias.frameworks.mux.icon,
+   },
+   {
+      id: 2.9,
+      name: medias.frameworks.fastify.name,
+      icon: medias.frameworks.fastify.icon,
+   },
+   {
+      id: 2.11,
+      name: medias.frameworks.t3stack.name,
+      icon: medias.frameworks.t3stack.icon,
+   },
 ];
 
 const libraries: SkillType[] = [
-   { id: 3.0, name: 'Tailwind', icon: '/icons/tailwind.svg' },
-   { id: 3.1, name: 'MUI', icon: '/icons/mui.svg' },
-   { id: 3.2, name: 'Shadcn UI', icon: '/icons/shadcn.svg' },
-   { id: 3.3, name: 'Ant Design', icon: '/icons/ant-design.svg' },
-   { id: 3.4, name: 'Blueprint UI', icon: '/icons/blueprintui.svg' },
-   { id: 3.5, name: 'Mantine', icon: '/icons/mantine.svg' },
-   { id: 3.6, name: 'Prisma', icon: '/icons/prisma.svg' },
-   { id: 3.7, name: 'Prime React', icon: '/icons/primereact.svg' },
-   { id: 3.8, name: 'D3js', icon: '/icons/d3js.svg' },
-   { id: 3.9, name: 'Jest', icon: '/icons/jest.svg' },
-   { id: 3.11, name: 'PassportJs', icon: '/icons/passportjs.svg' },
-   { id: 3.12, name: 'Drizzle ORM', icon: '/icons/drizzle.png' },
-   { id: 3.13, name: 'Type ORM', icon: '/icons/typeorm.png' },
-   { id: 3.14, name: 'Socket.io', icon: '/icons/socket-io.svg' },
+   {
+      id: 3.0,
+      name: medias.libraries.tailwindcss.name,
+      icon: medias.libraries.tailwindcss.icon,
+   },
+   {
+      id: 3.1,
+      name: medias.libraries.mui.name,
+      icon: medias.libraries.mui.icon,
+   },
+   {
+      id: 3.2,
+      name: medias.libraries.shadcnui.name,
+      icon: medias.libraries.shadcnui.icon,
+   },
+   {
+      id: 3.3,
+      name: medias.libraries.antd.name,
+      icon: medias.libraries.antd.icon,
+   },
+   {
+      id: 3.4,
+      name: medias.libraries.blueprint.name,
+      icon: medias.libraries.blueprint.icon,
+   },
+   {
+      id: 3.5,
+      name: medias.libraries.mantine.name,
+      icon: medias.libraries.mantine.icon,
+   },
+   {
+      id: 3.6,
+      name: medias.libraries.prisma.name,
+      icon: medias.libraries.prisma.icon,
+   },
+   {
+      id: 3.7,
+      name: medias.libraries.primereact.name,
+      icon: medias.libraries.primereact.icon,
+   },
+   {
+      id: 3.8,
+      name: medias.libraries.d3.name,
+      icon: medias.libraries.d3.icon,
+   },
+   {
+      id: 3.9,
+      name: medias.libraries.jest.name,
+      icon: medias.libraries.jest.icon,
+   },
+   {
+      id: 3.11,
+      name: medias.libraries.passportjs.name,
+      icon: medias.libraries.passportjs.icon,
+   },
+   {
+      id: 3.12,
+      name: medias.libraries.drizzleorm.name,
+      icon: medias.libraries.drizzleorm.icon,
+   },
+   {
+      id: 3.13,
+      name: medias.libraries.typeorm.name,
+      icon: medias.libraries.typeorm.icon,
+   },
+   {
+      id: 3.14,
+      name: medias.libraries.socketio.name,
+      icon: medias.libraries.socketio.icon,
+   },
 ];
 
 const features: SkillType[] = [
-   { id: 5.1, name: 'MERN Stack', icon: '/icons/mern.png' },
-   { id: 5.2, name: 'Rest APIs', icon: '/icons/api.svg' },
-   { id: 5.3, name: 'GraphQL', icon: '/icons/graphql.svg' },
-   { id: 5.4, name: 'Payment', icon: '/icons/payment.svg' },
-   { id: 5.5, name: 'Full Stack', icon: '/icons/fullstack.svg' },
-   { id: 5.6, name: 'Dashboard', icon: '/icons/dashboard.svg' },
-   { id: 5.7, name: 'Ai Chatbot', icon: '/icons/chatbot.svg' },
-   { id: 5.8, name: 'eCommerce', icon: '/icons/ecommerce.svg' },
+   {
+      id: 5.1,
+      name: medias.features.mern.name,
+      icon: medias.features.mern.icon,
+   },
+   {
+      id: 5.2,
+      name: medias.features.restapi.name,
+      icon: medias.features.restapi.icon,
+   },
+   {
+      id: 5.3,
+      name: medias.features.graphql.name,
+      icon: medias.features.graphql.icon,
+   },
+   {
+      id: 5.4,
+      name: medias.features.payment.name,
+      icon: medias.features.payment.icon,
+   },
+   {
+      id: 5.5,
+      name: medias.features.fullstack.name,
+      icon: medias.features.fullstack.icon,
+   },
+   {
+      id: 5.6,
+      name: medias.features.dashboard.name,
+      icon: medias.features.dashboard.icon,
+   },
+   {
+      id: 5.7,
+      name: medias.features.aichatbot.name,
+      icon: medias.features.aichatbot.icon,
+   },
+   {
+      id: 5.8,
+      name: medias.features.ecommerce.name,
+      icon: medias.features.ecommerce.icon,
+   },
 ];
 
 const tools: SkillType[] = [
-   { id: 6.1, name: 'Git', icon: '/icons/git.svg' },
-   { id: 6.2, name: 'Docker', icon: '/icons/docker.svg' },
-   { id: 6.3, name: 'CI/CD', icon: '/icons/cicd.svg' },
-   { id: 6.4, name: 'AWS', icon: '/icons/aws.svg' },
-   { id: 6.5, name: 'ORMs', icon: '/icons/prisma.svg' },
-   { id: 6.6, name: 'AI APIs', icon: '/icons/openai.svg' },
+   {
+      id: 6.1,
+      name: medias.tools.git.name,
+      icon: medias.tools.git.icon,
+   },
+   {
+      id: 6.2,
+      name: medias.tools.docker.name,
+      icon: medias.tools.docker.icon,
+   },
+   {
+      id: 6.3,
+      name: medias.tools.cicd.name,
+      icon: medias.tools.cicd.icon,
+   },
+   {
+      id: 6.4,
+      name: medias.tools.aws.name,
+      icon: medias.tools.aws.icon,
+   },
+   {
+      id: 6.5,
+      name: medias.tools.orms.name,
+      icon: medias.tools.orms.icon,
+   },
+   {
+      id: 6.6,
+      name: medias.tools.aiapis.name,
+      icon: medias.tools.aiapis.icon,
+   },
 ];
 
 const others: SkillType[] = [
-   { id: 7.1, name: 'Embedded System', icon: '/icons/iot.png' },
-   { id: 7.2, name: 'Arduino', icon: '/icons/arduino.svg' },
-   { id: 7.3, name: 'IoT', icon: '/icons/terminal.svg' },
-   { id: 7.4, name: 'Bun', icon: '/icons/bun.svg' },
+   {
+      id: 7.1,
+      name: medias.others.embeddedsystem.name,
+      icon: medias.others.embeddedsystem.icon,
+   },
+   {
+      id: 7.2,
+      name: medias.others.arduino.name,
+      icon: medias.others.arduino.icon,
+   },
+   {
+      id: 7.3,
+      name: medias.others.iot.name,
+      icon: medias.others.iot.icon,
+   },
+   {
+      id: 7.4,
+      name: medias.others.bun.name,
+      icon: medias.others.bun.icon,
+   },
 ];
 
 export { languages, databases, frameworks, libraries, features, tools, others };
