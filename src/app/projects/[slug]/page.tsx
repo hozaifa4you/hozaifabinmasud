@@ -7,10 +7,15 @@ import { LuX } from 'react-icons/lu';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
-import { Breadcrumb } from '@/components/breadcrumb';
+import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb';
 import { ContentHeader } from '@/components/home/content-header';
 import { buttonVariants } from '@/components/ui/button';
 import { projectDetails } from '@/lib/data/project-details';
+
+const breadcrumbItems: BreadcrumbItem[] = [
+   { href: '/projects', title: 'Projects' },
+   { href: '#', title: 'Projects Overview' },
+];
 
 function App() {
    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
@@ -39,11 +44,7 @@ function App() {
 
    return (
       <div className="bg-main mb-10 min-h-screen">
-         <Breadcrumb
-            title="project-overview"
-            size="md"
-            subtitle={<Link href="/projects">{'<'}- back_to_projects</Link>}
-         />
+         <Breadcrumb size="md" items={breadcrumbItems} />
 
          {/* Main Content */}
          <main className="container">
@@ -116,7 +117,7 @@ function App() {
                         <span className="text-white">@</span>Location
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
-                        {project.location}
+                        {project.company.address}
                      </div>
                   </div>
                </div>

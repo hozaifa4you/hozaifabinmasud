@@ -1,32 +1,83 @@
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
 
-type BreadcrumbItem = {
+export type BreadcrumbItem = {
    title: string;
    href: string;
 };
 
 interface BreadcrumbProps {
-   title: ReactNode;
+   title?: string;
    subtitle?: string | ReactNode;
+   items?: BreadcrumbItem[];
    size?: 'sm' | 'md' | 'lg';
 }
 
-const Breadcrumb = ({ title, subtitle, size = 'lg' }: BreadcrumbProps) => {
+const Breadcrumb = ({
+   title,
+   subtitle,
+   items,
+   size = 'lg',
+}: BreadcrumbProps) => {
    return (
-      <section className="container my-6">
-         <h1
-            className={cn('font-semibold text-white', {
-               'text-[26px] md:text-[28px] lg:text-[32px]': size === 'lg',
-               'text-[26px]': size === 'md',
-               'text-[20px]': size === 'sm',
-            })}
-         >
-            <span className="text-primary">/</span>
-            {title}
-         </h1>
-         {subtitle && <h2>{subtitle}</h2>}
+      <section className="container mt-8 lg:mt-12">
+         <div className="mb-6 lg:mb-8">
+            {/* Main breadcrumb navigation */}
+            {items && items.length > 0 && (
+               <nav className="mb-4">
+                  <div className="flex items-center space-x-2 font-mono text-sm text-gray-400">
+                     {items.map((item, index) => (
+                        <div key={index} className="flex items-center">
+                           {index === 0 && (
+                              <span className="text-primary mr-2">/</span>
+                           )}
+                           <Link
+                              href={item.href}
+                              className={cn(
+                                 index === items.length - 1
+                                    ? 'font-medium text-white'
+                                    : 'text-gray-500 transition-colors hover:text-gray-300',
+                              )}
+                           >
+                              {item.title}
+                           </Link>
+                           {index < items.length - 1 && (
+                              <span className="mx-2 text-gray-600">/</span>
+                           )}
+                        </div>
+                     ))}
+                  </div>
+               </nav>
+            )}
+
+            {/* Page title */}
+            {title && (
+               <h1
+                  className={cn(
+                     'font-mono leading-tight font-bold text-white',
+                     {
+                        'text-3xl lg:text-4xl xl:text-5xl': size === 'lg',
+                        'text-2xl lg:text-3xl': size === 'md',
+                        'text-xl lg:text-2xl': size === 'sm',
+                     },
+                  )}
+               >
+                  <span className="text-primary">#</span>
+                  {title}
+               </h1>
+            )}
+
+            {/* Subtitle */}
+            {subtitle && (
+               <div className="mt-4 max-w-3xl">
+                  <p className="text-base leading-relaxed text-gray-400 lg:text-lg">
+                     {subtitle}
+                  </p>
+               </div>
+            )}
+         </div>
       </section>
    );
 };

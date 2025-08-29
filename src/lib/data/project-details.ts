@@ -19,7 +19,6 @@ export interface ProjectDetailsType {
    slug: string;
    company: PDCompanyType;
    role: string;
-   location: string;
    duration: string;
    teamSize?: string;
    description: string;
@@ -39,25 +38,25 @@ const projectDetails: Array<ProjectDetailsType> = [
       title: 'Aionlinecourse - AI/ML learning and project selling platform',
       slug: 'aionlinecourse',
       company: {
-         name: 'Company Name',
-         address: 'Street, Road, City, Country',
-         website: 'https://example.com',
+         name: 'Namespace IT',
+         address: '4B, H#13, R#11, Uttara 11, Dhaka.',
+         website: 'https://namespaceit.com',
       },
       role: 'Full Stack Developer',
-      location: 'New Orangeland, Downtown',
       duration: '6 months',
       teamSize: '5 developers',
       description:
-         'A comprehensive project management platform designed to streamline team collaboration and project tracking. Built with modern technologies to handle complex workflows and real-time updates.',
-      mainImage:
-         'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop',
+         'Developed AI Online Course, a modern e-learning platform powered by a Laravel GraphQL API backend and Next.js frontend. The site delivers interactive courses, coding projects, and quizzes with scalable performance, intuitive navigation, and responsive design for an engaging learning experience.',
+      mainImage: '/assets/project-details/aionline/aionline-main.png',
       additionalImages: [
-         'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+         '/assets/project-details/aionline/aionline-preview-1.png',
+         '/assets/project-details/aionline/aionline-preview-2.png',
+         '/assets/project-details/aionline/aionline-preview-3.png',
+         '/assets/project-details/aionline/aionline-preview-4.png',
+         '/assets/project-details/aionline/aionline-preview-5.png',
+         '/assets/project-details/aionline/aionline-preview-6.png',
+         '/assets/project-details/aionline/aionline-preview-7.png',
+         '/assets/project-details/aionline/aionline-preview-8.png',
       ],
       features: [
          'Real-time task collaboration',
@@ -120,7 +119,6 @@ const projectDetails: Array<ProjectDetailsType> = [
          website: 'https://example.com',
       },
       role: 'Full Stack Developer',
-      location: 'New Orangeland, Downtown',
       duration: '6 months',
       teamSize: '5 developers',
       description:
