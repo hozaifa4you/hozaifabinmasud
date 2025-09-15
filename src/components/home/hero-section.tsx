@@ -19,10 +19,8 @@ const HeroSection = () => {
                      {appConfig.APP_NAME_SHORT}
                      <span className="text-primary">]</span> is a{' '}
                      <span className="text-primary font-bold">full-stack</span>{' '}
-                     and{' '}
-                     <span className="text-primary font-bold">
-                        ai developer
-                     </span>
+                     with{' '}
+                     <span className="text-primary font-bold">ai savvy</span>
                   </h1>
                   <p className="pt-8 pb-6">
                      He engineers full-stack solutions where performance meets
