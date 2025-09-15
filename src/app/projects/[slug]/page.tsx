@@ -9,7 +9,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb';
 import { ContentHeader } from '@/components/home/content-header';
-import { buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { projectDetails } from '@/lib/data/project-details';
 
 const breadcrumbItems: BreadcrumbItem[] = [
@@ -22,15 +22,11 @@ function App() {
    const [currentImageIndex, setCurrentImageIndex] = useState(0);
    const project = projectDetails[0];
 
-   // Prepare images for gallery
    const allImages = [...project.additionalImages];
-   const galleryImages = allImages.map((image, index) => ({
-      original: image,
-      thumbnail: image,
-      description:
-         index === 0
-            ? `${project.title} - Main Screenshot`
-            : `${project.title} - Screenshot ${index}`,
+   const galleryImages = allImages.map((image) => ({
+      original: image.path,
+      thumbnail: image.path,
+      description: image.title,
    }));
 
    const openGallery = (imageIndex: number) => {
@@ -59,30 +55,40 @@ function App() {
                         {project.description}
                      </p>
                   </div>
-                  <div className="flex flex-col gap-3 sm:flex-row lg:flex-shrink-0">
-                     <Link
-                        href={project.liveUrl ?? '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={buttonVariants({
-                           variant: 'outlineSecondary',
-                           size: 'xl',
-                        })}
+                  <div className="flex flex-col flex-wrap gap-3 sm:flex-row lg:flex-shrink-0">
+                     <Button
+                        variant="secondary"
+                        size="xl"
+                        className="capitalize"
                      >
-                        Live &lt;~&gt;
-                     </Link>
-
-                     <Link
-                        href={project.githubUrl ?? '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={buttonVariants({
-                           variant: 'secondary',
-                           size: 'xl',
-                        })}
-                     >
-                        Cached &gt;
-                     </Link>
+                        {project.status.type} &gt;
+                     </Button>
+                     {project.liveUrl && (
+                        <Link
+                           href={project.liveUrl ?? '#'}
+                           referrerPolicy="no-referrer"
+                           target="_blank"
+                           className={buttonVariants({
+                              variant: 'outlineSecondary',
+                              size: 'xl',
+                           })}
+                        >
+                           Live &lt;~&gt;
+                        </Link>
+                     )}
+                     {project.githubUrl && (
+                        <Link
+                           href={project.liveUrl ?? '#'}
+                           referrerPolicy="no-referrer"
+                           target="_blank"
+                           className={buttonVariants({
+                              variant: 'outlineSecondary',
+                              size: 'xl',
+                           })}
+                        >
+                           Code &lt;~&gt;
+                        </Link>
+                     )}
                   </div>
                </div>
 
@@ -112,14 +118,16 @@ function App() {
                         {project.teamSize}
                      </div>
                   </div>
-                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
-                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                        <span className="text-white">@</span>Location
+                  {project.company && (
+                     <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
+                        <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                           <span className="text-white">@</span>Location
+                        </div>
+                        <div className="text-sm font-medium text-white lg:text-base">
+                           {project.company.address}
+                        </div>
                      </div>
-                     <div className="text-sm font-medium text-white lg:text-base">
-                        {project.company.address}
-                     </div>
-                  </div>
+                  )}
                </div>
             </div>
 
@@ -162,8 +170,8 @@ function App() {
                               <Image
                                  width={315}
                                  height={100}
-                                 src={image}
-                                 alt={`Screenshot ${index + 1}`}
+                                 src={image.path}
+                                 alt={image.title}
                                  className="h-24 w-full cursor-pointer object-cover transition-opacity hover:opacity-80"
                                  onClick={() => openGallery(index + 1)}
                               />
@@ -253,47 +261,51 @@ function App() {
                <div>
                   <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-1">
                      {/* Company Info */}
-                     <div>
-                        <ContentHeader
-                           text="company"
-                           maxLineWidth="max-w-[100px]"
-                           size="sm"
-                        />
+                     {project.company && (
+                        <div>
+                           <ContentHeader
+                              text="company"
+                              maxLineWidth="max-w-[100px]"
+                              size="sm"
+                           />
 
-                        <div className="project-card mt-5 p-4 lg:p-8">
-                           <div className="space-y-4 lg:space-y-6">
-                              <div>
-                                 <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                    <span className="text-white">@</span>Name
+                           <div className="project-card mt-5 p-4 lg:p-8">
+                              <div className="space-y-4 lg:space-y-6">
+                                 <div>
+                                    <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                       <span className="text-white">@</span>Name
+                                    </div>
+                                    <div className="text-sm font-medium text-white lg:text-base">
+                                       {project.company.name}
+                                    </div>
                                  </div>
-                                 <div className="text-sm font-medium text-white lg:text-base">
-                                    {project.company.name}
+                                 <div>
+                                    <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                       <span className="text-white">@</span>
+                                       Address
+                                    </div>
+                                    <div className="text-xs leading-relaxed text-gray-300 lg:text-sm">
+                                       {project.company.address}
+                                    </div>
                                  </div>
-                              </div>
-                              <div>
-                                 <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                    <span className="text-white">@</span>Address
+                                 <div>
+                                    <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                       <span className="text-white">@</span>
+                                       Website
+                                    </div>
+                                    <a
+                                       href={project.company.website}
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       className="text-primary text-xs break-all transition-colors hover:text-white lg:text-sm"
+                                    >
+                                       {project.company.website}
+                                    </a>
                                  </div>
-                                 <div className="text-xs leading-relaxed text-gray-300 lg:text-sm">
-                                    {project.company.address}
-                                 </div>
-                              </div>
-                              <div>
-                                 <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
-                                    <span className="text-white">@</span>Website
-                                 </div>
-                                 <a
-                                    href={project.company.website}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-primary text-xs break-all transition-colors hover:text-white lg:text-sm"
-                                 >
-                                    {project.company.website}
-                                 </a>
                               </div>
                            </div>
                         </div>
-                     </div>
+                     )}
 
                      {/* Team Members */}
                      <div>
@@ -339,16 +351,18 @@ function App() {
                            maxLineWidth="max-w-[100px]"
                            size="sm"
                         />
-
                         <div className="project-card mt-5 p-4 lg:p-8">
                            <div className="mb-3 flex items-center space-x-3">
-                              <div className="h-3 w-3 flex-shrink-0 rounded-full bg-green-500"></div>
+                              <span className="relative flex size-3">
+                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                                 <span className="relative inline-flex size-3 rounded-full bg-sky-500"></span>
+                              </span>
                               <span className="text-sm font-medium text-white lg:text-base">
-                                 Currently working on
+                                 {project.status.text}
                               </span>
                            </div>
                            <div className="text-primary font-mono text-xs lg:text-sm">
-                              Production
+                              {project.status.type}
                            </div>
                         </div>
                      </div>

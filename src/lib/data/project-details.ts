@@ -1,3 +1,5 @@
+import { medias } from './medias';
+
 export type PDCompanyType = {
    name: string;
    address: string;
@@ -13,23 +15,29 @@ export type PDTeamMemberType = {
    name: string;
    role: string;
 };
+type ImageType = { title: string; path: string };
+type StatusType = {
+   type: 'completed' | 'in-progress' | 'on-hold' | 'archived' | 'production';
+   text: string;
+};
+
 export interface ProjectDetailsType {
    id: number;
    title: string;
    slug: string;
-   company: PDCompanyType;
+   company?: PDCompanyType;
    role: string;
    duration: string;
    teamSize?: string;
    description: string;
    mainImage: string;
-   additionalImages: Array<string>;
+   additionalImages: Array<ImageType>;
    features: Array<string>;
    technologies: Array<PDTechnologyType>;
    teamMembers?: Array<PDTeamMemberType>;
    liveUrl?: string;
    githubUrl?: string;
-   status: 'completed' | 'in-progress' | 'on-hold' | 'archived';
+   status: StatusType;
 }
 
 const projectDetails: Array<ProjectDetailsType> = [
@@ -49,140 +57,108 @@ const projectDetails: Array<ProjectDetailsType> = [
          'Developed AI Online Course, a modern e-learning platform powered by a Laravel GraphQL API backend and Next.js frontend. The site delivers interactive courses, coding projects, and quizzes with scalable performance, intuitive navigation, and responsive design for an engaging learning experience.',
       mainImage: '/assets/project-details/aionline/aionline-main.png',
       additionalImages: [
-         '/assets/project-details/aionline/aionline-preview-1.png',
-         '/assets/project-details/aionline/aionline-preview-2.png',
-         '/assets/project-details/aionline/aionline-preview-3.png',
-         '/assets/project-details/aionline/aionline-preview-4.png',
-         '/assets/project-details/aionline/aionline-preview-5.png',
-         '/assets/project-details/aionline/aionline-preview-6.png',
-         '/assets/project-details/aionline/aionline-preview-7.png',
-         '/assets/project-details/aionline/aionline-preview-8.png',
+         {
+            title: 'Preview 1',
+            path: '/assets/project-details/aionline/aionline-preview-1.png',
+         },
+         {
+            title: 'Preview 2',
+            path: '/assets/project-details/aionline/aionline-preview-2.png',
+         },
+         {
+            title: 'Preview 3',
+            path: '/assets/project-details/aionline/aionline-preview-3.png',
+         },
+         {
+            title: 'Preview 4',
+            path: '/assets/project-details/aionline/aionline-preview-4.png',
+         },
+         {
+            title: 'Preview 5',
+            path: '/assets/project-details/aionline/aionline-preview-5.png',
+         },
+         {
+            title: 'Preview 6',
+            path: '/assets/project-details/aionline/aionline-preview-6.png',
+         },
+         {
+            title: 'Preview 7',
+            path: '/assets/project-details/aionline/aionline-preview-7.png',
+         },
+         {
+            title: 'Preview 8',
+            path: '/assets/project-details/aionline/aionline-preview-8.png',
+         },
       ],
       features: [
-         'Real-time task collaboration',
-         'Advanced project analytics',
-         'Team performance tracking',
-         'File sharing and version control',
-         'Custom workflow automation',
-         'Mobile-responsive design',
+         'AI/ML learning platform',
+         'ML/ML coding project selling',
+         'Lemon Squizee Payment Gateway',
+         'AI Quizes',
+         'AI Tutorials',
+         'AI Blogs',
+         'AI Tools',
+         'Live Coding',
       ],
       technologies: [
-         { name: 'React', category: 'Frontend', img: '/icons/reactjs.svg' },
          {
-            name: 'TypeScript',
+            name: medias.frameworks.nextjs.name,
             category: 'Frontend',
-            img: '/icons/typescript.svg',
+            img: medias.frameworks.nextjs.icon,
          },
          {
-            name: 'Tailwind CSS',
+            name: medias.languages.javascript.name,
             category: 'Frontend',
-            img: '/icons/tailwind.svg',
+            img: medias.languages.javascript.icon,
          },
-         { name: 'Node.js', category: 'Backend', img: '/icons/nodejs.svg' },
          {
-            name: 'Express.js',
+            name: medias.features.graphql.name,
+            category: 'Frontend',
+            img: medias.features.graphql.icon,
+         },
+         {
+            name: medias.libraries.tailwindcss.name,
+            category: 'Frontend',
+            img: medias.libraries.tailwindcss.icon,
+         },
+         {
+            name: medias.languages.php.name,
             category: 'Backend',
-            img: '/icons/expressjs.svg',
+            img: medias.languages.php.icon,
          },
          {
-            name: 'PostgreSQL',
+            name: medias.frameworks.laravel.name,
+            category: 'Backend',
+            img: medias.frameworks.laravel.icon,
+         },
+         {
+            name: medias.database.mysql.name,
             category: 'Database',
-            img: '/icons/postgresql.svg',
+            img: medias.database.mysql.icon,
          },
-         { name: 'Redis', category: 'Database', img: '/icons/redis.svg' },
          {
-            name: 'Socket.io',
-            category: 'Real-time',
-            img: '/icons/socket-io.svg',
+            name: medias.tools.docker.name,
+            category: 'DevOps',
+            img: medias.tools.docker.icon,
          },
-         { name: 'Docker', category: 'DevOps', img: '/icons/docker.svg' },
-         { name: 'AWS', category: 'Cloud', img: '/icons/aws.svg' },
+         {
+            name: medias.tools.aws.name,
+            category: 'Cloud',
+            img: medias.tools.aws.icon,
+         },
       ],
       teamMembers: [
-         { name: 'John Smith', role: 'Project Manager' },
-         { name: 'Sarah Johnson', role: 'UI/UX Designer' },
-         { name: 'Mike Chen', role: 'Backend Developer' },
-         { name: 'Emily Davis', role: 'Frontend Developer' },
-         { name: 'Alex Rodriguez', role: 'DevOps Engineer' },
+         { name: 'Mashpy', role: 'Project Manager' },
+         { name: 'Hozaifa Bin Masud', role: 'Developer' },
+         { name: 'Tareq Aziz Uday', role: 'ML Engineer' },
+         { name: 'Pavel', role: 'Sr. Developer' },
+         { name: 'Mashruf Tahsin', role: 'AI/ML Eng. & Researcher' },
       ],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/yourusername/taskflow',
-      status: 'completed',
-   },
-   {
-      id: 2,
-      title: 'TaskFlow - Project Management Platform',
-      slug: 'aionlinecourse',
-      company: {
-         name: 'Company Name',
-         address: 'Street, Road, City, Country',
-         website: 'https://example.com',
+      liveUrl: 'https://aionlinecourse.com',
+      status: {
+         text: 'Currently working on',
+         type: 'production',
       },
-      role: 'Full Stack Developer',
-      duration: '6 months',
-      teamSize: '5 developers',
-      description:
-         'A comprehensive project management platform designed to streamline team collaboration and project tracking. Built with modern technologies to handle complex workflows and real-time updates.',
-      mainImage:
-         'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop',
-      additionalImages: [
-         'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-         'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      ],
-      features: [
-         'Real-time task collaboration',
-         'Advanced project analytics',
-         'Team performance tracking',
-         'File sharing and version control',
-         'Custom workflow automation',
-         'Mobile-responsive design',
-      ],
-      technologies: [
-         { name: 'React', category: 'Frontend', img: '/icons/reactjs.svg' },
-         {
-            name: 'TypeScript',
-            category: 'Frontend',
-            img: '/icons/typescript.svg',
-         },
-         {
-            name: 'Tailwind CSS',
-            category: 'Frontend',
-            img: '/icons/tailwind.svg',
-         },
-         { name: 'Node.js', category: 'Backend', img: '/icons/nodejs.svg' },
-         {
-            name: 'Express.js',
-            category: 'Backend',
-            img: '/icons/expressjs.svg',
-         },
-         {
-            name: 'PostgreSQL',
-            category: 'Database',
-            img: '/icons/postgresql.svg',
-         },
-         { name: 'Redis', category: 'Database', img: '/icons/redis.svg' },
-         {
-            name: 'Socket.io',
-            category: 'Real-time',
-            img: '/icons/socket-io.svg',
-         },
-         { name: 'Docker', category: 'DevOps', img: '/icons/docker.svg' },
-         { name: 'AWS', category: 'Cloud', img: '/icons/aws.svg' },
-      ],
-      teamMembers: [
-         { name: 'John Smith', role: 'Project Manager' },
-         { name: 'Sarah Johnson', role: 'UI/UX Designer' },
-         { name: 'Mike Chen', role: 'Backend Developer' },
-         { name: 'Emily Davis', role: 'Frontend Developer' },
-         { name: 'Alex Rodriguez', role: 'DevOps Engineer' },
-      ],
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/yourusername/taskflow',
-      status: 'completed',
    },
 ];
 
