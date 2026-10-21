@@ -50,13 +50,13 @@ export function EducationCard({
                   <span className="text-sm font-medium text-primary">
                      {institution}
                   </span>
-                  <div className="flex items-center space-x-2 font-mono text-xs text-gray-400">
+                  <div className="flex items-center space-x-2 font-mono text-xs text-muted">
                      <LuCalendar size={14} />
                      <span>{duration}</span>
                   </div>
                </div>
                <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center space-x-2 text-xs text-gray-300">
+                  <div className="flex items-center space-x-2 text-xs text-text">
                      <LuMapPin size={14} />
                      <span>{location}</span>
                   </div>
@@ -68,7 +68,7 @@ export function EducationCard({
             </div>
             <button
                onClick={onToggleExpand}
-               className="ml-4 p-2 text-gray-400 transition-colors hover:text-primary"
+               className="ml-4 p-2 text-muted transition-colors hover:text-primary"
                aria-expanded={isExpanded}
                aria-controls={`education-details-${index}`}
             >
@@ -80,7 +80,7 @@ export function EducationCard({
             </button>
          </div>
 
-         <p className="mb-4 text-sm leading-relaxed text-gray-400">
+         <p className="mb-4 text-sm leading-relaxed text-muted">
             {description}
          </p>
 

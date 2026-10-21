@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, ViewTransition } from 'react';
 import { LuX } from 'react-icons/lu';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/image-gallery.css';
@@ -13,6 +13,8 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { ProjectDetailsType } from '@/lib/data/project-details';
 
 const breadcrumbItems: BreadcrumbItem[] = [
+   // Back to the homepage explorer, sliding the other way
+   { href: '/#projects', title: 'Workspace', transitionTypes: ['nav-back'] },
    { href: '/projects', title: 'Projects' },
    { href: '#', title: 'Projects Overview' },
 ];
@@ -58,7 +60,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                      <h2 className="mb-4 font-mono text-3xl leading-tight font-bold text-white lg:text-4xl xl:text-5xl">
                         {project.title}
                      </h2>
-                     <p className="max-w-2xl text-base leading-relaxed text-gray-400 lg:text-lg">
+                     <p className="max-w-2xl text-base leading-relaxed text-muted lg:text-lg">
                         {project.description}
                      </p>
                   </div>
@@ -145,16 +147,23 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                   maxLineWidth="max-w-[220px]"
                   size="md"
                />
-               <div className="project-card mt-5 overflow-hidden">
-                  <Image
-                     width={1000}
-                     height={385}
-                     src={project.mainImage}
-                     alt={project.title}
-                     className="h-64 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-80 xl:h-96"
-                     onClick={() => openGallery(0)}
-                  />
-               </div>
+               {/* Shared element: the homepage explorer's screenshot morphs into this */}
+               <ViewTransition
+                  name={`project-shot-${project.slug}`}
+                  share="morph"
+                  default="none"
+               >
+                  <div className="project-card mt-5 overflow-hidden">
+                     <Image
+                        width={1000}
+                        height={385}
+                        src={project.mainImage}
+                        alt={project.title}
+                        className="h-64 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-80 xl:h-96"
+                        onClick={() => openGallery(0)}
+                     />
+                  </div>
+               </ViewTransition>
             </div>
 
             {/* Content Grid */}
@@ -204,7 +213,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                                  <div className="flex-shrink-0 text-primary">
                                     *
                                  </div>
-                                 <span className="text-sm text-gray-300 lg:text-base">
+                                 <span className="text-sm text-text lg:text-base">
                                     {feature}
                                  </span>
                               </div>
@@ -244,7 +253,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                                        {categoryTechs.map((tech, index) => (
                                           <span
                                              key={index}
-                                             className="tech-tag flex items-center gap-x-1.5 border border-text bg-transparent px-3 py-1.5 font-main whitespace-nowrap text-text transition-all duration-300 ease-in-out hover:border-primary hover:text-primary"
+                                             className="tech-tag flex items-center gap-x-1.5 border border-text bg-transparent px-3 py-1.5 font-mono whitespace-nowrap text-text transition-all duration-300 ease-in-out hover:border-primary hover:text-primary"
                                           >
                                              <Image
                                                 src={tech.img}
@@ -291,7 +300,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                                        <span className="text-white">@</span>
                                        Address
                                     </div>
-                                    <div className="text-xs leading-relaxed text-gray-300 lg:text-sm">
+                                    <div className="text-xs leading-relaxed text-text lg:text-sm">
                                        {project.company.address}
                                     </div>
                                  </div>
@@ -341,7 +350,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                                        <div className="truncate text-sm font-medium text-white lg:text-base">
                                           {member.name}
                                        </div>
-                                       <div className="text-xs text-gray-400 lg:text-sm">
+                                       <div className="text-xs text-muted lg:text-sm">
                                           {member.role}
                                        </div>
                                     </div>
@@ -361,8 +370,8 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                         <div className="project-card mt-5 p-4 lg:p-8">
                            <div className="mb-3 flex items-center space-x-3">
                               <span className="relative flex size-3">
-                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-                                 <span className="relative inline-flex size-3 rounded-full bg-sky-500"></span>
+                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75"></span>
+                                 <span className="relative inline-flex size-3 rounded-full bg-success"></span>
                               </span>
                               <span className="text-sm font-medium text-white lg:text-base">
                                  {project.status.text}
@@ -384,7 +393,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                <div className="relative h-full max-h-full w-full max-w-7xl">
                   <button
                      onClick={closeGallery}
-                     className="absolute top-4 right-4 z-10 rounded-lg border border-gray-600 bg-gray-800/80 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-gray-700/80"
+                     className="absolute top-4 right-4 z-10 rounded-lg border border-line bg-bg-sunken p-3 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-bg-raised"
                   >
                      <LuX size={20} />
                   </button>

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { DirectionalPage } from '@/components/directional-page';
 import { ProjectDetailsView } from '@/components/projects/project-details-view';
 import { getProjectDetails, projectDetails } from '@/lib/data/project-details';
 
@@ -36,7 +37,11 @@ const ProjectDetailsPage = async ({ params }: Props) => {
       notFound();
    }
 
-   return <ProjectDetailsView project={project} />;
+   return (
+      <DirectionalPage>
+         <ProjectDetailsView project={project} />
+      </DirectionalPage>
+   );
 };
 
 export default ProjectDetailsPage;

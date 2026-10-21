@@ -1,24 +1,28 @@
-import { AboutMeSection } from '@/components/home/about-me-section';
+import { DirectionalPage } from '@/components/directional-page';
+import { AboutSection } from '@/components/home/about-section';
 import { ContactSection } from '@/components/home/contact-section';
-import { EducationTrainingSectionV2 } from '@/components/home/education-section-v2';
-import { HeroSection } from '@/components/home/hero-section';
+import { DockedStatusBar } from '@/components/home/docked-status-bar';
 import { ProjectsSection } from '@/components/home/projects-section';
-import { SkillsSection } from '@/components/home/skills-section';
-import { StatsGrid } from '@/components/home/stats-section';
-import { WorksSection } from '@/components/home/works-section';
-import { educationStats } from '@/lib/education-data';
+import { StackSection } from '@/components/home/stack-section';
+import { WorkLog } from '@/components/home/work-log';
+import { WorkspaceHero } from '@/components/home/workspace-hero';
+import { appConfig } from '@/config/app.config';
+
+// Experience years and role durations are computed from dates; refresh daily
+export const revalidate = 86400;
 
 const Home = () => {
    return (
       <>
-         <HeroSection />
-         <ProjectsSection />
-         <WorksSection />
-         <SkillsSection />
-         <EducationTrainingSectionV2 />
-         <StatsGrid stats={educationStats} />
-         <AboutMeSection />
-         <ContactSection />
+         <DirectionalPage>
+            <WorkspaceHero />
+            <ProjectsSection />
+            <WorkLog />
+            <StackSection />
+            <AboutSection />
+            <ContactSection />
+         </DirectionalPage>
+         <DockedStatusBar email={appConfig.EMAIL} />
       </>
    );
 };

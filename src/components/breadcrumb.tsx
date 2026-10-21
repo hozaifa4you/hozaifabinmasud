@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils';
 export type BreadcrumbItem = {
    title: string;
    href: string;
+   /** View transition types for the navigation, e.g. ['nav-back'] */
+   transitionTypes?: string[];
 };
 
 interface BreadcrumbProps {
@@ -27,7 +29,7 @@ const Breadcrumb = ({
             {/* Main breadcrumb navigation */}
             {items && items.length > 0 && (
                <nav className="mb-4">
-                  <div className="flex items-center space-x-2 font-mono text-sm text-gray-400">
+                  <div className="flex items-center space-x-2 font-mono text-sm text-muted">
                      {items.map((item, index) => (
                         <div key={index} className="flex items-center">
                            {index === 0 && (
@@ -35,16 +37,17 @@ const Breadcrumb = ({
                            )}
                            <Link
                               href={item.href}
+                              transitionTypes={item.transitionTypes}
                               className={cn(
                                  index === items.length - 1
-                                    ? 'font-medium text-white'
-                                    : 'text-gray-500 transition-colors hover:text-gray-300',
+                                    ? 'font-medium text-strong'
+                                    : 'text-muted transition-colors hover:text-strong',
                               )}
                            >
                               {item.title}
                            </Link>
                            {index < items.length - 1 && (
-                              <span className="mx-2 text-gray-600">/</span>
+                              <span className="mx-2 text-line-strong">/</span>
                            )}
                         </div>
                      ))}
@@ -72,7 +75,7 @@ const Breadcrumb = ({
             {/* Subtitle */}
             {subtitle && (
                <div className="mt-4 max-w-3xl">
-                  <p className="text-base leading-relaxed text-gray-400 lg:text-lg">
+                  <p className="text-base leading-relaxed text-muted lg:text-lg">
                      {subtitle}
                   </p>
                </div>

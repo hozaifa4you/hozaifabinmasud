@@ -1,32 +1,61 @@
-import { Badge } from '../ui/badge';
-import { DotGridLarge, SquareBox } from '../ui/icons';
-import { ContentHeader } from './content-header';
-import { ProjectCard } from './project-card';
-import { projectCount, projects } from '@/lib/data/projects';
+import {
+   ExplorerProject,
+   ProjectExplorer,
+} from '@/components/home/project-explorer';
+import { SectionHeading } from '@/components/home/section-heading';
+import { getProjectDetails } from '@/lib/data/project-details';
+import { hasScreenshot, projects, ProjectType } from '@/lib/data/projects';
+import { normalizeTech } from '@/lib/profile';
+
+const describeContext = (owner: ProjectType['owner']) => {
+   if (!owner) return null;
+   if (owner.type === 'Employment') return `Built at ${owner.name}`;
+   if (owner.type === 'Personal' || owner.type === 'Self')
+      return 'Personal project';
+   return `Built for ${owner.name}`;
+};
+
+const toExplorerProject = (project: ProjectType): ExplorerProject => {
+   const details = getProjectDetails(project.slug);
+   // Prefer the case study's full-size capture over the card thumbnail
+   const image =
+      details?.mainImage ??
+      (hasScreenshot(project.image) ? project.image : null);
+
+   return {
+      slug: project.slug,
+      title: project.title,
+      description: project.shortDesc,
+      technologies: [...new Set(project.technologies.map(normalizeTech))],
+      status: project.status,
+      image,
+      context: describeContext(project.owner),
+      liveUrl:
+         project.status === 'live' && project.website
+            ? `https://${project.website}`
+            : null,
+      codeUrl: project.code
+         ? `https://${project.code.host}.com/${project.code.repo}`
+         : null,
+      caseStudyUrl: details ? `/projects/${project.slug}` : null,
+   };
+};
 
 const ProjectsSection = () => {
    return (
-      <section className="relative" id="projects">
-         <div className="section-padding container">
-            <ContentHeader
-               text="projects"
-               maxLineWidth="lg:max-w-[510px] md:max-w-[250px] max-w-0 sm:max-w-[150px]"
-               buttonText={<Badge text="#show_more" variant="gradient" />}
-               navigateUrl="/projects"
-               count={projectCount}
-            />
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-               {projects.slice(0, 3).map((project) => (
-                  <div key={project.id}>
-                     <ProjectCard {...project} />
-                  </div>
-               ))}
-            </div>
-         </div>
-
-         <SquareBox className="absolute top-1/2 right-0 hidden lg:block" />
-         <DotGridLarge className="absolute top-1/3 -left-12 hidden lg:block" />
+      <section
+         id="projects"
+         aria-labelledby="projects-title"
+         className="container py-14 lg:py-20"
+      >
+         <SectionHeading
+            id="projects-title"
+            file="projects/"
+            title="Selected work"
+            link={{ href: '/projects', label: 'All projects' }}
+            fileTabDesktopOnly
+         />
+         <ProjectExplorer projects={projects.map(toExplorerProject)} />
       </section>
    );
 };

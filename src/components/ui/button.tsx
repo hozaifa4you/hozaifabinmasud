@@ -3,23 +3,32 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 export const buttonVariants = cva(
-   'inline-flex items-center justify-center gap-2 whitespace-nowrap px-4 py-2 border font-medium leading-none text-base transition-all duration-300 ease-in-out outline-0 cursor-pointer max-h-[37px]',
+   'inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 border font-medium leading-none whitespace-nowrap transition-[color,background-color,border-color] duration-200 ease-out-expo select-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
    {
       variants: {
          variant: {
+            // Filled orchid: the single primary action in a view
+            primary:
+               'border-primary bg-primary text-primary-ink hover:border-primary-soft hover:bg-primary-soft',
+            // Neutral frame for secondary actions
             default:
-               'bg-transparent shadow-xs border-text text-text hover:text-white hover:border-white hover:bg-text/20',
+               'border-line-strong bg-transparent text-strong hover:border-text hover:bg-bg-raised',
             secondary:
-               'shadow-xs border-text text-text hover:text-white hover:border-white bg-text/20',
-            outline: 'border-primary text-white hover:bg-primary/20',
-            outlineSecondary: 'border-primary text-white bg-primary/20',
-            link: 'border-none text-white hover:text-primary',
+               'border-line bg-bg-raised text-strong hover:border-line-strong',
+            // Orchid frame: an accented secondary action
+            outline:
+               'border-primary bg-transparent text-strong hover:bg-primary/15',
+            outlineSecondary: 'border-primary bg-primary/15 text-strong',
+            ghost: 'border-transparent bg-transparent text-text hover:bg-bg-raised hover:text-strong',
+            link: 'border-transparent bg-transparent text-strong underline-offset-4 hover:text-primary-soft hover:underline',
          },
          size: {
-            default: '',
-            lg: 'py-4',
-            xl: 'py-5',
-            icon: 'w-8 h-8 *:shrink-0 *:size-4',
+            sm: 'h-8 px-3 text-sm',
+            default: 'h-10 px-4 text-control',
+            lg: 'h-11 px-5 text-base',
+            xl: 'h-12 px-6 text-base',
+            icon: 'size-10',
+            'icon-sm': 'size-8',
          },
       },
       defaultVariants: {

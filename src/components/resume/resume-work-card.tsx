@@ -22,7 +22,7 @@ const ResumeWorkCard = ({
             <div className="w-full space-y-2 border border-text bg-bg-main p-2">
                <p>
                   {endDate ?? (
-                     <span className="bg-emerald-500 px-2 py-1 text-sm font-semibold text-white/95 uppercase">
+                     <span className="bg-success px-2 py-1 text-sm font-semibold text-white/95 uppercase">
                         {status}
                      </span>
                   )}
@@ -48,7 +48,7 @@ const ResumeWorkCard = ({
                }
                content={
                   <div className="space-y-3">
-                     <div className="mb-2 flex w-fit flex-wrap items-center gap-2 text-slate-300/50">
+                     <div className="mb-2 flex w-fit flex-wrap items-center gap-2 text-muted">
                         <p className="leading-none">{type}</p>
                         <span className="font-semibold text-primary">/</span>
                         <p className="leading-none">{website}</p>

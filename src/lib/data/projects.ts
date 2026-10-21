@@ -20,7 +20,7 @@ const projects: ProjectType[] = [
       image: '/assets/projects/aionlinecourse.png',
       website: 'aionlinecourse.com',
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -36,7 +36,7 @@ const projects: ProjectType[] = [
       image: '/assets/projects/casepdf.png',
       website: 'casepdf.mashpy.me',
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -74,7 +74,7 @@ const projects: ProjectType[] = [
       status: 'developing',
       technologies: ['FastAPI', 'Python', 'MySQL', 'NextJs', 'JavaScript'],
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -103,7 +103,7 @@ const projects: ProjectType[] = [
       title: 'BaseEcom',
       website: 'baseecom.com',
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -130,7 +130,7 @@ const projects: ProjectType[] = [
          repo: 'nasirkhannstu/taskman',
       },
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -157,7 +157,7 @@ const projects: ProjectType[] = [
          repo: 'nasirkhannstu/dailyplanai',
       },
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -183,7 +183,7 @@ const projects: ProjectType[] = [
          repo: 'nasirkhannstu/aidbquery',
       },
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -212,7 +212,7 @@ const projects: ProjectType[] = [
          repo: 'nasirkhannstu/officeai',
       },
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -232,7 +232,7 @@ const smallProjects = [
          url: 'https//github.com/example',
       },
       owner: {
-         name: 'Namespace It',
+         name: 'Namespace IT',
          type: 'Employment',
          website: 'namespaceit.com',
       },
@@ -282,4 +282,8 @@ const getProjectLink = ({
    return null;
 };
 
-export { projects, smallProjects, projectCount, getProjectLink };
+// Stand-in image for projects without a screenshot; not a real preview
+const PLACEHOLDER_IMAGE = '/alternate/products/5.png';
+const hasScreenshot = (image: string) => image !== PLACEHOLDER_IMAGE;
+
+export { projects, smallProjects, projectCount, getProjectLink, hasScreenshot };

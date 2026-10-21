@@ -25,10 +25,10 @@ const ContentHeader = ({
          <div className="w-full">
             <div className="flex items-center gap-4">
                <h2
-                  className={cn('font-medium', {
-                     'text-[26px] md:text-[28px] lg:text-[32px]': size === 'lg',
-                     'text-[26px]': size === 'md',
-                     'text-[20px]': size === 'sm',
+                  className={cn('font-semibold text-strong', {
+                     'text-headline': size === 'lg',
+                     'text-2xl': size === 'md',
+                     'text-xl': size === 'sm',
                   })}
                >
                   <span className="text-primary">#</span>

@@ -1,13 +1,21 @@
 import React, { InputHTMLAttributes, useId } from 'react';
 
+import { cn } from '@/lib/utils';
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    label: React.ReactNode;
+   /** Shown under the field and linked with aria-describedby */
+   error?: string;
    className?: string;
    containerClassName?: string;
 }
 
+export const fieldClassName =
+   'block w-full border border-line-strong bg-bg-sunken px-3 text-control text-strong transition-colors duration-200 ease-out-expo placeholder:text-muted hover:border-text focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none aria-invalid:border-danger aria-invalid:focus:ring-danger';
+
 const Input = ({
    label,
+   error,
    className,
    containerClassName,
    id,
@@ -16,22 +24,26 @@ const Input = ({
 }: InputProps) => {
    const generatedId = useId();
    const inputId = id ?? generatedId;
+   const errorId = `${inputId}-error`;
 
    return (
-      <div className={`relative ${containerClassName}`}>
+      <div className={cn('grid gap-2', containerClassName)}>
+         <label htmlFor={inputId} className="text-sm font-medium text-strong">
+            {label}
+         </label>
          <input
             {...rest}
             type={type}
             id={inputId}
-            className={`peer block w-full appearance-none border-1 border-text bg-transparent px-2.5 pt-4 pb-2.5 text-sm text-text focus:border-white focus:ring-0 focus:outline-none ${className}`}
-            placeholder=" "
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? errorId : rest['aria-describedby']}
+            className={cn(fieldClassName, 'h-11', className)}
          />
-         <label
-            htmlFor={inputId}
-            className="absolute inset-s-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-bg-main px-2 text-text duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-1.5 peer-focus:-translate-y-4 peer-focus:scale-100 peer-focus:px-2 peer-focus:font-medium peer-focus:text-white"
-         >
-            {label}
-         </label>
+         {error && (
+            <p id={errorId} className="text-sm text-danger">
+               {error}
+            </p>
+         )}
       </div>
    );
 };

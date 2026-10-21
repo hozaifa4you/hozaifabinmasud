@@ -8,7 +8,7 @@ export function BulletItem({ children }: BulletItemProps) {
    return (
       <div className="flex items-start space-x-3">
          <div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary"></div>
-         <span className="text-sm text-gray-300 lg:text-base">{children}</span>
+         <span className="text-sm text-text lg:text-base">{children}</span>
       </div>
    );
 }
@@ -24,7 +24,7 @@ export function StatItem({ value, label }: StatItemProps) {
          <div className="mb-2 font-mono text-2xl font-bold text-primary lg:text-3xl">
             {value}
          </div>
-         <div className="text-xs text-gray-400 lg:text-sm">
+         <div className="text-xs text-muted lg:text-sm">
             <span className="text-primary">@</span>
             {label}
          </div>
@@ -44,7 +44,7 @@ export function ExpandableContent({
    if (!isExpanded) return null;
 
    return (
-      <div className="animate-in slide-in-from-top mt-6 space-y-6 border-t border-gray-600 pt-6 duration-300">
+      <div className="animate-in slide-in-from-top mt-6 space-y-6 border-t border-line pt-6 duration-300">
          {children}
       </div>
    );

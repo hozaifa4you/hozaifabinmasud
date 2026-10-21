@@ -1,36 +1,50 @@
 import { TextareaHTMLAttributes, useId } from 'react';
 
+import { fieldClassName } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
    label: React.ReactNode;
+   /** Shown under the field and linked with aria-describedby */
+   error?: string;
    className?: string;
    containerClassName?: string;
 }
 
 export const Textarea = ({
    label,
+   error,
    className,
    containerClassName,
    id,
+   rows = 5,
    ...rest
 }: TextareaProps) => {
    const generatedId = useId();
    const textareaId = id ?? generatedId;
+   const errorId = `${textareaId}-error`;
 
    return (
-      <div className={`relative ${containerClassName}`}>
-         <textarea
-            {...rest}
-            id={textareaId}
-            className={`peer block w-full appearance-none border-1 border-text bg-transparent px-2.5 pt-4 pb-2.5 text-sm text-text focus:border-white focus:ring-0 focus:outline-none ${className}`}
-            placeholder=" "
-            rows={4}
-         />
+      <div className={cn('grid gap-2', containerClassName)}>
          <label
             htmlFor={textareaId}
-            className="absolute inset-s-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-bg-main px-2 text-text duration-300 peer-placeholder-shown:top-2 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:scale-100 peer-focus:top-1.5 peer-focus:-translate-y-4 peer-focus:scale-100 peer-focus:px-2 peer-focus:font-medium peer-focus:text-white"
+            className="text-sm font-medium text-strong"
          >
             {label}
          </label>
+         <textarea
+            {...rest}
+            id={textareaId}
+            rows={rows}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? errorId : rest['aria-describedby']}
+            className={cn(fieldClassName, 'py-2.5 leading-relaxed', className)}
+         />
+         {error && (
+            <p id={errorId} className="text-sm text-danger">
+               {error}
+            </p>
+         )}
       </div>
    );
 };
