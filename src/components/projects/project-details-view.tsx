@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, ViewTransition } from 'react';
 import { LuX } from 'react-icons/lu';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/image-gallery.css';
@@ -13,6 +13,8 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { ProjectDetailsType } from '@/lib/data/project-details';
 
 const breadcrumbItems: BreadcrumbItem[] = [
+   // Back to the homepage explorer, sliding the other way
+   { href: '/#projects', title: 'Workspace', transitionTypes: ['nav-back'] },
    { href: '/projects', title: 'Projects' },
    { href: '#', title: 'Projects Overview' },
 ];
@@ -145,16 +147,23 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                   maxLineWidth="max-w-[220px]"
                   size="md"
                />
-               <div className="project-card mt-5 overflow-hidden">
-                  <Image
-                     width={1000}
-                     height={385}
-                     src={project.mainImage}
-                     alt={project.title}
-                     className="h-64 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-80 xl:h-96"
-                     onClick={() => openGallery(0)}
-                  />
-               </div>
+               {/* Shared element: the homepage explorer's screenshot morphs into this */}
+               <ViewTransition
+                  name={`project-shot-${project.slug}`}
+                  share="morph"
+                  default="none"
+               >
+                  <div className="project-card mt-5 overflow-hidden">
+                     <Image
+                        width={1000}
+                        height={385}
+                        src={project.mainImage}
+                        alt={project.title}
+                        className="h-64 w-full cursor-pointer object-cover transition-opacity hover:opacity-80 lg:h-80 xl:h-96"
+                        onClick={() => openGallery(0)}
+                     />
+                  </div>
+               </ViewTransition>
             </div>
 
             {/* Content Grid */}

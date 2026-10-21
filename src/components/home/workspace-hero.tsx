@@ -186,7 +186,10 @@ const WorkspaceHero = () => {
             </div>
 
             {/* Status bar */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line bg-bg-sunken px-4 py-2 font-mono text-xs text-text">
+            <div
+               id="hero-status"
+               className="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line bg-bg-sunken px-4 py-2 font-mono text-xs text-text"
+            >
                <span className="inline-flex items-center gap-2 text-success">
                   <span
                      aria-hidden

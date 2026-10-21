@@ -2,7 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import {
+   KeyboardEvent,
+   useEffect,
+   useLayoutEffect,
+   useRef,
+   useState,
+   ViewTransition,
+} from 'react';
 import {
    LuArrowRight,
    LuArrowUpRight,
@@ -46,7 +53,56 @@ const ARROW_STEPS: Record<string, number> = {
 const ProjectExplorer = ({ projects }: { projects: ExplorerProject[] }) => {
    const [selectedIndex, setSelectedIndex] = useState(0);
    const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+   const tablistRef = useRef<HTMLDivElement>(null);
+   const indicatorRef = useRef<HTMLSpanElement>(null);
+   const hasPlacedRef = useRef(false);
    const project = projects[selectedIndex];
+
+   // The selection highlight glides to the chosen file: measured, then moved
+   // with a transform so the tab text always stays above it
+   useLayoutEffect(() => {
+      const tablist = tablistRef.current;
+      const indicator = indicatorRef.current;
+      if (!tablist || !indicator) return;
+
+      const place = (animate: boolean) => {
+         const tab = tabRefs.current[selectedIndex];
+         if (!tab) return;
+         indicator.style.transition = animate ? '' : 'none';
+         indicator.style.transform = `translate(${tab.offsetLeft}px, ${tab.offsetTop}px)`;
+         indicator.style.width = `${tab.offsetWidth}px`;
+         indicator.style.height = `${tab.offsetHeight}px`;
+
+         // On the horizontal (mobile) strip, bring the chosen tab into view
+         const overflow = tablist.scrollWidth > tablist.clientWidth;
+         const left = tab.offsetLeft;
+         const right = left + tab.offsetWidth;
+         if (
+            animate &&
+            overflow &&
+            (left < tablist.scrollLeft ||
+               right > tablist.scrollLeft + tablist.clientWidth)
+         ) {
+            tablist.scrollTo({ left: left - 16, behavior: 'smooth' });
+         }
+      };
+
+      place(hasPlacedRef.current);
+      hasPlacedRef.current = true;
+
+      // A ResizeObserver reports once on observe; skipping that report keeps
+      // it from cancelling the glide. Real resizes re-place without motion
+      let isFirstReport = true;
+      const observer = new ResizeObserver(() => {
+         if (isFirstReport) {
+            isFirstReport = false;
+            return;
+         }
+         place(false);
+      });
+      observer.observe(tablist);
+      return () => observer.disconnect();
+   }, [selectedIndex]);
    const status = STATUS[project.status];
 
    // Links like #project-case-pdf (from the hero explorer) open that project
@@ -87,12 +143,18 @@ const ProjectExplorer = ({ projects }: { projects: ExplorerProject[] }) => {
    return (
       <div className="mt-8 border border-line lg:grid lg:grid-cols-[264px_minmax(0,1fr)]">
          <div
+            ref={tablistRef}
             role="tablist"
             aria-label="Projects"
             // relative: keeps the tabs' absolutely positioned sr-only text inside
             // the scroller, or it widens the whole page on mobile
             className="relative flex overflow-x-auto border-b border-line bg-bg-sunken lg:block lg:overflow-visible lg:border-r lg:border-b-0 lg:py-3"
          >
+            <span
+               ref={indicatorRef}
+               aria-hidden
+               className="pointer-events-none absolute top-0 left-0 bg-bg-main transition-[transform,width,height] duration-300 ease-out-expo before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-primary lg:bg-bg-raised lg:before:inset-x-auto lg:before:inset-y-0 lg:before:left-0 lg:before:h-auto lg:before:w-px"
+            />
             {projects.map((item, index) => {
                const isSelected = index === selectedIndex;
                return (
@@ -110,10 +172,10 @@ const ProjectExplorer = ({ projects }: { projects: ExplorerProject[] }) => {
                      onClick={() => select(index)}
                      onKeyDown={handleKeyDown}
                      className={cn(
-                        'flex shrink-0 items-center gap-2.5 border-r border-line px-4 py-3 text-left font-mono text-ui transition-colors duration-200 lg:w-full lg:border-r-0 lg:py-2.5',
+                        'relative flex shrink-0 items-center gap-2.5 border-r border-line px-4 py-3 text-left font-mono text-ui transition-colors duration-200 lg:w-full lg:border-r-0 lg:py-2.5',
                         isSelected
-                           ? 'bg-bg-main text-strong lg:bg-bg-raised'
-                           : 'text-text hover:bg-bg-raised hover:text-strong',
+                           ? 'text-strong'
+                           : 'text-text hover:bg-bg-raised/50 hover:text-strong',
                      )}
                   >
                      <LuFileCode
@@ -148,15 +210,21 @@ const ProjectExplorer = ({ projects }: { projects: ExplorerProject[] }) => {
             className="grid min-w-0 animate-wipe gap-6 p-5 sm:p-8 md:grid-cols-[minmax(0,380px)_minmax(0,1fr)] md:gap-8"
          >
             {project.image ? (
-               <div className="relative aspect-[33/20] self-start overflow-hidden border border-line bg-bg-sunken">
-                  <Image
-                     src={project.image}
-                     alt={`Screenshot of ${project.title}`}
-                     fill
-                     sizes="(min-width: 768px) 380px, 100vw"
-                     className="object-cover object-top"
-                  />
-               </div>
+               <ViewTransition
+                  name={`project-shot-${project.slug}`}
+                  share="morph"
+                  default="none"
+               >
+                  <div className="relative aspect-[33/20] self-start overflow-hidden border border-line bg-bg-sunken">
+                     <Image
+                        src={project.image}
+                        alt={`Screenshot of ${project.title}`}
+                        fill
+                        sizes="(min-width: 768px) 380px, 100vw"
+                        className="object-cover object-top"
+                     />
+                  </div>
+               </ViewTransition>
             ) : (
                <div className="flex aspect-[33/20] flex-col items-center justify-center gap-2 self-start border border-dashed border-line-strong bg-bg-sunken px-6 text-center">
                   <LuImageOff aria-hidden className="size-6 text-muted" />
@@ -211,6 +279,7 @@ const ProjectExplorer = ({ projects }: { projects: ExplorerProject[] }) => {
                      {project.caseStudyUrl && (
                         <Link
                            href={project.caseStudyUrl}
+                           transitionTypes={['nav-forward']}
                            className={buttonVariants({ variant: 'primary' })}
                         >
                            Read case study

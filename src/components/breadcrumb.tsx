@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils';
 export type BreadcrumbItem = {
    title: string;
    href: string;
+   /** View transition types for the navigation, e.g. ['nav-back'] */
+   transitionTypes?: string[];
 };
 
 interface BreadcrumbProps {
@@ -35,9 +37,10 @@ const Breadcrumb = ({
                            )}
                            <Link
                               href={item.href}
+                              transitionTypes={item.transitionTypes}
                               className={cn(
                                  index === items.length - 1
-                                    ? 'font-medium text-white'
+                                    ? 'font-medium text-strong'
                                     : 'text-muted transition-colors hover:text-strong',
                               )}
                            >

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-21T17:19:01.636Z",
+  "generatedAt": "2026-10-21T17:42:55.283Z",
   "title": "Design System: Hozaifa Bin Masud — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -322,7 +322,7 @@
       {
         "name": "micro-transform",
         "value": "300ms ease-out-expo",
-        "purpose": "Arrow nudges (2px), nav underline scale, logo 90deg rotation, header border, mobile menu fade-and-drop (8px)."
+        "purpose": "Arrow nudges (2px), nav underline scale, logo 90deg rotation, header border, mobile menu fade-and-drop (8px). Project explorer selection highlight gliding between files."
       },
       {
         "name": "rise",
@@ -335,8 +335,28 @@
         "purpose": "Replays on the project preview pane each time a project file is selected."
       },
       {
+        "name": "shared-morph",
+        "value": "::view-transition-group(.morph) 520ms ease-out-expo; image pair blurs 4px at 35%",
+        "purpose": "The project screenshot morphs between the homepage explorer and its case study (React ViewTransition share=\"morph\")."
+      },
+      {
+        "name": "page-slide",
+        "value": "old: fade out 140ms ease-in + slide 0 -> -48px 420ms; new: fade in 220ms after 140ms + slide 48px -> 0 420ms ease-out-expo (mirrored for nav-back)",
+        "purpose": "Directional page transitions for links with transitionTypes nav-forward / nav-back; the site header is pinned and the root does not animate."
+      },
+      {
+        "name": "dock",
+        "value": "translate + opacity 500ms ease-out-expo",
+        "purpose": "The docked status bar sliding up from, and back into, the foot of the screen."
+      },
+      {
+        "name": "reading-progress",
+        "value": "scaleX 0 -> 1 linear, animation-timeline: scroll(root block)",
+        "purpose": "The 1px orchid reading line on the docked status bar; hidden without scroll-timeline support."
+      },
+      {
         "name": "reduced-motion",
-        "value": "animation and transition durations 0.01ms; smooth scroll off",
+        "value": "animation and transition durations 0.01ms; view-transition animations 0s; smooth scroll off",
         "purpose": "prefers-reduced-motion: reduce collapses all motion."
       }
     ],
@@ -431,14 +451,14 @@
   ],
   "narrative": {
     "northStar": "The Open Workspace",
-    "overview": "The site is a One Dark code editor opened on Hozaifa's real work, in a professional register. The editor is carried by structure, not ornament: a window with a title bar, an explorer that doubles as navigation, tab strips, a status bar, file names that label sections, and a git-log timeline. Inside that chrome the writing is set like a well-made product page, in a humanist sans, so a recruiter or client reads prose while the developer's world stays visible at the edges.\n\nSurfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.\n\nMotion is brief and expo-out. The workspace window assembles once on load (a staggered rise), selecting a project file wipes the preview pane in from the left, and state changes are 200ms colour shifts. Reduced motion collapses all of it. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette, and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.",
+    "overview": "The site is a One Dark code editor opened on Hozaifa's real work, in a professional register. The editor is carried by structure, not ornament: a window with a title bar, an explorer that doubles as navigation, tab strips, a status bar, file names that label sections, and a git-log timeline. Inside that chrome the writing is set like a well-made product page, in a humanist sans, so a recruiter or client reads prose while the developer's world stays visible at the edges.\n\nSurfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.\n\nMotion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back to the workspace reverses it. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette, and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.",
     "keyCharacteristics": [
       "Editor structure (explorer, tabs, status bar, file names, commit log) carries the metaphor; no glyph ornaments.",
       "Fira Sans reads; Fira Code names files, dates, stacks, keys and status.",
       "Three flat surface layers plus 1px hairlines; no shadows anywhere.",
       "Square corners; full rounding only for status dots and commit nodes.",
       "Syntax colours as roles; one filled orchid button per view.",
-      "Expo-out motion: one-time window assembly, a clip-path wipe on file selection."
+      "Expo-out motion: one-time window assembly, a gliding file highlight with a clip-path wipe, and a screenshot morph into each case study."
     ],
     "rules": [
       {

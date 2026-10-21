@@ -141,6 +141,135 @@
    }
 }
 
+/*
+ * View transitions (React <ViewTransition>, triggered by route navigations).
+ * Only named participants animate: the page root swaps instantly.
+ */
+::view-transition {
+   pointer-events: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+   animation: none;
+}
+
+/* Shared element: a project screenshot morphs into its case study hero */
+::view-transition-group(.morph) {
+   animation-duration: 520ms;
+   animation-timing-function: var(--ease-out-expo);
+}
+
+::view-transition-image-pair(.morph) {
+   animation-name: via-blur;
+}
+
+@keyframes via-blur {
+   35% {
+      filter: blur(4px);
+   }
+}
+
+/* Direction: forward slides content left, back slides it right */
+::view-transition-old(.nav-forward) {
+   --slide-offset: -48px;
+   animation:
+      140ms ease-in both vt-fade reverse,
+      420ms var(--ease-out-expo) both vt-slide reverse;
+}
+
+::view-transition-new(.nav-forward) {
+   --slide-offset: 48px;
+   animation:
+      220ms ease-out 140ms both vt-fade,
+      420ms var(--ease-out-expo) both vt-slide;
+}
+
+::view-transition-old(.nav-back) {
+   --slide-offset: 48px;
+   animation:
+      140ms ease-in both vt-fade reverse,
+      420ms var(--ease-out-expo) both vt-slide reverse;
+}
+
+::view-transition-new(.nav-back) {
+   --slide-offset: -48px;
+   animation:
+      220ms ease-out 140ms both vt-fade,
+      420ms var(--ease-out-expo) both vt-slide;
+}
+
+@keyframes vt-fade {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes vt-slide {
+   from {
+      translate: var(--slide-offset);
+   }
+   to {
+      translate: 0;
+   }
+}
+
+/* The header is the fixed reference while content moves */
+::view-transition-group(site-header) {
+   animation: none;
+   z-index: 100;
+}
+
+::view-transition-old(site-header) {
+   display: none;
+}
+
+::view-transition-new(site-header) {
+   animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   ::view-transition-old(*),
+   ::view-transition-new(*),
+   ::view-transition-group(*) {
+      animation-duration: 0s !important;
+      animation-delay: 0s !important;
+   }
+}
+
+/* Reading progress for the docked status bar, driven by the page scroll */
+@keyframes read-progress {
+   from {
+      transform: scaleX(0);
+   }
+   to {
+      transform: scaleX(1);
+   }
+}
+
+.read-progress {
+   display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+   .read-progress {
+      display: block;
+      transform-origin: left;
+      animation: read-progress linear both;
+      animation-timeline: scroll(root block);
+   }
+
+   /* It moves only as the reader scrolls, so keep it under reduced motion */
+   @media (prefers-reduced-motion: reduce) {
+      .read-progress {
+         animation-duration: auto !important;
+      }
+   }
+}
+
 /* Scrollbar (WebKit); Firefox uses scrollbar-color on html */
 ::-webkit-scrollbar {
    width: 10px;

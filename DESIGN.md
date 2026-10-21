@@ -179,7 +179,7 @@ The site is a One Dark code editor opened on Hozaifa's real work, in a professio
 
 Surfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.
 
-Motion is brief and expo-out. The workspace window assembles once on load (a staggered rise), selecting a project file wipes the preview pane in from the left, and state changes are 200ms colour shifts. Reduced motion collapses all of it. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette, and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.
+Motion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back to the workspace reverses it. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette, and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.
 
 **Key Characteristics:**
 
@@ -188,7 +188,7 @@ Motion is brief and expo-out. The workspace window assembles once on load (a sta
 - Three flat surface layers plus 1px hairlines; no shadows anywhere.
 - Square corners; full rounding only for status dots and commit nodes.
 - Syntax colours as roles; one filled orchid button per view.
-- Expo-out motion: one-time window assembly, a clip-path wipe on file selection.
+- Expo-out motion: one-time window assembly, a gliding file highlight with a clip-path wipe, and a screenshot morph into each case study.
 
 ## Colors
 
@@ -293,7 +293,7 @@ Framed, typographic and quiet; a single orchid slab marks the one thing to do.
 - **Ghost:** borderless, Comment Gray label; hover fills Line Highlight and turns the label white. Used for copy-email, source-code links and the menu toggle.
 - **Link:** borderless Cursor White label that turns Soft Orchid and underlines on hover.
 - **Hover / Focus:** 200ms expo-out colour transitions; keyboard focus is the global 2px orchid outline at 2px offset. Disabled drops to 50% opacity.
-- **Resume download:** a default button labelled `resume.pdf` in mono (header and footer) or `Resume.pdf` in sans (hero).
+- **Resume download:** a default button labelled `resume.pdf` in mono (header and footer), `Resume.pdf` in sans (hero), or `Resume` in the docked status bar below lg, where the header hides it.
 - The `outline`, `outlineSecondary` and `secondary` variants exist for the older pages; new surfaces use primary, default, ghost and link.
 
 ### Chips
@@ -329,9 +329,13 @@ Framed, typographic and quiet; a single orchid slab marks the one thing to do.
 
 The signature component. A Hairline-framed window on Editor Charcoal: a 40px Sidebar Charcoal title bar with the path (`~/hozaifa`) and branch in 12px mono; an explorer column (an uppercase, 0.08em-tracked `Explorer` caption, then 32px file rows in Code UI with 16px icons, the open file on Line Highlight with an orchid icon, a folder's children indented 40px in Dim Gray); a tab strip with the open file's tab on the canvas; the document; and a status bar of 12px mono facts with a green availability dot and the timezone pushed right. Explorer rows double as in-page navigation and follow the scroll position.
 
+### Docked Status Bar
+
+The hero's status bar, continued. Once the hero's own status bar passes under the header, a Sidebar Charcoal bar with a top Hairline slides up from the foot of the screen (translate and fade, 500ms expo-out): the file being read in 12px mono with an orchid file icon (`projects/`, `work.log`, `stack`, `about.md`), the green availability line from md, and small default buttons for Email me and, below lg, Resume. A 1px orchid reading line runs along its top edge, driven by the page scroll (`animation-timeline: scroll(root)`; hidden where unsupported). It slides away again when the contact section reaches the upper 60% of the screen, because the contact channels take over there, and it is `inert` while hidden. It respects the bottom safe area. Its actions stay framed, never orchid-filled, so the one filled button in view still belongs to the content.
+
 ### Project Explorer
 
-A file list beside a preview pane. Each project is a `slug.md` tab with a file icon (orchid when selected) and a trailing status dot; arrow keys, Home and End move between files. Selecting a file replays the wipe on the preview pane (clip-path from the left, opacity 0.4 to 1, 420ms expo-out). The pane shows a framed 33:20 screenshot, title with status line, ownership context, description, tags and up to three actions.
+A file list beside a preview pane. Each project is a `slug.md` tab with a file icon (orchid when selected) and a trailing status dot; arrow keys, Home and End move between files. The selection highlight (Line Highlight with a 1px orchid edge, left on the vertical list and bottom on the mobile strip) is one element that glides to the chosen file with a transform (300ms expo-out), and the mobile strip scrolls the chosen tab into view. Selecting a file replays the wipe on the preview pane (clip-path from the left, opacity 0.4 to 1, 420ms expo-out). "Read case study" is a forward navigation: the screenshot is a shared element that morphs into the case study's main image (520ms expo-out, a 4px blur at mid-flight) while the outgoing page fades and slides 48px left and the incoming one follows from the right. The pane shows a framed 33:20 screenshot, title with status line, ownership context, description, tags and up to three actions.
 
 ### Section Heading
 
@@ -350,7 +354,8 @@ Work history as a git log: newest on top, a 1px Hairline rail, a 20px commit nod
 - **Do** keep one orchid-filled button per view; secondary actions are default framed buttons, tertiary ones ghost.
 - **Do** separate surfaces with the three layers and 1px Hairlines; use Line Highlight for hover and selection.
 - **Do** keep each accent to its syntax role, with quiet variants as the same hue at 10% fill and 40% border.
-- **Do** use expo-out timing (`cubic-bezier(0.16, 1, 0.3, 1)`): 200ms for colour, 300ms for small transforms, 420–520ms for entrances, all collapsed under reduced motion.
+- **Do** use expo-out timing (`cubic-bezier(0.16, 1, 0.3, 1)`): 200ms for colour, 300ms for small transforms, 420–520ms for entrances and page transitions, all collapsed under reduced motion.
+- **Do** give page transitions a direction only through links that declare one (`transitionTypes` `nav-forward` / `nav-back`); the header stays pinned through them, and any other navigation swaps instantly.
 - **Do** derive every number shown in chrome (years, project counts) from data.
 
 ### Don't:
