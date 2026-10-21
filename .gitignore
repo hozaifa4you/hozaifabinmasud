@@ -42,3 +42,6 @@ next-env.d.ts
 
 # personal Claude Code settings (shared ones live in .claude/settings.json)
 .claude/settings.local.json
+
+# impeccable review captures (render real contact details from .env)
+.impeccable/review/

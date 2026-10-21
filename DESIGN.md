@@ -1,240 +1,363 @@
 ---
 name: Hozaifa Bin Masud — Portfolio
-description: A developer portfolio that reads like a file open in a One Dark code editor.
+description: A developer portfolio laid out as an open One Dark editor workspace, with real work shown as files.
 colors:
-   primary: '#C778DD'
-   bg-main: '#282C33'
-   text: '#ABB2BF'
-   text-secondary: '#FFFFFF'
+   bg-sunken: '#21252b'
+   bg-main: '#282c33'
+   bg-raised: '#2c313a'
+   line: '#3e4451'
+   line-strong: '#747c8a'
+   text: '#abb2bf'
+   strong: '#e8eaee'
+   muted: '#9298a5'
+   primary: '#c778dd'
+   primary-soft: '#d49be6'
+   primary-ink: '#1e2127'
+   success: '#98c379'
+   warning: '#e5c07b'
+   danger: '#e87d86'
+   info: '#61afef'
 typography:
    display:
-      fontFamily: 'Fira Code, monospace'
-      fontSize: '48px'
-      fontWeight: 700
-      lineHeight: 1.25
+      fontFamily: 'Fira Sans, ui-sans-serif, system-ui, sans-serif'
+      fontSize: 'clamp(2.5rem, 1.5rem + 4vw, 4.25rem)'
+      fontWeight: 600
+      lineHeight: 1.04
+      letterSpacing: '-0.03em'
    headline:
-      fontFamily: 'Fira Code, monospace'
-      fontSize: '32px'
-      fontWeight: 500
-      lineHeight: 1.25
+      fontFamily: 'Fira Sans, ui-sans-serif, system-ui, sans-serif'
+      fontSize: 'clamp(1.75rem, 1.3rem + 1.4vw, 2.375rem)'
+      fontWeight: 600
+      lineHeight: 1.15
+      letterSpacing: '-0.02em'
+   lead:
+      fontFamily: 'Fira Sans, ui-sans-serif, system-ui, sans-serif'
+      fontSize: 'clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem)'
+      fontWeight: 400
+      lineHeight: 1.35
    title:
-      fontFamily: 'Fira Code, monospace'
-      fontSize: '24px'
-      fontWeight: 500
-      lineHeight: 1.333
+      fontFamily: 'Fira Sans, ui-sans-serif, system-ui, sans-serif'
+      fontSize: '1.5rem'
+      fontWeight: 600
+      lineHeight: 1.25
+      letterSpacing: '-0.015em'
    body:
-      fontFamily: 'Fira Code, monospace'
-      fontSize: '16px'
+      fontFamily: 'Fira Sans, ui-sans-serif, system-ui, sans-serif'
+      fontSize: '1.0625rem'
+      fontWeight: 400
+      lineHeight: 1.65
+   control:
+      fontFamily: 'Fira Sans, ui-sans-serif, system-ui, sans-serif'
+      fontSize: '0.9375rem'
+      fontWeight: 500
+      lineHeight: 1.45
+   label:
+      fontFamily: 'Fira Sans, ui-sans-serif, system-ui, sans-serif'
+      fontSize: '0.875rem'
+      fontWeight: 500
+      lineHeight: 1.43
+   code:
+      fontFamily: 'Fira Code, ui-monospace, SFMono-Regular, Menlo, monospace'
+      fontSize: '0.875rem'
+      fontWeight: 400
+      lineHeight: 1.43
+   code-ui:
+      fontFamily: 'Fira Code, ui-monospace, SFMono-Regular, Menlo, monospace'
+      fontSize: '0.8125rem'
       fontWeight: 400
       lineHeight: 1.5
-   label:
-      fontFamily: 'Fira Code, monospace'
-      fontSize: '14px'
-      fontWeight: 500
-      lineHeight: 1.429
+   code-label:
+      fontFamily: 'Fira Code, ui-monospace, SFMono-Regular, Menlo, monospace'
+      fontSize: '0.75rem'
+      fontWeight: 400
+      lineHeight: 1.333
 rounded:
    none: '0px'
    full: '9999px'
 spacing:
-   box: '8px'
-   gutter: '10px'
-   card: '16px'
-   section: '50px'
+   container-inline: '20px'
+   container-max: '1120px'
+   pane-sm: '20px'
+   pane-lg: '32px'
+   heading-gap: '40px'
+   section-sm: '56px'
+   section-lg: '80px'
+   header: '64px'
 components:
+   button-primary:
+      backgroundColor: '{colors.primary}'
+      textColor: '{colors.primary-ink}'
+      typography: '{typography.control}'
+      rounded: '{rounded.none}'
+      padding: '0 16px'
+      height: '40px'
+   button-primary-hover:
+      backgroundColor: '{colors.primary-soft}'
+      textColor: '{colors.primary-ink}'
    button-default:
       backgroundColor: 'transparent'
-      textColor: '{colors.text}'
+      textColor: '{colors.strong}'
+      typography: '{typography.control}'
       rounded: '{rounded.none}'
-      padding: '8px 16px'
-      height: '37px'
+      padding: '0 16px'
+      height: '40px'
    button-default-hover:
-      backgroundColor: '#ABB2BF33'
-      textColor: '{colors.text-secondary}'
-   button-outline:
+      backgroundColor: '{colors.bg-raised}'
+      textColor: '{colors.strong}'
+   button-ghost:
       backgroundColor: 'transparent'
-      textColor: '{colors.text-secondary}'
+      textColor: '{colors.text}'
+      typography: '{typography.control}'
       rounded: '{rounded.none}'
-      padding: '8px 16px'
-      height: '37px'
-   button-outline-hover:
-      backgroundColor: '#C778DD33'
-      textColor: '{colors.text-secondary}'
-   button-outline-active:
-      backgroundColor: '#C778DD33'
-      textColor: '{colors.text-secondary}'
-   button-link:
-      backgroundColor: 'transparent'
-      textColor: '{colors.text-secondary}'
-   button-link-hover:
-      textColor: '{colors.primary}'
+      padding: '0 16px'
+      height: '40px'
+   button-ghost-hover:
+      backgroundColor: '{colors.bg-raised}'
+      textColor: '{colors.strong}'
+   button-lg:
+      padding: '0 20px'
+      height: '44px'
+   button-sm:
+      padding: '0 12px'
+      height: '32px'
    input:
+      backgroundColor: '{colors.bg-sunken}'
+      textColor: '{colors.strong}'
+      typography: '{typography.control}'
+      rounded: '{rounded.none}'
+      padding: '0 12px'
+      height: '44px'
+   tag:
+      backgroundColor: '{colors.bg-raised}'
+      textColor: '{colors.text}'
+      typography: '{typography.code-label}'
+      rounded: '{rounded.none}'
+      padding: '2px 8px'
+   status-pill:
+      backgroundColor: '#98c3791a'
+      textColor: '{colors.success}'
+      typography: '{typography.code-label}'
+      rounded: '{rounded.none}'
+      padding: '0 6px'
+   explorer-item:
       backgroundColor: 'transparent'
       textColor: '{colors.text}'
+      typography: '{typography.code-ui}'
+      padding: '0 16px'
+      height: '32px'
+   explorer-item-active:
+      backgroundColor: '{colors.bg-raised}'
+      textColor: '{colors.strong}'
+   file-tab:
+      backgroundColor: '{colors.bg-sunken}'
+      textColor: '{colors.primary-soft}'
+      typography: '{typography.code-label}'
       rounded: '{rounded.none}'
-      padding: '16px 10px 10px'
-   badge:
-      backgroundColor: '#C778DD26'
-      textColor: '{colors.primary}'
-      rounded: '{rounded.full}'
       padding: '4px 12px'
-   card:
-      backgroundColor: 'transparent'
+   pane:
+      backgroundColor: '{colors.bg-sunken}'
       textColor: '{colors.text}'
       rounded: '{rounded.none}'
-      padding: '{spacing.card}'
+      padding: '{spacing.pane-sm}'
    nav-link:
+      backgroundColor: 'transparent'
       textColor: '{colors.text}'
-   nav-link-hover:
-      textColor: '{colors.text-secondary}'
+      typography: '{typography.code}'
+      padding: '0 12px'
+      height: '40px'
+   nav-link-active:
+      textColor: '{colors.strong}'
 ---
 
 # Design System: Hozaifa Bin Masud — Portfolio
 
 ## Overview
 
-**Creative North Star: "The Dark-Theme Editor"**
+**Creative North Star: "The Open Workspace"**
 
-The site reads like a file open in a One Dark code editor late at night. A charcoal canvas, comment-gray body text, white for what matters, and one orchid accent that behaves like syntax highlighting: it marks the token, never the paragraph. Every word is set in Fira Code, and structure comes from thin gray frames and code punctuation (an orchid `#` before headings, `@` before labels, `/` in breadcrumbs, `<~>` on action buttons, `>=` inside headings) rather than from color blocks, shadows or imagery.
+The site is a One Dark code editor opened on Hozaifa's real work, in a professional register. The editor is carried by structure, not ornament: a window with a title bar, an explorer that doubles as navigation, tab strips, a status bar, file names that label sections, and a git-log timeline. Inside that chrome the writing is set like a well-made product page, in a humanist sans, so a recruiter or client reads prose while the developer's world stays visible at the edges.
 
-The mood is calm and precise, playful-technical, and confident and minimal at once. The play lives in the copy and the glyphs ("Turning coffee into clean code — one bug at a time..."); the layout itself stays quiet, square and exact, like well-formatted code. Density is moderate: generous vertical rhythm between sections, compact text inside frames.
+Surfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.
 
-Confirmed rejections: hues outside the palette (Tailwind grays, cyan, emerald, purple-to-pink gradients, blue glows), drop shadows and lifted surfaces, and rounded frames or media. Where the current code still has them, they are drift to converge on, not precedent.
+Motion is brief and expo-out. The workspace window assembles once on load (a staggered rise), selecting a project file wipes the preview pane in from the left, and state changes are 200ms colour shifts. Reduced motion collapses all of it. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette, and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.
 
 **Key Characteristics:**
 
-- One typeface (Fira Code) for everything; hierarchy from size and weight only.
-- Four colors plus their opacities; orchid is a highlight, not a fill.
-- 1px frames separate surfaces; hover turns the frame orchid.
-- Square corners everywhere except status dots and pills.
-- Code glyphs (`#`, `@`, `/`, `<~>`) as the signature ornament.
+- Editor structure (explorer, tabs, status bar, file names, commit log) carries the metaphor; no glyph ornaments.
+- Fira Sans reads; Fira Code names files, dates, stacks, keys and status.
+- Three flat surface layers plus 1px hairlines; no shadows anywhere.
+- Square corners; full rounding only for status dots and commit nodes.
+- Syntax colours as roles; one filled orchid button per view.
+- Expo-out motion: one-time window assembly, a clip-path wipe on file selection.
 
 ## Colors
 
-A dark, low-contrast editor palette: one warm-violet accent over cool charcoal and gray.
+One Dark layers and syntax hues, used as roles rather than decoration: cool charcoal surfaces, gray text, and five accent hues that each have exactly one job.
 
 ### Primary
 
-- **Syntax Orchid** (`primary`): the highlight. Used for the `#`/`@`/`/` prefixes, section-header rules, the outline (call-to-action) button frame, hover frames, active states, links on hover and form error text. As a fill it only appears as a tint (10–20% opacity) behind active buttons, footer icons and badges, plus the sticky header's underglow.
+- **Syntax Orchid** (`primary`): the single filled action in a view, focus outlines (2px, 2px offset), the caret, the active nav underline, and the icon of the open file or selected project. Selection highlight is orchid at 38%.
+- **Soft Orchid** (`primary-soft`): orchid for small mono text that must stay legible on dark layers: file tabs under section headings, data keys (`builds`, `languages`, `phone`), footer column keys, the hover fill of the primary button, and the hover/current state in the mobile menu.
+- **Orchid Ink** (`primary-ink`): text on an orchid fill (primary button, skip link).
+
+### Secondary
+
+- **String Green** (`success`): availability and liveness only: the status-bar dot and "Open to full-time roles", the live project dot, the HEAD pill and current commit node, the "Copied" check, and form success.
+- **Keyword Amber** (`warning`): the "In development" project status.
+- **Error Rose** (`danger`): field borders, rings and messages for invalid input; form failure status. Never decorative.
+- **Function Blue** (`info`): outbound and inline links in prose, drawn as a 50% blue underline that turns fully blue (text and line) on hover.
 
 ### Neutral
 
-- **Editor Charcoal** (`bg-main`): the page canvas, and the patch that sits behind floating labels and quote marks where they cut through a frame.
-- **Comment Gray** (`text`): body copy, default frames (1px) and default button labels. At 30% opacity it draws quieter frames and dividers.
-- **Cursor White** (`text-secondary`): headings, card titles, the current breadcrumb segment, and text that becomes active on hover or focus.
+- **Sidebar Charcoal** (`bg-sunken`): window chrome and panes: title bar, explorer, tab strips, status bar, project file list, fact and contact panels, inputs, the mobile menu and the footer.
+- **Editor Charcoal** (`bg-main`): the page and document canvas; the active tab sits on it so it reads as open.
+- **Line Highlight** (`bg-raised`): hover and selected rows, tag fills, default-button hover.
+- **Hairline** (`line`): every 1px frame, divider, rule and timeline rail.
+- **Strong Hairline** (`line-strong`): frames that must read as controls (default button, inputs), dashed empty-image frames, past commit nodes.
+- **Comment Gray** (`text`): body copy and resting UI text.
+- **Cursor White** (`strong`): headings, titles, active items, input text, emphasized first paragraphs. (`text-secondary` is a legacy alias with the same value; use `strong`.)
+- **Dim Gray** (`muted`): metadata, dates, inactive icons, helper text, the footer legal row.
 
 ### Named Rules
 
-**The Syntax Highlight Rule.** Orchid marks tokens, edges and states. It never fills an area at more than 20% opacity, and long passages of text are never orchid.
+**The Syntax Roles Rule.** Each accent hue has one job: orchid acts and marks focus or the current item, green means live or available, amber means in progress, red means error, blue means a link leaves the text. A hue never appears outside its role.
 
-**The Opacity, Not a New Hue Rule.** When a quieter or tinted variant is needed, use an existing token at reduced opacity (`text` at 20–30%, `primary` at 5–20%). Never introduce a new hue from the Tailwind palette.
+**The One Filled Button Rule.** Only the primary action in a view gets an orchid fill. When a stronger action is present (a case study beside a live site), the other becomes a default framed button.
+
+**The Tint, Not a New Hue Rule.** Quiet variants of an accent are the same hue at 10% fill with a 40% border (status pills, badges) or 15% fill (outline hover). Tailwind palette colours and literal white are not part of the system.
 
 ## Typography
 
-**Display Font:** Fira Code (with monospace fallback)
-**Body Font:** Fira Code (with monospace fallback)
+**Display Font:** Fira Sans (with ui-sans-serif, system-ui fallback), weights 400–700
+**Body Font:** Fira Sans
+**Label/Mono Font:** Fira Code (with ui-monospace fallback)
 
-**Character:** A single monospaced family, loaded in weights 300–700 through `next/font` and applied on `<body>`. Its ligatures and even rhythm make prose read like source code. Hierarchy comes only from size (12–48px) and weight (400 / 500 / 700).
+**Character:** Fira Sans and Fira Code are one family split by job: the sans carries headings and reading text with a confident, slightly condensed 600; the mono carries anything an editor would show as a token. Together they read as engineered without making a recruiter read prose in monospace.
 
 ### Hierarchy
 
-- **Display** (700, 32px → 40px → 48px at md/lg, line-height 1.25): the hero name line only, in Cursor White.
-- **Headline** (500, 26px → 28px → 32px, line-height 1.25): section headers, led by an orchid `#` and followed by a 1px orchid rule. Page titles in the breadcrumb block use 700 at 30px → 36px → 48px.
-- **Title** (500, 24px): card and project titles in Cursor White.
-- **Body** (400, 16px, line-height 1.5): paragraphs in Comment Gray; the hero lead runs 18–20px at line-height 1.625.
-- **Label** (500, 14px; 12px for badges and tags): breadcrumbs, button-adjacent metadata, form labels and footer links.
+- **Display** (600, fluid 40–68px, line-height 1.04, -0.03em): the name in the hero README only.
+- **Headline** (600, fluid 28–38px, line-height 1.15, -0.02em): section headings.
+- **Lead** (400, fluid ~21–28px, line-height 1.35): the one positioning line under the display, held to about 32ch.
+- **Title** (600, 24px, line-height 1.25, -0.015em): project titles; role titles step from 20px to 24px at sm.
+- **Body** (400, 17px, line-height 1.65): reading paragraphs, held to 62–65ch. Dense descriptions use 16px with relaxed leading.
+- **Control** (15px, line-height 1.45): button labels at 500 and field text at 400; also stack and fact values.
+- **Label** (500, 14px): form labels, section "more" links, social links.
+- **Code** (Fira Code 400, 14px): nav links, dates and durations, emails, contact handles, stack group keys.
+- **Code UI** (Fira Code 400, 13px): file names in explorers and tab strips.
+- **Code Label** (Fira Code 400, 12px): status bar, tags, file tabs, data keys.
 
 ### Named Rules
 
-**The One Typeface Rule.** Everything is Fira Code. Never use the `font-mono` utility: it resolves to the system monospace stack (`ui-monospace, SFMono-Regular, Menlo, Consolas…`), not Fira Code. It currently appears about 35 times in the code; that is drift.
+**The Two Faces Rule.** Fira Sans reads; Fira Code names. File names, paths, dates, durations, stack names, keys, emails and status are mono; sentences are sans, even inside a mono list (the WhatsApp row switches to the sans because it is words, not data).
+
+**The Keys Label Data Rule.** Lowercase mono keys in Soft Orchid sit directly on the data they label (definition terms, panel rows, footer columns). They are never an eyebrow above a headline; a section's file name hangs below its heading on the rule.
 
 ## Layout
 
-Content sits in a centered container (max 1030px wide, 10px inline padding). Sections stack with a 50px vertical rhythm. Inside sections, grids stay simple: project cards in a masonry of 2 columns from 640px and 3 from 1024px; education and training cards in a masonry of 1 then 2 columns (switching at 750px and 900px), with an explicit 10px gutter. Detail pages split into a wide main column and a narrow sidebar (2:1) at lg.
+A single centered container (max 1120px, 20px inline padding) holds every section. Sections breathe at 56px vertical padding, 80px from lg; content starts 32–40px below a section heading. Panes pad 20px, 32px from sm. The sticky header is 64px tall and gains a bottom hairline after 8px of scroll; anchored sections land 80px below the top.
 
-The header is sticky. After 50px of scroll it fills with Editor Charcoal and gains a thin orchid underglow. On screens 1024px and wider, a fixed left rail holds a vertical 1px gray line and the social icons. Decorative SVG dot grids and outlined squares float in negative space around sections; they are ornament, never content.
+The hero is a full-width editor window: title bar (40px), then a 236px explorer column beside the document from lg, then a status bar. Below lg the explorer hides and the header menu takes over. The projects explorer is a 264px file list beside a preview pane from lg; below lg the list becomes a horizontally scrolling tab strip. The preview pane splits into a 380px screenshot column and text from md. Other sections use asymmetric two-column grids (text plus a 340px fact panel; contact copy plus a wider form) and a hairline grid of five stack groups (2 columns at sm, 5 at lg). Breakpoints are Tailwind's defaults (640 / 768 / 1024px).
 
-Breakpoints follow Tailwind's defaults (640 / 768 / 1024 / 1280px).
+On the homepage's first screen the hero explorer is the navigation, so the header's section links stay hidden until the hero scrolls away.
+
+### Named Rules
+
+**The Chrome Carries the Metaphor Rule.** The editor world is expressed through structure: windows, explorers, tab strips, status bars, file tabs on rules, a commit log. Reach for one of these before any decorative device.
 
 ## Elevation & Depth
 
-The system is flat. Surfaces are separated by 1px frames, opacity tints and stacking order, never by shadows or lift. The only sanctioned glow is behind the hero portrait: a blurred orchid gradient that widens on hover.
+The system is flat. Depth comes from three tonal layers (sunken chrome, main document, raised highlight) and 1px hairlines, never from shadows, glows or blur. The active tab overlaps the strip's bottom border by 1px so it reads as connected to the document below it. Hover lifts nothing; it changes a fill to Line Highlight or a text colour to Cursor White.
 
 ### Named Rules
 
-**The Frame, Not Float Rule.** A surface that needs separation gets a 1px frame or a tint, not a shadow. The tooltip's drop shadow (`0 10px 25px rgba(0,0,0,0.4)`) and the hero's blue glow are drift; the sticky header's orchid underglow reads as a line and stays.
+**The Flat Pane Rule.** No box-shadow, drop-shadow or glow on any surface, including the hero. Separation is a layer change or a 1px line.
 
 ## Shapes
 
-Corners are square (0px) on every frame, button, input, card, image and panel. Full rounding is reserved for small, meaningful circles: status dots (the pulsing "available" and live indicators) and pill badges. Rounded media and panels in the current code (the hero portrait at 12–16px, the gallery close button, team initials) are drift.
-
-Frames are 1px and are allowed to break: the quote block cuts its own border with charcoal patches carrying the quote marks, and its author tag hangs off the bottom-right with no top border. Boxed lists use a header row separated by a 1px rule.
+Every frame, button, input, tag, pill, pane, tab and image is square-cornered with a 1px border. Full rounding is reserved for small status circles: availability and project-status dots (6–8px) and the 20px commit nodes on the work timeline, which sit in a 5px canvas-coloured ring. Missing screenshots get a dashed Strong Hairline frame with a quiet icon and caption, at the same 33:20 ratio as real ones. Grids of cells share borders (top and left on the grid, right and bottom on each cell) so lines never double.
 
 ### Named Rules
 
-**The Square Frame Rule.** If it has an edge, the edge is a 1px line with square corners. Roundness means "this is a status or a tag", nothing else.
+**The Square Frame Rule.** If it has an edge, the edge is a 1px line with square corners. Roundness means "this is a status", nothing else.
 
 ## Components
 
 ### Buttons
 
-Precise, framed, typographic; a button is a bordered word, not a colored slab.
+Framed, typographic and quiet; a single orchid slab marks the one thing to do.
 
-- **Shape:** square corners (0px), 1px frame, Fira Code 500 at 16px with line-height 1, 8px × 16px padding, height capped at 37px. The `lg`/`xl` sizes add vertical padding but cannot grow past that cap, so in practice every button is about 37px tall.
-- **Outline (primary call to action):** orchid frame, Cursor White label; on hover a 20% orchid tint fills in (300ms ease-in-out). The active or selected state keeps that tint permanently.
-- **Default:** Comment Gray frame and label; on hover both turn white over a 20% gray tint.
-- **Link:** no frame, Cursor White label that turns orchid on hover; used for the `#show_more ~>` link beside section headers.
-- **Glyph labels:** action labels carry code punctuation, such as "Live <~>", "Code <~>", or an `@` before the label.
+- **Shape:** square, 1px border, label in the control style at 500 with a 16px icon and 8px gap. Sizes: sm 32px tall (12px padding, 14px), default 40px (16px padding, 15px), lg 44px (20px padding, 16px), xl 48px (24px padding). Hero actions grow to 48px from sm.
+- **Primary:** Syntax Orchid fill and border, Orchid Ink label; hover moves to Soft Orchid.
+- **Default:** transparent with a Strong Hairline frame and Cursor White label; hover brightens the frame to Comment Gray and fills Line Highlight.
+- **Ghost:** borderless, Comment Gray label; hover fills Line Highlight and turns the label white. Used for copy-email, source-code links and the menu toggle.
+- **Link:** borderless Cursor White label that turns Soft Orchid and underlines on hover.
+- **Hover / Focus:** 200ms expo-out colour transitions; keyboard focus is the global 2px orchid outline at 2px offset. Disabled drops to 50% opacity.
+- **Resume download:** a default button labelled `resume.pdf` in mono (header and footer) or `Resume.pdf` in sans (hero).
+- The `outline`, `outlineSecondary` and `secondary` variants exist for the older pages; new surfaces use primary, default, ghost and link.
 
 ### Chips
 
-- **Style:** pill badge (full radius), 12px 500, 4px × 12px padding, Syntax Orchid text on a 15% orchid tint; scales to 105% on hover. The cyan, purple-pink, emerald and blue gradient variants are drift.
-- **Tags:** technology lists inside cards are plain comma-separated text in a framed header row, not chips.
+- **Tag:** square, 1px Hairline frame on Line Highlight, Code Label in Comment Gray, 2px × 8px. Used for technology lists in projects and the work log. Not interactive.
+- **Status pill:** an accent at 10% fill with a 40% border and the accent as text (HEAD on the current role; the Badge primitive's orchid, blue and green variants follow the same recipe, with a 6px green dot on "active").
+- **Status line:** a 6–8px dot plus a mono label in the status hue (Live green, In development amber, Archived muted).
 
 ### Cards / Containers
 
 - **Corner Style:** square (0px).
-- **Background:** transparent over Editor Charcoal.
+- **Background:** Sidebar Charcoal for panels and chrome; transparent over the canvas for form frames and stack cells.
 - **Shadow Strategy:** none (see Elevation & Depth).
-- **Border:** 1px Comment Gray; turns Syntax Orchid on hover (200–300ms).
-- **Internal Padding:** 8px for boxed lists with a header row, 16px for project cards. A project card stacks a cover image, a framed technology row, then title, description and actions.
+- **Border:** 1px Hairline; rows inside a panel are separated by Hairline rules.
+- **Internal Padding:** 20px, 32px from sm; panel rows 20px × 16px (12px for link lists).
+- **Hover:** list rows and stack cells fill Line Highlight; outbound-arrow icons nudge 2px up-right (300ms expo-out).
 
 ### Inputs / Fields
 
-- **Style:** transparent field, 1px Comment Gray frame, square corners, 14px text, 16px top / 10px side and bottom padding.
-- **Floating label:** sits on a charcoal patch over the frame, rests at full size inside the field, and lifts to 75% scale over the top border when focused or filled.
-- **Focus:** the frame and label turn white; no glow or ring.
-- **Error:** 14px Syntax Orchid text directly below the field.
+- **Style:** square, 1px Strong Hairline frame on Sidebar Charcoal, Cursor White text in the control style, Dim Gray placeholder, 12px inline padding, 44px tall. Labels sit above in the label style, Cursor White, 8px gap.
+- **Hover:** the frame brightens to Comment Gray.
+- **Focus:** the frame turns Syntax Orchid with a 1px orchid ring; the caret is orchid.
+- **Error:** the frame and ring turn Error Rose and a 14px rose message sits below, linked by aria-describedby; entered values are kept.
+- **Textarea:** same recipe, 10px vertical padding, relaxed leading, vertical resize.
 
 ### Navigation
 
-- **Style:** lowercase items in Comment Gray, each led by an orchid `#` (for example `#home`, `#projects`); on hover the label turns white and medium weight.
-- **Header:** sticky; it fills with charcoal and gains the orchid underglow once scrolled.
-- **Mobile:** a hamburger opens a full-width panel listing the items at 18px 500, which scale slightly and turn white on hover.
-- **Social:** the fixed left rail on large screens, and square-framed icon buttons in the footer (frame at 30% gray, turning orchid with a 10% orchid tint on hover).
+- **Header:** sticky, Editor Charcoal, logo mark and first name at left (mark rotates 90° on hover). Desktop links are Code at 14px in Comment Gray; hover and the active section turn Cursor White, and the active one draws a 1px orchid underline that scales in from the left. A small default `resume.pdf` button closes the row.
+- **Mobile:** a 44px ghost toggle opens a full-height Sidebar Charcoal panel that fades and drops in 8px; items are 56px rows in 18px mono Cursor White with hairline separators and a muted arrow, the current one in Soft Orchid; an xl primary "Download resume (PDF)" button ends the list. Escape closes it, and the page behind does not scroll.
+- **Footer:** Sidebar Charcoal with a top hairline; identity and a `resume.pdf` button, then `pages` and `elsewhere` columns of 14px links, then a hairline-separated legal row in 12px Dim Gray.
 
-### Section Header
+### Workspace Window
 
-The signature pattern. An orchid `#`, the section name at headline size, an optional orchid superscript count ("11+"), then a 1px orchid rule running to the right to a set maximum width. A link-style button can sit at the far right, labelled `#show_more ~>` (currently wrapped in a gradient badge, which is drift; a plain link label fits the system).
+The signature component. A Hairline-framed window on Editor Charcoal: a 40px Sidebar Charcoal title bar with the path (`~/hozaifa`) and branch in 12px mono; an explorer column (an uppercase, 0.08em-tracked `Explorer` caption, then 32px file rows in Code UI with 16px icons, the open file on Line Highlight with an orchid icon, a folder's children indented 40px in Dim Gray); a tab strip with the open file's tab on the canvas; the document; and a status bar of 12px mono facts with a green availability dot and the timezone pushed right. Explorer rows double as in-page navigation and follow the scroll position.
 
-### Breadcrumb Block
+### Project Explorer
 
-An orchid `/`, then path segments at 14px with the current segment in Cursor White 500, followed by the page title as `#Title` at 700. The other segments are currently drawn in Tailwind grays; that is drift, and they should use Comment Gray and its opacities.
+A file list beside a preview pane. Each project is a `slug.md` tab with a file icon (orchid when selected) and a trailing status dot; arrow keys, Home and End move between files. Selecting a file replays the wipe on the preview pane (clip-path from the left, opacity 0.4 to 1, 420ms expo-out). The pane shows a framed 33:20 screenshot, title with status line, ownership context, description, tags and up to three actions.
+
+### Section Heading
+
+A headline with an optional "more" link (label style plus an arrow that nudges right on hover) at the far right, above a full-width Hairline rule. The section's file name hangs below the rule as a tab: Sidebar Charcoal, hairline sides and bottom, a 14px file icon and 12px Soft Orchid mono.
+
+### Work Log
+
+Work history as a git log: newest on top, a 1px Hairline rail, a 20px commit node per role (green with a soft green ring for the current role, Strong Hairline for past roles), mono dates and duration with a HEAD pill on the current role, then role title, company link, type, description and tags.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** keep the palette to the four tokens plus opacities: `text` at 30% for quiet frames, `primary` at 10–20% for tints.
-- **Do** prefix section titles with an orchid `#`, labels with `@` and paths with `/`; add `<~>` to action labels.
-- **Do** separate surfaces with 1px frames and switch the frame to Syntax Orchid on hover or active.
-- **Do** set every word in Fira Code and build hierarchy from size and weight (400 / 500 / 700).
-- **Do** keep transitions short and functional: 200–300ms ease-in-out on color and border.
-- **Do** keep corners square; use full rounding only for status dots and pill badges.
+- **Do** build the editor world from structure: windows, explorers, tab strips, status bars, file tabs on rules, the commit log.
+- **Do** set reading text in Fira Sans and tokens (files, dates, stacks, keys, emails, status) in Fira Code.
+- **Do** keep one orchid-filled button per view; secondary actions are default framed buttons, tertiary ones ghost.
+- **Do** separate surfaces with the three layers and 1px Hairlines; use Line Highlight for hover and selection.
+- **Do** keep each accent to its syntax role, with quiet variants as the same hue at 10% fill and 40% border.
+- **Do** use expo-out timing (`cubic-bezier(0.16, 1, 0.3, 1)`): 200ms for colour, 300ms for small transforms, 420–520ms for entrances, all collapsed under reduced motion.
+- **Do** derive every number shown in chrome (years, project counts) from data.
 
 ### Don't:
 
-- **Don't** introduce Tailwind palette hues (gray-300 to gray-600, cyan, emerald, purple-to-pink gradients, blue glows); the existing ones in the breadcrumb, project details, badges and hero are drift.
-- **Don't** use the `font-mono` utility; it swaps Fira Code for the system monospace stack.
-- **Don't** add drop shadows or lift; the hero portrait glow is the only sanctioned glow.
-- **Don't** round frames, panels or media.
-- **Don't** fill large areas or long text with Syntax Orchid.
+- **Don't** add box-shadows, drop-shadows or glows, including behind the hero.
+- **Don't** round frames, buttons, tags, panes or media; full rounding is for status dots and commit nodes only.
+- **Don't** use Tailwind palette hues or literal white (`text-white`); use `strong` and the syntax roles.
+- **Don't** decorate with code punctuation (`#` before headings, `@` before labels, `<~>` on buttons); the metaphor lives in structure.
+- **Don't** set paragraphs in Fira Code or use mono keys as eyebrows above headlines.
+- **Don't** use orchid for long text, large fills or anything that is not an action, focus or current item.

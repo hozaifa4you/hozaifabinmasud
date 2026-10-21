@@ -42,6 +42,7 @@ Three claims, all confirmed by the owner, that future work should lead with:
 - All content is hardcoded TypeScript data in `src/lib/`; there is no CMS. Personal details (name, designation, social usernames, email, phone, address) come from environment variables.
 - Only one project has a case study so far (`aionlinecourse`); the others link to their live sites or have no link.
 - The contact form validates input, keeps it on errors, and has a honeypot spam filter with length limits.
+- Current availability (confirmed 2026-10-21): open to full-time roles only, not taking freelance projects. Any availability line on the site must say this; re-confirm before changing it.
 - Open decisions: which further projects get case studies; real education, training and fun-fact content; real stats.
 
 ## Brand Commitments
