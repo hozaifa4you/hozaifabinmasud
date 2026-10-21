@@ -1,0 +1,75 @@
+# Product
+
+<!-- impeccable:product-schema 1 -->
+
+## Platform
+
+web
+
+## Users
+
+Two primary audiences, weighted equally (confirmed):
+
+- **Freelance clients** arriving from Upwork, Fiverr, LinkedIn or a shared link, deciding whether to hire Hozaifa for a project. Success: they start a conversation through the contact form or a profile link.
+- **Recruiters and hiring managers** assessing him for a full-time role. Success: they download the resume or get in touch.
+
+Both are evaluating fit quickly: can this person build what we need, and is there proof?
+
+## Product Purpose
+
+The personal portfolio of Hozaifa Bin Masud, a full-stack developer based in Bangladesh. It exists to turn a visit from a client or recruiter into contact or a resume download, by showing his projects, work history and skills.
+
+The site is under active development (confirmed): much of the content is not real yet, and first-time visitors see a maintenance notice saying some features may not work.
+
+## Positioning
+
+Three claims, all confirmed by the owner, that future work should lead with:
+
+1. **Full-stack plus AI integration**: building web applications with AI features built in ("Full-Stack Developer · AI Savvy").
+2. **End-to-end delivery**: one person who builds both frontend and backend; the site copy names React, Next.js, NestJS and Laravel.
+3. **Production experience at companies**: shipping live products at Namespace IT and AI Power IT, not only side projects.
+
+## Operating Context
+
+- Visitors usually come from a freelance marketplace profile, LinkedIn, GitHub or a direct link, and skim before deciding.
+- Conversion points: the contact form (delivers an email to the owner through SMTP), the resume PDFs (`public/hozaifa-resume.pdf`, `public/hozaifa-resume-page.pdf`), and outbound links to GitHub, LinkedIn, Upwork, Fiverr, Facebook and X.
+- Project cards link to an in-site case study when one exists, otherwise to the live product site.
+- Deployed on Vercel; production deploys from `main`.
+
+## Capabilities and Constraints
+
+- Sections and routes: home, projects (plus `/projects/[slug]` case studies), works, education and trainings, about me, contact, resume.
+- All content is hardcoded TypeScript data in `src/lib/`; there is no CMS. Personal details (name, designation, social usernames, email, phone, address) come from environment variables.
+- Only one project has a case study so far (`aionlinecourse`); the others link to their live sites or have no link.
+- The contact form validates input, keeps it on errors, and has a honeypot spam filter with length limits.
+- Open decisions: which further projects get case studies; real education, training and fun-fact content; real stats.
+
+## Brand Commitments
+
+- Name: Hozaifa Bin Masud (shown as the first name "Hozaifa" in the logo).
+- Existing logo assets: `public/assets/logo.svg`, `logo-white.svg`, `logo-box.svg`, `logo-2.svg`, `logo.png`.
+- Current voice, not yet confirmed as binding: developer-flavoured and lightly playful ("Turning coffee into clean code — one bug at a time...", code-style labels such as `@your-name` and `#contact-with>=me`).
+
+## Evidence on Hand
+
+Present in the repo (not yet individually verified by the owner):
+
+- Project list with screenshots in `public/assets/projects/` and live URLs in `src/lib/data/projects.ts`.
+- One case study with nine screenshots: `public/assets/project-details/aionline/`.
+- Work history entries for AI Power IT and Namespace IT in `src/lib/data/works.ts`.
+- Portrait photos in `public/alternate/` and resume PDFs in `public/`.
+
+Placeholders, confirmed as not real; never use them as proof or build new work around them:
+
+- Fun facts in `src/lib/data.ts`.
+- Education entries and the stats derived from them in `src/lib/education-data.ts`.
+- Trainings and certifications in `src/lib/education-data.ts`.
+
+The owner says much other content is also not final. There are no testimonials, client logos, verified metrics or press. Do not invent any of them; ask before presenting any number or claim as fact.
+
+## Product Principles
+
+1. **Serve both audiences at once.** A client should be able to start a conversation and a recruiter should be able to get the resume from any key page, without hunting.
+2. **Back every claim with a concrete project or role.** AI integration, end-to-end delivery and company experience are shown through specific work, not adjectives or invented numbers.
+3. **Real content only.** Placeholder text is scaffolding; never present it as fact or design around it.
+4. **Degrade honestly while under construction.** Missing pieces (case studies, real stats) fall back to something true, such as a link to the live product, rather than filler.

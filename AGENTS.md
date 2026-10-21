@@ -2,6 +2,8 @@
 
 Personal portfolio site (Next.js 16 App Router, React 19, Tailwind v4) deployed on Vercel. Day-to-day work happens on `develop`; production deploys from `main`.
 
+`PRODUCT.md` records the audiences, positioning and which content is placeholder (fun facts, education, trainings and their stats are not real). Never present placeholder content as fact.
+
 ## Commands
 
 Bun is the package manager (`bun.lock`). Don't use npm/yarn/pnpm, they would add a second lockfile.
