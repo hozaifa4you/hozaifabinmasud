@@ -3,7 +3,8 @@ import { FaCode, FaGithub } from 'react-icons/fa6';
 import { GoArchive } from 'react-icons/go';
 import { HiOutlineStatusOnline } from 'react-icons/hi';
 
-import { ProjectType } from '@/lib/data/projects';
+import { getProjectLink, ProjectType } from '@/lib/data/projects';
+import { cn } from '@/lib/utils';
 
 const ResumeProjectCard = ({
    technologies,
@@ -14,11 +15,28 @@ const ResumeProjectCard = ({
    status,
    shortDesc,
 }: ProjectType) => {
+   const link = getProjectLink({ slug, status, website });
+
    return (
       <div className="border border-text">
          <div className="flex items-center justify-between gap-5 border-b border-b-text p-2 text-white">
-            <h4 className="text-lg font-semibold transition-transform duration-150 ease-in-out hover:underline">
-               <Link href={`/projects/${slug}`}>{title}</Link>
+            <h4
+               className={cn(
+                  'text-lg font-semibold transition-transform duration-150 ease-in-out',
+                  link && 'hover:underline',
+               )}
+            >
+               {link ? (
+                  <Link
+                     href={link.href}
+                     target={link.external ? '_blank' : undefined}
+                     rel={link.external ? 'noopener noreferrer' : undefined}
+                  >
+                     {title}
+                  </Link>
+               ) : (
+                  title
+               )}
             </h4>
             <span>{website}</span>
          </div>

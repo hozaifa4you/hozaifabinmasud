@@ -7,7 +7,8 @@ import { GoArchive } from 'react-icons/go';
 
 import { Tooltip } from '../ui/tooltip';
 import { Button, buttonVariants } from '@/components/ui/button';
-import { ProjectType } from '@/lib/data/projects';
+import { getProjectLink, ProjectType } from '@/lib/data/projects';
+import { cn } from '@/lib/utils';
 
 const ProjectCard = ({
    image,
@@ -20,6 +21,8 @@ const ProjectCard = ({
    code,
    owner,
 }: ProjectType) => {
+   const link = getProjectLink({ slug, status, website });
+
    return (
       <div className="group border border-text transition-colors duration-200 ease-in-out hover:border-primary">
          <div>
@@ -37,9 +40,26 @@ const ProjectCard = ({
             </div>
 
             <div className="p-4">
-               <h3 className="text-2xl font-medium text-text-secondary transition-all duration-200 ease-in-out group-hover:underline">
-                  <Link href={`/projects/${slug}`}>{title}</Link>
-                  <AiOutlineLink className="inline size-4 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100" />
+               <h3
+                  className={cn(
+                     'text-2xl font-medium text-text-secondary transition-all duration-200 ease-in-out',
+                     link && 'group-hover:underline',
+                  )}
+               >
+                  {link ? (
+                     <Link
+                        href={link.href}
+                        target={link.external ? '_blank' : undefined}
+                        rel={link.external ? 'noopener noreferrer' : undefined}
+                     >
+                        {title}
+                     </Link>
+                  ) : (
+                     title
+                  )}
+                  {link && (
+                     <AiOutlineLink className="inline size-4 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100" />
+                  )}
                </h3>
                <p className="py-4">{shortDesc}</p>
 

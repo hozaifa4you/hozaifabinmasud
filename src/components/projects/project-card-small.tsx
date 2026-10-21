@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { buttonVariants } from '../ui/button';
-import { SmallProjectType } from '@/lib/data/projects';
+import { getProjectLink, SmallProjectType } from '@/lib/data/projects';
 
 const ProjectCardSmall = ({
    link,
@@ -10,6 +10,8 @@ const ProjectCardSmall = ({
    tags,
    title,
 }: SmallProjectType) => {
+   const titleLink = getProjectLink({ slug });
+
    return (
       <div className="w-full border border-text">
          <div className="border-b border-b-text p-2">
@@ -18,13 +20,17 @@ const ProjectCardSmall = ({
             </span>
          </div>
          <div className="flex flex-wrap gap-0.5 p-4">
-            <h4 className="mb-4 text-2xl font-medium">
-               <Link
-                  className="text-white transition-all duration-200 ease-in-out hover:text-primary"
-                  href={`/projects/${slug}`}
-               >
-                  {title}
-               </Link>
+            <h4 className="mb-4 text-2xl font-medium text-white">
+               {titleLink ? (
+                  <Link
+                     className="transition-all duration-200 ease-in-out hover:text-primary"
+                     href={titleLink.href}
+                  >
+                     {title}
+                  </Link>
+               ) : (
+                  title
+               )}
             </h4>
 
             <p className="mb-4">{shortDesc}</p>
