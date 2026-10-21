@@ -16,7 +16,15 @@ const eslintConfig = defineConfig([
       },
    },
    eslintPluginPrettierRecommended,
-   globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+   globalIgnores([
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts',
+      // AI editor skills ship vendored, bundled scripts
+      '.claude/**',
+      '.cursor/**',
+   ]),
 ]);
 
 export default eslintConfig;
