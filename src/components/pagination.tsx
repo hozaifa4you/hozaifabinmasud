@@ -33,10 +33,10 @@ const Pagination = ({ isLoading = false }: PaginationProps) => {
       <div className="my-10 flex justify-center">
          {loading ? (
             <button
-               className="bg-primary/10 border-primary flex items-center space-x-2 border px-4 py-2 text-white"
+               className="flex items-center space-x-2 border border-primary bg-primary/10 px-4 py-2 text-white"
                disabled
             >
-               <FaSpinner className="text-primary h-4 w-4 animate-spin" />
+               <FaSpinner className="h-4 w-4 animate-spin text-primary" />
                <span>
                   <span className="text-primary">@</span>loading...
                </span>

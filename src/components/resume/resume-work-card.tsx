@@ -19,7 +19,7 @@ const ResumeWorkCard = ({
    return (
       <div className="flex gap-x-4">
          <div className="max-w-[200px]">
-            <div className="border-text bg-bg-main w-full space-y-2 border p-2">
+            <div className="w-full space-y-2 border border-text bg-bg-main p-2">
                <p>
                   {endDate ?? (
                      <span className="bg-emerald-500 px-2 py-1 text-sm font-semibold text-white/95 uppercase">
@@ -34,7 +34,7 @@ const ResumeWorkCard = ({
             <BoxWithTitle
                title={
                   <div className="flex flex-wrap items-center justify-between gap-2.5">
-                     <h4 className="text-text-secondary text-base font-medium">
+                     <h4 className="text-base font-medium text-text-secondary">
                         {title}{' '}
                      </h4>
                      <Link
@@ -50,9 +50,9 @@ const ResumeWorkCard = ({
                   <div className="space-y-3">
                      <div className="mb-2 flex w-fit flex-wrap items-center gap-2 text-slate-300/50">
                         <p className="leading-none">{type}</p>
-                        <span className="text-primary font-semibold">/</span>
+                        <span className="font-semibold text-primary">/</span>
                         <p className="leading-none">{website}</p>
-                        <span className="text-primary font-semibold">/</span>
+                        <span className="font-semibold text-primary">/</span>
                         <p className="leading-none">{duration}</p>
                      </div>
                      <p>{responsibilities}</p>
@@ -61,7 +61,7 @@ const ResumeWorkCard = ({
                         {skills.slice(0, 6).map((skill) => (
                            <span
                               key={skill}
-                              className="hover:border-primary hover:text-primary bg-text/20 rounded-full px-1.5 py-1 text-xs capitalize transition-colors duration-200 ease-in-out"
+                              className="rounded-full bg-text/20 px-1.5 py-1 text-xs capitalize transition-colors duration-200 ease-in-out hover:border-primary hover:text-primary"
                            >
                               <span className="text-primary">#</span>
                               {skill}

@@ -31,7 +31,7 @@ const Breadcrumb = ({
                      {items.map((item, index) => (
                         <div key={index} className="flex items-center">
                            {index === 0 && (
-                              <span className="text-primary mr-2">/</span>
+                              <span className="mr-2 text-primary">/</span>
                            )}
                            <Link
                               href={item.href}

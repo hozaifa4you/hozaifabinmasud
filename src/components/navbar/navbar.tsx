@@ -34,7 +34,7 @@ const Navbar = () => {
       <header
          id="home"
          className={cn('sticky top-0', {
-            'bg-bg-main shadow-primary z-40 pb-2.5 shadow-xs': isSticky,
+            'z-40 bg-bg-main pb-2.5 shadow-xs shadow-primary': isSticky,
          })}
       >
          <div className="relative container flex items-center justify-between gap-4 pt-8">
@@ -100,7 +100,7 @@ const Navbar = () => {
             </nav>
 
             <div className="fixed top-0 left-5 hidden w-5 flex-col justify-center gap-3 lg:flex">
-               <div className="bg-text mx-auto h-[190px] w-px"></div>
+               <div className="mx-auto h-[190px] w-px bg-text"></div>
                <div>
                   <ul className="flex flex-col gap-2">
                      <li>

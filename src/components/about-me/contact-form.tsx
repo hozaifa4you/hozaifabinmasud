@@ -31,7 +31,7 @@ const ContactForm = () => {
                      name="name"
                   />
                   {state?.errors?.name && state.errors.name.length > 0 && (
-                     <p className="text-primary mt-2 text-sm">
+                     <p className="mt-2 text-sm text-primary">
                         {state.errors.name[0]}
                      </p>
                   )}
@@ -48,7 +48,7 @@ const ContactForm = () => {
                      name="email"
                   />
                   {state?.errors?.email && state.errors.email.length > 0 && (
-                     <p className="text-primary mt-2 text-sm">
+                     <p className="mt-2 text-sm text-primary">
                         {state.errors.email[0]}
                      </p>
                   )}
@@ -66,7 +66,7 @@ const ContactForm = () => {
                   name="subject"
                />
                {state?.errors?.subject && state.errors.subject.length > 0 && (
-                  <p className="text-primary mt-2 text-sm">
+                  <p className="mt-2 text-sm text-primary">
                      {state.errors.subject[0]}
                   </p>
                )}
@@ -84,7 +84,7 @@ const ContactForm = () => {
                   name="message"
                />
                {state?.errors?.message && state.errors.message.length > 0 && (
-                  <p className="text-primary mt-2 text-sm">
+                  <p className="mt-2 text-sm text-primary">
                      {state.errors.message[0]}
                   </p>
                )}

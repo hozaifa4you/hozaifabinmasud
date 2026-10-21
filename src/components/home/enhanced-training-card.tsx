@@ -48,7 +48,7 @@ export function EnhancedTrainingCard({
    status,
 }: TrainingItemProps) {
    return (
-      <div className="project-card hover:border-primary p-4 transition-all duration-300">
+      <div className="project-card p-4 transition-all duration-300 hover:border-primary">
          <div className="mb-4 flex items-start justify-between">
             <div className="flex-1">
                <h3 className="mb-2 font-mono text-base font-bold text-white">
@@ -65,7 +65,7 @@ export function EnhancedTrainingCard({
                   />
                </h3>
                <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-primary text-sm font-medium">
+                  <span className="text-sm font-medium text-primary">
                      {provider}
                   </span>
                   <div className="flex items-center space-x-2 font-mono text-xs text-gray-400">
@@ -84,12 +84,12 @@ export function EnhancedTrainingCard({
                      href={certificate}
                      target="_blank"
                      rel="noopener noreferrer"
-                     className="text-primary flex items-center space-x-2 font-mono text-xs transition-colors hover:text-white"
+                     className="flex items-center space-x-2 font-mono text-xs text-primary transition-colors hover:text-white"
                   >
                      <LuExternalLink size={14} />
                      <span>View Certificate</span>
                   </a>
-                  <div className="text-primary flex items-center space-x-2 font-mono text-xs lg:text-sm">
+                  <div className="flex items-center space-x-2 font-mono text-xs text-primary lg:text-sm">
                      <LuAward size={14} />
                      <span>{rating}</span>
                   </div>
@@ -97,7 +97,7 @@ export function EnhancedTrainingCard({
             </div>
             <button
                onClick={onToggleExpand}
-               className="hover:text-primary ml-4 p-2 text-gray-400 transition-colors"
+               className="ml-4 p-2 text-gray-400 transition-colors hover:text-primary"
                aria-expanded={isExpanded}
                aria-controls={`training-details-${index}`}
             >

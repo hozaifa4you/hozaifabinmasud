@@ -21,7 +21,7 @@ const ProjectCard = ({
    owner,
 }: ProjectType) => {
    return (
-      <div className="border-text hover:border-primary group border transition-colors duration-200 ease-in-out">
+      <div className="group border border-text transition-colors duration-200 ease-in-out hover:border-primary">
          <div>
             <Image
                src={image}
@@ -32,12 +32,12 @@ const ProjectCard = ({
             />
          </div>
          <div>
-            <div className="border-y-text border-y px-1 py-1.5">
+            <div className="border-y border-y-text px-1 py-1.5">
                {technologies.join(', ')}
             </div>
 
             <div className="p-4">
-               <h3 className="text-text-secondary text-2xl font-medium transition-all duration-200 ease-in-out group-hover:underline">
+               <h3 className="text-2xl font-medium text-text-secondary transition-all duration-200 ease-in-out group-hover:underline">
                   <Link href={`/projects/${slug}`}>{title}</Link>
                   <AiOutlineLink className="inline size-4 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100" />
                </h3>

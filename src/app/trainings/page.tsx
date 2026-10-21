@@ -72,7 +72,7 @@ const TrainingsContent = () => {
             </div>
 
             <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
-               <Masonry>
+               <Masonry gutter="10px">
                   {trainingData.map((course, index) => (
                      <div key={index}>
                         <EnhancedTrainingCard
