@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/forms";
+@plugin '@tailwindcss/typography';
+@plugin '@tailwindcss/forms';
 
 @theme {
    --color-bg-main: #282c33;
@@ -49,7 +49,7 @@ section {
 
 /* project details */
 .project-card {
-   @apply border-text hover:border-primary border bg-transparent transition-all duration-300 ease-in-out;
+   @apply border border-text bg-transparent transition-all duration-300 ease-in-out hover:border-primary;
 }
 
 /* Custom styles for react-image-gallery */

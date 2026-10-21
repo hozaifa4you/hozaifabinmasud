@@ -47,7 +47,7 @@ export function EducationCard({
                   {degree}
                </h3>
                <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-primary text-sm font-medium">
+                  <span className="text-sm font-medium text-primary">
                      {institution}
                   </span>
                   <div className="flex items-center space-x-2 font-mono text-xs text-gray-400">
@@ -60,7 +60,7 @@ export function EducationCard({
                      <LuMapPin size={14} />
                      <span>{location}</span>
                   </div>
-                  <div className="text-primary flex items-center space-x-2 font-mono text-xs font-bold">
+                  <div className="flex items-center space-x-2 font-mono text-xs font-bold text-primary">
                      <LuAward size={14} />
                      <span>{grade}</span>
                   </div>
@@ -68,7 +68,7 @@ export function EducationCard({
             </div>
             <button
                onClick={onToggleExpand}
-               className="hover:text-primary ml-4 p-2 text-gray-400 transition-colors"
+               className="ml-4 p-2 text-gray-400 transition-colors hover:text-primary"
                aria-expanded={isExpanded}
                aria-controls={`education-details-${index}`}
             >

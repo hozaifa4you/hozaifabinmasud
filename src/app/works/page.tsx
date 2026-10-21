@@ -20,7 +20,7 @@ const WorksPage = () => {
                {works.map((work) => (
                   <div
                      key={work.id}
-                     className="border-b-primary/30 grid gap-3 border-b pb-10 last:border-b-0 last:pb-0 md:grid-cols-4"
+                     className="grid gap-3 border-b border-b-primary/30 pb-10 last:border-b-0 last:pb-0 md:grid-cols-4"
                   >
                      <div className="md:col-span-1">
                         <div className="text-right text-sm">
@@ -47,7 +47,7 @@ const WorksPage = () => {
                      <div className="md:col-span-3">
                         <h4 className="mb-2.5 text-lg leading-none font-semibold">
                            {work.company}
-                           <span className="text-primary text-xs font-light text-pretty">
+                           <span className="text-xs font-light text-pretty text-primary">
                               (company)
                            </span>
                         </h4>
@@ -57,7 +57,7 @@ const WorksPage = () => {
                            {work.title.toLowerCase().replaceAll(' ', '_')}
                         </h3>
 
-                        <div className="border-text mb-2 flex w-fit flex-wrap items-center gap-0 border">
+                        <div className="mb-2 flex w-fit flex-wrap items-center gap-0 border border-text">
                            <p className="px-3 py-2 leading-none">
                               <span className="font-semibold">
                                  <span className="text-primary">@</span>type:
@@ -65,7 +65,7 @@ const WorksPage = () => {
                               {work.type}
                            </p>
 
-                           <p className="border-l-text border-l px-3 py-2 leading-none">
+                           <p className="border-l border-l-text px-3 py-2 leading-none">
                               <span className="font-semibold">
                                  <span className="text-primary">@</span>website:
                               </span>{' '}

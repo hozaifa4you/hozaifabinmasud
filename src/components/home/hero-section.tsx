@@ -30,7 +30,7 @@ const HeroSection = () => {
       <section id="hero" className="relative overflow-hidden">
          {/* Background Elements */}
          <div className="absolute inset-0 -z-20">
-            <div className="bg-primary/5 absolute top-20 left-10 h-72 w-72 animate-pulse rounded-full blur-3xl"></div>
+            <div className="absolute top-20 left-10 h-72 w-72 animate-pulse rounded-full bg-primary/5 blur-3xl"></div>
             <div className="absolute right-10 bottom-20 h-96 w-96 animate-pulse rounded-full bg-blue-500/5 blur-3xl delay-1000"></div>
          </div>
 
@@ -39,17 +39,17 @@ const HeroSection = () => {
                <div className="space-y-8 lg:col-span-4">
                   {/* Main Heading with Animation */}
                   <div className="space-y-4">
-                     <div className="border-primary/30 bg-primary/5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm">
+                     <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-sm">
                         <span className="relative flex size-2">
-                           <span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-                           <span className="bg-primary relative inline-flex size-2 rounded-full"></span>
+                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+                           <span className="relative inline-flex size-2 rounded-full bg-primary"></span>
                         </span>
-                        <span className="text-primary font-medium">
+                        <span className="font-medium text-primary">
                            Available for hire
                         </span>
                      </div>
 
-                     <h1 className="text-text-secondary text-[32px] leading-tight font-bold md:text-[40px] lg:text-[48px]">
+                     <h1 className="text-[32px] leading-tight font-bold text-text-secondary md:text-[40px] lg:text-[48px]">
                         <span className="text-primary">[</span>
                         {appConfig.APP_NAME_SHORT}
                         <span className="text-primary">]</span>
@@ -57,15 +57,15 @@ const HeroSection = () => {
                         <span className="mt-2 block">
                            Full-Stack{' '}
                            <span className="relative">
-                              <span className="text-primary from-primary bg-gradient-to-r to-blue-400 bg-clip-text font-bold">
+                              <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text font-bold text-primary">
                                  Developer
                               </span>
-                              <span className="from-primary absolute -bottom-2 left-0 h-1 w-full rounded-full bg-gradient-to-r to-blue-400"></span>
+                              <span className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-gradient-to-r from-primary to-blue-400"></span>
                            </span>
                         </span>
                         <span className="mt-2 block text-[24px] md:text-[28px] lg:text-[32px]">
                            &{' '}
-                           <span className="text-primary font-bold">
+                           <span className="font-bold text-primary">
                               AI Savvy
                            </span>
                         </span>
@@ -74,9 +74,9 @@ const HeroSection = () => {
 
                   {/* Description */}
                   <div className="space-y-4">
-                     <p className="text-text text-lg leading-relaxed md:text-xl">
+                     <p className="text-lg leading-relaxed text-text md:text-xl">
                         I engineer{' '}
-                        <span className="text-primary font-semibold">
+                        <span className="font-semibold text-primary">
                            full-stack solutions
                         </span>{' '}
                         where{' '}
@@ -111,14 +111,14 @@ const HeroSection = () => {
                            key={index}
                            className="group flex items-center gap-3"
                         >
-                           <div className="border-primary/30 bg-primary/10 group-hover:bg-primary/20 rounded-lg border p-2 transition-colors duration-200">
-                              <achievement.icon className="text-primary size-5" />
+                           <div className="rounded-lg border border-primary/30 bg-primary/10 p-2 transition-colors duration-200 group-hover:bg-primary/20">
+                              <achievement.icon className="size-5 text-primary" />
                            </div>
                            <div>
                               <div className="text-xl font-bold text-white">
                                  {achievement.label}
                               </div>
-                              <div className="text-text text-sm">
+                              <div className="text-sm text-text">
                                  {achievement.desc}
                               </div>
                            </div>
@@ -139,7 +139,7 @@ const HeroSection = () => {
                         <span className="relative z-10">
                            Let&apos;s Work Together
                         </span>
-                        <div className="bg-primary/20 absolute inset-0 translate-x-[-100%] transition-transform duration-300 group-hover:translate-x-0"></div>
+                        <div className="absolute inset-0 translate-x-[-100%] bg-primary/20 transition-transform duration-300 group-hover:translate-x-0"></div>
                      </Link>
                      <Link
                         href="/resume"
@@ -160,8 +160,8 @@ const HeroSection = () => {
                   <div className="relative flex flex-col items-center">
                      {/* Main Image with Glow Effect */}
                      <div className="group relative">
-                        <div className="from-primary/20 absolute inset-0 rounded-2xl bg-gradient-to-r to-blue-500/20 blur-xl transition-all duration-500 group-hover:blur-2xl"></div>
-                        <div className="border-primary/20 from-primary/5 relative overflow-hidden rounded-2xl border bg-gradient-to-br to-transparent p-1">
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-blue-500/20 blur-xl transition-all duration-500 group-hover:blur-2xl"></div>
+                        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-transparent p-1">
                            <Image
                               src="/alternate/me.png"
                               alt="Hozaifa - Full Stack Developer"
@@ -176,8 +176,8 @@ const HeroSection = () => {
 
                      {/* Floating Elements */}
                      <div className="absolute -top-5 -right-5 animate-bounce delay-300">
-                        <div className="bg-primary/10 border-primary/30 rounded-full border p-3 backdrop-blur-sm">
-                           <FaCode className="text-primary size-6" />
+                        <div className="rounded-full border border-primary/30 bg-primary/10 p-3 backdrop-blur-sm">
+                           <FaCode className="size-6 text-primary" />
                         </div>
                      </div>
 
@@ -197,7 +197,7 @@ const HeroSection = () => {
                            className={buttonVariants({
                               variant: 'outline',
                               className:
-                                 '!text-text bg-bg-main/80 border-primary/40 !font-normal backdrop-blur-sm',
+                                 'border-primary/40 bg-bg-main/80 !font-normal !text-text backdrop-blur-sm',
                            })}
                         >
                            <span className="relative flex size-4">
@@ -208,7 +208,7 @@ const HeroSection = () => {
                            <Tooltip content={appConfig.DESIGNATION}>
                               <Link
                                  href={appConfig.COMPANY_WEBSITE}
-                                 className="text-primary font-semibold transition-colors duration-200 hover:text-white"
+                                 className="font-semibold text-primary transition-colors duration-200 hover:text-white"
                                  target="_blank"
                                  rel="noopener noreferrer"
                               >

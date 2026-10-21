@@ -33,7 +33,7 @@ const Footer = () => {
    ];
 
    return (
-      <footer className="border-text/30 bg-bg-main relative mt-20 border-t">
+      <footer className="relative mt-20 border-t border-text/30 bg-bg-main">
          {/* Background decorative elements */}
          <DotGridRect className="absolute top-10 right-5 opacity-20" />
          <LogoSvg className="absolute bottom-10 left-5 size-[100px] opacity-10" />
@@ -45,7 +45,7 @@ const Footer = () => {
                <div className="lg:col-span-1">
                   <Link
                      href="/"
-                     className="hover:text-primary inline-flex items-center gap-3 text-xl font-bold text-white transition-colors duration-200"
+                     className="inline-flex items-center gap-3 text-xl font-bold text-white transition-colors duration-200 hover:text-primary"
                   >
                      <Image
                         src="/assets/logo-2.svg"
@@ -61,12 +61,12 @@ const Footer = () => {
                      </span>
                   </Link>
 
-                  <p className="text-text mt-4 leading-relaxed">
-                     <span className="text-primary font-semibold">
+                  <p className="mt-4 leading-relaxed text-text">
+                     <span className="font-semibold text-primary">
                         Full-Stack Developer
                      </span>{' '}
                      &
-                     <span className="text-primary font-semibold">
+                     <span className="font-semibold text-primary">
                         {' '}
                         AI Developer
                      </span>{' '}
@@ -77,23 +77,23 @@ const Footer = () => {
                   {/* Contact Info */}
                   <div className="mt-6 space-y-3">
                      <div className="flex items-center gap-3 text-sm">
-                        <FaMapMarkerAlt className="text-primary size-4 flex-shrink-0" />
+                        <FaMapMarkerAlt className="size-4 flex-shrink-0 text-primary" />
                         <span>{appConfig.ADDRESS}</span>
                      </div>
                      <div className="flex items-center gap-3 text-sm">
-                        <FaEnvelope className="text-primary size-4 flex-shrink-0" />
+                        <FaEnvelope className="size-4 flex-shrink-0 text-primary" />
                         <Link
                            href={`mailto:${appConfig.EMAIL}`}
-                           className="hover:text-primary transition-colors duration-200"
+                           className="transition-colors duration-200 hover:text-primary"
                         >
                            {appConfig.EMAIL}
                         </Link>
                      </div>
                      <div className="flex items-center gap-3 text-sm">
-                        <FaPhone className="text-primary size-4 flex-shrink-0" />
+                        <FaPhone className="size-4 flex-shrink-0 text-primary" />
                         <Link
                            href={`tel:${appConfig.PHONE}`}
-                           className="hover:text-primary transition-colors duration-200"
+                           className="transition-colors duration-200 hover:text-primary"
                         >
                            {appConfig.PHONE}
                         </Link>
@@ -103,7 +103,7 @@ const Footer = () => {
 
                {/* Quick Links */}
                <div>
-                  <h3 className="text-text-secondary mb-6 text-lg font-semibold">
+                  <h3 className="mb-6 text-lg font-semibold text-text-secondary">
                      <span className="text-primary">#</span>navigation
                   </h3>
                   <ul className="space-y-3">
@@ -111,7 +111,7 @@ const Footer = () => {
                         <li key={link.href}>
                            <Link
                               href={link.href}
-                              className="text-text hover:text-primary inline-block transform text-sm transition-all duration-200 hover:translate-x-1"
+                              className="inline-block transform text-sm text-text transition-all duration-200 hover:translate-x-1 hover:text-primary"
                            >
                               <span className="text-primary">→ </span>
                               {link.label}
@@ -123,7 +123,7 @@ const Footer = () => {
 
                {/* Services */}
                <div>
-                  <h3 className="text-text-secondary mb-6 text-lg font-semibold">
+                  <h3 className="mb-6 text-lg font-semibold text-text-secondary">
                      <span className="text-primary">#</span>services
                   </h3>
                   <ul className="space-y-3">
@@ -131,7 +131,7 @@ const Footer = () => {
                         <li key={service.label}>
                            <Link
                               href={service.href}
-                              className="text-text hover:text-primary inline-block transform text-sm transition-all duration-200 hover:translate-x-1"
+                              className="inline-block transform text-sm text-text transition-all duration-200 hover:translate-x-1 hover:text-primary"
                            >
                               <span className="text-primary">→ </span>
                               {service.label}
@@ -143,11 +143,11 @@ const Footer = () => {
 
                {/* Social & Newsletter */}
                <div>
-                  <h3 className="text-text-secondary mb-6 text-lg font-semibold">
+                  <h3 className="mb-6 text-lg font-semibold text-text-secondary">
                      <span className="text-primary">#</span>connect
                   </h3>
 
-                  <p className="text-text mb-4 text-sm">
+                  <p className="mb-4 text-sm text-text">
                      Follow me on social media for updates and insights into my
                      development journey.
                   </p>
@@ -158,65 +158,65 @@ const Footer = () => {
                         href={`https://github.com/${appConfig.GITHUB_USERNAME}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border-text/30 hover:border-primary bg-bg-main hover:bg-primary/10 group border p-2 transition-all duration-200"
+                        className="group border border-text/30 bg-bg-main p-2 transition-all duration-200 hover:border-primary hover:bg-primary/10"
                         title="GitHub"
                      >
-                        <FaGithub className="group-hover:text-primary size-5 transition-colors duration-200" />
+                        <FaGithub className="size-5 transition-colors duration-200 group-hover:text-primary" />
                      </Link>
 
                      <Link
                         href={`https://www.linkedin.com/in/${appConfig.LINKEDIN_USERNAME}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border-text/30 hover:border-primary bg-bg-main hover:bg-primary/10 group border p-2 transition-all duration-200"
+                        className="group border border-text/30 bg-bg-main p-2 transition-all duration-200 hover:border-primary hover:bg-primary/10"
                         title="LinkedIn"
                      >
-                        <FaLinkedin className="group-hover:text-primary size-5 transition-colors duration-200" />
+                        <FaLinkedin className="size-5 transition-colors duration-200 group-hover:text-primary" />
                      </Link>
 
                      <Link
                         href={`https://facebook.com/${appConfig.FACEBOOK_USERNAME}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border-text/30 hover:border-primary bg-bg-main hover:bg-primary/10 group border p-2 transition-all duration-200"
+                        className="group border border-text/30 bg-bg-main p-2 transition-all duration-200 hover:border-primary hover:bg-primary/10"
                         title="Facebook"
                      >
-                        <FaFacebookF className="group-hover:text-primary size-5 transition-colors duration-200" />
+                        <FaFacebookF className="size-5 transition-colors duration-200 group-hover:text-primary" />
                      </Link>
 
                      <Link
                         href={`https://x.com/${appConfig.X_USERNAME}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border-text/30 hover:border-primary bg-bg-main hover:bg-primary/10 group border p-2 transition-all duration-200"
+                        className="group border border-text/30 bg-bg-main p-2 transition-all duration-200 hover:border-primary hover:bg-primary/10"
                         title="X (Twitter)"
                      >
-                        <FaXTwitter className="group-hover:text-primary size-5 transition-colors duration-200" />
+                        <FaXTwitter className="size-5 transition-colors duration-200 group-hover:text-primary" />
                      </Link>
 
                      <Link
                         href={`https://www.fiverr.com/${appConfig.FIVERR_USERNAME}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border-text/30 hover:border-primary bg-bg-main hover:bg-primary/10 group border p-2 transition-all duration-200"
+                        className="group border border-text/30 bg-bg-main p-2 transition-all duration-200 hover:border-primary hover:bg-primary/10"
                         title="Fiverr"
                      >
-                        <TbBrandFiverr className="group-hover:text-primary size-5 transition-colors duration-200" />
+                        <TbBrandFiverr className="size-5 transition-colors duration-200 group-hover:text-primary" />
                      </Link>
 
                      <Link
                         href={`https://www.upwork.com/freelancers/~${appConfig.UPWORK_USERNAME}?mp_source=share`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border-text/30 hover:border-primary bg-bg-main hover:bg-primary/10 group border p-2 transition-all duration-200"
+                        className="group border border-text/30 bg-bg-main p-2 transition-all duration-200 hover:border-primary hover:bg-primary/10"
                         title="Upwork"
                      >
-                        <FaUpwork className="group-hover:text-primary size-5 transition-colors duration-200" />
+                        <FaUpwork className="size-5 transition-colors duration-200 group-hover:text-primary" />
                      </Link>
                   </div>
 
                   {/* Status Badge */}
-                  <div className="border-primary/30 bg-primary/5 rounded-none border p-3">
+                  <div className="rounded-none border border-primary/30 bg-primary/5 p-3">
                      <div className="flex items-center gap-2 text-sm">
                         <span className="relative flex size-3">
                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
@@ -231,9 +231,9 @@ const Footer = () => {
             </div>
 
             {/* Bottom Section */}
-            <div className="border-text/20 mt-16 border-t pt-8">
+            <div className="mt-16 border-t border-text/20 pt-8">
                <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-                  <div className="text-text flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-sm text-text">
                      <span>
                         &copy; {currentYear} {appConfig.APP_NAME_SHORT}. All
                         rights reserved.
@@ -243,23 +243,23 @@ const Footer = () => {
                   <div className="flex items-center gap-6 text-sm">
                      <Link
                         href="/privacy-policy"
-                        className="text-text hover:text-primary transition-colors duration-200"
+                        className="text-text transition-colors duration-200 hover:text-primary"
                      >
                         Privacy Policy
                      </Link>
                      <Link
                         href="/terms-of-service"
-                        className="text-text hover:text-primary transition-colors duration-200"
+                        className="text-text transition-colors duration-200 hover:text-primary"
                      >
                         Terms of Service
                      </Link>
                   </div>
 
-                  <div className="text-text flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-sm text-text">
                      <span>Made with</span>
                      <FaHeart className="size-4 animate-pulse text-red-500" />
                      <span>and</span>
-                     <span className="text-primary font-mono">{'<code/>'}</span>
+                     <span className="font-mono text-primary">{'<code/>'}</span>
                   </div>
                </div>
             </div>

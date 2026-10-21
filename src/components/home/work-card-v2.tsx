@@ -6,13 +6,13 @@ import { WorkType } from '@/lib/data/works';
 
 const WorkCardV2 = ({ ...work }: WorkType) => {
    return (
-      <div className="project-card hover:border-primary group p-4 transition-colors">
+      <div className="project-card group p-4 transition-colors hover:border-primary">
          <div className="mb-3 flex items-start justify-between">
             <div>
                <div className="flex items-center space-x-2 text-sm text-gray-400">
                   <LuCalendar size={14} />
                   <span className="font-mono">
-                     <span className="text-primary font-semibold">!</span>[
+                     <span className="font-semibold text-primary">!</span>[
                      {work.startDate} -{' '}
                      {work.endDate ?? (
                         <span className="bg-emerald-500 px-1.5 py-0.5 text-white capitalize">
@@ -33,7 +33,7 @@ const WorkCardV2 = ({ ...work }: WorkType) => {
                      <span className="text-primary">{work.company}</span>
                   </div>
                </div>
-               <div className="border-text mb-2 flex w-fit flex-wrap items-center gap-0 border">
+               <div className="mb-2 flex w-fit flex-wrap items-center gap-0 border border-text">
                   <p className="px-3 py-2 leading-none">
                      <span className="font-semibold">
                         <span className="text-primary">@</span>type:
@@ -41,7 +41,7 @@ const WorkCardV2 = ({ ...work }: WorkType) => {
                      {work.type}
                   </p>
 
-                  <p className="sm:border-l-text border-l px-3 py-2 leading-none">
+                  <p className="border-l px-3 py-2 leading-none sm:border-l-text">
                      <span className="font-semibold">
                         <span className="text-primary">@</span>website:
                      </span>{' '}
@@ -50,7 +50,7 @@ const WorkCardV2 = ({ ...work }: WorkType) => {
                         href={`https://${work.website}`}
                         target="_blank"
                         referrerPolicy="no-referrer"
-                        className="hover:text-primary transition-colors duration-200 ease-in-out"
+                        className="transition-colors duration-200 ease-in-out hover:text-primary"
                      >
                         <BiLinkExternal className="inline" />
                      </Link>
@@ -59,7 +59,7 @@ const WorkCardV2 = ({ ...work }: WorkType) => {
             </div>
             <Link
                href="/works"
-               className="hover:text-primary flex items-center gap-1.5 text-sm text-gray-400 opacity-0 transition-opacity group-hover:opacity-100"
+               className="flex items-center gap-1.5 text-sm text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-primary"
             >
                <span>#more_dets.</span> <LuExternalLink />
             </Link>
@@ -69,7 +69,7 @@ const WorkCardV2 = ({ ...work }: WorkType) => {
             {work.skills.slice(0, 7).map((tech, techIndex) => (
                <span
                   key={techIndex}
-                  className="hover:border-primary hover:text-primary bg-text/20 rounded-full px-1.5 py-1 text-xs capitalize transition-colors duration-200 ease-in-out"
+                  className="rounded-full bg-text/20 px-1.5 py-1 text-xs capitalize transition-colors duration-200 ease-in-out hover:border-primary hover:text-primary"
                >
                   <span className="text-primary">#</span>
                   {tech}

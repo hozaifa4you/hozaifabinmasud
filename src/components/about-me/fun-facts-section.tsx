@@ -15,7 +15,7 @@ const FunFactSection = () => {
                <div className="mt-5 flex flex-wrap gap-4 md:col-span-2">
                   {funFacts.map((fact) => (
                      <p
-                        className="border-text border p-2 leading-none"
+                        className="border border-text p-2 leading-none"
                         key={fact.id}
                         dangerouslySetInnerHTML={{ __html: fact.text }}
                      />

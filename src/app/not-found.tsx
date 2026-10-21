@@ -20,16 +20,16 @@ const NotFoundPage = () => {
                   <div className="mb-8">
                      <h1 className="text-[120px] leading-none font-bold md:text-[160px] lg:text-[200px]">
                         <span className="text-primary">4</span>
-                        <span className="text-text-secondary relative">
+                        <span className="relative text-text-secondary">
                            0
-                           <HiOutlineEmojiSad className="text-primary absolute top-1/2 left-1/2 size-16 -translate-x-1/2 -translate-y-1/2 opacity-80 md:size-20 lg:size-24" />
+                           <HiOutlineEmojiSad className="absolute top-1/2 left-1/2 size-16 -translate-x-1/2 -translate-y-1/2 text-primary opacity-80 md:size-20 lg:size-24" />
                         </span>
                         <span className="text-primary">4</span>
                      </h1>
                   </div>
 
                   <div className="mb-8 space-y-4">
-                     <h2 className="text-text-secondary text-2xl font-semibold md:text-3xl lg:text-4xl">
+                     <h2 className="text-2xl font-semibold text-text-secondary md:text-3xl lg:text-4xl">
                         <span className="text-primary">[</span>
                         Page Not Found
                         <span className="text-primary">]</span>
@@ -37,22 +37,22 @@ const NotFoundPage = () => {
                      <p className="mx-auto max-w-2xl text-lg leading-relaxed md:text-xl">
                         <span className="text-primary">#</span>
                         Oops! It seems like the page you&apos;re looking for has{' '}
-                        <span className="text-primary font-semibold">
+                        <span className="font-semibold text-primary">
                            wandered off
                         </span>{' '}
                         into the digital void.
                      </p>
                      <p className="mx-auto max-w-xl text-base opacity-80">
                         Don&apos;t worry, even the best developers encounter{' '}
-                        <span className="text-primary font-mono">404s</span>.
+                        <span className="font-mono text-primary">404s</span>.
                         Let&apos;s get you back on track!
                      </p>
                   </div>
 
                   <div className="mb-8 inline-block">
-                     <div className="border-text bg-bg-main/50 border backdrop-blur-sm">
-                        <div className="border-b-text border-b p-3">
-                           <span className="text-primary font-mono text-sm">
+                     <div className="border border-text bg-bg-main/50 backdrop-blur-sm">
+                        <div className="border-b border-b-text p-3">
+                           <span className="font-mono text-sm text-primary">
                               ~/error.log
                            </span>
                         </div>
@@ -113,49 +113,49 @@ const NotFoundPage = () => {
                      </Link>
                   </div>
 
-                  <div className="border-text/30 border-t pt-8">
-                     <p className="text-text/80 mb-4 text-sm">
+                  <div className="border-t border-text/30 pt-8">
+                     <p className="mb-4 text-sm text-text/80">
                         <span className="text-primary">#</span>
                         Quick Navigation
                      </p>
                      <div className="flex flex-wrap items-center justify-center gap-3">
                         <Link
                            href="/about-me"
-                           className="hover:text-primary text-sm underline-offset-4 transition-colors duration-200 hover:underline"
+                           className="text-sm underline-offset-4 transition-colors duration-200 hover:text-primary hover:underline"
                         >
                            About Me
                         </Link>
                         <span className="text-text/30">|</span>
                         <Link
                            href="/resume"
-                           className="hover:text-primary text-sm underline-offset-4 transition-colors duration-200 hover:underline"
+                           className="text-sm underline-offset-4 transition-colors duration-200 hover:text-primary hover:underline"
                         >
                            Resume
                         </Link>
                         <span className="text-text/30">|</span>
                         <Link
                            href="/contact"
-                           className="hover:text-primary text-sm underline-offset-4 transition-colors duration-200 hover:underline"
+                           className="text-sm underline-offset-4 transition-colors duration-200 hover:text-primary hover:underline"
                         >
                            Contact
                         </Link>
                         <span className="text-text/30">|</span>
                         <Link
                            href="/works"
-                           className="hover:text-primary text-sm underline-offset-4 transition-colors duration-200 hover:underline"
+                           className="text-sm underline-offset-4 transition-colors duration-200 hover:text-primary hover:underline"
                         >
                            Works
                         </Link>
                      </div>
                   </div>
 
-                  <div className="border-primary/30 bg-primary/5 mt-8 rounded-none border p-4">
+                  <div className="mt-8 rounded-none border border-primary/30 bg-primary/5 p-4">
                      <p className="font-mono text-sm">
                         <span className="text-primary">{'//'} </span>
                         &quot;There are only 10 types of people: those who
                         understand binary and those who don&apos;t.&quot;
                      </p>
-                     <p className="text-text/60 mt-2 text-xs">
+                     <p className="mt-2 text-xs text-text/60">
                         - A classic developer joke while you&apos;re here 😉
                      </p>
                   </div>

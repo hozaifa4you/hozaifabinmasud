@@ -39,7 +39,7 @@ const ContactPage = () => {
                   </div>
                   <div className="md:col-span-1">
                      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1">
-                        <div className="border-text border p-4">
+                        <div className="border border-text p-4">
                            <p className="mb-4 font-bold text-white">
                               Message here!!
                            </p>
@@ -59,7 +59,7 @@ const ContactPage = () => {
                                     <Link
                                        href={`https://github.com/${appConfig.GITHUB_USERNAME}`}
                                        target="_blank"
-                                       className="hover:text-primary transition-all duration-200 ease-in-out"
+                                       className="transition-all duration-200 ease-in-out hover:text-primary"
                                        referrerPolicy="no-referrer"
                                     >
                                        <FaGithub className="size-5" />
@@ -69,7 +69,7 @@ const ContactPage = () => {
                                     <Link
                                        href={`https://www.linkedin.com/in/${appConfig.LINKEDIN_USERNAME}`}
                                        target="_blank"
-                                       className="hover:text-primary transition-all duration-200 ease-in-out"
+                                       className="transition-all duration-200 ease-in-out hover:text-primary"
                                        referrerPolicy="no-referrer"
                                     >
                                        <FaLinkedinIn className="size-5" />
@@ -79,7 +79,7 @@ const ContactPage = () => {
                                     <Link
                                        href={`https://facebook.com/${appConfig.FACEBOOK_USERNAME}`}
                                        target="_blank"
-                                       className="hover:text-primary transition-all duration-200 ease-in-out"
+                                       className="transition-all duration-200 ease-in-out hover:text-primary"
                                     >
                                        <FaFacebookF className="size-5" />
                                     </Link>
@@ -88,7 +88,7 @@ const ContactPage = () => {
                                     <Link
                                        href={`https://x.com/${appConfig.X_USERNAME}`}
                                        target="_blank"
-                                       className="hover:text-primary transition-all duration-200 ease-in-out"
+                                       className="transition-all duration-200 ease-in-out hover:text-primary"
                                     >
                                        <FaXTwitter className="size-5" />
                                     </Link>
@@ -97,7 +97,7 @@ const ContactPage = () => {
                                     <Link
                                        href={`https://www.upwork.com/freelancers/~${appConfig.UPWORK_USERNAME}?mp_source=share`}
                                        target="_blank"
-                                       className="hover:text-primary transition-all duration-200 ease-in-out"
+                                       className="transition-all duration-200 ease-in-out hover:text-primary"
                                     >
                                        <FaUpwork className="size-5" />
                                     </Link>
@@ -106,7 +106,7 @@ const ContactPage = () => {
                                     <Link
                                        href={`https://www.fiverr.com/${appConfig.FIVERR_USERNAME}`}
                                        target="_blank"
-                                       className="hover:text-primary transition-all duration-200 ease-in-out"
+                                       className="transition-all duration-200 ease-in-out hover:text-primary"
                                     >
                                        <TbBrandFiverr className="size-5" />
                                     </Link>
@@ -115,7 +115,7 @@ const ContactPage = () => {
                            </div>
                         </div>
 
-                        <div className="border-text border">
+                        <div className="border border-text">
                            <p className="px-4 pt-4 font-bold text-white">
                               Support me!!
                            </p>
@@ -125,7 +125,7 @@ const ContactPage = () => {
                                  <li className="flex items-center justify-between gap-5">
                                     <div className="flex items-center gap-1.5">
                                        <FaBitcoin className="text-primary" />
-                                       <span className="text-primary font-medium">
+                                       <span className="font-medium text-primary">
                                           Bitcoin
                                        </span>
                                     </div>
@@ -136,7 +136,7 @@ const ContactPage = () => {
                                  <li className="flex items-center justify-between gap-5">
                                     <div className="flex items-center gap-1.5">
                                        <FaEthereum className="text-primary" />
-                                       <span className="text-primary font-medium">
+                                       <span className="font-medium text-primary">
                                           Ethereum
                                        </span>
                                     </div>

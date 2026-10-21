@@ -9,8 +9,8 @@ interface SkillsBoxProps {
 
 const SkillsBox = ({ title, skills }: SkillsBoxProps) => {
    return (
-      <div className="border-text w-full border">
-         <div className="border-b-text border-b p-2">
+      <div className="w-full border border-text">
+         <div className="border-b border-b-text p-2">
             <h4 className="font-semibold text-white">{title}</h4>
          </div>
          <div className="flex flex-wrap gap-0.5 p-2">
@@ -18,7 +18,7 @@ const SkillsBox = ({ title, skills }: SkillsBoxProps) => {
                return (
                   <span
                      key={skill.id}
-                     className="bg-text/20 inline-flex items-center gap-1 rounded-sm px-1 text-sm"
+                     className="inline-flex items-center gap-1 rounded-sm bg-text/20 px-1 text-sm"
                   >
                      <Image
                         src={skill.icon}

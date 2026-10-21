@@ -12,7 +12,7 @@ const ResumeTrainingCard = ({ ...training }: Training) => {
       <div className="border border-gray-600 p-4">
          <h3 className="mb-2 text-sm font-bold text-white">{training.title}</h3>
          <div className="mb-2 flex items-center justify-between">
-            <span className="text-primary text-sm">{training.provider}</span>
+            <span className="text-sm text-primary">{training.provider}</span>
             <span className="text-xs text-gray-400">{training.duration}</span>
          </div>
          <div className="mb-2 text-xs text-gray-400">{training.platform}</div>

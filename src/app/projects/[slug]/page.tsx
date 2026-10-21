@@ -94,24 +94,24 @@ function App() {
 
                {/* Project Info Cards */}
                <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4 lg:mb-12">
-                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
-                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                  <div className="border border-text p-4 transition-all duration-200 ease-in-out hover:border-primary">
+                     <div className="mb-2 font-mono text-xs text-primary lg:text-sm">
                         <span className="text-white">@</span>Role
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
                         {project.role}
                      </div>
                   </div>
-                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
-                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                  <div className="border border-text p-4 transition-all duration-200 ease-in-out hover:border-primary">
+                     <div className="mb-2 font-mono text-xs text-primary lg:text-sm">
                         <span className="text-white">@</span>Duration
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
                         {project.duration}
                      </div>
                   </div>
-                  <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
-                     <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                  <div className="border border-text p-4 transition-all duration-200 ease-in-out hover:border-primary">
+                     <div className="mb-2 font-mono text-xs text-primary lg:text-sm">
                         <span className="text-white">@</span>Team
                      </div>
                      <div className="text-sm font-medium text-white lg:text-base">
@@ -119,8 +119,8 @@ function App() {
                      </div>
                   </div>
                   {project.company && (
-                     <div className="border-text hover:border-primary border p-4 transition-all duration-200 ease-in-out">
-                        <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                     <div className="border border-text p-4 transition-all duration-200 ease-in-out hover:border-primary">
+                        <div className="mb-2 font-mono text-xs text-primary lg:text-sm">
                            <span className="text-white">@</span>Location
                         </div>
                         <div className="text-sm font-medium text-white lg:text-base">
@@ -194,7 +194,7 @@ function App() {
                                  key={index}
                                  className="flex items-center space-x-3"
                               >
-                                 <div className="text-primary flex-shrink-0">
+                                 <div className="flex-shrink-0 text-primary">
                                     *
                                  </div>
                                  <span className="text-sm text-gray-300 lg:text-base">
@@ -230,14 +230,14 @@ function App() {
 
                               return (
                                  <div key={category}>
-                                    <div className="text-primary mb-3 font-mono text-sm lg:mb-4 lg:text-base">
+                                    <div className="mb-3 font-mono text-sm text-primary lg:mb-4 lg:text-base">
                                        {category}
                                     </div>
                                     <div className="flex flex-wrap gap-2 lg:gap-3">
                                        {categoryTechs.map((tech, index) => (
                                           <span
                                              key={index}
-                                             className="tech-tag border-text text-text font-main hover:border-primary hover:text-primary flex items-center gap-x-1.5 border bg-transparent px-3 py-1.5 whitespace-nowrap transition-all duration-300 ease-in-out"
+                                             className="tech-tag flex items-center gap-x-1.5 border border-text bg-transparent px-3 py-1.5 font-main whitespace-nowrap text-text transition-all duration-300 ease-in-out hover:border-primary hover:text-primary"
                                           >
                                              <Image
                                                 src={tech.img}
@@ -272,7 +272,7 @@ function App() {
                            <div className="project-card mt-5 p-4 lg:p-8">
                               <div className="space-y-4 lg:space-y-6">
                                  <div>
-                                    <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                    <div className="mb-2 font-mono text-xs text-primary lg:text-sm">
                                        <span className="text-white">@</span>Name
                                     </div>
                                     <div className="text-sm font-medium text-white lg:text-base">
@@ -280,7 +280,7 @@ function App() {
                                     </div>
                                  </div>
                                  <div>
-                                    <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                    <div className="mb-2 font-mono text-xs text-primary lg:text-sm">
                                        <span className="text-white">@</span>
                                        Address
                                     </div>
@@ -289,7 +289,7 @@ function App() {
                                     </div>
                                  </div>
                                  <div>
-                                    <div className="text-primary mb-2 font-mono text-xs lg:text-sm">
+                                    <div className="mb-2 font-mono text-xs text-primary lg:text-sm">
                                        <span className="text-white">@</span>
                                        Website
                                     </div>
@@ -297,7 +297,7 @@ function App() {
                                        href={project.company.website}
                                        target="_blank"
                                        rel="noopener noreferrer"
-                                       className="text-primary text-xs break-all transition-colors hover:text-white lg:text-sm"
+                                       className="text-xs break-all text-primary transition-colors hover:text-white lg:text-sm"
                                     >
                                        {project.company.website}
                                     </a>
@@ -322,7 +322,7 @@ function App() {
                                     key={index}
                                     className="flex items-center space-x-3"
                                  >
-                                    <div className="bg-primary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded lg:h-10 lg:w-10">
+                                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded bg-primary lg:h-10 lg:w-10">
                                        <span className="font-mono text-xs font-bold text-black lg:text-sm">
                                           {member.name
                                              .split(' ')
@@ -361,7 +361,7 @@ function App() {
                                  {project.status.text}
                               </span>
                            </div>
-                           <div className="text-primary font-mono text-xs lg:text-sm">
+                           <div className="font-mono text-xs text-primary lg:text-sm">
                               {project.status.type}
                            </div>
                         </div>

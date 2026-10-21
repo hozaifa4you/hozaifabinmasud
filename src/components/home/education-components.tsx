@@ -7,7 +7,7 @@ interface BulletItemProps {
 export function BulletItem({ children }: BulletItemProps) {
    return (
       <div className="flex items-start space-x-3">
-         <div className="bg-primary mt-2 h-2 w-2 flex-shrink-0 rounded-full"></div>
+         <div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary"></div>
          <span className="text-sm text-gray-300 lg:text-base">{children}</span>
       </div>
    );
@@ -20,8 +20,8 @@ interface StatItemProps {
 
 export function StatItem({ value, label }: StatItemProps) {
    return (
-      <div className="project-info-card border-primary border p-6 text-center">
-         <div className="text-primary mb-2 font-mono text-2xl font-bold lg:text-3xl">
+      <div className="project-info-card border border-primary p-6 text-center">
+         <div className="mb-2 font-mono text-2xl font-bold text-primary lg:text-3xl">
             {value}
          </div>
          <div className="text-xs text-gray-400 lg:text-sm">
@@ -56,7 +56,7 @@ interface SectionSubheaderProps {
 
 export function SectionSubheader({ title }: SectionSubheaderProps) {
    return (
-      <h4 className="text-primary mb-3 font-mono text-sm lg:text-base">
+      <h4 className="mb-3 font-mono text-sm text-primary lg:text-base">
          {title}
       </h4>
    );

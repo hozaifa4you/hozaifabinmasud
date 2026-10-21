@@ -26,8 +26,8 @@ const ProjectsPage = () => {
          </div>
 
          <div className="section-padding container">
-            <h4 className="text-text-secondary text-[26px] font-medium md:text-[28px] lg:text-[32px]">
-               <span className="text-primary text-pretty">#</span>small-projects
+            <h4 className="text-[26px] font-medium text-text-secondary md:text-[28px] lg:text-[32px]">
+               <span className="text-pretty text-primary">#</span>small-projects
             </h4>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">

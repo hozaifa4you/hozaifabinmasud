@@ -26,7 +26,5 @@ const funFacts = [
    { id: 7, text: 'I don’t have any siblings' },
 ];
 
-
-
 export { funFacts };
 export type FunFactType = (typeof funFacts)[number];

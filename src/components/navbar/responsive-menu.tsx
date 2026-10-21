@@ -17,7 +17,7 @@ const ResponsiveMenu = ({ isOpen, setIsOpen, items }: ResponsiveMenuProps) => {
    return (
       <div
          className={cn(
-            'bg-bg-main shadow-primary fixed inset-x-0 top-0 -z-50 w-full -translate-y-96 transform opacity-0 shadow-2xs transition-all duration-150 ease-in-out',
+            'fixed inset-x-0 top-0 -z-50 w-full -translate-y-96 transform bg-bg-main opacity-0 shadow-2xs shadow-primary transition-all duration-150 ease-in-out',
             {
                'z-50 translate-y-0 opacity-100': isOpen,
             },

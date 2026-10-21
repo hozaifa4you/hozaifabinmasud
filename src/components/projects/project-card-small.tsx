@@ -11,8 +11,8 @@ const ProjectCardSmall = ({
    title,
 }: SmallProjectType) => {
    return (
-      <div className="border-text w-full border">
-         <div className="border-b-text border-b p-2">
+      <div className="w-full border border-text">
+         <div className="border-b border-b-text p-2">
             <span className="block max-w-full truncate text-sm">
                {tags.join(', ')}
             </span>
@@ -20,7 +20,7 @@ const ProjectCardSmall = ({
          <div className="flex flex-wrap gap-0.5 p-4">
             <h4 className="mb-4 text-2xl font-medium">
                <Link
-                  className="hover:text-primary text-white transition-all duration-200 ease-in-out"
+                  className="text-white transition-all duration-200 ease-in-out hover:text-primary"
                   href={`/projects/${slug}`}
                >
                   {title}

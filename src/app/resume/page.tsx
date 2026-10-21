@@ -55,7 +55,7 @@ const ResumePage = () => {
             {/* header */}
             <div className="mb-10 grid gap-5 md:grid-cols-2">
                <div>
-                  <h1 className="text-text-secondary flex items-center gap-1 text-[26px] font-semibold">
+                  <h1 className="flex items-center gap-1 text-[26px] font-semibold text-text-secondary">
                      <Image
                         src="/assets/logo.svg"
                         alt={appConfig.APP_NAME}
@@ -66,7 +66,7 @@ const ResumePage = () => {
                      <span>{appConfig.AUTHOR}</span>
                   </h1>
 
-                  <p className="text-primary mt-2.5 text-base font-medium">
+                  <p className="mt-2.5 text-base font-medium text-primary">
                      {appConfig.DESIGNATION}
                   </p>
 
@@ -97,7 +97,7 @@ const ResumePage = () => {
                         <Link
                            key={info.label}
                            href={info.url ?? '#'}
-                           className="border-text text-text hover:border-primary hover:text-primary flex items-center gap-1.5 border px-1.5 py-1 transition-colors duration-150 ease-in-out"
+                           className="flex items-center gap-1.5 border border-text px-1.5 py-1 text-text transition-colors duration-150 ease-in-out hover:border-primary hover:text-primary"
                            target="_blank"
                            referrerPolicy="no-referrer"
                         >
@@ -111,7 +111,7 @@ const ResumePage = () => {
             {/* summary */}
             <BoxWithTitle
                title={
-                  <h4 className="text-text-secondary text-base font-medium">
+                  <h4 className="text-base font-medium text-text-secondary">
                      Objective
                   </h4>
                }
@@ -126,14 +126,14 @@ const ResumePage = () => {
 
             <div className="mt-4 grid gap-4 md:grid-cols-3">
                <div className="space-y-4 md:col-span-2">
-                  <div className="border-text flex items-center justify-between border p-2">
+                  <div className="flex items-center justify-between border border-text p-2">
                      <h3
                         className="font-semibold text-white"
                         title="3.9 years experiences"
                      >
                         Works
                      </h3>
-                     <Link href="/works" className="text-primary font-medium">
+                     <Link href="/works" className="font-medium text-primary">
                         {calculateYearsFromDate('01/8/2021')} years -{'>'}
                      </Link>
                   </div>
@@ -143,10 +143,10 @@ const ResumePage = () => {
                         <ResumeWorkCard key={work.id} {...work} />
                      ))}
 
-                     <div className="bg-text absolute inset-y-0 left-12 -z-10 w-px"></div>
+                     <div className="absolute inset-y-0 left-12 -z-10 w-px bg-text"></div>
                   </div>
 
-                  <div className="border-text flex items-center justify-between border p-2">
+                  <div className="flex items-center justify-between border border-text p-2">
                      <h3
                         className="font-semibold text-white"
                         title="3.9 years experiences"
@@ -155,7 +155,7 @@ const ResumePage = () => {
                      </h3>
                      <Link
                         href="/projects"
-                        className="text-primary font-medium"
+                        className="font-medium text-primary"
                         target="_blank"
                      >
                         {projects.length}+ projects -{'>'}
@@ -173,7 +173,7 @@ const ResumePage = () => {
                   <div className="w-full space-y-4">
                      <BoxWithTitle
                         title={
-                           <h4 className="text-text-secondary text-base font-medium">
+                           <h4 className="text-base font-medium text-text-secondary">
                               Languages
                            </h4>
                         }
@@ -205,7 +205,7 @@ const ResumePage = () => {
 
                      <BoxWithTitle
                         title={
-                           <h4 className="text-text-secondary text-base font-medium">
+                           <h4 className="text-base font-medium text-text-secondary">
                               Programmings
                            </h4>
                         }
@@ -224,7 +224,7 @@ const ResumePage = () => {
 
                      <BoxWithTitle
                         title={
-                           <h4 className="text-text-secondary text-base font-medium">
+                           <h4 className="text-base font-medium text-text-secondary">
                               Skills
                            </h4>
                         }
@@ -246,7 +246,7 @@ const ResumePage = () => {
 
                      <BoxWithTitle
                         title={
-                           <h4 className="text-text-secondary text-base font-medium">
+                           <h4 className="text-base font-medium text-text-secondary">
                               Tools
                            </h4>
                         }
@@ -268,7 +268,7 @@ const ResumePage = () => {
 
             <div className="grid gap-4 md:grid-cols-2">
                <div className="mb-5 space-y-4">
-                  <div className="border-text mt-4 flex items-center justify-between border p-2">
+                  <div className="mt-4 flex items-center justify-between border border-text p-2">
                      <h3
                         className="font-semibold text-white"
                         title="3.9 years experiences"
@@ -277,7 +277,7 @@ const ResumePage = () => {
                      </h3>
                      <Link
                         href="/educations"
-                        className="text-primary font-medium"
+                        className="font-medium text-primary"
                         target="_blank"
                      >
                         9+ educations -{'>'}
@@ -295,7 +295,7 @@ const ResumePage = () => {
                   ))}
                </div>
                <div className="space-y-4">
-                  <div className="border-text mt-4 flex items-center justify-between border p-2">
+                  <div className="mt-4 flex items-center justify-between border border-text p-2">
                      <h3
                         className="font-semibold text-white"
                         title="3.9 years experiences"
@@ -305,7 +305,7 @@ const ResumePage = () => {
                      <Link
                         href="/trainings"
                         target="_blank"
-                        className="text-primary font-medium"
+                        className="font-medium text-primary"
                      >
                         15+ trainings -{'>'}
                      </Link>
