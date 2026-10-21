@@ -102,6 +102,19 @@ const ContactForm = () => {
                   {pending ? 'Sending...' : 'Send'}
                </span>
             </Button>
+
+            {state?.message && (
+               <p
+                  role="status"
+                  className={
+                     state.success
+                        ? 'text-sm text-text-secondary'
+                        : 'text-sm text-primary'
+                  }
+               >
+                  {state.message}
+               </p>
+            )}
          </form>
       </>
    );

@@ -12,19 +12,31 @@ export const contactAction = async (prevState: unknown, newState: FormData) => {
       message: newState.get('message'),
    };
 
-   const response = await fetch(`${appConfig.APP_URL}/api/contact`, {
-      method: 'POST',
-      headers: {
-         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-   });
+   try {
+      const response = await fetch(`${appConfig.APP_URL}/api/contact`, {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(data),
+      });
 
-   const result = await response.json();
-   if (!response.ok) {
+      if (response.status === 422) {
+         return {
+            success: false,
+            errors: await response.json(),
+         };
+      }
+
+      if (!response.ok) {
+         throw new Error(`Contact API responded with ${response.status}`);
+      }
+   } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
       return {
          success: false,
-         errors: result,
+         message: 'Something went wrong. Please try again later.',
       };
    }
 
