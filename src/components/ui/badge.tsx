@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 
+/** Static, non-interactive tag. Colours follow the syntax roles in DESIGN.md. */
 export const Badge = ({
    text,
    variant = 'default',
@@ -9,23 +10,20 @@ export const Badge = ({
 }) => (
    <span
       className={cn(
-         'inline-flex cursor-pointer items-center rounded-full px-3 py-1 text-xs font-medium duration-200 not-only-of-type:transition-all hover:scale-105',
+         'inline-flex items-center gap-1.5 border px-2 py-0.5 font-mono text-xs leading-5',
          {
-            'bg-primary/15 text-primary': variant === 'default',
-            'border border-cyan-500/30 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300':
-               variant === 'accent',
-            'border border-purple-500/30 bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300':
-               variant === 'gradient',
-            'border border-emerald-500/30 bg-emerald-500/20 text-emerald-300':
+            'border-primary/40 bg-primary/10 text-primary-soft':
+               variant === 'default' || variant === 'gradient',
+            'border-info/40 bg-info/10 text-info': variant === 'accent',
+            'border-success/40 bg-success/10 text-success':
                variant === 'active',
-            'border border-blue-500/30 bg-blue-500/20 text-blue-300':
-               variant === 'done',
+            'border-line bg-bg-raised text-text': variant === 'done',
          },
       )}
    >
       {variant === 'active' && (
-         <span className="mr-1 block size-1.5 animate-pulse rounded-full bg-emerald-500"></span>
-      )}{' '}
+         <span aria-hidden className="size-1.5 rounded-full bg-success" />
+      )}
       {text}
    </span>
 );

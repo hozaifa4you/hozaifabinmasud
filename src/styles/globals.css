@@ -1,36 +1,163 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 
+/* Fonts come from next/font variables set on <html> in the root layout */
+@theme inline {
+   --font-sans:
+      var(--font-fira-sans), ui-sans-serif, system-ui, -apple-system,
+      'Segoe UI', sans-serif;
+   --font-mono:
+      var(--font-fira-code), ui-monospace, SFMono-Regular, Menlo, Consolas,
+      monospace;
+}
+
 @theme {
+   /* Surfaces, darkest to lightest: sidebar, editor, line highlight */
+   --color-bg-sunken: #21252b;
    --color-bg-main: #282c33;
-   --color-primary: #c778dd;
+   --color-bg-raised: #2c313a;
+   --color-line: #3e4451;
+   --color-line-strong: #747c8a;
+
+   /* Text */
    --color-text: #abb2bf;
-   --color-text-secondary: #fff;
-   --font-main: var(--font-main);
+   --color-text-secondary: #e8eaee;
+   --color-strong: #e8eaee;
+   --color-muted: #9298a5;
+
+   /* Syntax colours as roles */
+   --color-primary: #c778dd;
+   --color-primary-soft: #d49be6;
+   --color-primary-ink: #1e2127;
+   --color-success: #98c379;
+   --color-danger: #e87d86;
+   --color-info: #61afef;
+   --color-warning: #e5c07b;
+
+   /* Type scale beyond Tailwind's defaults (xs 12, sm 14, base 16, 2xl 24) */
+   --text-ui: 0.8125rem; /* 13px: file names, tabs */
+   --text-ui--line-height: 1.5;
+   --text-control: 0.9375rem; /* 15px: buttons, inputs, lists */
+   --text-control--line-height: 1.45;
+   --text-body: 1.0625rem; /* 17px: reading paragraphs */
+   --text-body--line-height: 1.65;
+   --text-lead: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem);
+   --text-lead--line-height: 1.35;
+   --text-headline: clamp(1.75rem, 1.3rem + 1.4vw, 2.375rem);
+   --text-headline--line-height: 1.15;
+   --text-headline--letter-spacing: -0.02em;
+   --text-display: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+   --text-display--line-height: 1.04;
+   --text-display--letter-spacing: -0.03em;
+
+   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+   --animate-rise: rise 520ms var(--ease-out-expo) both;
+   --animate-wipe: wipe 420ms var(--ease-out-expo) both;
+
+   @keyframes rise {
+      from {
+         opacity: 0;
+         transform: translateY(8px);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes wipe {
+      from {
+         opacity: 0.4;
+         clip-path: inset(0 100% 0 0);
+      }
+      to {
+         opacity: 1;
+         clip-path: inset(0);
+      }
+   }
 }
 
 @utility container {
    margin-inline: auto;
-   padding-inline: 10px;
-   max-width: 1030px;
+   padding-inline: 1.25rem;
+   max-width: 1120px;
 }
 
-/* Custom scrollbar */
+@layer base {
+   html {
+      color-scheme: dark;
+      background-color: var(--color-bg-main);
+      scrollbar-color: var(--color-line) var(--color-bg-sunken);
+   }
+
+   body {
+      @apply bg-bg-main text-text antialiased;
+   }
+
+   ::selection {
+      background-color: color-mix(
+         in srgb,
+         var(--color-primary) 38%,
+         transparent
+      );
+      color: var(--color-strong);
+   }
+
+   input,
+   textarea {
+      caret-color: var(--color-primary);
+   }
+
+   a {
+      text-underline-offset: 0.22em;
+      text-decoration-thickness: 1px;
+   }
+
+   :focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+   }
+
+   /* Land anchored sections below the sticky header */
+   [id] {
+      scroll-margin-top: 5rem;
+   }
+
+   @media (prefers-reduced-motion: no-preference) {
+      html {
+         scroll-behavior: smooth;
+      }
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      *,
+      ::before,
+      ::after {
+         animation-duration: 0.01ms !important;
+         animation-iteration-count: 1 !important;
+         transition-duration: 0.01ms !important;
+      }
+   }
+}
+
+/* Scrollbar (WebKit); Firefox uses scrollbar-color on html */
 ::-webkit-scrollbar {
-   width: 8px;
+   width: 10px;
+   height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-   background: #1e2227;
+   background: var(--color-bg-sunken);
 }
 
 ::-webkit-scrollbar-thumb {
-   background: var(--color-primary);
-   border-radius: 4px;
+   background: var(--color-line);
+   border: 2px solid var(--color-bg-sunken);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-   background: #b366d1;
+   background: var(--color-line-strong);
 }
 
 /* Section padding */
@@ -38,17 +165,14 @@
    @apply py-[50px];
 }
 
-* {
-   @apply scroll-smooth;
-}
-
+/* Clip decorative overflow sideways without creating a scroll container */
 section {
-   overflow: hidden;
+   overflow-x: clip;
 }
 
 /* project details */
 .project-card {
-   @apply border border-text bg-transparent transition-all duration-300 ease-in-out hover:border-primary;
+   @apply border border-line bg-transparent transition-colors duration-300 ease-out-expo hover:border-primary;
 }
 
 /* Custom styles for react-image-gallery */
@@ -59,7 +183,7 @@ section {
 .custom-gallery .image-gallery-slide img {
    max-height: 75vh !important;
    object-fit: contain;
-   border: 1px solid #abb2bf;
+   border: 1px solid var(--color-line);
 }
 
 @media (max-width: 768px) {
@@ -69,35 +193,32 @@ section {
 }
 
 .custom-gallery .image-gallery-thumbnails-wrapper {
-   background: rgba(40, 44, 51, 0.9);
-   backdrop-filter: blur(16px);
+   background: var(--color-bg-sunken);
    margin-top: 2rem;
    padding: 1rem;
-   border: 1px solid #abb2bf;
+   border: 1px solid var(--color-line);
 }
 
 .custom-gallery .image-gallery-thumbnail {
-   border: 1px solid #abb2bf;
-   transition: all 0.3s ease;
+   border: 1px solid var(--color-line);
+   transition: border-color 0.3s var(--ease-out-expo);
 }
 
-.custom-gallery .image-gallery-thumbnail.active {
-   border-color: var(--color-primary);
-}
-
+.custom-gallery .image-gallery-thumbnail.active,
 .custom-gallery .image-gallery-thumbnail:hover {
    border-color: var(--color-primary);
 }
 
 .custom-gallery .image-gallery-left-nav,
 .custom-gallery .image-gallery-right-nav {
-   background: rgba(40, 44, 51, 0.8);
-   backdrop-filter: blur(16px);
-   color: var(--color-text-secondary);
+   background: var(--color-bg-sunken);
+   color: var(--color-strong);
    font-size: 1.5rem;
    padding: 1rem;
-   transition: all 0.3s ease;
-   border: 1px solid #abb2bf;
+   transition:
+      color 0.3s var(--ease-out-expo),
+      border-color 0.3s var(--ease-out-expo);
+   border: 1px solid var(--color-line);
 }
 
 @media (min-width: 768px) {
@@ -115,14 +236,13 @@ section {
 }
 
 .custom-gallery .image-gallery-description {
-   background: rgba(40, 44, 51, 0.9);
-   backdrop-filter: blur(16px);
-   color: var(--color-text-secondary);
+   background: var(--color-bg-sunken);
+   color: var(--color-strong);
    padding: 1rem 1.5rem;
    margin-top: 1.5rem;
    font-weight: 500;
-   border: 1px solid #abb2bf;
-   font-family: 'Fira Code', monospace;
+   border: 1px solid var(--color-line);
+   font-family: var(--font-mono);
    font-size: 14px;
 }
 

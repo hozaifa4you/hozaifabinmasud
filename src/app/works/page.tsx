@@ -32,7 +32,7 @@ const WorksPage = () => {
                               {work.endDate ? (
                                  work.endDate.toLowerCase().replaceAll(' ', '_')
                               ) : (
-                                 <span className="bg-emerald-500 px-1 py-0.5 text-white uppercase">
+                                 <span className="bg-success px-1 py-0.5 text-white uppercase">
                                     {work.status}
                                  </span>
                               )}

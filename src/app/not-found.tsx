@@ -60,7 +60,7 @@ const NotFoundPage = () => {
                            <div className="space-y-2 text-sm">
                               <div>
                                  <span className="text-primary">Error:</span>{' '}
-                                 <span className="text-red-400">HTTP 404</span>
+                                 <span className="text-danger">HTTP 404</span>
                               </div>
                               <div>
                                  <span className="text-primary">Status:</span>{' '}
@@ -78,7 +78,7 @@ const NotFoundPage = () => {
                                  <span className="text-primary">
                                     Suggestion:
                                  </span>{' '}
-                                 <span className="text-green-400">
+                                 <span className="text-success">
                                     Navigate to homepage
                                  </span>
                               </div>

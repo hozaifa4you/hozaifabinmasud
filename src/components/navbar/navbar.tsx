@@ -1,113 +1,126 @@
 'use client';
 
 import Link from 'next/link';
-import { ReactNode, useEffect, useState } from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { LuDownload, LuMenu, LuX } from 'react-icons/lu';
 
 import { ResponsiveMenu } from './responsive-menu';
 import { Logo } from '@/components/navbar/logo';
+import { buttonVariants } from '@/components/ui/button';
+import { useActiveSection } from '@/hooks/use-active-section';
 import { useMenu } from '@/hooks/use-menu';
+import { RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
-type NavbarProps = {
-   // Rendered on the server so it can read non-public env vars
-   sidebar: ReactNode;
-};
-
-const Navbar = ({ sidebar }: NavbarProps) => {
-   const [isSticky, setIsSticky] = useState(false);
-   const { lgMenu, mdMenu, mobileMenu } = useMenu();
-   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const Navbar = () => {
+   const [isScrolled, setIsScrolled] = useState(false);
+   const [isMenuOpen, setIsMenuOpen] = useState(false);
+   const toggleRef = useRef<HTMLButtonElement>(null);
+   const { items, isHomePage } = useMenu();
+   // The hero is observed too, so no nav item is active at the top of the page
+   const activeId = useActiveSection(
+      [
+         'home',
+         ...items.flatMap((item) => (item.sectionId ? [item.sectionId] : [])),
+      ],
+      isHomePage,
+   );
+   // On the homepage's first screen the hero explorer is the navigation;
+   // the header links appear once it scrolls away
+   const linksHidden = isHomePage && (activeId === null || activeId === 'home');
 
    useEffect(() => {
-      const handleScroll = () => {
-         setIsSticky(window.scrollY > 50);
-      };
-
-      window.addEventListener('scroll', handleScroll);
-
-      return () => {
-         window.removeEventListener('scroll', handleScroll);
-      };
+      const handleScroll = () => setIsScrolled(window.scrollY > 8);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
    }, []);
+
+   // Escape and the toggle return focus to the button; following a link does not
+   const closeMenu = useCallback(() => {
+      setIsMenuOpen(false);
+      toggleRef.current?.focus();
+   }, []);
+   const navigateFromMenu = useCallback(() => setIsMenuOpen(false), []);
 
    return (
       <header
-         id="home"
-         className={cn('sticky top-0', {
-            'z-40 bg-bg-main pb-2.5 shadow-xs shadow-primary': isSticky,
-         })}
+         className={cn(
+            'sticky top-0 z-50 border-b bg-bg-main transition-colors duration-300 ease-out-expo',
+            isScrolled || isMenuOpen ? 'border-line' : 'border-transparent',
+         )}
       >
-         <div className="relative container flex items-center justify-between gap-4 pt-8">
+         <div className="container flex h-16 items-center justify-between gap-6">
             <Logo />
 
-            <nav className="flex items-center gap-8">
-               <menu className="flex items-center gap-5">
-                  {lgMenu.items.map((item) => (
-                     <li
-                        key={item.id}
-                        className="group hidden transition duration-200 ease-in-out lg:block"
-                     >
-                        <Link href={item.link}>
-                           <span className="text-primary group-hover:font-medium">
-                              {item.sign}
-                           </span>
-                           <span className="group-hover:font-medium group-hover:text-white">
-                              {item.name}
-                           </span>
-                        </Link>
-                     </li>
-                  ))}
-
-                  {mdMenu.items.map((item) => (
-                     <li
-                        key={item.id}
-                        className="group hidden transition duration-200 ease-in-out md:block lg:hidden"
-                     >
-                        <Link href={item.link}>
-                           <span className="text-primary group-hover:font-medium">
-                              {item.sign}
-                           </span>
-                           <span className="group-hover:font-medium group-hover:text-white">
-                              {item.name}
-                           </span>
-                        </Link>
-                     </li>
-                  ))}
-
-                  {mobileMenu.items.map((item) => (
-                     <li
-                        key={item.id}
-                        className="group transition duration-200 ease-in-out md:hidden"
-                     >
-                        <Link href={item.link}>
-                           <span className="text-primary group-hover:font-medium">
-                              {item.sign}
-                           </span>
-                           <span className="group-hover:font-medium group-hover:text-white">
-                              {item.name}
-                           </span>
-                        </Link>
-                     </li>
-                  ))}
-               </menu>
-
-               <button
-                  onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-                  className="cursor-pointer lg:hidden"
+            <nav aria-label="Primary" className="hidden items-center lg:flex">
+               <ul
+                  className={cn(
+                     'flex items-center transition-[opacity,visibility] duration-300 ease-out-expo',
+                     linksHidden && 'invisible opacity-0',
+                  )}
                >
-                  <GiHamburgerMenu className="size-5" />
-               </button>
+                  {items.map((item) => {
+                     const isActive = item.sectionId === activeId;
+                     return (
+                        <li key={item.href}>
+                           <Link
+                              href={item.href}
+                              aria-current={isActive ? 'location' : undefined}
+                              className={cn(
+                                 'relative inline-flex h-10 items-center px-3 font-mono text-sm transition-colors duration-200 hover:text-strong',
+                                 isActive ? 'text-strong' : 'text-text',
+                              )}
+                           >
+                              {item.name}
+                              <span
+                                 aria-hidden
+                                 className={cn(
+                                    'absolute inset-x-3 bottom-1 h-px origin-left bg-primary transition-transform duration-300 ease-out-expo',
+                                    isActive ? 'scale-x-100' : 'scale-x-0',
+                                 )}
+                              />
+                           </Link>
+                        </li>
+                     );
+                  })}
+               </ul>
+               <a
+                  href={RESUME_PDF}
+                  download
+                  className={cn(
+                     buttonVariants({ variant: 'default', size: 'sm' }),
+                     'ml-4 font-mono',
+                  )}
+               >
+                  <LuDownload aria-hidden />
+                  resume.pdf
+               </a>
             </nav>
 
-            {sidebar}
-
-            <ResponsiveMenu
-               isOpen={isMobileMenuOpen}
-               setIsOpen={setIsMobileMenuOpen}
-               items={mobileMenu.responsiveItems ?? []}
-            />
+            <button
+               ref={toggleRef}
+               type="button"
+               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+               aria-expanded={isMenuOpen}
+               aria-controls="mobile-menu"
+               onClick={() => setIsMenuOpen((open) => !open)}
+               className={cn(
+                  buttonVariants({ variant: 'ghost', size: 'icon' }),
+                  'size-11 lg:hidden [&_svg]:size-5',
+               )}
+            >
+               {isMenuOpen ? <LuX aria-hidden /> : <LuMenu aria-hidden />}
+            </button>
          </div>
+
+         <ResponsiveMenu
+            id="mobile-menu"
+            isOpen={isMenuOpen}
+            onClose={closeMenu}
+            onNavigate={navigateFromMenu}
+            items={items}
+            activeId={activeId}
+         />
       </header>
    );
 };

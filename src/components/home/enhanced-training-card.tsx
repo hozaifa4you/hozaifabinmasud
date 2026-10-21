@@ -68,14 +68,14 @@ export function EnhancedTrainingCard({
                   <span className="text-sm font-medium text-primary">
                      {provider}
                   </span>
-                  <div className="flex items-center space-x-2 font-mono text-xs text-gray-400">
+                  <div className="flex items-center space-x-2 font-mono text-xs text-muted">
                      <LuCalendar size={14} />
                      <span>{duration}</span>
                   </div>
                </div>
                <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-xs text-gray-300">{platform}</span>
-                  <span className="text-xs text-gray-400">
+                  <span className="text-xs text-text">{platform}</span>
+                  <span className="text-xs text-muted">
                      Completed: {completedDate}
                   </span>
                </div>
@@ -97,7 +97,7 @@ export function EnhancedTrainingCard({
             </div>
             <button
                onClick={onToggleExpand}
-               className="ml-4 p-2 text-gray-400 transition-colors hover:text-primary"
+               className="ml-4 p-2 text-muted transition-colors hover:text-primary"
                aria-expanded={isExpanded}
                aria-controls={`training-details-${index}`}
             >
@@ -109,7 +109,7 @@ export function EnhancedTrainingCard({
             </button>
          </div>
 
-         <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-400">
+         <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted">
             {description}
          </p>
 
@@ -118,7 +118,7 @@ export function EnhancedTrainingCard({
             {skills.map((skill, skillIndex) => (
                <span
                   key={skillIndex}
-                  className="tech-tag rounded-full border border-gray-200/30 px-1 py-0.5 text-xs"
+                  className="tech-tag rounded-full border border-line px-1 py-0.5 text-xs"
                >
                   <span className="text-primary">#</span>
                   {skill}
