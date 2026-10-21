@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-21T16:06:13Z",
+  "title": "Design System: Hozaifa Bin Masud — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Syntax Orchid",
+        "canonical": "#C778DD",
+        "tonalRamp": [
+          "oklch(15% 0.092 318.6)",
+          "oklch(26% 0.139 318.6)",
+          "oklch(37% 0.164 318.6)",
+          "oklch(48% 0.164 318.6)",
+          "oklch(59% 0.164 318.6)",
+          "oklch(70% 0.152 318.6)",
+          "oklch(82% 0.107 318.6)",
+          "oklch(95% 0.034 318.6)"
+        ]
+      },
+      "bg-main": {
+        "role": "neutral",
+        "displayName": "Editor Charcoal",
+        "canonical": "#282C33",
+        "tonalRamp": [
+          "oklch(15% 0.008 261.7)",
+          "oklch(26% 0.012 261.7)",
+          "oklch(37% 0.014 261.7)",
+          "oklch(48% 0.014 261.7)",
+          "oklch(59% 0.014 261.7)",
+          "oklch(70% 0.013 261.7)",
+          "oklch(82% 0.009 261.7)",
+          "oklch(95% 0.003 261.7)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Comment Gray",
+        "canonical": "#ABB2BF",
+        "tonalRamp": [
+          "oklch(15% 0.011 263)",
+          "oklch(26% 0.017 263)",
+          "oklch(37% 0.020 263)",
+          "oklch(48% 0.020 263)",
+          "oklch(59% 0.020 263)",
+          "oklch(70% 0.018 263)",
+          "oklch(82% 0.013 263)",
+          "oklch(95% 0.004 263)"
+        ]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Cursor White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "oklch(15% 0.000 0)",
+          "oklch(26% 0.000 0)",
+          "oklch(37% 0.000 0)",
+          "oklch(48% 0.000 0)",
+          "oklch(59% 0.000 0)",
+          "oklch(70% 0.000 0)",
+          "oklch(82% 0.000 0)",
+          "oklch(95% 0.000 0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name line only; 32px → 40px → 48px at md/lg."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headers after an orchid #; 26px → 28px → 32px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and project titles in Cursor White."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs in Comment Gray; hero lead at 18–20px."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Breadcrumbs, form labels, footer links; 12px for badges."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hero-glow",
+        "value": "filter: blur(24px) over a rgba(199, 120, 221, 0.2) gradient; blur(40px) on hover",
+        "purpose": "The only sanctioned glow, behind the hero portrait."
+      },
+      {
+        "name": "header-underglow",
+        "value": "0 1px 2px 0 #C778DD",
+        "purpose": "Thin orchid line under the sticky header once scrolled."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-standard",
+        "value": "300ms ease-in-out",
+        "purpose": "Buttons and input labels."
+      },
+      {
+        "name": "state-quick",
+        "value": "200ms ease-in-out",
+        "purpose": "Links, nav items, card frames, badges."
+      },
+      {
+        "name": "status-pulse",
+        "value": "animate-ping / animate-pulse",
+        "purpose": "Status dots only (available, live)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "masonry-1",
+        "value": "750px"
+      },
+      {
+        "name": "masonry-2",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Primary call to action: orchid frame, white label, orchid tint on hover.",
+      "html": "<button class=\"ds-btn-outline\">Let&apos;s Work Together</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; padding: 8px 16px; max-height: 37px; border: 1px solid; border-radius: 0; font-family: 'Fira Code', monospace; font-weight: 500; font-size: 16px; line-height: 1; cursor: pointer; transition: all 0.3s ease-in-out; border-color: var(--color-primary, #C778DD); background: transparent; color: var(--color-text-secondary, #FFFFFF); } .ds-btn-outline:hover { background: rgba(199, 120, 221, 0.2); }"
+    },
+    {
+      "name": "Default Button",
+      "kind": "button",
+      "refersTo": "button-default",
+      "description": "Secondary action: gray frame and label that turn white over a gray tint.",
+      "html": "<button class=\"ds-btn-default\">Download Resume</button>",
+      "css": ".ds-btn-default { display: inline-flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; padding: 8px 16px; max-height: 37px; border: 1px solid; border-radius: 0; font-family: 'Fira Code', monospace; font-weight: 500; font-size: 16px; line-height: 1; cursor: pointer; transition: all 0.3s ease-in-out; border-color: var(--color-text, #ABB2BF); background: transparent; color: var(--color-text, #ABB2BF); } .ds-btn-default:hover { border-color: var(--color-text-secondary, #FFFFFF); color: var(--color-text-secondary, #FFFFFF); background: rgba(171, 178, 191, 0.2); }"
+    },
+    {
+      "name": "Link Button",
+      "kind": "button",
+      "refersTo": "button-link",
+      "description": "Frameless text link beside section headers.",
+      "html": "<a class=\"ds-btn-link\" href=\"#\">#show_more ~&gt;</a>",
+      "css": ".ds-btn-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; font-family: 'Fira Code', monospace; font-weight: 500; font-size: 16px; line-height: 1; color: var(--color-text-secondary, #FFFFFF); text-decoration: none; transition: color 0.3s ease-in-out; } .ds-btn-link:hover { color: var(--color-primary, #C778DD); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Square framed field with a floating label that lifts over the border.",
+      "html": "<div class=\"ds-field\"><input class=\"ds-input\" id=\"ds-name\" placeholder=\" \" /><label class=\"ds-label\" for=\"ds-name\"><span class=\"ds-accent\">@</span>your-name</label></div>",
+      "css": ".ds-field { position: relative; width: 280px; } .ds-input { display: block; width: 100%; box-sizing: border-box; appearance: none; border: 1px solid var(--color-text, #ABB2BF); border-radius: 0; background: transparent; padding: 16px 10px 10px; font-family: 'Fira Code', monospace; font-size: 14px; color: var(--color-text, #ABB2BF); outline: none; } .ds-input:focus { border-color: var(--color-text-secondary, #FFFFFF); } .ds-label { position: absolute; left: 4px; top: 8px; z-index: 1; padding: 0 8px; background: var(--color-bg-main, #282C33); font-family: 'Fira Code', monospace; font-size: 14px; color: var(--color-text, #ABB2BF); transform: translateY(-16px) scale(0.75); transform-origin: left; transition: all 0.3s; pointer-events: none; } .ds-input:placeholder-shown + .ds-label { top: 50%; transform: translateY(-50%) scale(1); } .ds-input:focus + .ds-label { top: 6px; transform: translateY(-16px) scale(0.75); color: var(--color-text-secondary, #FFFFFF); font-weight: 500; } .ds-accent { color: var(--color-primary, #C778DD); }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Pill tag: orchid text on a 15% orchid tint.",
+      "html": "<span class=\"ds-badge\">Next.js</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 9999px; background: rgba(199, 120, 221, 0.15); color: var(--color-primary, #C778DD); font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 500; transition: transform 0.2s; cursor: default; } .ds-badge:hover { transform: scale(1.05); }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Square framed card: cover, framed technology row, title, description; frame turns orchid on hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-cover\"></div><div class=\"ds-card-tech\">Laravel, NextJs, GraphQL, MySQL</div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\">Aionlinecourse.com</h3><p class=\"ds-card-desc\">AI ML learning and project selling platform.</p></div></article>",
+      "css": ".ds-card { width: 300px; border: 1px solid var(--color-text, #ABB2BF); background: transparent; color: var(--color-text, #ABB2BF); font-family: 'Fira Code', monospace; transition: border-color 0.2s ease-in-out; } .ds-card:hover { border-color: var(--color-primary, #C778DD); } .ds-card-cover { height: 140px; background: rgba(171, 178, 191, 0.2); } .ds-card-tech { border-top: 1px solid var(--color-text, #ABB2BF); border-bottom: 1px solid var(--color-text, #ABB2BF); padding: 6px 4px; font-size: 14px; } .ds-card-body { padding: 16px; } .ds-card-title { margin: 0; font-size: 24px; font-weight: 500; color: var(--color-text-secondary, #FFFFFF); } .ds-card:hover .ds-card-title { text-decoration: underline; } .ds-card-desc { margin: 16px 0 0; font-size: 16px; line-height: 1.5; }"
+    },
+    {
+      "name": "Navigation Item",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Lowercase item led by an orchid #; label turns white on hover.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\"><span class=\"ds-nav-sign\">#</span>home</a><a class=\"ds-nav-link\" href=\"#\"><span class=\"ds-nav-sign\">#</span>projects</a><a class=\"ds-nav-link\" href=\"#\"><span class=\"ds-nav-sign\">#</span>contact</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 20px; font-family: 'Fira Code', monospace; font-size: 16px; } .ds-nav-link { color: var(--color-text, #ABB2BF); text-decoration: none; transition: color 0.2s ease-in-out; } .ds-nav-sign { color: var(--color-primary, #C778DD); } .ds-nav-link:hover { color: var(--color-text-secondary, #FFFFFF); font-weight: 500; }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Signature pattern: orchid #, section name, then a 1px orchid rule to the right.",
+      "html": "<div class=\"ds-section-header\"><h2 class=\"ds-section-title\"><span class=\"ds-section-sign\">#</span>projects<sup class=\"ds-section-count\">11+</sup></h2><span class=\"ds-section-rule\"></span></div>",
+      "css": ".ds-section-header { display: flex; align-items: center; gap: 16px; width: 640px; font-family: 'Fira Code', monospace; } .ds-section-title { margin: 0; font-size: 32px; font-weight: 500; line-height: 1.25; color: var(--color-text-secondary, #FFFFFF); white-space: nowrap; } .ds-section-sign, .ds-section-count { color: var(--color-primary, #C778DD); } .ds-section-count { font-size: 18px; } .ds-section-rule { display: block; height: 1px; width: 100%; max-width: 510px; background: var(--color-primary, #C778DD); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Dark-Theme Editor",
+    "overview": "The site reads like a file open in a One Dark code editor late at night. A charcoal canvas, comment-gray body text, white for what matters, and one orchid accent that behaves like syntax highlighting: it marks the token, never the paragraph. Every word is set in Fira Code, and structure comes from thin gray frames and code punctuation (an orchid `#` before headings, `@` before labels, `/` in breadcrumbs, `<~>` on action buttons, `>=` inside headings) rather than from color blocks, shadows or imagery.\n\nThe mood is calm and precise, playful-technical, and confident and minimal at once. The play lives in the copy and the glyphs (\"Turning coffee into clean code — one bug at a time...\"); the layout itself stays quiet, square and exact, like well-formatted code. Density is moderate: generous vertical rhythm between sections, compact text inside frames.\n\nConfirmed rejections: hues outside the palette (Tailwind grays, cyan, emerald, purple-to-pink gradients, blue glows), drop shadows and lifted surfaces, and rounded frames or media. Where the current code still has them, they are drift to converge on, not precedent.",
+    "keyCharacteristics": [
+      "One typeface (Fira Code) for everything; hierarchy from size and weight only.",
+      "Four colors plus their opacities; orchid is a highlight, not a fill.",
+      "1px frames separate surfaces; hover turns the frame orchid.",
+      "Square corners everywhere except status dots and pills.",
+      "Code glyphs (`#`, `@`, `/`, `<~>`) as the signature ornament."
+    ],
+    "rules": [
+      {
+        "name": "The Syntax Highlight Rule",
+        "body": "Orchid marks tokens, edges and states. It never fills an area at more than 20% opacity, and long passages of text are never orchid.",
+        "section": "colors"
+      },
+      {
+        "name": "The Opacity, Not a New Hue Rule",
+        "body": "When a quieter or tinted variant is needed, use an existing token at reduced opacity (`text` at 20–30%, `primary` at 5–20%). Never introduce a new hue from the Tailwind palette.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Typeface Rule",
+        "body": "Everything is Fira Code. Never use the `font-mono` utility: it resolves to the system monospace stack (`ui-monospace, SFMono-Regular, Menlo, Consolas…`), not Fira Code. It currently appears about 35 times in the code; that is drift.",
+        "section": "typography"
+      },
+      {
+        "name": "The Frame, Not Float Rule",
+        "body": "A surface that needs separation gets a 1px frame or a tint, not a shadow. The tooltip's drop shadow (`0 10px 25px rgba(0,0,0,0.4)`) and the hero's blue glow are drift; the sticky header's orchid underglow reads as a line and stays.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Frame Rule",
+        "body": "If it has an edge, the edge is a 1px line with square corners. Roundness means \"this is a status or a tag\", nothing else.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** keep the palette to the four tokens plus opacities: `text` at 30% for quiet frames, `primary` at 10–20% for tints.",
+      "**Do** prefix section titles with an orchid `#`, labels with `@` and paths with `/`; add `<~>` to action labels.",
+      "**Do** separate surfaces with 1px frames and switch the frame to Syntax Orchid on hover or active.",
+      "**Do** set every word in Fira Code and build hierarchy from size and weight (400 / 500 / 700).",
+      "**Do** keep transitions short and functional: 200–300ms ease-in-out on color and border.",
+      "**Do** keep corners square; use full rounding only for status dots and pill badges."
+    ],
+    "donts": [
+      "**Don't** introduce Tailwind palette hues (gray-300 to gray-600, cyan, emerald, purple-to-pink gradients, blue glows); the existing ones in the breadcrumb, project details, badges and hero are drift.",
+      "**Don't** use the `font-mono` utility; it swaps Fira Code for the system monospace stack.",
+      "**Don't** add drop shadows or lift; the hero portrait glow is the only sanctioned glow.",
+      "**Don't** round frames, panels or media.",
+      "**Don't** fill large areas or long text with Syntax Orchid."
+    ]
+  }
+}

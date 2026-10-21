@@ -42,6 +42,7 @@ There is no test suite.
 
 ## Styling and formatting
 
+- `DESIGN.md` is the visual spec: four colors plus their opacities, Fira Code only, square 1px frames, flat surfaces. It lists existing code that drifts from it (Tailwind gray/cyan/emerald hues, `font-mono`, rounded media, shadows); don't copy those patterns into new UI.
 - Tailwind v4 is configured in CSS only (no `tailwind.config`): theme tokens live in the `@theme` block of `src/styles/globals.css` (`bg-bg-main`, `text-primary`, `text-text`, `text-text-secondary`), along with a custom `container` utility capped at 1030px.
 - Prettier: 3-space indent, single quotes. Imports are sorted by `@trivago/prettier-plugin-sort-imports` (packages, blank line, then local). Tailwind classes are sorted by `prettier-plugin-tailwindcss`, which reads the theme from `globals.css` via `tailwindStylesheet`.
 
