@@ -1,3 +1,5 @@
+import { hasProjectDetails } from './project-details';
+
 const projects: ProjectType[] = [
    {
       id: 1,
@@ -258,4 +260,26 @@ export interface ProjectType {
    };
 }
 const projectCount = projects.length;
-export { projects, smallProjects, projectCount };
+
+type ProjectLink = { href: string; external: boolean };
+
+// Detail page when one exists, otherwise the live site; null means no link
+const getProjectLink = ({
+   slug,
+   status,
+   website,
+}: {
+   slug: string;
+   status?: ProjectType['status'];
+   website?: string;
+}): ProjectLink | null => {
+   if (hasProjectDetails(slug)) {
+      return { href: `/projects/${slug}`, external: false };
+   }
+   if (status === 'live' && website) {
+      return { href: `https://${website}`, external: true };
+   }
+   return null;
+};
+
+export { projects, smallProjects, projectCount, getProjectLink };

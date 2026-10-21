@@ -4,12 +4,18 @@ import 'server-only';
 
 import { appConfig } from '@/config/app.config';
 
+const getField = (formData: FormData, key: string) => {
+   const value = formData.get(key);
+   return typeof value === 'string' ? value : '';
+};
+
 export const contactAction = async (prevState: unknown, newState: FormData) => {
-   const data = {
-      name: newState.get('name'),
-      email: newState.get('email'),
-      subject: newState.get('subject'),
-      message: newState.get('message'),
+   // Returned on failure so the form can refill what the visitor typed
+   const fields = {
+      name: getField(newState, 'name'),
+      email: getField(newState, 'email'),
+      subject: getField(newState, 'subject'),
+      message: getField(newState, 'message'),
    };
 
    try {
@@ -18,13 +24,17 @@ export const contactAction = async (prevState: unknown, newState: FormData) => {
          headers: {
             'Content-Type': 'application/json',
          },
-         body: JSON.stringify(data),
+         body: JSON.stringify({
+            ...fields,
+            botField: getField(newState, 'bot-field'),
+         }),
       });
 
       if (response.status === 422) {
          return {
             success: false,
             errors: await response.json(),
+            fields,
          };
       }
 
@@ -37,6 +47,7 @@ export const contactAction = async (prevState: unknown, newState: FormData) => {
       return {
          success: false,
          message: 'Something went wrong. Please try again later.',
+         fields,
       };
    }
 

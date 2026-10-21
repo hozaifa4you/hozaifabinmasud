@@ -166,4 +166,8 @@ const getProjectDetails = (slug: string) => {
    return projectDetails.find((project) => project.slug === slug);
 };
 
-export { projectDetails, getProjectDetails };
+const hasProjectDetails = (slug: string) => {
+   return projectDetails.some((project) => project.slug === slug);
+};
+
+export { projectDetails, getProjectDetails, hasProjectDetails };
