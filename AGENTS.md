@@ -19,7 +19,7 @@ bun audit
 
 There is no test suite.
 
-**Windows line endings:** the repo stores LF, but with `core.autocrlf=true` files check out as CRLF and `bun run lint` reports a `Delete ␍` error on every line. To see only real problems, run `bunx eslint . --rule 'prettier/prettier: [error, {endOfLine: auto}]'`.
+**Line endings:** `.gitattributes` forces LF on every OS (except `*.cmd`/`*.bat`), because Prettier enforces LF and reports every CRLF line as a lint error. If a working copy still has CRLF files, re-check them out rather than reformatting.
 
 ## Version constraints
 
@@ -53,4 +53,4 @@ There is no test suite.
 
 ## AI tooling in the repo
 
-`.claude/` and `.cursor/` contain the vendored "impeccable" design skill with its agents and hooks. ESLint and Prettier ignore these folders; don't hand-edit them. `.claude/settings.local.json` runs the skill's design check after Edit/Write on UI files.
+`.claude/` and `.cursor/` contain the vendored "impeccable" design skill with its agents and hooks. ESLint and Prettier ignore these folders; don't hand-edit them. The shared `.claude/settings.json` runs the skill's design check after Edit/Write on UI files; `.claude/settings.local.json` is gitignored for personal settings.
