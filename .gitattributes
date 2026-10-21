@@ -1,0 +1,7 @@
+# Store and check out text files with LF on every OS, so Prettier
+# (endOfLine: lf) and shell scripts work on Windows with core.autocrlf
+* text=auto eol=lf
+
+# Windows batch files need CRLF
+*.cmd text eol=crlf
+*.bat text eol=crlf
