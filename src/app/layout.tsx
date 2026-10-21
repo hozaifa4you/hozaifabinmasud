@@ -5,6 +5,7 @@ import { Fira_Code } from 'next/font/google';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar/navbar';
+import { SocialSidebar } from '@/components/navbar/social-sidebar';
 import { MaintenanceNotice } from '@/components/ui/maintenance-notice';
 import { appConfig } from '@/config/app.config';
 import '@/styles/globals.css';
@@ -30,7 +31,7 @@ export default function RootLayout({
          <body
             className={`bg-bg-main text-text antialiased ${firaCode.className}`}
          >
-            <Navbar />
+            <Navbar sidebar={<SocialSidebar />} />
             {/* Maintenance notice for first-time visitors */}
             <MaintenanceNotice />
             {children}
