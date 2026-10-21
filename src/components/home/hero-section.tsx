@@ -169,7 +169,7 @@ const HeroSection = () => {
                               height={386}
                               quality={100}
                               className="rounded-xl transition-transform duration-500 group-hover:scale-105"
-                              priority
+                              preload
                            />
                         </div>
                      </div>

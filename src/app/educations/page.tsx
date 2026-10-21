@@ -45,7 +45,7 @@ const EduAndTrainingsPage = () => {
                   className="mt-10"
                   columnsCountBreakPoints={{ 750: 1, 900: 2 }}
                >
-                  <Masonry>
+                  <Masonry gutter="10px">
                      {[...educationData, ...educationData].map((edu, index) => (
                         <EducationCard
                            key={index}

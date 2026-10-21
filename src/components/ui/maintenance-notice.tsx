@@ -1,28 +1,31 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 
 import { buttonVariants } from './button';
 
-export function MaintenanceNotice() {
-   const [open, setOpen] = useState(false);
+const STORAGE_KEY = 'maintenance_notice_dismissed';
 
-   useEffect(() => {
-      // Only show if not already dismissed
-      if (
-         typeof window !== 'undefined' &&
-         !localStorage.getItem('maintenance_notice_dismissed')
-      ) {
-         setOpen(true);
-      }
-   }, []);
+const subscribe = (callback: () => void) => {
+   window.addEventListener('storage', callback);
+   return () => window.removeEventListener('storage', callback);
+};
+
+export function MaintenanceNotice() {
+   const [closed, setClosed] = useState(false);
+   // Only show if not already dismissed; never render on the server
+   const dismissed = useSyncExternalStore(
+      subscribe,
+      () => localStorage.getItem(STORAGE_KEY) !== null,
+      () => true,
+   );
 
    const handleClose = () => {
-      setOpen(false);
-      localStorage.setItem('maintenance_notice_dismissed', '1');
+      setClosed(true);
+      localStorage.setItem(STORAGE_KEY, '1');
    };
 
-   if (!open) return null;
+   if (dismissed || closed) return null;
 
    return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">

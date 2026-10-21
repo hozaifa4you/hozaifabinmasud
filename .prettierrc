@@ -3,6 +3,7 @@
    "singleQuote": true,
    "tabWidth": 3,
    "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+   "tailwindStylesheet": "./src/styles/globals.css",
    "printWidth": 80,
    "importOrder": ["^@?\\w", "^[.@/]"],
    "importOrderSeparation": true,

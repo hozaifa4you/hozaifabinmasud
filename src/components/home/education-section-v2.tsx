@@ -50,7 +50,7 @@ function EducationTrainingSectionV2() {
 
             {activeTab === 'educations' && (
                <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
-                  <Masonry>
+                  <Masonry gutter="10px">
                      {educationData.map((edu, index) => (
                         <EducationCard
                            key={index}
@@ -66,7 +66,7 @@ function EducationTrainingSectionV2() {
 
             {activeTab === 'trainings' && (
                <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
-                  <Masonry>
+                  <Masonry gutter="10px">
                      {trainingData.slice(0, 3).map((course, index) => (
                         <EnhancedTrainingCard
                            key={index}

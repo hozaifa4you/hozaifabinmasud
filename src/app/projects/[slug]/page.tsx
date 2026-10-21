@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { LuX } from 'react-icons/lu';
 import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
+import 'react-image-gallery/styles/image-gallery.css';
 
 import { Breadcrumb, BreadcrumbItem } from '@/components/breadcrumb';
 import { ContentHeader } from '@/components/home/content-header';
