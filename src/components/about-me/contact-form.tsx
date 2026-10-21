@@ -18,6 +18,19 @@ const ContactForm = () => {
             me
          </h4>
          <form action={action} className="grid gap-4">
+            {/* Honeypot: off-screen for people, but bots tend to fill every field */}
+            <div aria-hidden="true" className="absolute left-[-10000px]">
+               <label>
+                  Leave this field empty
+                  <input
+                     type="text"
+                     name="bot-field"
+                     tabIndex={-1}
+                     autoComplete="off"
+                  />
+               </label>
+            </div>
+
             <div className="grid gap-4 sm:grid-cols-2">
                <div>
                   <Input
@@ -29,6 +42,7 @@ const ContactForm = () => {
                      }
                      autoComplete="off"
                      name="name"
+                     defaultValue={state?.fields?.name}
                   />
                   {state?.errors?.name && state.errors.name.length > 0 && (
                      <p className="mt-2 text-sm text-primary">
@@ -46,6 +60,7 @@ const ContactForm = () => {
                         </span>
                      }
                      name="email"
+                     defaultValue={state?.fields?.email}
                   />
                   {state?.errors?.email && state.errors.email.length > 0 && (
                      <p className="mt-2 text-sm text-primary">
@@ -64,6 +79,7 @@ const ContactForm = () => {
                      </span>
                   }
                   name="subject"
+                  defaultValue={state?.fields?.subject}
                />
                {state?.errors?.subject && state.errors.subject.length > 0 && (
                   <p className="mt-2 text-sm text-primary">
@@ -82,6 +98,7 @@ const ContactForm = () => {
                   }
                   className="resize-none"
                   name="message"
+                  defaultValue={state?.fields?.message}
                />
                {state?.errors?.message && state.errors.message.length > 0 && (
                   <p className="mt-2 text-sm text-primary">
