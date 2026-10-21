@@ -27,7 +27,7 @@ const works: WorkType[] = [
    },
    {
       id: 2,
-      company: 'Namespace It',
+      company: 'Namespace IT',
       title: 'Junior Software Engineer',
       startDate: 'Dec 2023',
       status: 'present',
