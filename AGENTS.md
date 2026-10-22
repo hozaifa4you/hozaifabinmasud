@@ -40,7 +40,7 @@ There is no test suite.
 - **Config** comes from env vars mapped in `src/config/app.config.ts` (see `.env.example`). Client components only receive `NEXT_PUBLIC_*` values; every other key is `undefined` in the browser bundle. Social links come from `getSocialLinks()` in `src/lib/links.ts`, which reads non-public vars, so call it only from server components (`RESUME_PDF` there is safe anywhere).
 - **Contact flow:** `ContactForm` (client, `useActionState`) → server action `src/lib/action.ts` → `POST ${APP_URL}/api/contact` → `src/app/api/contact/route.ts` validates with zod (422 returns `fieldErrors`) and sends through `src/lib/nodemailer.ts`. Because the action calls the API over HTTP, `APP_URL` must be the deployed URL in production. Mail is sent from `SMTP_EMAIL` with the visitor as `replyTo`; visitor input is escaped with `escapeHtml` from `src/lib/utils.ts`. The off-screen `bot-field` input is a honeypot: the action forwards it as `botField`, and the route answers 200 without sending when it is filled. On failure the action returns the submitted `fields`, which the form uses as `defaultValue`s so React 19's automatic form reset doesn't wipe what the visitor typed.
 - `src/components/ui/` holds shadcn-style primitives built with `class-variance-authority` and `cn()` (`src/lib/utils.ts`). `@/*` maps to `src/*`.
-- Fun-fact texts in `src/lib/data.ts` are trusted HTML strings rendered with `dangerouslySetInnerHTML`.
+- Fun facts in `src/lib/data.ts` are placeholder (not real) and are not rendered anywhere; keep them off the site until the owner supplies real ones.
 
 ## Styling and formatting
 

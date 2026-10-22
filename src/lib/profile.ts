@@ -94,7 +94,7 @@ const SKILL_NAMES: Record<string, string> = {
    wordpress: 'WordPress',
    openai: 'OpenAI',
    langchain: 'LangChain',
-   pinecone: 'Pinecone',
+   vectordb: 'Vector databases',
 };
 
 export const getSkillName = (key: string) => SKILL_NAMES[key] ?? key;
@@ -111,7 +111,8 @@ const TECH_NAMES: Record<string, string> = {
    'Drizzle-ORM': 'Drizzle ORM',
    AntD: 'Ant Design',
    'PDF.Js': 'PDF.js',
-   VectorDB: 'Vector DB',
+   VectorDB: 'Vector databases',
+   'Vector DB': 'Vector databases',
    'JS & TS': 'TypeScript',
    'Lemon Squeeze': 'Lemon Squeezy',
    Ts: 'TypeScript',

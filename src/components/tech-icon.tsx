@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { CSSProperties } from 'react';
 import { IconType } from 'react-icons';
-import { LuDatabase } from 'react-icons/lu';
+import { LuDatabase, LuFileText, LuRoute } from 'react-icons/lu';
 import {
    SiDiscorddotjs,
    SiDrizzle,
@@ -54,7 +54,6 @@ const TECH_ICONS: Record<string, TechIconSource> = {
    OpenAI: { kind: 'mask', src: '/icons/openai.svg' },
    // LangChain's brand colour is a near-black teal, so it takes the text colour
    LangChain: { kind: 'glyph', Icon: SiLangchain },
-   Pinecone: { kind: 'glyph', Icon: LuDatabase, generic: true },
    'Vector databases': { kind: 'glyph', Icon: LuDatabase, generic: true },
    Git: { kind: 'image', src: '/icons/git.svg' },
    Docker: { kind: 'image', src: '/icons/docker.svg' },
@@ -72,7 +71,28 @@ const TECH_ICONS: Record<string, TechIconSource> = {
    Stripe: { kind: 'glyph', Icon: SiStripe, color: '#635bff' },
    'Lemon Squeezy': { kind: 'glyph', Icon: SiLemonsqueezy, color: '#ffc233' },
    'discord.js': { kind: 'glyph', Icon: SiDiscorddotjs, color: '#5865f2' },
-   'Vector DB': { kind: 'glyph', Icon: LuDatabase, generic: true },
+   // The rest of the inventory on /about-me
+   C: { kind: 'image', src: '/icons/c.svg' },
+   'C++': { kind: 'image', src: '/icons/cpp.svg' },
+   SCSS: { kind: 'image', src: '/icons/scss.svg' },
+   Firebase: { kind: 'image', src: '/icons/firebase.svg' },
+   Svelte: { kind: 'image', src: '/icons/svelte.svg' },
+   'T3 Stack': { kind: 'mask', src: '/icons/t3.svg' },
+   MUI: { kind: 'image', src: '/icons/mui.svg' },
+   Mantine: { kind: 'image', src: '/icons/mantine.svg' },
+   Blueprint: { kind: 'mask', src: '/icons/blueprintui.svg' },
+   PrimeReact: { kind: 'image', src: '/icons/primereact.svg' },
+   Jest: { kind: 'image', src: '/icons/jest.svg' },
+   'Passport.js': { kind: 'image', src: '/icons/passportjs.svg' },
+   TypeORM: { kind: 'image', src: '/icons/typeorm.png' },
+   'Socket.IO': { kind: 'image', src: '/icons/socket-io.svg' },
+   Bun: { kind: 'image', src: '/icons/bun.svg' },
+   Arduino: { kind: 'image', src: '/icons/arduino.svg' },
+   // No logo exists for these; generic glyphs in the muted colour
+   Mux: { kind: 'glyph', Icon: LuRoute, generic: true },
+   'PDF.js': { kind: 'glyph', Icon: LuFileText, generic: true },
+   // A generic API mark, not a brand: drawn in the text colour
+   'REST APIs': { kind: 'mask', src: '/icons/api.svg' },
 };
 
 const hasTechIcon = (name: string) => name in TECH_ICONS;

@@ -31,7 +31,7 @@ export const stackGroups = [
    },
    {
       key: 'ai',
-      items: ['OpenAI', 'LangChain', 'Pinecone', 'Vector databases'],
+      items: ['OpenAI', 'LangChain', 'Vector databases'],
    },
    {
       key: 'tooling',

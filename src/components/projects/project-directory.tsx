@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useId, useState, ViewTransition } from 'react';
+import { useEffect, useId, useState, ViewTransition } from 'react';
 import {
    LuArrowRight,
    LuArrowUpRight,
@@ -261,8 +261,9 @@ const Row = ({ entry, filter, isOpen, onToggle }: RowProps) => {
 
    return (
       <li
+         id={entry.slug}
          className={cn(
-            'border-b border-l border-b-line transition-colors duration-200 ease-out-expo',
+            'scroll-mt-20 border-b border-l border-b-line transition-colors duration-200 ease-out-expo',
             isOpen
                ? 'border-l-primary bg-bg-raised'
                : 'border-l-transparent hover:bg-bg-raised/50',
@@ -388,6 +389,18 @@ const ProjectDirectory = ({
          ),
    );
    const filterLabelId = useId();
+
+   // A /projects#<slug> link (from the about page's proof links) opens that
+   // row; the browser has already scrolled to it. Read after hydration
+   useEffect(() => {
+      const frame = requestAnimationFrame(() => {
+         const slug = decodeURIComponent(window.location.hash.slice(1));
+         if (entries.some((entry) => entry.slug === slug)) {
+            setOpenSlugs((current) => new Set([...current, slug]));
+         }
+      });
+      return () => cancelAnimationFrame(frame);
+   }, [entries]);
 
    const choose = (name: string | null) => {
       setFilter(name);
