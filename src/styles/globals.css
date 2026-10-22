@@ -315,6 +315,24 @@ section {
    }
 }
 
+/* Print: black on white A4; pages hide their screen chrome with print:hidden */
+@media print {
+   @page {
+      size: A4;
+      margin: 14mm 16mm;
+   }
+
+   html {
+      color-scheme: light;
+   }
+
+   html,
+   body {
+      background: white;
+      color: black;
+   }
+}
+
 /* The page behind an open modal dialog stays put */
 html:has(dialog[open]) {
    overflow: hidden;

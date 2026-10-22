@@ -46,6 +46,11 @@ const formatSpan = (months: number) => {
 const formatMonthYear = (date: Date) =>
    date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 
+// "2023-12" from local date parts. The UTC string would shift the first of
+// the month into the previous month in any timezone east of UTC (Dhaka is +6)
+const toIsoMonth = (date: Date) =>
+   `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+
 /** Work history, newest first, with spans computed from the dates */
 export const getWorkHistory = (now = new Date()) =>
    works
@@ -58,8 +63,8 @@ export const getWorkHistory = (now = new Date()) =>
             isCurrent,
             startLabel: formatMonthYear(start),
             endLabel: isCurrent ? 'present' : formatMonthYear(end),
-            startIso: start.toISOString().slice(0, 7),
-            endIso: isCurrent ? undefined : end.toISOString().slice(0, 7),
+            startIso: toIsoMonth(start),
+            endIso: isCurrent ? undefined : toIsoMonth(end),
             span: formatSpan(monthsBetween(start, end)),
             sortKey: start.getTime(),
          };

@@ -32,7 +32,7 @@ Three claims, all confirmed by the owner, that future work should lead with:
 ## Operating Context
 
 - Visitors usually come from a freelance marketplace profile, LinkedIn, GitHub or a direct link, and skim before deciding.
-- Conversion points: the contact form (delivers an email to the owner through SMTP), the resume PDFs (`public/hozaifa-resume.pdf`, `public/hozaifa-resume-page.pdf`), and outbound links to GitHub, LinkedIn, Upwork, Fiverr, Facebook and X.
+- Conversion points: the contact form (delivers an email to the owner through SMTP), the resume PDF (`public/hozaifa-resume.pdf`; owner chose it as the only linked PDF on 2026-10-22, and `public/hozaifa-resume-page.pdf` stays on disk unlinked), and outbound links to GitHub, LinkedIn, Upwork, Fiverr, Facebook and X.
 - Project cards link to an in-site case study when one exists, otherwise to the live product site.
 - Deployed on Vercel; production deploys from `main`.
 

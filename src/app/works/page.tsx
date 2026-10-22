@@ -7,14 +7,13 @@ import { BreadcrumbNav } from '@/components/breadcrumb';
 import { DirectionalPage } from '@/components/directional-page';
 import { HiringClose } from '@/components/projects/hiring-close';
 import { TechIcon } from '@/components/tech-icon';
-import { hasProjectDetails } from '@/lib/data/project-details';
-import { projects, ProjectType, smallProjects } from '@/lib/data/projects';
 import {
    getExperienceYears,
    getFirstWorkYear,
    getSkillName,
    getWorkHistory,
 } from '@/lib/profile';
+import { getProjectsBuiltAt } from '@/lib/project-view';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -23,10 +22,8 @@ export const metadata: Metadata = {
       'Every role Hozaifa has held: what he did, what he built there and the stack, newest first.',
 };
 
-// Role lengths are computed from dates; refresh daily
 export const revalidate = 86400;
 
-// The directory's status line: a dot and a label in the status hue
 const STATUS = {
    live: { label: 'live', text: 'text-success', dot: 'bg-success' },
    developing: {
@@ -41,30 +38,6 @@ const listFormat = new Intl.ListFormat('en-GB', {
    style: 'long',
    type: 'conjunction',
 });
-
-type Built = { slug: string; status: ProjectType['status'] | null };
-
-// Projects built while employed at a company, as projects.ts records them
-const builtAt = (company: string): Built[] => [
-   ...projects
-      .filter(
-         (project) =>
-            project.owner?.type === 'Employment' &&
-            project.owner.name === company,
-      )
-      .map((project) => ({ slug: project.slug, status: project.status })),
-   ...smallProjects
-      .filter(
-         (project) =>
-            project.owner.type === 'Employment' &&
-            project.owner.name === company,
-      )
-      .map((project) => ({ slug: project.slug, status: null })),
-];
-
-// A project opens its case study, or its row in the directory
-const projectHref = (slug: string) =>
-   hasProjectDetails(slug) ? `/projects/${slug}` : `/projects#${slug}`;
 
 /** One hairline row of an entry: a mono key, then its content */
 const EntryRow = ({
@@ -86,7 +59,7 @@ const WorksPage = () => {
    const builtSummary = history
       .map((work) => ({
          company: work.company,
-         count: builtAt(work.company).length,
+         count: getProjectsBuiltAt(work.company).length,
       }))
       .filter((entry) => entry.count > 0)
       .map(({ company, count }) => `${count} projects built at ${company}`);
@@ -144,7 +117,7 @@ const WorksPage = () => {
 
             {/* A changelog of roles, newest first */}
             {history.map((work, index) => {
-               const built = builtAt(work.company);
+               const built = getProjectsBuiltAt(work.company);
                const titleId = `role-${work.id}`;
                return (
                   <section
@@ -214,13 +187,13 @@ const WorksPage = () => {
                         <EntryRow term="built">
                            {built.length > 0 ? (
                               <ul className="grid gap-x-8 gap-y-2.5 font-mono text-ui sm:grid-cols-2 lg:grid-cols-3">
-                                 {built.map(({ slug, status }) => (
+                                 {built.map(({ slug, status, href }) => (
                                     <li
                                        key={slug}
                                        className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5"
                                     >
                                        <Link
-                                          href={projectHref(slug)}
+                                          href={href}
                                           className="text-strong underline decoration-info/50 underline-offset-4 transition-colors hover:text-info hover:decoration-info"
                                        >
                                           {slug}

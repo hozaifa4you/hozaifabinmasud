@@ -38,7 +38,7 @@ export default function RootLayout({
          <body className="bg-bg-main font-sans text-text antialiased">
             <a
                href="#main"
-               className="fixed top-3 left-3 z-60 -translate-y-20 bg-primary px-4 py-2 font-medium text-primary-ink transition-transform focus-visible:translate-y-0"
+               className="fixed top-3 left-3 z-60 -translate-y-20 bg-primary px-4 py-2 font-medium text-primary-ink transition-transform focus-visible:translate-y-0 print:hidden"
             >
                Skip to content
             </a>

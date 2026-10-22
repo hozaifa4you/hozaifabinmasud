@@ -47,7 +47,7 @@ const Navbar = () => {
          // Anchors the header while page content slides in view transitions
          style={{ viewTransitionName: 'site-header' }}
          className={cn(
-            'sticky top-0 z-50 border-b bg-bg-main transition-colors duration-300 ease-out-expo',
+            'sticky top-0 z-50 border-b bg-bg-main transition-colors duration-300 ease-out-expo print:hidden',
             isScrolled || isMenuOpen ? 'border-line' : 'border-transparent',
          )}
       >

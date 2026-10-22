@@ -1,333 +1,393 @@
-import Image from 'next/image';
+import { Metadata } from 'next';
 import Link from 'next/link';
-import { LuGithub, LuLinkedin, LuMail, LuMapPin, LuSend } from 'react-icons/lu';
-import { TbWorldWww } from 'react-icons/tb';
+import { ReactNode } from 'react';
+import { LuArrowUpRight, LuDownload } from 'react-icons/lu';
 
-import { BoxWithTitle } from '@/components/box-with-title';
-import { ResumeEducationCard } from '@/components/resume/resume-education-card';
-import { ResumeProjectCard } from '@/components/resume/resume-project-card';
-import { ResumeTrainingCard } from '@/components/resume/resume-training-card';
-import { ResumeWorkCard } from '@/components/resume/resume-work-card';
+import { BreadcrumbNav } from '@/components/breadcrumb';
+import { DirectionalPage } from '@/components/directional-page';
+import { HiringClose } from '@/components/projects/hiring-close';
+import { PrintButton } from '@/components/resume/print-button';
+import { ResumeData, ResumePrint } from '@/components/resume/resume-print';
 import { buttonVariants } from '@/components/ui/button';
-import { LogoSvg } from '@/components/ui/icons';
 import { appConfig } from '@/config/app.config';
+import { ABOUT_INTRO } from '@/lib/data/about';
+import { languages } from '@/lib/data/languages';
 import { projects } from '@/lib/data/projects';
-import { educationData, trainingData } from '@/lib/education-data';
-import { getWorkHistory } from '@/lib/profile';
-import { calculateYearsFromDate } from '@/lib/utils';
+import { skillGroups } from '@/lib/data/skills';
+import { getSocialLinks, RESUME_PDF } from '@/lib/links';
+import { getSkillName, getWorkHistory } from '@/lib/profile';
+import { getProjectsBuiltAt, toProjectView } from '@/lib/project-view';
 
-const basicInfo = [
-   {
-      Icon: LuGithub,
-      label: appConfig.GITHUB_USERNAME,
-      url: `https://github.com/${appConfig.GITHUB_USERNAME}`,
-   },
-   {
-      Icon: LuMapPin,
-      label: appConfig.ADDRESS,
-   },
-   {
-      Icon: LuMail,
-      label: appConfig.EMAIL,
-      url: `mailto:${appConfig.EMAIL}`,
-   },
-   {
-      Icon: LuLinkedin,
-      label: appConfig.LINKEDIN_USERNAME,
-      url: `https://www.linkedin.com/in/${appConfig.LINKEDIN_USERNAME}`,
-   },
-   {
-      Icon: LuSend,
-      label: appConfig.PHONE,
-      url: `tel:${appConfig.PHONE}`,
-   },
-   {
-      Icon: TbWorldWww,
-      label: appConfig.WEBSITE,
-      url: `https://${appConfig.WEBSITE}`,
-   },
-];
+export const metadata: Metadata = {
+   title: 'Resume',
+   description:
+      "Hozaifa's resume: experience, selected projects, skills and languages, with a PDF and a print-ready page.",
+};
 
 // Role lengths are computed from dates; refresh daily
 export const revalidate = 86400;
 
+const AVAILABILITY = 'Open to full-time roles';
+
+const linkClass =
+   'underline decoration-info/50 underline-offset-4 transition-colors hover:text-info hover:decoration-info';
+
+/** An appendix section: a headline on a hairline rule, then its entries */
+const Appendix = ({
+   id,
+   title,
+   children,
+}: {
+   id: string;
+   title: string;
+   children: ReactNode;
+}) => (
+   <section aria-labelledby={id}>
+      <h2
+         id={id}
+         className="border-b border-line pb-3 text-headline font-semibold text-strong"
+      >
+         {title}
+      </h2>
+      <div className="mt-6">{children}</div>
+   </section>
+);
+
 const ResumePage = () => {
+   const history = getWorkHistory();
+   const socials = getSocialLinks();
+   // Live projects make the selection; the directory holds the rest
+   const selected = projects
+      .filter((project) => project.status === 'live')
+      .map(toProjectView);
+   const website = `https://${appConfig.WEBSITE}`;
+
+   const contact: { key: string; value: ReactNode }[] = [
+      {
+         key: 'status',
+         value: (
+            <span className="inline-flex items-center gap-2 text-success">
+               <span aria-hidden className="size-2 rounded-full bg-success" />
+               {AVAILABILITY}
+            </span>
+         ),
+      },
+      {
+         key: 'email',
+         value: (
+            <a href={`mailto:${appConfig.EMAIL}`} className={linkClass}>
+               {appConfig.EMAIL}
+            </a>
+         ),
+      },
+      {
+         key: 'phone',
+         value: (
+            <a href={`tel:${appConfig.PHONE}`} className={linkClass}>
+               {appConfig.PHONE}
+            </a>
+         ),
+      },
+      {
+         key: 'website',
+         value: (
+            <a
+               href={website}
+               target="_blank"
+               rel="noopener noreferrer"
+               className={linkClass}
+            >
+               {appConfig.WEBSITE}
+               <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+         ),
+      },
+      ...socials.map((social) => ({
+         key: social.name.toLowerCase(),
+         value: (
+            <a
+               href={social.href}
+               target="_blank"
+               rel="noopener noreferrer"
+               className={linkClass}
+            >
+               {social.handle}
+               <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+         ),
+      })),
+      { key: 'based', value: `${appConfig.ADDRESS} · GMT+6` },
+   ];
+
+   const printData: ResumeData = {
+      name: appConfig.AUTHOR,
+      label: appConfig.DESIGNATION,
+      summary: ABOUT_INTRO,
+      availability: AVAILABILITY,
+      contact: [
+         appConfig.EMAIL,
+         appConfig.PHONE,
+         appConfig.WEBSITE,
+         ...socials.map((social) =>
+            social.href.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, ''),
+         ),
+         appConfig.ADDRESS,
+      ],
+      work: history.map((work) => ({
+         position: work.title,
+         company: work.company,
+         dates: `${work.startLabel} – ${work.endLabel} (${work.span})`,
+         summary: work.responsibilities,
+         built: getProjectsBuiltAt(work.company).map(
+            (project) => project.title,
+         ),
+         stack: work.skills.map(getSkillName),
+      })),
+      projects: selected.map((project) => ({
+         name: project.title,
+         description: project.description,
+         url: project.liveUrl?.replace(/^https:\/\//, '') ?? null,
+         stack: project.technologies,
+      })),
+      skills: skillGroups.map((group) => ({
+         name: group.label,
+         items: group.items,
+      })),
+      languages,
+   };
+
    return (
-      <main>
-         <div className="container max-w-[1000px] p-10">
-            {/* header */}
-            <div className="mb-10 grid gap-5 md:grid-cols-2">
-               <div>
-                  <h1 className="flex items-center gap-1 text-[26px] font-semibold text-text-secondary">
-                     <Image
-                        src="/assets/logo.svg"
-                        alt={appConfig.APP_NAME}
-                        width={26}
-                        height={26}
-                        className="mr-4 size-[26px] object-contain"
-                     />
-                     <span>{appConfig.AUTHOR}</span>
-                  </h1>
+      <DirectionalPage>
+         <article className="container pt-6 pb-20 sm:pt-8 lg:pt-12 lg:pb-28 print:max-w-none print:p-0">
+            <div className="print:hidden">
+               <BreadcrumbNav
+                  items={[
+                     {
+                        href: '/',
+                        title: 'Workspace',
+                        transitionTypes: ['nav-back'],
+                     },
+                     { href: '/resume', title: 'resume' },
+                  ]}
+               />
 
-                  <p className="mt-2.5 text-base font-medium text-primary">
-                     {appConfig.DESIGNATION}
-                  </p>
-
-                  <div className="mt-5 flex items-center gap-4">
-                     <Link
-                        href="/hozaifa-resume-page.pdf"
-                        className={buttonVariants({
-                           variant: 'outlineSecondary',
-                        })}
-                        download
+               {/* The card: who he is and every way to act, in one pane */}
+               <section
+                  aria-labelledby="resume-name"
+                  className="mt-6 grid border border-line bg-bg-sunken sm:mt-8 lg:grid-cols-[minmax(0,1fr)_23rem]"
+               >
+                  <div className="p-6 sm:p-8 lg:border-r lg:border-line">
+                     <h1
+                        id="resume-name"
+                        className="text-display font-semibold text-balance text-strong"
                      >
-                        Download CV
-                     </Link>
-                     <Link
-                        href="/hozaifa-resume.pdf"
-                        className={buttonVariants({
-                           variant: 'default',
-                        })}
-                        download
-                     >
-                        Customize CV
-                     </Link>
-                  </div>
-               </div>
-               <div>
-                  <div className="flex flex-wrap items-center gap-2.5 md:justify-end">
-                     {basicInfo.map((info) => (
-                        <Link
-                           key={info.label}
-                           href={info.url ?? '#'}
-                           className="flex items-center gap-1.5 border border-text px-1.5 py-1 text-text transition-colors duration-150 ease-in-out hover:border-primary hover:text-primary"
-                           target="_blank"
-                           referrerPolicy="no-referrer"
+                        {appConfig.AUTHOR}
+                     </h1>
+                     <p className="mt-2 text-lead">{appConfig.DESIGNATION}</p>
+                     <p className="mt-5 max-w-[60ch] text-body text-pretty text-strong">
+                        {ABOUT_INTRO}
+                     </p>
+                     <div className="mt-6 flex flex-wrap gap-3">
+                        <a
+                           href={RESUME_PDF}
+                           download
+                           className={buttonVariants({
+                              variant: 'primary',
+                              size: 'lg',
+                           })}
                         >
-                           <info.Icon className="size-3.5" /> {info.label}
-                        </Link>
-                     ))}
-                  </div>
-               </div>
-            </div>
-
-            {/* summary */}
-            <BoxWithTitle
-               title={
-                  <h4 className="text-base font-medium text-text-secondary">
-                     Objective
-                  </h4>
-               }
-               content={
-                  <p>
-                     Self-motivated and highly reliable front-end developer.
-                     With experience in project development, and great
-                     communication skills
-                  </p>
-               }
-            />
-
-            <div className="mt-4 grid gap-4 md:grid-cols-3">
-               <div className="space-y-4 md:col-span-2">
-                  <div className="flex items-center justify-between border border-text p-2">
-                     <h3
-                        className="font-semibold text-white"
-                        title="3.9 years experiences"
-                     >
-                        Works
-                     </h3>
-                     <Link href="/works" className="font-medium text-primary">
-                        {calculateYearsFromDate('01/8/2021')} years -{'>'}
-                     </Link>
-                  </div>
-
-                  <div className="relative w-full space-y-4">
-                     {getWorkHistory().map((work) => (
-                        <ResumeWorkCard key={work.id} {...work} />
-                     ))}
-
-                     <div className="absolute inset-y-0 left-12 -z-10 w-px bg-text"></div>
-                  </div>
-
-                  <div className="flex items-center justify-between border border-text p-2">
-                     <h3
-                        className="font-semibold text-white"
-                        title="3.9 years experiences"
-                     >
-                        Projects
-                     </h3>
-                     <Link
-                        href="/projects"
-                        className="font-medium text-primary"
-                        target="_blank"
-                     >
-                        {projects.length}+ projects -{'>'}
-                     </Link>
-                  </div>
-
-                  <div className="space-y-4">
-                     {projects.slice(0, 2).map((project) => (
-                        <ResumeProjectCard key={project.id} {...project} />
-                     ))}
-                  </div>
-               </div>
-
-               <div className="md:col-span-1">
-                  <div className="w-full space-y-4">
-                     <BoxWithTitle
-                        title={
-                           <h4 className="text-base font-medium text-text-secondary">
-                              Languages
-                           </h4>
-                        }
-                        content={
-                           <ul className="space-y-2.5">
-                              <li className="flex items-center justify-between gap-2.5">
-                                 <span className="font-medium">Bangla</span>
-                                 <span className="text-primary">Native</span>
-                              </li>
-                              <li className="flex items-center justify-between gap-2.5">
-                                 <span className="font-medium">English</span>
-                                 <span className="text-primary">
-                                    Conversational
-                                 </span>
-                              </li>
-                              <li className="flex items-center justify-between gap-2.5">
-                                 <span className="font-medium">Hindi</span>
-                                 <span className="text-primary">
-                                    Conversational
-                                 </span>
-                              </li>
-                              <li className="flex items-center justify-between gap-2.5">
-                                 <span className="font-medium">Chinese</span>
-                                 <span className="text-primary">Seeking</span>
-                              </li>
-                           </ul>
-                        }
-                     />
-
-                     <BoxWithTitle
-                        title={
-                           <h4 className="text-base font-medium text-text-secondary">
-                              Programmings
-                           </h4>
-                        }
-                        content={
-                           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                              <span>JavaScript</span>
-                              <span>TypeScript</span>
-                              <span>PHP</span>
-                              <span>Go Lang</span>
-                              <span>MQL4/MQL5</span>
-                              <span>C/C++</span>
-                              <span>Embedding System</span>
-                           </div>
-                        }
-                     />
-
-                     <BoxWithTitle
-                        title={
-                           <h4 className="text-base font-medium text-text-secondary">
-                              Skills
-                           </h4>
-                        }
-                        content={
-                           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                              <span>NodeJs</span>
-                              <span>ExpressJs</span>
-                              <span>ReactJs</span>
-                              <span>NextJs</span>
-                              <span>Laravel</span>
-                              <span>MongoDB</span>
-                              <span>MySQL</span>
-                              <span>PostgreSQL</span>
-                              <span>Redis</span>
-                              <span>Socket.io</span>
-                           </div>
-                        }
-                     />
-
-                     <BoxWithTitle
-                        title={
-                           <h4 className="text-base font-medium text-text-secondary">
-                              Tools
-                           </h4>
-                        }
-                        content={
-                           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                              <span>Git/GitHub</span>
-                              <span>DevOps</span>
-                              <span>Embedding System</span>
-                           </div>
-                        }
-                     />
-
-                     <div className="mt-14 flex h-full w-full items-center justify-center">
-                        <LogoSvg />
+                           <LuDownload aria-hidden />
+                           Resume.pdf
+                        </a>
+                        <PrintButton />
                      </div>
                   </div>
+                  <dl className="border-t border-line lg:border-t-0">
+                     {contact.map((row) => (
+                        <div
+                           key={row.key}
+                           className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-baseline gap-x-4 border-b border-line px-6 py-3.5 last:border-b-0 sm:px-8"
+                        >
+                           <dt className="font-mono text-xs text-primary-soft">
+                              {row.key}
+                           </dt>
+                           <dd className="text-control wrap-break-word text-strong">
+                              {row.value}
+                           </dd>
+                        </div>
+                     ))}
+                  </dl>
+               </section>
+
+               {/* The appendix: plain CV sections, two columns from lg */}
+               <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-20">
+                  <Appendix id="resume-experience" title="Experience">
+                     <div className="space-y-8">
+                        {history.map((work) => {
+                           const built = getProjectsBuiltAt(work.company);
+                           return (
+                              <div key={work.id}>
+                                 <h3 className="text-xl leading-snug font-semibold text-strong">
+                                    {work.title}{' '}
+                                    <span className="font-normal whitespace-nowrap text-muted">
+                                       at{' '}
+                                       <a
+                                          href={`https://${work.website}`}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className={`group inline-flex items-center gap-1 text-strong ${linkClass}`}
+                                       >
+                                          {work.company}
+                                          <LuArrowUpRight
+                                             aria-hidden
+                                             className="size-4 text-muted"
+                                          />
+                                          <span className="sr-only">
+                                             (opens in a new tab)
+                                          </span>
+                                       </a>
+                                    </span>
+                                 </h3>
+                                 <p className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-ui">
+                                    {work.isCurrent && (
+                                       <span className="border border-success/40 bg-success/10 px-1.5 text-xs leading-5 text-success">
+                                          current
+                                       </span>
+                                    )}
+                                    <span>
+                                       <time dateTime={work.startIso}>
+                                          {work.startLabel}
+                                       </time>
+                                       {' – '}
+                                       {work.endIso ? (
+                                          <time dateTime={work.endIso}>
+                                             {work.endLabel}
+                                          </time>
+                                       ) : (
+                                          work.endLabel
+                                       )}
+                                    </span>
+                                    <span aria-hidden className="text-muted">
+                                       ·
+                                    </span>
+                                    <span>{work.span}</span>
+                                 </p>
+                                 <p className="mt-3 text-body text-pretty">
+                                    {work.responsibilities}
+                                 </p>
+                                 {built.length > 0 && (
+                                    <p className="mt-3 text-control text-pretty">
+                                       <span className="mr-2 font-mono text-xs text-primary-soft">
+                                          built
+                                       </span>
+                                       {built.map((project, index) => (
+                                          <span key={project.slug}>
+                                             <Link
+                                                href={project.href}
+                                                className={`text-strong ${linkClass}`}
+                                             >
+                                                {project.title}
+                                             </Link>
+                                             {index < built.length - 1 && ', '}
+                                          </span>
+                                       ))}
+                                    </p>
+                                 )}
+                                 <p className="mt-3 font-mono text-ui text-muted">
+                                    <span className="sr-only">Stack: </span>
+                                    {work.skills.map(getSkillName).join(' · ')}
+                                 </p>
+                              </div>
+                           );
+                        })}
+                     </div>
+                  </Appendix>
+
+                  <Appendix id="resume-projects" title="Selected projects">
+                     <ul className="space-y-6">
+                        {selected.map((project) => (
+                           <li key={project.slug}>
+                              <h3 className="text-xl leading-snug font-semibold text-strong">
+                                 <Link
+                                    href={
+                                       project.caseStudyUrl ??
+                                       `/projects#${project.slug}`
+                                    }
+                                    className={linkClass}
+                                 >
+                                    {project.title}
+                                 </Link>
+                              </h3>
+                              {project.context && (
+                                 <p className="mt-1 text-control text-muted">
+                                    {project.context}
+                                 </p>
+                              )}
+                              <p className="mt-2 text-body text-pretty">
+                                 {project.description}
+                              </p>
+                              <p className="mt-2 font-mono text-ui text-muted">
+                                 {project.technologies.join(' · ')}
+                              </p>
+                           </li>
+                        ))}
+                     </ul>
+                     <p className="mt-6 font-mono text-sm">
+                        <Link
+                           href="/projects"
+                           className={`text-strong ${linkClass}`}
+                        >
+                           All projects
+                        </Link>
+                     </p>
+                  </Appendix>
+
+                  <Appendix id="resume-skills" title="Skills">
+                     <dl className="border-t border-line">
+                        {skillGroups.map((group) => (
+                           <div
+                              key={group.key}
+                              className="grid gap-1 border-b border-line py-3 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-4"
+                           >
+                              <dt className="font-mono text-sm text-primary-soft sm:pt-0.5">
+                                 {group.key}
+                              </dt>
+                              <dd className="text-control text-pretty text-strong">
+                                 {group.items.join(', ')}
+                              </dd>
+                           </div>
+                        ))}
+                     </dl>
+                  </Appendix>
+
+                  <Appendix id="resume-languages" title="Languages">
+                     <dl className="border-t border-line">
+                        {languages.map(({ language, fluency }) => (
+                           <div
+                              key={language}
+                              className="grid grid-cols-[10rem_minmax(0,1fr)] gap-4 border-b border-line py-3"
+                           >
+                              <dt className="text-control text-strong">
+                                 {language}
+                              </dt>
+                              <dd className="text-control text-muted">
+                                 {fluency}
+                              </dd>
+                           </div>
+                        ))}
+                     </dl>
+                  </Appendix>
                </div>
+
+               <HiringClose
+                  line="I build web products end to end, from the API to the interface."
+                  resume={false}
+               />
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-               <div className="mb-5 space-y-4">
-                  <div className="mt-4 flex items-center justify-between border border-text p-2">
-                     <h3
-                        className="font-semibold text-white"
-                        title="3.9 years experiences"
-                     >
-                        Academic
-                     </h3>
-                     <Link
-                        href="/educations"
-                        className="font-medium text-primary"
-                        target="_blank"
-                     >
-                        9+ educations -{'>'}
-                     </Link>
-                  </div>
-                  {educationData.splice(0, 2).map((edu, index) => (
-                     <ResumeEducationCard
-                        key={index}
-                        degree={edu.degree}
-                        description={edu.description}
-                        duration={edu.duration}
-                        grade={edu.grade}
-                        institution={edu.institution}
-                     />
-                  ))}
-               </div>
-               <div className="space-y-4">
-                  <div className="mt-4 flex items-center justify-between border border-text p-2">
-                     <h3
-                        className="font-semibold text-white"
-                        title="3.9 years experiences"
-                     >
-                        Trainings
-                     </h3>
-                     <Link
-                        href="/trainings"
-                        target="_blank"
-                        className="font-medium text-primary"
-                     >
-                        15+ trainings -{'>'}
-                     </Link>
-                  </div>
-                  {trainingData.slice(0, 2).map((training, index) => (
-                     <ResumeTrainingCard
-                        key={index}
-                        completedDate={training.completedDate}
-                        duration={training.duration}
-                        platform={training.platform}
-                        provider={training.provider}
-                        skills={training.skills}
-                        title={training.title}
-                     />
-                  ))}
-               </div>
-            </div>
-         </div>
-      </main>
+            <ResumePrint data={printData} />
+         </article>
+      </DirectionalPage>
    );
 };
 

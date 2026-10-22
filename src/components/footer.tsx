@@ -22,7 +22,7 @@ const Footer = () => {
    const currentYear = new Date().getFullYear();
 
    return (
-      <footer className="mt-8 border-t border-line bg-bg-sunken">
+      <footer className="mt-8 border-t border-line bg-bg-sunken print:hidden">
          <div className="container grid gap-10 py-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
             <div>
                <Link

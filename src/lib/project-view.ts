@@ -1,7 +1,9 @@
 import { getProjectDetails } from '@/lib/data/project-details';
 import {
    hasScreenshot,
+   projects,
    ProjectType,
+   smallProjects,
    SmallProjectType,
 } from '@/lib/data/projects';
 import { normalizeTech } from '@/lib/profile';
@@ -91,3 +93,41 @@ const toSmallProjectView = (
 });
 
 export { toProjectView, toSmallProjectView };
+
+export type BuiltProject = {
+   slug: string;
+   title: string;
+   status: ProjectType['status'] | null;
+   /** The case study, or the project's row in the directory */
+   href: string;
+};
+
+/** Projects built while employed at a company, as projects.ts records them */
+export const getProjectsBuiltAt = (company: string): BuiltProject[] => [
+   ...projects
+      .filter(
+         (project) =>
+            project.owner?.type === 'Employment' &&
+            project.owner.name === company,
+      )
+      .map((project) => ({
+         slug: project.slug,
+         title: project.title,
+         status: project.status,
+         href: getProjectDetails(project.slug)
+            ? `/projects/${project.slug}`
+            : `/projects#${project.slug}`,
+      })),
+   ...smallProjects
+      .filter(
+         (project) =>
+            project.owner.type === 'Employment' &&
+            project.owner.name === company,
+      )
+      .map((project) => ({
+         slug: project.slug,
+         title: project.title,
+         status: null,
+         href: `/projects#${project.slug}`,
+      })),
+];

@@ -1,9 +1,11 @@
 // The full technology inventory, shown on /about-me. The homepage's curated
 // view lives in stack.ts. Names match TechIcon's keys, so each shows its logo;
 // kinds of work (payments, dashboards, AI chat) live in about.ts instead.
+// `key` is the mono data key; `label` is the heading a printed CV uses.
 export const skillGroups = [
    {
-      key: 'languages',
+      key: 'programming',
+      label: 'Programming languages',
       items: [
          'TypeScript',
          'JavaScript',
@@ -19,6 +21,7 @@ export const skillGroups = [
    },
    {
       key: 'frameworks',
+      label: 'Frameworks',
       items: [
          'Next.js',
          'React',
@@ -36,6 +39,7 @@ export const skillGroups = [
    },
    {
       key: 'data',
+      label: 'Data',
       items: [
          'MySQL',
          'PostgreSQL',
@@ -51,6 +55,7 @@ export const skillGroups = [
    },
    {
       key: 'ui & libraries',
+      label: 'UI & libraries',
       items: [
          'Tailwind CSS',
          'shadcn/ui',
@@ -69,10 +74,12 @@ export const skillGroups = [
    },
    {
       key: 'ai',
+      label: 'AI',
       items: ['OpenAI', 'LangChain', 'Vector databases'],
    },
    {
       key: 'platforms & tooling',
+      label: 'Platforms & tooling',
       items: [
          'Git',
          'Docker',

@@ -6,7 +6,14 @@ import { buttonVariants } from '@/components/ui/button';
 import { RESUME_PDF } from '@/lib/links';
 
 /** The close of a work page: the next step for a hiring visitor */
-const HiringClose = ({ line }: { line: string }) => {
+const HiringClose = ({
+   line,
+   resume = true,
+}: {
+   line: string;
+   /** Off where the page already offers the PDF */
+   resume?: boolean;
+}) => {
    const titleId = useId();
 
    return (
@@ -31,14 +38,16 @@ const HiringClose = ({ line }: { line: string }) => {
             >
                Get in touch
             </Link>
-            <a
-               href={RESUME_PDF}
-               download
-               className={buttonVariants({ variant: 'default', size: 'lg' })}
-            >
-               <LuDownload aria-hidden />
-               Resume.pdf
-            </a>
+            {resume && (
+               <a
+                  href={RESUME_PDF}
+                  download
+                  className={buttonVariants({ variant: 'default', size: 'lg' })}
+               >
+                  <LuDownload aria-hidden />
+                  Resume.pdf
+               </a>
+            )}
          </div>
       </section>
    );
