@@ -10,6 +10,7 @@ import {
    SiLemonsqueezy,
    SiPython,
    SiStripe,
+   SiWordpress,
 } from 'react-icons/si';
 import { TbBrandMysql } from 'react-icons/tb';
 
@@ -88,6 +89,7 @@ const TECH_ICONS: Record<string, TechIconSource> = {
    'Socket.IO': { kind: 'image', src: '/icons/socket-io.svg' },
    Bun: { kind: 'image', src: '/icons/bun.svg' },
    Arduino: { kind: 'image', src: '/icons/arduino.svg' },
+   WordPress: { kind: 'glyph', Icon: SiWordpress },
    // No logo exists for these; generic glyphs in the muted colour
    Mux: { kind: 'glyph', Icon: LuRoute, generic: true },
    'PDF.js': { kind: 'glyph', Icon: LuFileText, generic: true },
