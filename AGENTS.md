@@ -29,7 +29,7 @@ There is no test suite.
 - `next` and `eslint-config-next` are pinned to the same exact version; bump them together. `prettier` is pinned exact.
 - ESLint 10 works through patches inside `eslint-config-next`; peer-dependency warnings from eslint-plugin-react/import/jsx-a11y are expected.
 - `@types/node` major tracks the Vercel Node runtime (24.x).
-- nodemailer, react-image-gallery and react-responsive-masonry ship their own types — don't add `@types/*` for them. `sharp` comes in through `next`.
+- nodemailer and react-responsive-masonry ship their own types — don't add `@types/*` for them. `sharp` comes in through `next`.
 
 ## Architecture
 
