@@ -22,9 +22,13 @@ export const POST = async (request: NextRequest) => {
             .trim()
             .min(1, 'Name is required')
             .max(100, 'Name must be 100 characters or less'),
+         // An empty field and a malformed address get different messages
          email: z
-            .email('Invalid email address')
-            .max(254, 'Email must be 254 characters or less'),
+            .string()
+            .trim()
+            .min(1, 'Email is required')
+            .max(254, 'Email must be 254 characters or less')
+            .pipe(z.email('Enter a valid email address')),
          message: z
             .string()
             .trim()

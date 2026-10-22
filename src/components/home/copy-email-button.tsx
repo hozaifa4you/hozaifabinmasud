@@ -8,9 +8,12 @@ import { cn } from '@/lib/utils';
 
 const CopyEmailButton = ({
    email,
+   label = email,
    className,
 }: {
    email: string;
+   /** Visible text before copying; the address itself by default */
+   label?: string;
    className?: string;
 }) => {
    const [copied, setCopied] = useState(false);
@@ -47,7 +50,7 @@ const CopyEmailButton = ({
          ) : (
             <LuCopy aria-hidden />
          )}
-         <span>{copied ? 'Copied' : email}</span>
+         <span>{copied ? 'Copied' : label}</span>
          <span className="sr-only" aria-live="polite">
             {copied ? 'Email address copied' : ''}
          </span>

@@ -8,7 +8,7 @@ import { ResponsiveMenu } from './responsive-menu';
 import { Logo } from '@/components/navbar/logo';
 import { buttonVariants } from '@/components/ui/button';
 import { useActiveSection } from '@/hooks/use-active-section';
-import { useMenu } from '@/hooks/use-menu';
+import { currentOf, useMenu } from '@/hooks/use-menu';
 import { RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
@@ -62,12 +62,13 @@ const Navbar = () => {
                   )}
                >
                   {items.map((item) => {
-                     const isActive = item.sectionId === activeId;
+                     const current = currentOf(item, activeId);
+                     const isActive = current !== undefined;
                      return (
                         <li key={item.href}>
                            <Link
                               href={item.href}
-                              aria-current={isActive ? 'location' : undefined}
+                              aria-current={current}
                               className={cn(
                                  'relative inline-flex h-10 items-center px-3 font-mono text-sm transition-colors duration-200 hover:text-strong',
                                  isActive ? 'text-strong' : 'text-text',

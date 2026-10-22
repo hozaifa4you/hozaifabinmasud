@@ -6,7 +6,17 @@ export interface MenuItem {
    href: string;
    /** Section id on the homepage, used for the active state */
    sectionId?: string;
+   /** Off the homepage: the route is this item's page or below it */
+   isCurrentPage?: boolean;
 }
+
+// Homepage items follow the scroll position; elsewhere the route decides
+export const currentOf = (item: MenuItem, activeId: string | null) => {
+   if (item.sectionId) {
+      return item.sectionId === activeId ? 'location' : undefined;
+   }
+   return item.isCurrentPage ? 'page' : undefined;
+};
 
 // The site reads as a workspace: every nav item is one of its files
 const SECTIONS = [
@@ -28,7 +38,13 @@ const useMenu = () => {
               href: `#${section.sectionId}`,
               sectionId: section.sectionId,
            }
-         : { name: section.name, href: section.page },
+         : {
+              name: section.name,
+              href: section.page,
+              isCurrentPage:
+                 pathname === section.page ||
+                 pathname.startsWith(`${section.page}/`),
+           },
    );
 
    return { items, isHomePage };
