@@ -1,4 +1,5 @@
 import { SectionHeading } from '@/components/home/section-heading';
+import { TechIcon } from '@/components/tech-icon';
 import { stackGroups } from '@/lib/data/stack';
 
 const StackSection = () => {
@@ -25,9 +26,12 @@ const StackSection = () => {
                      {group.key}
                   </dt>
                   <dd className="mt-3">
-                     <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-control text-strong lg:flex-col">
+                     <ul className="flex flex-wrap gap-x-5 gap-y-2.5 text-control text-strong lg:flex-col">
                         {group.items.map((item) => (
-                           <li key={item}>{item}</li>
+                           <li key={item} className="flex items-center gap-2.5">
+                              <TechIcon name={item} />
+                              {item}
+                           </li>
                         ))}
                      </ul>
                   </dd>

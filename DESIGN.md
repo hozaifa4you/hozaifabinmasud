@@ -179,7 +179,7 @@ The site is a One Dark code editor opened on Hozaifa's real work, in a professio
 
 Surfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.
 
-Motion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back to the workspace reverses it. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette, and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.
+Motion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back to the workspace reverses it. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette (technology logos excepted, as content), and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.
 
 **Key Characteristics:**
 
@@ -225,6 +225,8 @@ One Dark layers and syntax hues, used as roles rather than decoration: cool char
 **The One Filled Button Rule.** Only the primary action in a view gets an orchid fill. When a stronger action is present (a case study beside a live site), the other becomes a default framed button.
 
 **The Tint, Not a New Hue Rule.** Quiet variants of an accent are the same hue at 10% fill with a 40% border (status pills, badges) or 15% fill (outline hover). Tailwind palette colours and literal white are not part of the system.
+
+**The Logos Are Content Rule.** Technology logos keep their brand colours, the way project screenshots keep theirs: they are content shown at 20px beside a name, not UI colour, so they are the one place hues outside the palette appear, and no logo colour ever tints UI. Logos come from `public/icons` through `TechIcon`. A dark one-colour logo that would vanish on the canvas (Next.js, Express, OpenAI, AWS, Prisma, shadcn/ui) is redrawn in Cursor White through a CSS mask. A stored logo that is a wordmark, unreadable at 20px, is replaced by a glyph in the brand colour: MySQL is Tabler's dolphin in MySQL blue `#4479A1`. A technology with no logo on file gets a generic glyph in Dim Gray, never a stand-in brand mark.
 
 ## Typography
 
@@ -345,6 +347,10 @@ A headline with an optional "more" link (label style plus an arrow that nudges r
 
 Work history as a git log: newest on top, a 1px Hairline rail, a 20px commit node per role (green with a soft green ring for the current role, Strong Hairline for past roles), mono dates and duration with a HEAD pill on the current role, then role title, company link, type, description and tags.
 
+### Stack
+
+The stack is a hairline grid of five groups (languages, frameworks, data, ai, tooling): one column, two from sm, five from lg. Each cell has its key in Soft Orchid Code above a list of technologies, each a 20px logo (see The Logos Are Content Rule) beside its name in Control, Cursor White, with a 10px gap. From lg the list is a column with a 32px rhythm, like explorer rows; below lg the items wrap in rows. The cell fills Line Highlight on hover. The items are not links.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -362,7 +368,7 @@ Work history as a git log: newest on top, a 1px Hairline rail, a 20px commit nod
 
 - **Don't** add box-shadows, drop-shadows or glows, including behind the hero.
 - **Don't** round frames, buttons, tags, panes or media; full rounding is for status dots and commit nodes only.
-- **Don't** use Tailwind palette hues or literal white (`text-white`); use `strong` and the syntax roles.
+- **Don't** use Tailwind palette hues or literal white (`text-white`); use `strong` and the syntax roles. Brand colours belong to logos only.
 - **Don't** decorate with code punctuation (`#` before headings, `@` before labels, `<~>` on buttons); the metaphor lives in structure.
 - **Don't** set paragraphs in Fira Code or use mono keys as eyebrows above headlines.
 - **Don't** use orchid for long text, large fills or anything that is not an action, focus or current item.
