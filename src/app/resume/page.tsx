@@ -12,8 +12,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { LogoSvg } from '@/components/ui/icons';
 import { appConfig } from '@/config/app.config';
 import { projects } from '@/lib/data/projects';
-import { works } from '@/lib/data/works';
 import { educationData, trainingData } from '@/lib/education-data';
+import { getWorkHistory } from '@/lib/profile';
 import { calculateYearsFromDate } from '@/lib/utils';
 
 const basicInfo = [
@@ -47,6 +47,9 @@ const basicInfo = [
       url: `https://${appConfig.WEBSITE}`,
    },
 ];
+
+// Role lengths are computed from dates; refresh daily
+export const revalidate = 86400;
 
 const ResumePage = () => {
    return (
@@ -139,7 +142,7 @@ const ResumePage = () => {
                   </div>
 
                   <div className="relative w-full space-y-4">
-                     {works.map((work) => (
+                     {getWorkHistory().map((work) => (
                         <ResumeWorkCard key={work.id} {...work} />
                      ))}
 

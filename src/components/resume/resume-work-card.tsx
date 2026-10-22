@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { BiLinkExternal } from 'react-icons/bi';
 
 import { BoxWithTitle } from '@/components/box-with-title';
-import { WorkType } from '@/lib/data/works';
+import { getWorkHistory } from '@/lib/profile';
 
 const ResumeWorkCard = ({
    startDate,
@@ -13,9 +13,9 @@ const ResumeWorkCard = ({
    responsibilities,
    status,
    type,
-   duration,
+   span,
    skills,
-}: WorkType) => {
+}: ReturnType<typeof getWorkHistory>[number]) => {
    return (
       <div className="flex gap-x-4">
          <div className="max-w-[200px]">
@@ -53,7 +53,7 @@ const ResumeWorkCard = ({
                         <span className="font-semibold text-primary">/</span>
                         <p className="leading-none">{website}</p>
                         <span className="font-semibold text-primary">/</span>
-                        <p className="leading-none">{duration}</p>
+                        <p className="leading-none">{span}</p>
                      </div>
                      <p>{responsibilities}</p>
 

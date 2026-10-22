@@ -1,138 +1,292 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
-import { BiLinkExternal } from 'react-icons/bi';
-import { CiCalendarDate } from 'react-icons/ci';
-import { FaFacebook, FaGlobe } from 'react-icons/fa';
-import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
+import { ReactNode } from 'react';
+import { LuArrowUpRight } from 'react-icons/lu';
 
-import { Breadcrumb } from '@/components/breadcrumb';
-import { works } from '@/lib/data/works';
+import { BreadcrumbNav } from '@/components/breadcrumb';
+import { DirectionalPage } from '@/components/directional-page';
+import { HiringClose } from '@/components/projects/hiring-close';
+import { TechIcon } from '@/components/tech-icon';
+import { hasProjectDetails } from '@/lib/data/project-details';
+import { projects, ProjectType, smallProjects } from '@/lib/data/projects';
+import {
+   getExperienceYears,
+   getFirstWorkYear,
+   getSkillName,
+   getWorkHistory,
+} from '@/lib/profile';
+import { cn } from '@/lib/utils';
+
+export const metadata: Metadata = {
+   title: 'Work history',
+   description:
+      'Every role Hozaifa has held: what he did, what he built there and the stack, newest first.',
+};
+
+// Role lengths are computed from dates; refresh daily
+export const revalidate = 86400;
+
+// The directory's status line: a dot and a label in the status hue
+const STATUS = {
+   live: { label: 'live', text: 'text-success', dot: 'bg-success' },
+   developing: {
+      label: 'in development',
+      text: 'text-warning',
+      dot: 'bg-warning',
+   },
+   archive: { label: 'archived', text: 'text-muted', dot: 'bg-muted' },
+};
+
+const listFormat = new Intl.ListFormat('en-GB', {
+   style: 'long',
+   type: 'conjunction',
+});
+
+type Built = { slug: string; status: ProjectType['status'] | null };
+
+// Projects built while employed at a company, as projects.ts records them
+const builtAt = (company: string): Built[] => [
+   ...projects
+      .filter(
+         (project) =>
+            project.owner?.type === 'Employment' &&
+            project.owner.name === company,
+      )
+      .map((project) => ({ slug: project.slug, status: project.status })),
+   ...smallProjects
+      .filter(
+         (project) =>
+            project.owner.type === 'Employment' &&
+            project.owner.name === company,
+      )
+      .map((project) => ({ slug: project.slug, status: null })),
+];
+
+// A project opens its case study, or its row in the directory
+const projectHref = (slug: string) =>
+   hasProjectDetails(slug) ? `/projects/${slug}` : `/projects#${slug}`;
+
+/** One hairline row of an entry: a mono key, then its content */
+const EntryRow = ({
+   term,
+   children,
+}: {
+   term: string;
+   children: ReactNode;
+}) => (
+   <div className="grid gap-2 border-b border-line py-4 sm:grid-cols-[8.75rem_minmax(0,1fr)] sm:gap-6">
+      <dt className="font-mono text-sm text-primary-soft sm:pt-0.5">{term}</dt>
+      <dd className="min-w-0">{children}</dd>
+   </div>
+);
 
 const WorksPage = () => {
-   return (
-      <>
-         <Breadcrumb
-            title="work-histories"
-            subtitle="The short details about my employment"
-         />
+   const history = getWorkHistory();
+   const companies = new Set(history.map((work) => work.company));
+   const builtSummary = history
+      .map((work) => ({
+         company: work.company,
+         count: builtAt(work.company).length,
+      }))
+      .filter((entry) => entry.count > 0)
+      .map(({ company, count }) => `${count} projects built at ${company}`);
+   const summary = `${getExperienceYears()} years across ${companies.size} ${
+      companies.size === 1 ? 'company' : 'companies'
+   }${builtSummary.length > 0 ? `, with ${listFormat.format(builtSummary)}` : ''}.`;
 
-         <section className="mb-20">
-            <div className="container grid gap-10">
-               {works.map((work) => (
-                  <div
+   return (
+      <DirectionalPage>
+         <article className="container pt-6 pb-20 sm:pt-8 lg:pt-12 lg:pb-28">
+            <header>
+               <BreadcrumbNav
+                  items={[
+                     {
+                        href: '/#work',
+                        title: 'Workspace',
+                        transitionTypes: ['nav-back'],
+                     },
+                     { href: '/works', title: 'works' },
+                  ]}
+               />
+               <h1 className="mt-5 text-display font-semibold text-strong sm:mt-6">
+                  Work history
+               </h1>
+               <p className="mt-3 max-w-[50ch] text-lead text-pretty">
+                  {summary}
+               </p>
+
+               <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-1 border-y border-line py-2.5 font-mono text-ui sm:mt-8">
+                  <div className="flex items-center gap-2 text-success">
+                     <dt className="sr-only">Availability</dt>
+                     <span
+                        aria-hidden
+                        className="size-2 rounded-full bg-success"
+                     />
+                     <dd>Open to full-time roles</dd>
+                  </div>
+                  <div>
+                     <dt className="sr-only">Working since</dt>
+                     <dd>since {getFirstWorkYear()}</dd>
+                  </div>
+                  <div>
+                     <dt className="sr-only">Roles</dt>
+                     <dd>
+                        {history.length}{' '}
+                        {history.length === 1 ? 'role' : 'roles'}
+                     </dd>
+                  </div>
+                  <div>
+                     <dt className="sr-only">Location</dt>
+                     <dd>Bangladesh · GMT+6</dd>
+                  </div>
+               </dl>
+            </header>
+
+            {/* A changelog of roles, newest first */}
+            {history.map((work, index) => {
+               const built = builtAt(work.company);
+               const titleId = `role-${work.id}`;
+               return (
+                  <section
                      key={work.id}
-                     className="grid gap-3 border-b border-b-primary/30 pb-10 last:border-b-0 last:pb-0 md:grid-cols-4"
+                     aria-labelledby={titleId}
+                     className={cn(
+                        index === 0 ? 'mt-12 lg:mt-14' : 'mt-14 lg:mt-20',
+                     )}
                   >
-                     <div className="md:col-span-1">
-                        <div className="text-right text-sm">
-                           [<CiCalendarDate className="inline" />{' '}
-                           {work.startDate.toLowerCase().replaceAll(' ', '_')}
-                           <span>
-                              {' '}
-                              - <span className="text-primary"></span>
-                              {work.endDate ? (
-                                 work.endDate.toLowerCase().replaceAll(' ', '_')
-                              ) : (
-                                 <span className="bg-success px-1 py-0.5 text-white uppercase">
-                                    {work.status}
+                     <div className="flex flex-col gap-2 border-b border-line pb-4">
+                        <h2
+                           id={titleId}
+                           className="text-headline font-semibold text-strong"
+                        >
+                           {work.title}{' '}
+                           <span className="font-normal whitespace-nowrap text-muted">
+                              at{' '}
+                              <a
+                                 href={`https://${work.website}`}
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 className="group inline-flex items-center gap-1 text-strong underline decoration-info/50 underline-offset-4 transition-colors hover:text-info hover:decoration-info"
+                              >
+                                 {work.company}
+                                 <LuArrowUpRight
+                                    aria-hidden
+                                    className="size-5 text-muted transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                 />
+                                 <span className="sr-only">
+                                    (opens in a new tab)
                                  </span>
+                              </a>
+                           </span>
+                        </h2>
+                        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-ui">
+                           {work.isCurrent && (
+                              <span className="border border-success/40 bg-success/10 px-1.5 text-xs leading-5 text-success">
+                                 current
+                              </span>
+                           )}
+                           <span>
+                              <time dateTime={work.startIso}>
+                                 {work.startLabel}
+                              </time>
+                              {' – '}
+                              {work.endIso ? (
+                                 <time dateTime={work.endIso}>
+                                    {work.endLabel}
+                                 </time>
+                              ) : (
+                                 work.endLabel
                               )}
                            </span>
-                           ]
-                        </div>
-                        <p className="mt-1.5 text-right">
-                           <span className="text-primary">@</span>
-                           {work.duration}_years
+                           <span aria-hidden className="text-muted">
+                              ·
+                           </span>
+                           <span>{work.span}</span>
                         </p>
                      </div>
-                     <div className="md:col-span-3">
-                        <h4 className="mb-2.5 text-lg leading-none font-semibold">
-                           {work.company}
-                           <span className="text-xs font-light text-pretty text-primary">
-                              (company)
-                           </span>
-                        </h4>
 
-                        <h3 className="my-4 text-2xl leading-none font-semibold text-white">
-                           <span className="text-primary">@</span>
-                           {work.title.toLowerCase().replaceAll(' ', '_')}
-                        </h3>
-
-                        <div className="mb-2 flex w-fit flex-wrap items-center gap-0 border border-text">
-                           <p className="px-3 py-2 leading-none">
-                              <span className="font-semibold">
-                                 <span className="text-primary">@</span>type:
-                              </span>{' '}
-                              {work.type}
+                     <dl>
+                        <EntryRow term="did">
+                           <p className="max-w-[65ch] text-body text-pretty">
+                              {work.responsibilities}
                            </p>
-
-                           <p className="border-l border-l-text px-3 py-2 leading-none">
-                              <span className="font-semibold">
-                                 <span className="text-primary">@</span>website:
-                              </span>{' '}
-                              {work.website}{' '}
-                              <Link href={work.website} target="_blank">
-                                 <BiLinkExternal className="inline" />
-                              </Link>
+                        </EntryRow>
+                        <EntryRow term="built">
+                           {built.length > 0 ? (
+                              <ul className="grid gap-x-8 gap-y-2.5 font-mono text-ui sm:grid-cols-2 lg:grid-cols-3">
+                                 {built.map(({ slug, status }) => (
+                                    <li
+                                       key={slug}
+                                       className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5"
+                                    >
+                                       <Link
+                                          href={projectHref(slug)}
+                                          className="text-strong underline decoration-info/50 underline-offset-4 transition-colors hover:text-info hover:decoration-info"
+                                       >
+                                          {slug}
+                                       </Link>
+                                       {status ? (
+                                          <span
+                                             className={cn(
+                                                'inline-flex items-center gap-1.5',
+                                                STATUS[status].text,
+                                             )}
+                                          >
+                                             <span
+                                                aria-hidden
+                                                className={cn(
+                                                   'size-1.5 rounded-full',
+                                                   STATUS[status].dot,
+                                                )}
+                                             />
+                                             {STATUS[status].label}
+                                          </span>
+                                       ) : (
+                                          <span className="text-muted">
+                                             small project
+                                          </span>
+                                       )}
+                                    </li>
+                                 ))}
+                              </ul>
+                           ) : (
+                              <p className="text-control text-muted">
+                                 No projects listed for this role
+                              </p>
+                           )}
+                        </EntryRow>
+                        <EntryRow term="stack">
+                           <ul className="flex flex-wrap gap-2">
+                              {work.skills.map((skill) => {
+                                 const name = getSkillName(skill);
+                                 return (
+                                    <li
+                                       key={skill}
+                                       className="inline-flex items-center gap-1.5 border border-line bg-bg-raised px-2 py-1 font-mono text-xs text-text"
+                                    >
+                                       <TechIcon
+                                          name={name}
+                                          className="size-4"
+                                       />
+                                       {name}
+                                    </li>
+                                 );
+                              })}
+                           </ul>
+                        </EntryRow>
+                        <EntryRow term="where">
+                           <p className="text-control">
+                              {work.type} · {work.location}
                            </p>
-                        </div>
+                        </EntryRow>
+                     </dl>
+                  </section>
+               );
+            })}
 
-                        <p className="mb-2">
-                           <span className="font-semibold">
-                              <span className="text-primary">@</span>
-                              responsibilities:{' '}
-                           </span>
-                           {work.responsibilities}
-                        </p>
-
-                        <p className="mb-2">
-                           <span className="font-semibold">
-                              <span className="text-primary">@</span>address:
-                           </span>{' '}
-                           {work.address}
-                        </p>
-
-                        <p className="text-muted-foreground mt-1 flex flex-wrap items-center gap-1 text-sm">
-                           <span className="font-semibold">
-                              <span className="text-primary">@</span>
-                              skills:{' '}
-                           </span>
-                           {work.skills.map((skill, index) => (
-                              <span
-                                 className="text-primary/90 capitalize underline"
-                                 key={skill}
-                              >
-                                 {skill}
-                                 {index < work.skills.length - 1 && ','}
-                              </span>
-                           ))}
-                        </p>
-
-                        <div className="mt-2 flex items-center gap-1.5">
-                           <span className="font-semibold">
-                              <span className="text-primary">@</span>
-                              navigation:{' '}
-                           </span>
-                           <Link href={work.website}>
-                              <FaGlobe className="size-4" />
-                           </Link>
-                           {work.social.map((item) => (
-                              <Link key={item.id} href={item.url}>
-                                 {item.name === 'facebook' ? (
-                                    <FaFacebook className="size-4" />
-                                 ) : item.name === 'x' ? (
-                                    <FaXTwitter className="size-4" />
-                                 ) : item.name === 'linkedin' ? (
-                                    <FaLinkedin className="size-4" />
-                                 ) : null}
-                              </Link>
-                           ))}
-                        </div>
-                     </div>
-                  </div>
-               ))}
-            </div>
-         </section>
-      </>
+            <HiringClose line="I build web products end to end, from the API to the interface." />
+         </article>
+      </DirectionalPage>
    );
 };
 
