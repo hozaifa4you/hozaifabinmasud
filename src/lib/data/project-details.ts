@@ -1,21 +1,25 @@
-import { medias } from './medias';
-
 export type PDCompanyType = {
    name: string;
-   address: string;
+   /** City only; street addresses stay off the site */
+   location: string;
    website?: string;
 };
 export type PDTechnologyType = {
+   /** A canonical name, as normalizeTech() produces, so TechIcon finds its logo */
    name: string;
    category: string;
-   img: string;
 };
 export type PDTeamMemberType = {
-   avatar?: string;
    name: string;
    role: string;
+   /** Marks the site owner's own row */
+   isMe?: boolean;
 };
-type ImageType = { title: string; path: string };
+type ImageType = {
+   path: string;
+   /** What the screen shows; rendered under it and used as its alt text */
+   caption?: string;
+};
 type StatusType = {
    type: 'completed' | 'in-progress' | 'on-hold' | 'archived' | 'production';
    text: string;
@@ -23,7 +27,14 @@ type StatusType = {
 
 export interface ProjectDetailsType {
    id: number;
+   /** Full title, used for metadata */
    title: string;
+   /** The product's name, the page's H1 */
+   name: string;
+   /** One line on what the product is */
+   tagline: string;
+   /** What shipped, as the HEAD commit's message */
+   headline: string;
    slug: string;
    company?: PDCompanyType;
    role: string;
@@ -44,112 +55,59 @@ const projectDetails: Array<ProjectDetailsType> = [
    {
       id: 1,
       title: 'Aionlinecourse - AI/ML learning and project selling platform',
+      name: 'Aionlinecourse',
+      tagline: 'An AI/ML learning and project-selling platform',
+      headline: 'Ship AI tutorials, quizzes, a project store and live coding',
       slug: 'aionlinecourse',
       company: {
          name: 'Namespace IT',
-         address: '4B, H#13, R#11, Uttara 11, Dhaka.',
+         location: 'Dhaka',
          website: 'https://namespaceit.com',
       },
       role: 'Full Stack Developer',
       duration: '6 months',
-      teamSize: '5 developers',
+      teamSize: 'Team of 5',
       description:
          'Developed AI Online Course, a modern e-learning platform powered by a Laravel GraphQL API backend and Next.js frontend. The site delivers interactive courses, coding projects, and quizzes with scalable performance, intuitive navigation, and responsive design for an engaging learning experience.',
       mainImage: '/assets/project-details/aionline/aionline-main.png',
       additionalImages: [
-         {
-            title: 'Preview 1',
-            path: '/assets/project-details/aionline/aionline-preview-1.png',
-         },
-         {
-            title: 'Preview 2',
-            path: '/assets/project-details/aionline/aionline-preview-2.png',
-         },
-         {
-            title: 'Preview 3',
-            path: '/assets/project-details/aionline/aionline-preview-3.png',
-         },
-         {
-            title: 'Preview 4',
-            path: '/assets/project-details/aionline/aionline-preview-4.png',
-         },
-         {
-            title: 'Preview 5',
-            path: '/assets/project-details/aionline/aionline-preview-5.png',
-         },
-         {
-            title: 'Preview 6',
-            path: '/assets/project-details/aionline/aionline-preview-6.png',
-         },
-         {
-            title: 'Preview 7',
-            path: '/assets/project-details/aionline/aionline-preview-7.png',
-         },
-         {
-            title: 'Preview 8',
-            path: '/assets/project-details/aionline/aionline-preview-8.png',
-         },
+         { path: '/assets/project-details/aionline/aionline-preview-1.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-2.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-3.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-4.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-5.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-6.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-7.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-8.png' },
       ],
       features: [
          'AI/ML learning platform',
-         'ML/ML coding project selling',
-         'Lemon Squizee Payment Gateway',
-         'AI Quizes',
-         'AI Tutorials',
-         'AI Blogs',
-         'AI Tools',
-         'Live Coding',
+         'AI/ML coding project selling',
+         'Lemon Squeezy payment gateway',
+         'AI quizzes',
+         'AI tutorials',
+         'AI blogs',
+         'AI tools',
+         'Live coding',
       ],
       technologies: [
-         {
-            name: medias.frameworks.nextjs.name,
-            category: 'Frontend',
-            img: medias.frameworks.nextjs.icon,
-         },
-         {
-            name: medias.languages.javascript.name,
-            category: 'Frontend',
-            img: medias.languages.javascript.icon,
-         },
-         {
-            name: medias.features.graphql.name,
-            category: 'Frontend',
-            img: medias.features.graphql.icon,
-         },
-         {
-            name: medias.libraries.tailwindcss.name,
-            category: 'Frontend',
-            img: medias.libraries.tailwindcss.icon,
-         },
-         {
-            name: medias.languages.php.name,
-            category: 'Backend',
-            img: medias.languages.php.icon,
-         },
-         {
-            name: medias.frameworks.laravel.name,
-            category: 'Backend',
-            img: medias.frameworks.laravel.icon,
-         },
-         {
-            name: medias.database.mysql.name,
-            category: 'Database',
-            img: medias.database.mysql.icon,
-         },
-         {
-            name: medias.tools.docker.name,
-            category: 'DevOps',
-            img: medias.tools.docker.icon,
-         },
-         {
-            name: medias.tools.aws.name,
-            category: 'Cloud',
-            img: medias.tools.aws.icon,
-         },
+         { name: 'Next.js', category: 'Frontend' },
+         { name: 'JavaScript', category: 'Frontend' },
+         { name: 'GraphQL', category: 'Frontend' },
+         { name: 'Tailwind CSS', category: 'Frontend' },
+         { name: 'Laravel', category: 'Backend' },
+         { name: 'PHP', category: 'Backend' },
+         { name: 'MySQL', category: 'Database' },
+         { name: 'Docker', category: 'DevOps' },
+         { name: 'AWS', category: 'Cloud' },
       ],
       teamMembers: [
          { name: 'Mashpy', role: 'Project Manager' },
-         { name: 'Hozaifa Bin Masud', role: 'Developer' },
+         {
+            name: 'Hozaifa Bin Masud',
+            role: 'Full Stack Developer',
+            isMe: true,
+         },
          { name: 'Tareq Aziz Uday', role: 'ML Engineer' },
          { name: 'Pavel', role: 'Sr. Developer' },
          { name: 'Mashruf Tahsin', role: 'AI/ML Eng. & Researcher' },

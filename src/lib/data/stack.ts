@@ -1,8 +1,9 @@
 // The homepage's curated view of the stack. The full inventory lives in skills.ts.
+// Names match TechIcon's keys, so each one shows its logo.
 export const stackGroups = [
    {
       key: 'languages',
-      items: ['TypeScript', 'JavaScript', 'PHP', 'Go', 'HTML & CSS'],
+      items: ['TypeScript', 'JavaScript', 'PHP', 'Go', 'HTML', 'CSS'],
    },
    {
       key: 'frameworks',
@@ -30,7 +31,7 @@ export const stackGroups = [
    },
    {
       key: 'ai',
-      items: ['OpenAI', 'LangChain', 'Pinecone', 'Vector databases'],
+      items: ['OpenAI', 'LangChain', 'Vector databases'],
    },
    {
       key: 'tooling',

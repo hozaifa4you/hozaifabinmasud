@@ -1,0 +1,50 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "#4479a1",
+        "createdAt": "2026-10-22T01:46:08.078Z",
+        "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#3776ab",
+        "createdAt": "2026-10-22T01:46:08.333Z",
+        "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#009688",
+        "createdAt": "2026-10-22T01:46:08.624Z",
+        "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#635bff",
+        "createdAt": "2026-10-22T01:46:08.959Z",
+        "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#ffc233",
+        "createdAt": "2026-10-22T01:46:09.216Z",
+        "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#5865f2",
+        "createdAt": "2026-10-22T01:46:09.486Z",
+        "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#c5f74f",
+        "createdAt": "2026-10-22T01:51:10.391Z",
+        "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      }
+    ]
+  }
+}

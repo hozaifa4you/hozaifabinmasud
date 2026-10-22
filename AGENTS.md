@@ -29,7 +29,7 @@ There is no test suite.
 - `next` and `eslint-config-next` are pinned to the same exact version; bump them together. `prettier` is pinned exact.
 - ESLint 10 works through patches inside `eslint-config-next`; peer-dependency warnings from eslint-plugin-react/import/jsx-a11y are expected.
 - `@types/node` major tracks the Vercel Node runtime (24.x).
-- nodemailer, react-image-gallery and react-responsive-masonry ship their own types — don't add `@types/*` for them. `sharp` comes in through `next`.
+- nodemailer and react-responsive-masonry ship their own types — don't add `@types/*` for them. `sharp` comes in through `next`.
 
 ## Architecture
 
@@ -40,12 +40,14 @@ There is no test suite.
 - **Config** comes from env vars mapped in `src/config/app.config.ts` (see `.env.example`). Client components only receive `NEXT_PUBLIC_*` values; every other key is `undefined` in the browser bundle. Social links come from `getSocialLinks()` in `src/lib/links.ts`, which reads non-public vars, so call it only from server components (`RESUME_PDF` there is safe anywhere).
 - **Contact flow:** `ContactForm` (client, `useActionState`) → server action `src/lib/action.ts` → `POST ${APP_URL}/api/contact` → `src/app/api/contact/route.ts` validates with zod (422 returns `fieldErrors`) and sends through `src/lib/nodemailer.ts`. Because the action calls the API over HTTP, `APP_URL` must be the deployed URL in production. Mail is sent from `SMTP_EMAIL` with the visitor as `replyTo`; visitor input is escaped with `escapeHtml` from `src/lib/utils.ts`. The off-screen `bot-field` input is a honeypot: the action forwards it as `botField`, and the route answers 200 without sending when it is filled. On failure the action returns the submitted `fields`, which the form uses as `defaultValue`s so React 19's automatic form reset doesn't wipe what the visitor typed.
 - `src/components/ui/` holds shadcn-style primitives built with `class-variance-authority` and `cn()` (`src/lib/utils.ts`). `@/*` maps to `src/*`.
-- Fun-fact texts in `src/lib/data.ts` are trusted HTML strings rendered with `dangerouslySetInnerHTML`.
+- Fun facts in `src/lib/data.ts` are placeholder (not real) and are not rendered anywhere; keep them off the site until the owner supplies real ones.
 
 ## Styling and formatting
 
 - `DESIGN.md` is the visual spec ("The Open Workspace"): One Dark surfaces with syntax colours as roles, Fira Sans for reading and Fira Code for names/dates/data, square 1px flat panes, one filled button per view, and the editor metaphor carried by structure (window, explorer, tabs, status bar, file tabs), never by eyebrows or glyph decoration. Its Don'ts list drift still on the older pages (`text-white`, rounded corners, `.section-padding`); don't copy those into new UI. `.impeccable/design.json` is its sidecar; regenerate both together with `/impeccable document`.
 - Tailwind v4 is configured in CSS only (no `tailwind.config`): tokens live in the `@theme` blocks of `src/styles/globals.css`: surfaces (`bg-sunken`, `bg-main`, `bg-raised`), lines (`line`, `line-strong`), text (`text`, `strong`, `muted`), syntax-colour roles (`primary`, `primary-soft`, `success`, `danger`, `info`, `warning`), a named type scale (`text-ui`, `text-control`, `text-body`, `text-lead`, `text-headline`, `text-display`), `ease-out-expo` and the `animate-rise`/`animate-wipe` entrances, plus a `container` utility capped at 1120px. Use these instead of Tailwind palette colours or arbitrary `text-[…px]` sizes.
+- Technology logos live in `public/icons` and render through `TechIcon` (`src/components/tech-icon.tsx`), keyed by the canonical names `normalizeTech()` produces. A logo that is dark or one-colour must be `kind: 'mask'` (drawn in the text colour), or it vanishes on the dark canvas; check a new icon on `bg-main` before adding it.
+- `cn()` (`src/lib/utils.ts`) teaches tailwind-merge the named type scale; when adding a `text-*` size token to `globals.css`, add it there too, or `cn()` treats it as a colour and drops it (or the colour) whenever both appear.
 - Fonts: Fira Sans (`font-sans`, the default) for reading, Fira Code (`font-mono`) only for code-like data: file names, dates, stacks, status. Both load through `next/font` variables on `<html>`.
 - Prettier: 3-space indent, single quotes. Imports are sorted by `@trivago/prettier-plugin-sort-imports` (packages, blank line, then local). Tailwind classes are sorted by `prettier-plugin-tailwindcss`, which reads the theme from `globals.css` via `tailwindStylesheet`.
 

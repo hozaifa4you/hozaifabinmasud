@@ -45,3 +45,6 @@ next-env.d.ts
 
 # impeccable review captures (render real contact details from .env)
 .impeccable/review/
+
+# impeccable decision-page sketches (local design scratch, not site code)
+.impeccable/mocks/

@@ -43,7 +43,7 @@ const works: WorkType[] = [
          'nextjs',
          'openai',
          'langchain',
-         'pinecone',
+         'vectordb',
       ],
       address: '4B, House 13, Uttara 11, Road 11, Dhaka, BD.',
       website: 'namespaceit.com',

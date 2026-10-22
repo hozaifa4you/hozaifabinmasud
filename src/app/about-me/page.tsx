@@ -1,125 +1,246 @@
-import Image from 'next/image';
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { LuArrowRight } from 'react-icons/lu';
 
-import { FunFactSection } from '@/components/about-me/fun-facts-section';
-import { Breadcrumb } from '@/components/breadcrumb';
-import { SkillsBox } from '@/components/home/skills-box';
-import { DotGridLarge, DotGridRect, SquareBox } from '@/components/ui/icons';
-import { appConfig } from '@/config/app.config';
+import { BreadcrumbNav } from '@/components/breadcrumb';
+import { DirectionalPage } from '@/components/directional-page';
+import { SectionHeading } from '@/components/home/section-heading';
+import { HiringClose } from '@/components/projects/hiring-close';
+import { hasTechIcon, TechIcon } from '@/components/tech-icon';
+import { ABOUT_INTRO, capabilities } from '@/lib/data/about';
+import { hasProjectDetails } from '@/lib/data/project-details';
+import { projects, smallProjects } from '@/lib/data/projects';
+import { skillGroups } from '@/lib/data/skills';
 import {
-   databases,
-   features,
-   frameworks,
-   languages,
-   libraries,
-   others,
-   tools,
-} from '@/lib/data/skills';
+   getCurrentWork,
+   getExperienceYears,
+   getFirstWorkYear,
+   normalizeTech,
+} from '@/lib/profile';
+
+export const metadata: Metadata = {
+   title: 'About me',
+   description:
+      'Who Hozaifa is, what he builds with the projects that prove it, and every technology he works with.',
+};
+
+// Experience years and the current role are computed from dates
+export const revalidate = 86400;
+
+// A proof link opens the case study, or the directory with that row open
+const proofHref = (slug: string) =>
+   hasProjectDetails(slug) ? `/projects/${slug}` : `/projects#${slug}`;
+
+// How many listed projects used each technology
+const getUsage = () => {
+   const usage = new Map<string, number>();
+   const stacks = [
+      ...projects.map((project) => project.technologies),
+      ...smallProjects.map((project) => project.tags),
+   ];
+   for (const stack of stacks) {
+      for (const name of new Set(stack.map(normalizeTech))) {
+         usage.set(name, (usage.get(name) ?? 0) + 1);
+      }
+   }
+   return usage;
+};
 
 const AboutMePage = () => {
+   const currentWork = getCurrentWork();
+   const usage = getUsage();
+   const knownSlugs = new Set(projects.map((project) => project.slug));
+
    return (
-      <>
-         <Breadcrumb title="about-me" subtitle="Who am I?" />
+      <DirectionalPage>
+         <article className="container pt-6 pb-20 sm:pt-8 lg:pt-12 lg:pb-28">
+            <header>
+               <BreadcrumbNav
+                  items={[
+                     {
+                        href: '/#about',
+                        title: 'Workspace',
+                        transitionTypes: ['nav-back'],
+                     },
+                     { href: '/about-me', title: 'about-me' },
+                  ]}
+               />
+               <h1 className="mt-5 text-display font-semibold text-strong sm:mt-6">
+                  About me
+               </h1>
+               <p className="mt-4 max-w-[60ch] text-lead text-pretty text-strong">
+                  {ABOUT_INTRO}
+               </p>
 
-         <section className="relative w-full">
-            <div className="container">
-               <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-8">
-                  <div className="lg:col-span-5">
-                     <div className="grid max-w-[515px] gap-6">
-                        <p>
-                           Hello, I&apos;m{' '}
-                           <span className="text-primary">[</span>
-                           {appConfig.APP_NAME_SHORT}
-                           <span className="text-primary">]</span>
-                        </p>
-                        <p>
-                           I’m a self-taught full-stack developer based in
-                           Bangladesh. I build scalable, user-friendly web
-                           applications from scratch — both frontend and backend
-                           — using modern technologies like React, Next.js,
-                           NestJS, Laravel and etc.
-                        </p>
-                        <p>
-                           Coding has been my passion for over four years. I’ve
-                           helped clients bring their ideas to life through
-                           clean, functional, and well-structured applications.
-                           I enjoy solving real problems with code, and I’m
-                           always exploring new tools, frameworks, and AI
-                           integrations to level up my work.
-                        </p>
-                     </div>
-                  </div>
-                  <div className="relative lg:col-span-3">
-                     <div className="flex w-full items-center justify-center md:-mt-14">
-                        <Image
-                           src="/alternate/me2.png"
-                           alt="#"
-                           width={340}
-                           height={505}
-                           className="mx-auto w-full max-w-[340px] object-contain object-center"
-                        />
-                     </div>
-
-                     <DotGridLarge className="absolute top-5 left-5 size-[84px]" />
-                     <DotGridRect className="absolute right-10 bottom-1/3" />
-                  </div>
-               </div>
-            </div>
-
-            <DotGridLarge className="absolute top-1/3 left-0 hidden size-[50px] lg:block" />
-            <SquareBox className="absolute top-1/6 right-0 hidden lg:block" />
-            <DotGridLarge className="absolute -right-8 -bottom-10 hidden lg:block" />
-         </section>
-
-         <section className="section-padding relative">
-            <div className="container">
-               <h4 className="text-[26px] font-medium text-white md:text-[28px] lg:text-[32px]">
-                  <span className="text-primary">#</span>skills
-               </h4>
-
-               <div className="mt-5 grid gap-5 md:grid-cols-8 md:gap-8 lg:gap-14">
-                  <div className="hidden md:col-span-3 md:block">
-                     <Image
-                        src="/assets/boxs.png"
-                        alt="Boxs"
-                        width={350}
-                        height={280}
-                        className="h-auto w-full object-cover object-center"
+               <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-1 border-y border-line py-2.5 font-mono text-ui sm:mt-8">
+                  <div className="flex items-center gap-2 text-success">
+                     <dt className="sr-only">Availability</dt>
+                     <span
+                        aria-hidden
+                        className="size-2 rounded-full bg-success"
                      />
+                     <dd>Open to full-time roles</dd>
                   </div>
-                  <div className="md:col-span-5">
-                     <div className="grid gap-4 md:grid-cols-3">
-                        <div>
-                           <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
-                              <SkillsBox title="Languages" skills={languages} />
-                              <SkillsBox title="Others" skills={others} />
-                           </div>
-                        </div>
-
-                        <div>
-                           <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
-                              <SkillsBox title="Databases" skills={databases} />
-                              <SkillsBox title="Libraries" skills={libraries} />
-                           </div>
-                        </div>
-
-                        <div>
-                           <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
-                              <SkillsBox
-                                 title="Frameworks"
-                                 skills={frameworks}
-                              />
-                              <SkillsBox title="Tools" skills={tools} />
-                              <SkillsBox title="Features" skills={features} />
-                           </div>
-                        </div>
+                  <div>
+                     <dt className="sr-only">Experience</dt>
+                     <dd>{getExperienceYears()}+ yrs experience</dd>
+                  </div>
+                  <div>
+                     <dt className="sr-only">Working since</dt>
+                     <dd>shipping since {getFirstWorkYear()}</dd>
+                  </div>
+                  {currentWork && (
+                     <div>
+                        <dt className="sr-only">Current role</dt>
+                        <dd>
+                           {currentWork.title} at {currentWork.company}
+                        </dd>
                      </div>
+                  )}
+                  <div>
+                     <dt className="sr-only">Location</dt>
+                     <dd>Bangladesh · GMT+6</dd>
                   </div>
-               </div>
-            </div>
-         </section>
+               </dl>
+            </header>
 
-         <FunFactSection />
-      </>
+            {/* Kinds of work, each with the projects that prove it */}
+            <section aria-labelledby="builds-title" className="mt-14 lg:mt-20">
+               <SectionHeading
+                  id="builds-title"
+                  file="builds"
+                  title="What I build"
+               />
+               <ul className="mt-8">
+                  {capabilities.map((capability) => {
+                     const proof = capability.projects.filter((slug) =>
+                        knownSlugs.has(slug),
+                     );
+                     return (
+                        <li
+                           key={capability.title}
+                           className="grid gap-x-8 gap-y-3 border-b border-line py-6 first:border-t lg:grid-cols-[17rem_minmax(0,1fr)_12rem]"
+                        >
+                           <h3 className="text-xl leading-snug font-semibold text-balance text-strong">
+                              {capability.title}
+                           </h3>
+                           <div>
+                              <p className="max-w-[60ch] text-body text-pretty">
+                                 {capability.summary}
+                              </p>
+                              <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 font-mono text-ui">
+                                 <span className="sr-only">Projects: </span>
+                                 {proof.length > 0 ? (
+                                    proof.map((slug) => (
+                                       <Link
+                                          key={slug}
+                                          href={proofHref(slug)}
+                                          className="group inline-flex items-center gap-1 text-strong underline decoration-info/50 underline-offset-4 transition-colors hover:text-info hover:decoration-info"
+                                       >
+                                          {slug}
+                                          <LuArrowRight
+                                             aria-hidden
+                                             className="size-3.5 transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5"
+                                          />
+                                       </Link>
+                                    ))
+                                 ) : (
+                                    <span className="text-muted">
+                                       No public project yet
+                                    </span>
+                                 )}
+                              </p>
+                           </div>
+                           <ul
+                              aria-label="Built with"
+                              className="flex flex-wrap content-start gap-x-4 gap-y-2 font-mono text-ui text-text lg:flex-col lg:pt-1"
+                           >
+                              {capability.stack.map((name) => (
+                                 <li
+                                    key={name}
+                                    className="inline-flex items-center gap-2"
+                                 >
+                                    <TechIcon name={name} className="size-4" />
+                                    {name}
+                                 </li>
+                              ))}
+                           </ul>
+                        </li>
+                     );
+                  })}
+               </ul>
+            </section>
+
+            {/* The full technology list, each one linked to its projects */}
+            <section aria-labelledby="stack-title" className="mt-16 lg:mt-24">
+               <SectionHeading
+                  id="stack-title"
+                  file="stack"
+                  title="Technologies"
+                  link={{ href: '/projects', label: 'All projects' }}
+               />
+               <dl className="mt-8 grid border-t border-l border-line sm:grid-cols-2 lg:grid-cols-3">
+                  {skillGroups.map((group) => (
+                     <div
+                        key={group.key}
+                        className="border-r border-b border-line p-5 sm:p-6"
+                     >
+                        <dt className="font-mono text-sm text-primary-soft">
+                           {group.key}
+                        </dt>
+                        <dd className="mt-3">
+                           <ul className="flex flex-col gap-2.5 text-control">
+                              {group.items.map((name) => {
+                                 const count = usage.get(name) ?? 0;
+                                 return (
+                                    <li
+                                       key={name}
+                                       className="flex items-center gap-2.5"
+                                    >
+                                       {/* Names without a logo keep the column */}
+                                       {hasTechIcon(name) ? (
+                                          <TechIcon name={name} />
+                                       ) : (
+                                          <span
+                                             aria-hidden
+                                             className="size-5"
+                                          />
+                                       )}
+                                       {count > 0 ? (
+                                          <Link
+                                             href={`/projects?stack=${encodeURIComponent(name)}`}
+                                             className="group inline-flex items-baseline gap-2 text-strong transition-colors hover:text-info"
+                                          >
+                                             <span className="underline decoration-info/50 underline-offset-4 group-hover:decoration-info">
+                                                {name}
+                                             </span>
+                                             <span className="font-mono text-xs text-muted">
+                                                {count}
+                                                <span className="sr-only">
+                                                   {count === 1
+                                                      ? ' project'
+                                                      : ' projects'}
+                                                </span>
+                                             </span>
+                                          </Link>
+                                       ) : (
+                                          <span className="text-strong">
+                                             {name}
+                                          </span>
+                                       )}
+                                    </li>
+                                 );
+                              })}
+                           </ul>
+                        </dd>
+                     </div>
+                  ))}
+               </dl>
+            </section>
+
+            <HiringClose line="I build web products end to end, from the API to the interface." />
+         </article>
+      </DirectionalPage>
    );
 };
 

@@ -18,20 +18,10 @@ import {
 } from 'react-icons/lu';
 
 import { buttonVariants } from '@/components/ui/button';
+import type { ProjectView } from '@/lib/project-view';
 import { cn } from '@/lib/utils';
 
-export type ExplorerProject = {
-   slug: string;
-   title: string;
-   description: string;
-   technologies: string[];
-   status: 'live' | 'archive' | 'developing';
-   image: string | null;
-   context: string | null;
-   liveUrl: string | null;
-   codeUrl: string | null;
-   caseStudyUrl: string | null;
-};
+export type ExplorerProject = ProjectView;
 
 const STATUS = {
    live: { label: 'Live', text: 'text-success', dot: 'bg-success' },

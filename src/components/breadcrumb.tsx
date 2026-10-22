@@ -17,6 +17,48 @@ interface BreadcrumbProps {
    size?: 'sm' | 'md' | 'lg';
 }
 
+/** The path back up the site; the last item is the current page. */
+const BreadcrumbNav = ({
+   items,
+   className,
+}: {
+   items: BreadcrumbItem[];
+   className?: string;
+}) => (
+   <nav aria-label="Breadcrumb" className={className}>
+      <ol className="flex flex-wrap items-center gap-y-1 font-mono text-sm text-muted">
+         {items.map((item, index) => {
+            const isCurrent = index === items.length - 1;
+            return (
+               <li key={item.title} className="flex items-center">
+                  {isCurrent ? (
+                     <span
+                        aria-current="page"
+                        className="font-medium text-strong"
+                     >
+                        {item.title}
+                     </span>
+                  ) : (
+                     <Link
+                        href={item.href}
+                        transitionTypes={item.transitionTypes}
+                        className="transition-colors hover:text-strong"
+                     >
+                        {item.title}
+                     </Link>
+                  )}
+                  {!isCurrent && (
+                     <span aria-hidden className="mx-2 text-line-strong">
+                        /
+                     </span>
+                  )}
+               </li>
+            );
+         })}
+      </ol>
+   </nav>
+);
+
 const Breadcrumb = ({
    title,
    subtitle,
@@ -28,31 +70,7 @@ const Breadcrumb = ({
          <div className="mb-6 lg:mb-8">
             {/* Main breadcrumb navigation */}
             {items && items.length > 0 && (
-               <nav className="mb-4">
-                  <div className="flex items-center space-x-2 font-mono text-sm text-muted">
-                     {items.map((item, index) => (
-                        <div key={index} className="flex items-center">
-                           {index === 0 && (
-                              <span className="mr-2 text-primary">/</span>
-                           )}
-                           <Link
-                              href={item.href}
-                              transitionTypes={item.transitionTypes}
-                              className={cn(
-                                 index === items.length - 1
-                                    ? 'font-medium text-strong'
-                                    : 'text-muted transition-colors hover:text-strong',
-                              )}
-                           >
-                              {item.title}
-                           </Link>
-                           {index < items.length - 1 && (
-                              <span className="mx-2 text-line-strong">/</span>
-                           )}
-                        </div>
-                     ))}
-                  </div>
-               </nav>
+               <BreadcrumbNav items={items} className="mb-4" />
             )}
 
             {/* Page title */}
@@ -85,4 +103,4 @@ const Breadcrumb = ({
    );
 };
 
-export { Breadcrumb };
+export { Breadcrumb, BreadcrumbNav };

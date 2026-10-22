@@ -304,81 +304,20 @@ section {
    @apply border border-line bg-transparent transition-colors duration-300 ease-out-expo hover:border-primary;
 }
 
-/* Custom styles for react-image-gallery */
-.custom-gallery .image-gallery-content {
-   background: transparent;
-}
-
-.custom-gallery .image-gallery-slide img {
-   max-height: 75vh !important;
-   object-fit: contain;
-   border: 1px solid var(--color-line);
-}
-
-@media (max-width: 768px) {
-   .custom-gallery .image-gallery-slide img {
-      max-height: 80vh !important;
+/* Case study screens wipe in from the left as they scroll into view */
+@supports (animation-timeline: view()) {
+   @media (prefers-reduced-motion: no-preference) {
+      .scroll-wipe {
+         animation: wipe linear both;
+         animation-timeline: view();
+         animation-range: entry 5% entry 95%;
+      }
    }
 }
 
-.custom-gallery .image-gallery-thumbnails-wrapper {
-   background: var(--color-bg-sunken);
-   margin-top: 2rem;
-   padding: 1rem;
-   border: 1px solid var(--color-line);
-}
-
-.custom-gallery .image-gallery-thumbnail {
-   border: 1px solid var(--color-line);
-   transition: border-color 0.3s var(--ease-out-expo);
-}
-
-.custom-gallery .image-gallery-thumbnail.active,
-.custom-gallery .image-gallery-thumbnail:hover {
-   border-color: var(--color-primary);
-}
-
-.custom-gallery .image-gallery-left-nav,
-.custom-gallery .image-gallery-right-nav {
-   background: var(--color-bg-sunken);
-   color: var(--color-strong);
-   font-size: 1.5rem;
-   padding: 1rem;
-   transition:
-      color 0.3s var(--ease-out-expo),
-      border-color 0.3s var(--ease-out-expo);
-   border: 1px solid var(--color-line);
-}
-
-@media (min-width: 768px) {
-   .custom-gallery .image-gallery-left-nav,
-   .custom-gallery .image-gallery-right-nav {
-      font-size: 2rem;
-      padding: 1.5rem;
-   }
-}
-
-.custom-gallery .image-gallery-left-nav:hover,
-.custom-gallery .image-gallery-right-nav:hover {
-   border-color: var(--color-primary);
-   color: var(--color-primary);
-}
-
-.custom-gallery .image-gallery-description {
-   background: var(--color-bg-sunken);
-   color: var(--color-strong);
-   padding: 1rem 1.5rem;
-   margin-top: 1.5rem;
-   font-weight: 500;
-   border: 1px solid var(--color-line);
-   font-family: var(--font-mono);
-   font-size: 14px;
-}
-
-@media (min-width: 768px) {
-   .custom-gallery .image-gallery-description {
-      font-size: 16px;
-   }
+/* The page behind an open modal dialog stays put */
+html:has(dialog[open]) {
+   overflow: hidden;
 }
 
 /* Ensure proper text wrapping */

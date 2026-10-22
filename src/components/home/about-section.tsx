@@ -3,8 +3,8 @@ import { LuArrowRight } from 'react-icons/lu';
 
 import { SectionHeading } from '@/components/home/section-heading';
 import { buttonVariants } from '@/components/ui/button';
+import { ABOUT_INTRO, getAboutStory } from '@/lib/data/about';
 import { projectDetails } from '@/lib/data/project-details';
-import { getFirstWorkYear } from '@/lib/profile';
 
 // Facts the hero's status bar doesn't already show
 const getFacts = () => {
@@ -41,19 +41,8 @@ const AboutSection = () => {
 
          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
             <div className="max-w-[65ch] space-y-5 text-body text-pretty">
-               <p className="text-strong">
-                  I&apos;m a self-taught full-stack developer based in
-                  Bangladesh. I build scalable, user-friendly web applications
-                  from scratch, frontend and backend, with React, Next.js,
-                  NestJS and Laravel.
-               </p>
-               <p>
-                  I&apos;ve been shipping software for clients and companies
-                  since {getFirstWorkYear()}, turning ideas into clean,
-                  functional and well-structured applications. I enjoy solving
-                  real problems with code, and I keep exploring new tools,
-                  frameworks and AI integrations to level up my work.
-               </p>
+               <p className="text-strong">{ABOUT_INTRO}</p>
+               <p>{getAboutStory()}</p>
                <Link
                   href="/about-me"
                   className={buttonVariants({ variant: 'default', size: 'lg' })}

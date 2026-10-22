@@ -2,8 +2,16 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { DirectionalPage } from '@/components/directional-page';
-import { ProjectDetailsView } from '@/components/projects/project-details-view';
-import { getProjectDetails, projectDetails } from '@/lib/data/project-details';
+import {
+   NextProject,
+   ProjectDetailsView,
+} from '@/components/projects/project-details-view';
+import {
+   getProjectDetails,
+   hasProjectDetails,
+   projectDetails,
+} from '@/lib/data/project-details';
+import { projects } from '@/lib/data/projects';
 
 type Props = {
    params: Promise<{ slug: string }>;
@@ -30,6 +38,21 @@ export const generateMetadata = async ({
    };
 };
 
+// The project after this one in the list, as the page's last exit. Without a
+// case study of its own it opens in the homepage explorer instead
+const getNextProject = (slug: string): NextProject | undefined => {
+   const index = projects.findIndex((project) => project.slug === slug);
+   const next = projects[(index + 1) % projects.length];
+   if (!next || next.slug === slug) return undefined;
+   return hasProjectDetails(next.slug)
+      ? { title: next.title, href: `/projects/${next.slug}`, isCaseStudy: true }
+      : {
+           title: next.title,
+           href: `/#project-${next.slug}`,
+           isCaseStudy: false,
+        };
+};
+
 const ProjectDetailsPage = async ({ params }: Props) => {
    const { slug } = await params;
    const project = getProjectDetails(slug);
@@ -39,7 +62,10 @@ const ProjectDetailsPage = async ({ params }: Props) => {
 
    return (
       <DirectionalPage>
-         <ProjectDetailsView project={project} />
+         <ProjectDetailsView
+            project={project}
+            nextProject={getNextProject(slug)}
+         />
       </DirectionalPage>
    );
 };
