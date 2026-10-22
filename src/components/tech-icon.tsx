@@ -2,7 +2,15 @@ import Image from 'next/image';
 import { CSSProperties } from 'react';
 import { IconType } from 'react-icons';
 import { LuDatabase } from 'react-icons/lu';
-import { SiLangchain } from 'react-icons/si';
+import {
+   SiDiscorddotjs,
+   SiDrizzle,
+   SiFastapi,
+   SiLangchain,
+   SiLemonsqueezy,
+   SiPython,
+   SiStripe,
+} from 'react-icons/si';
 import { TbBrandMysql } from 'react-icons/tb';
 
 import { cn } from '@/lib/utils';
@@ -39,7 +47,9 @@ const TECH_ICONS: Record<string, TechIconSource> = {
    MongoDB: { kind: 'image', src: '/icons/mongodb.svg' },
    Redis: { kind: 'image', src: '/icons/redis.svg' },
    Prisma: { kind: 'mask', src: '/icons/prisma.svg' },
-   'Drizzle ORM': { kind: 'image', src: '/icons/drizzle.png' },
+   // The stored drizzle.png is a solid black tile that reads as a hole on the
+   // canvas; the simple-icons mark in Drizzle's lime sits like the others
+   'Drizzle ORM': { kind: 'glyph', Icon: SiDrizzle, color: '#c5f74f' },
    GraphQL: { kind: 'image', src: '/icons/graphql.svg' },
    OpenAI: { kind: 'mask', src: '/icons/openai.svg' },
    // LangChain's brand colour is a near-black teal, so it takes the text colour
@@ -52,7 +62,20 @@ const TECH_ICONS: Record<string, TechIconSource> = {
    AWS: { kind: 'mask', src: '/icons/aws.svg' },
    'Tailwind CSS': { kind: 'image', src: '/icons/tailwind.svg' },
    'shadcn/ui': { kind: 'mask', src: '/icons/shadcn.svg' },
+   D3: { kind: 'image', src: '/icons/d3js.svg' },
+   Redux: { kind: 'image', src: '/icons/redux.svg' },
+   Bootstrap: { kind: 'image', src: '/icons/bootstrap.svg' },
+   'Ant Design': { kind: 'image', src: '/icons/ant-design.svg' },
+   // No stored logo for these; simple-icons marks in their brand colours
+   Python: { kind: 'glyph', Icon: SiPython, color: '#3776ab' },
+   FastAPI: { kind: 'glyph', Icon: SiFastapi, color: '#009688' },
+   Stripe: { kind: 'glyph', Icon: SiStripe, color: '#635bff' },
+   'Lemon Squeezy': { kind: 'glyph', Icon: SiLemonsqueezy, color: '#ffc233' },
+   'discord.js': { kind: 'glyph', Icon: SiDiscorddotjs, color: '#5865f2' },
+   'Vector DB': { kind: 'glyph', Icon: LuDatabase, generic: true },
 };
+
+const hasTechIcon = (name: string) => name in TECH_ICONS;
 
 /** The logo for a technology, or nothing when none is on file. Decorative:
  * always render it beside the technology's name. */
@@ -105,4 +128,4 @@ const TechIcon = ({
    );
 };
 
-export { TechIcon };
+export { TechIcon, hasTechIcon };

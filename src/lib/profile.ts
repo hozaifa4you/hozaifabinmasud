@@ -114,6 +114,9 @@ const TECH_NAMES: Record<string, string> = {
    VectorDB: 'Vector DB',
    'JS & TS': 'TypeScript',
    'Lemon Squeeze': 'Lemon Squeezy',
+   Ts: 'TypeScript',
+   Nodejs: 'Node.js',
+   Discordjs: 'discord.js',
 };
 
 export const normalizeTech = (name: string) => TECH_NAMES[name] ?? name;
