@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T12:00:00.000Z",
+  "generatedAt": "2026-10-22T18:00:00.000Z",
   "title": "Design System: Hozaifa Bin Masud — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -263,7 +263,7 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Project and role titles; case-study commit messages (20px, 24px from sm)."
+        "purpose": "Project and role titles; case-study commit messages (20px, 24px from sm); the open directory row's title stays at 20px."
       },
       "body": {
         "displayName": "Body",
@@ -271,7 +271,7 @@
       },
       "control": {
         "displayName": "Control",
-        "purpose": "Button labels (500), field text (400), stack and fact values."
+        "purpose": "Button labels (500), field text (400), stack and fact values, filter chip labels, the directory's built-for column."
       },
       "label": {
         "displayName": "Label",
@@ -279,15 +279,15 @@
       },
       "code": {
         "displayName": "Code",
-        "purpose": "Nav links, dates and durations, emails, contact handles, stack keys, breadcrumbs, commit stat lines, the viewer counter."
+        "purpose": "Nav links, dates and durations, emails, contact handles, stack keys, breadcrumbs, commit stat lines, the viewer counter, the directory's stack key, live count and more toggle."
       },
       "code-ui": {
         "displayName": "Code UI",
-        "purpose": "File names in explorers and tab strips; the case-study fact line."
+        "purpose": "File names in explorers and tab strips; the case-study fact line; the directory's slugs, status lines, opens column and status summary."
       },
       "code-label": {
         "displayName": "Code Label",
-        "purpose": "Status bar, tags, file tabs, data keys."
+        "purpose": "Status bar, tags, file tabs, data keys, the directory's column header and chip counts."
       }
     },
     "shadows": [],
@@ -322,7 +322,7 @@
       {
         "name": "micro-transform",
         "value": "300ms ease-out-expo",
-        "purpose": "Arrow nudges (2px), nav underline scale, logo 90deg rotation, header border, mobile menu fade-and-drop (8px). Project explorer selection highlight gliding between files."
+        "purpose": "Arrow nudges (2px), nav underline scale, logo 90deg rotation, header border, mobile menu fade-and-drop (8px). Project explorer selection highlight gliding between files. The projects directory's chevron turning 180deg as a row opens."
       },
       {
         "name": "rise",
@@ -337,7 +337,7 @@
       {
         "name": "shared-morph",
         "value": "::view-transition-group(.morph) 520ms ease-out-expo; image pair blurs 4px at 35%",
-        "purpose": "The project screenshot morphs between the homepage explorer and its case study (React ViewTransition share=\"morph\")."
+        "purpose": "The project screenshot morphs between the homepage explorer or the projects directory and its case study (React ViewTransition share=\"morph\", name project-shot-<slug>)."
       },
       {
         "name": "page-slide",
@@ -368,6 +368,11 @@
         "name": "viewer-fade",
         "value": "opacity 0 -> 1, 300ms ease-out-expo, transition-behavior: allow-discrete with @starting-style",
         "purpose": "The Screen Viewer dialog fading in on open and out on close."
+      },
+      {
+        "name": "row-open",
+        "value": "grid-template-rows 0fr -> 1fr, 300ms ease-out-expo; chevron rotate(180deg) 300ms ease-out-expo; row fill and orchid edge 200ms ease-out-expo",
+        "purpose": "A projects directory row opening in place to its panel and closing again; the closed panel is inert."
       },
       {
         "name": "reduced-motion",
@@ -440,6 +445,14 @@
       "css": ".ds-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .ds-tag { padding: 2px 8px; background: var(--color-bg-raised); border: 1px solid var(--color-line); color: var(--color-text); font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; line-height: 1.25rem; } .ds-pill { padding: 0 6px; background: color-mix(in srgb, var(--color-success) 10%, transparent); border: 1px solid color-mix(in srgb, var(--color-success) 40%, transparent); color: var(--color-success); font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; line-height: 1.25rem; } .ds-status { display: inline-flex; align-items: center; gap: 8px; margin-left: 8px; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; } .ds-status i { width: 8px; height: 8px; border-radius: 9999px; background: currentColor; } .ds-status-live { color: var(--color-success); } .ds-status-dev { color: var(--color-warning); }"
     },
     {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Toggle chips for the projects directory's stack filter: logo, name and count; pressed is an orchid frame on Line Highlight.",
+      "html": "<div class=\"ds-filter\" role=\"group\" aria-label=\"stack\"><span class=\"ds-filter-key\">stack</span><button class=\"ds-fchip\" aria-pressed=\"false\">All<span>11</span></button><button class=\"ds-fchip\" aria-pressed=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/><path d=\"M3 5v14a9 3 0 0 0 18 0V5\"/><path d=\"M3 12a9 3 0 0 0 18 0\"/></svg>MySQL<span>9</span></button><button class=\"ds-fchip\" aria-pressed=\"false\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/><path d=\"M3 5v14a9 3 0 0 0 18 0V5\"/><path d=\"M3 12a9 3 0 0 0 18 0\"/></svg>Redis<span>2</span></button><button class=\"ds-fmore\" aria-expanded=\"false\">+18 more</button></div>",
+      "css": ".ds-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .ds-filter-key { margin-right: 8px; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.875rem; color: var(--color-primary-soft); } .ds-fchip { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; background: transparent; border: 1px solid var(--color-line); border-radius: 0; color: var(--color-text); font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.45; white-space: nowrap; cursor: pointer; transition: color 200ms var(--ease-out-expo), background-color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo); } .ds-fchip svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--color-muted); } .ds-fchip span { font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; color: var(--color-muted); } .ds-fchip:hover { border-color: var(--color-line-strong); color: var(--color-strong); } .ds-fchip[aria-pressed=\"true\"] { background: var(--color-bg-raised); border-color: var(--color-primary); color: var(--color-strong); } .ds-fchip:focus-visible, .ds-fmore:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; } .ds-fmore { height: 36px; padding: 0 8px; background: none; border: 0; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.875rem; color: var(--color-muted); cursor: pointer; transition: color 200ms var(--ease-out-expo); } .ds-fmore:hover { color: var(--color-strong); }"
+    },
+    {
       "name": "Fact Panel",
       "kind": "card",
       "refersTo": "pane",
@@ -476,11 +489,19 @@
       "description": "Native modal dialog on a solid Sidebar Charcoal backdrop: mono counter, square 44px default icon controls, the screen fitted to the height, an optional caption.",
       "html": "<div class=\"ds-viewer\" role=\"dialog\" aria-label=\"Aionlinecourse screens\"><div class=\"ds-viewer-top\"><p class=\"ds-count\"><span>01</span> / 09</p><button class=\"ds-ctl\" aria-label=\"Close\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg></button></div><div class=\"ds-viewer-screen\"></div><div class=\"ds-viewer-nav\"><button class=\"ds-ctl\" aria-label=\"Previous screen\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m15 18-6-6 6-6\"/></svg></button><button class=\"ds-ctl\" aria-label=\"Next screen\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 18 6-6-6-6\"/></svg></button></div></div>",
       "css": ".ds-viewer { display: flex; flex-direction: column; gap: 24px; min-height: 360px; padding: 24px 20px; background: var(--color-bg-sunken); color: var(--color-text); } .ds-viewer-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; } .ds-count { margin: 0; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.875rem; color: var(--color-muted); } .ds-count span { color: var(--color-strong); } .ds-viewer-screen { flex: 1; min-height: 200px; aspect-ratio: 2864 / 1398; background: var(--color-bg-main); animation: ds-wipe 420ms var(--ease-out-expo) both; } .ds-viewer-nav { display: flex; justify-content: center; gap: 12px; } .ds-ctl { display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; background: var(--color-bg-sunken); border: 1px solid var(--color-line-strong); border-radius: 0; color: var(--color-strong); cursor: pointer; transition: background-color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo); } .ds-ctl svg { width: 20px; height: 20px; } .ds-ctl:hover { background: var(--color-bg-raised); border-color: var(--color-text); } .ds-ctl:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; } @keyframes ds-wipe { from { opacity: 0.4; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0); } } @media (prefers-reduced-motion: reduce) { .ds-viewer-screen { animation: none; } }"
+    },
+    {
+      "name": "Projects Directory",
+      "kind": "custom",
+      "refersTo": "directory-row",
+      "description": "Every project as a row of an ls -l in one shared column template; a row opens in place to its screenshot, summary, tags and actions, with a 1px orchid left edge on Line Highlight.",
+      "html": "<div class=\"ds-dir\"><div class=\"ds-dir-head\"><span>name</span><span>status</span><span>built for</span><span>stack</span><span>opens</span><span></span></div><ul class=\"ds-dir-list\"><li class=\"ds-dir-row is-open\"><button class=\"ds-dir-btn\" aria-expanded=\"true\"><span class=\"ds-dir-name\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"m10 13-2 2 2 2\"/><path d=\"m14 17 2-2-2-2\"/></svg>aionlinecourse</span><span class=\"ds-dir-status ds-live\"><i></i>Live</span><span class=\"ds-dir-owner\">Namespace IT</span><span class=\"ds-dir-logos\"><b class=\"ds-dir-match\">MySQL</b><i></i><i></i><i></i><em>+4</em></span><span class=\"ds-dir-opens\">case study</span><svg class=\"ds-dir-chev\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 9 6 6 6-6\"/></svg></button><div class=\"ds-dir-panel\"><div class=\"ds-dir-shot\"></div><div><h3>Aionlinecourse.com</h3><p>AI ML learning and project selling platform.</p><ul class=\"ds-dir-tags\"><li>Laravel</li><li>Next.js</li><li>MySQL</li></ul><div class=\"ds-dir-actions\"><a class=\"ds-dir-primary\" href=\"#\">Read case study</a><a class=\"ds-dir-default\" href=\"#\">Visit live site</a></div></div></div></li><li class=\"ds-dir-row\"><button class=\"ds-dir-btn\" aria-expanded=\"false\"><span class=\"ds-dir-name\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/></svg>windowsestimates</span><span class=\"ds-dir-status ds-dev\"><i></i>In development</span><span class=\"ds-dir-owner\">Namespace IT</span><span class=\"ds-dir-logos\"><i></i><i></i><i></i><i></i></span><span class=\"ds-dir-opens\">—</span><svg class=\"ds-dir-chev\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 9 6 6 6-6\"/></svg></button></li></ul></div>",
+      "css": ".ds-dir { border-top: 1px solid var(--color-line); color: var(--color-text); } .ds-dir-head, .ds-dir-btn { display: grid; grid-template-columns: minmax(0, 14rem) 9rem 9.5rem minmax(0, 1fr) 6.5rem 1.25rem; align-items: center; column-gap: 20px; padding: 0 16px; } .ds-dir-head { height: 36px; border-bottom: 1px solid var(--color-line); border-left: 1px solid transparent; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; color: var(--color-muted); } .ds-dir-list { margin: 0; padding: 0; list-style: none; } .ds-dir-row { border-bottom: 1px solid var(--color-line); border-left: 1px solid transparent; transition: background-color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo); } .ds-dir-row:not(.is-open):hover { background: color-mix(in srgb, var(--color-bg-raised) 50%, transparent); } .ds-dir-row.is-open { background: var(--color-bg-raised); border-left-color: var(--color-primary); } .ds-dir-btn { width: 100%; height: 56px; background: none; border: 0; color: inherit; text-align: left; cursor: pointer; } .ds-dir-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; } .ds-dir-name { display: flex; align-items: center; gap: 8px; min-width: 0; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.8125rem; color: var(--color-strong); } .ds-dir-name svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--color-muted); } .is-open .ds-dir-name svg { color: var(--color-primary); } .ds-dir-status { display: inline-flex; align-items: center; gap: 8px; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.8125rem; } .ds-dir-status i { width: 8px; height: 8px; border-radius: 9999px; background: currentColor; } .ds-live { color: var(--color-success); } .ds-dev { color: var(--color-warning); } .ds-dir-owner { font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; } .ds-dir-logos { display: flex; align-items: center; gap: 10px; min-width: 0; } .ds-dir-logos i { width: 18px; height: 18px; background: var(--color-muted); } .ds-dir-logos em { font-style: normal; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; color: var(--color-muted); } .ds-dir-match { padding: 2px 6px; background: var(--color-bg-main); border: 1px solid var(--color-line-strong); font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; font-weight: 400; color: var(--color-strong); } .ds-dir-opens { font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.8125rem; color: var(--color-muted); } .ds-dir-chev { width: 20px; height: 20px; color: var(--color-muted); transition: transform 300ms var(--ease-out-expo), color 200ms var(--ease-out-expo); } .is-open .ds-dir-chev { transform: rotate(180deg); color: var(--color-strong); } .ds-dir-panel { display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 1fr); gap: 40px; padding: 8px 16px 36px; } .ds-dir-shot { aspect-ratio: 33 / 20; background: var(--color-bg-sunken); border: 1px solid var(--color-line); } .ds-dir-panel h3 { margin: 0; font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; line-height: 1.375; color: var(--color-strong); } .ds-dir-panel p { margin: 12px 0 0; max-width: 60ch; font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.65; } .ds-dir-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; } .ds-dir-tags li { padding: 4px 8px; background: var(--color-bg-main); border: 1px solid var(--color-line); font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; } .ds-dir-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; } .ds-dir-primary, .ds-dir-default { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid; font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; font-weight: 500; text-decoration: none; transition: background-color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo); } .ds-dir-primary { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-primary-ink); } .ds-dir-primary:hover { background: var(--color-primary-soft); border-color: var(--color-primary-soft); } .ds-dir-default { border-color: var(--color-line-strong); color: var(--color-strong); } .ds-dir-default:hover { background: var(--color-bg-raised); border-color: var(--color-text); } .ds-dir-primary:focus-visible, .ds-dir-default:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; } @media (prefers-reduced-motion: reduce) { .ds-dir-row, .ds-dir-chev { transition: none; } }"
     }
   ],
   "narrative": {
     "northStar": "The Open Workspace",
-    "overview": "The site is a One Dark code editor opened on Hozaifa's real work, in a professional register. The editor is carried by structure, not ornament: a window with a title bar, an explorer that doubles as navigation, tab strips, a status bar, file names that label sections, and a git-log timeline. Inside that chrome the writing is set like a well-made product page, in a humanist sans, so a recruiter or client reads prose while the developer's world stays visible at the edges.\n\nSurfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.\n\nMotion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back to the workspace reverses it. On a case study each screen wipes in from the left as it scrolls into view, the commit being read lights its node orchid, and a screen opened full size fades in. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette (technology logos excepted, as content), and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.",
+    "overview": "The site is a One Dark code editor opened on Hozaifa's real work, in a professional register. The editor is carried by structure, not ornament: a window with a title bar, an explorer that doubles as navigation, tab strips, a status bar, file names that label sections, and a git-log timeline. Inside that chrome the writing is set like a well-made product page, in a humanist sans, so a recruiter or client reads prose while the developer's world stays visible at the edges.\n\nSurfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.\n\nMotion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study from the homepage explorer or the projects directory morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back reverses it. In the projects directory a row opens in place, growing to its content while its chevron turns. On a case study each screen wipes in from the left as it scrolls into view, the commit being read lights its node orchid, and a screen opened full size fades in. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette (technology logos excepted, as content), and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.",
     "keyCharacteristics": [
       "Editor structure (explorer, tabs, status bar, file names, commit log) carries the metaphor; no glyph ornaments.",
       "Fira Sans reads; Fira Code names files, dates, stacks, keys and status.",
@@ -507,7 +528,7 @@
       },
       {
         "name": "The Logos Are Content Rule",
-        "body": "Technology logos keep their brand colours, the way project screenshots keep theirs: they are content shown at 20px beside a name, not UI colour, so they are the one place hues outside the palette appear, and no logo colour ever tints UI. Logos come from `public/icons` through `TechIcon`. A dark one-colour logo that would vanish on the canvas (Next.js, Express, OpenAI, AWS, Prisma, shadcn/ui) is redrawn in Cursor White through a CSS mask. A stored logo that is a wordmark, unreadable at 20px, is replaced by a glyph in the brand colour: MySQL is Tabler's dolphin in MySQL blue `#4479A1`. A technology with no logo on file gets a generic glyph in Dim Gray, never a stand-in brand mark.",
+        "body": "Technology logos keep their brand colours, the way project screenshots keep theirs: they are content shown at 16–20px beside a name, not UI colour, so they are the one place hues outside the palette appear, and no logo colour ever tints UI. Every logo comes through `TechIcon`, from `public/icons` where a usable file exists. A dark one-colour logo that would vanish on the canvas (Next.js, Express, Fastify, OpenAI, AWS, Prisma, shadcn/ui, CI/CD) is redrawn in Cursor White through a CSS mask. A stored file that fails at icon size is replaced by a glyph in the brand colour: MySQL's wordmark by Tabler's dolphin in MySQL blue `#4479A1`, and the solid black `drizzle.png` tile by the simple-icons mark in Drizzle lime `#C5F74F`. Technologies with no stored file use their simple-icons mark in its brand colour (Python, FastAPI, Stripe, Lemon Squeezy, discord.js); a mark whose brand colour is near-black (LangChain) takes Cursor White. Where no brand mark applies (Pinecone, vector databases) a generic database glyph stands in, in Dim Gray, never a stand-in brand mark. A technology with nothing on file shows no logo: its name stands alone, and in the directory's logo strip it is left out unless it is the technology being filtered on, which then shows its mono name.",
         "section": "colors"
       },
       {
@@ -542,7 +563,7 @@
       "Do keep one orchid-filled button per view; secondary actions are default framed buttons, tertiary ones ghost.",
       "Do separate surfaces with the three layers and 1px Hairlines; use Line Highlight for hover and selection.",
       "Do keep each accent to its syntax role, with quiet variants as the same hue at 10% fill and 40% border.",
-      "Do use expo-out timing (`cubic-bezier(0.16, 1, 0.3, 1)`): 200ms for colour, 300ms for small transforms, 420–520ms for entrances and page transitions, all collapsed under reduced motion. Scroll-linked effects (the reading line, the case-study screen wipe) run linear on the scroll instead.",
+      "Do use expo-out timing (`cubic-bezier(0.16, 1, 0.3, 1)`): 200ms for colour, 300ms for small transforms and rows opening in place, 420–520ms for entrances and page transitions, all collapsed under reduced motion. Scroll-linked effects (the reading line, the case-study screen wipe) run linear on the scroll instead.",
       "Do give page transitions a direction only through links that declare one (`transitionTypes` `nav-forward` / `nav-back`); the header stays pinned through them, and any other navigation swaps instantly.",
       "Do derive every number shown in chrome (years, project counts) from data."
     ],
