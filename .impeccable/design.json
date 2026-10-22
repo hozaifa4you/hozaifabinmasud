@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T00:49:12.160Z",
+  "generatedAt": "2026-10-22T12:00:00.000Z",
   "title": "Design System: Hozaifa Bin Masud — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -251,19 +251,19 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The name in the hero README only."
+        "purpose": "The name in the hero README and the product name on a case study."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section headings."
+        "purpose": "Section headings and a case study's closing heading."
       },
       "lead": {
         "displayName": "Lead",
-        "purpose": "The single positioning line under the display, about 32ch."
+        "purpose": "The single positioning line under the display (a case study's tagline), about 32ch."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Project and role titles."
+        "purpose": "Project and role titles; case-study commit messages (20px, 24px from sm)."
       },
       "body": {
         "displayName": "Body",
@@ -279,11 +279,11 @@
       },
       "code": {
         "displayName": "Code",
-        "purpose": "Nav links, dates and durations, emails, contact handles, stack keys."
+        "purpose": "Nav links, dates and durations, emails, contact handles, stack keys, breadcrumbs, commit stat lines, the viewer counter."
       },
       "code-ui": {
         "displayName": "Code UI",
-        "purpose": "File names in explorers and tab strips."
+        "purpose": "File names in explorers and tab strips; the case-study fact line."
       },
       "code-label": {
         "displayName": "Code Label",
@@ -332,7 +332,7 @@
       {
         "name": "wipe",
         "value": "wipe 420ms ease-out-expo both (clip-path inset(0 100% 0 0) -> inset(0), opacity 0.4 -> 1)",
-        "purpose": "Replays on the project preview pane each time a project file is selected."
+        "purpose": "Replays on the project preview pane each time a project file is selected, and on the Screen Viewer image at each screen change."
       },
       {
         "name": "shared-morph",
@@ -355,9 +355,24 @@
         "purpose": "The 1px orchid reading line on the docked status bar; hidden without scroll-timeline support."
       },
       {
+        "name": "scroll-wipe",
+        "value": "wipe keyframes, linear, animation-timeline: view(), animation-range: entry 5% entry 95%",
+        "purpose": "Each case-study screen wipes in from the left (clip-path, opacity 0.4 -> 1) as it scrolls into view; only with view-timeline support and prefers-reduced-motion: no-preference, otherwise the screen is simply shown."
+      },
+      {
+        "name": "node-lighting",
+        "value": "background and ring colour, 300ms ease-out-expo",
+        "purpose": "The case-study commit crossing the reading band (IntersectionObserver, rootMargin -45% 0px -50% 0px) lights its node Syntax Orchid; HEAD stays green."
+      },
+      {
+        "name": "viewer-fade",
+        "value": "opacity 0 -> 1, 300ms ease-out-expo, transition-behavior: allow-discrete with @starting-style",
+        "purpose": "The Screen Viewer dialog fading in on open and out on close."
+      },
+      {
         "name": "reduced-motion",
-        "value": "animation and transition durations 0.01ms; view-transition animations 0s; smooth scroll off",
-        "purpose": "prefers-reduced-motion: reduce collapses all motion."
+        "value": "animation and transition durations 0.01ms; view-transition animations 0s; smooth scroll off; the case-study scroll wipe is not applied",
+        "purpose": "prefers-reduced-motion: reduce collapses all motion (the reading line still tracks the scroll)."
       }
     ],
     "breakpoints": [
@@ -447,18 +462,32 @@
       "description": "Headline and more-link above a hairline rule, with the section file name hanging below the rule as a tab.",
       "html": "<div class=\"ds-sh\"><div class=\"ds-sh-row\"><h2>Experience</h2><a href=\"#\">Full history &rarr;</a></div><div class=\"ds-sh-rule\"><span class=\"ds-sh-tab\">work.log</span></div></div>",
       "css": ".ds-sh-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; padding-bottom: 20px; } .ds-sh-row h2 { margin: 0; font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 2.375rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: var(--color-strong); } .ds-sh-row a { font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--color-text); text-decoration: none; transition: color 200ms var(--ease-out-expo); } .ds-sh-row a:hover { color: var(--color-strong); } .ds-sh-row a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; } .ds-sh-rule { border-top: 1px solid var(--color-line); } .ds-sh-tab { display: inline-flex; margin-top: -1px; padding: 4px 12px; background: var(--color-bg-sunken); border: 1px solid var(--color-line); border-top: 0; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; color: var(--color-primary-soft); }"
+    },
+    {
+      "name": "Case Study Commit",
+      "kind": "custom",
+      "description": "One commit on the case-study log: node on the rail, h2 message with the HEAD pill after it, a git log --stat line below, then its content (here the URL-bar frame). The commit being read lights orchid.",
+      "html": "<ol class=\"ds-log\"><li class=\"ds-commit is-head\"><span class=\"ds-rail\"></span><span class=\"ds-node\"></span><div><div class=\"ds-msg-row\"><h2 class=\"ds-msg\">Ship AI tutorials, quizzes, a project store and live coding</h2><span class=\"ds-head\">HEAD</span></div><p class=\"ds-stat\">main · in production</p><div class=\"ds-frame\"><div class=\"ds-urlbar\"><i></i>aionlinecourse.com</div><div class=\"ds-shot\"></div></div></div></li><li class=\"ds-commit is-active\"><span class=\"ds-rail\"></span><span class=\"ds-node\"></span><div><h2 class=\"ds-msg\">Ship 8 features</h2><p class=\"ds-stat\">features.md · 8 lines</p></div></li><li class=\"ds-commit\"><span class=\"ds-node\"></span><div><h2 class=\"ds-msg\">Work in a team of 5 at Namespace IT</h2><p class=\"ds-stat\">team · 5 authors</p><ul class=\"ds-team\"><li><span>Mashpy</span><span class=\"ds-role\">Project Manager</span></li><li class=\"is-me\"><span>Hozaifa Bin Masud<b>me</b></span><span class=\"ds-role\">Full Stack Developer</span></li></ul></div></li></ol>",
+      "css": ".ds-log { margin: 0; padding: 0; list-style: none; max-width: 640px; } .ds-commit { position: relative; display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 28px; padding-bottom: 48px; } .ds-commit:last-child { padding-bottom: 0; } .ds-rail { position: absolute; top: 12px; bottom: 0; left: 9.5px; width: 1px; background: var(--color-line); } .ds-node { position: relative; margin-top: 6px; width: 20px; height: 20px; box-sizing: border-box; border-radius: 9999px; border: 5px solid var(--color-bg-main); background: var(--color-line-strong); box-shadow: 0 0 0 1px var(--color-line); transition: background-color 300ms var(--ease-out-expo), box-shadow 300ms var(--ease-out-expo); } .is-head .ds-node { background: var(--color-success); box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-success) 50%, transparent); } .is-active .ds-node { background: var(--color-primary); box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-primary) 60%, transparent); } .ds-msg-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; } .ds-msg { margin: 0; font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 1.5rem; font-weight: 600; line-height: 1.375; color: var(--color-strong); } .ds-head { padding: 0 6px; background: color-mix(in srgb, var(--color-success) 10%, transparent); border: 1px solid color-mix(in srgb, var(--color-success) 40%, transparent); color: var(--color-success); font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; line-height: 1.25rem; } .ds-stat { margin: 6px 0 0; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.875rem; color: var(--color-muted); } .ds-frame { margin-top: 24px; background: var(--color-bg-sunken); border: 1px solid var(--color-line); } .ds-urlbar { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-bottom: 1px solid var(--color-line); font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; color: var(--color-muted); } .ds-urlbar i { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-success); } .ds-shot { aspect-ratio: 2864 / 1324; background: var(--color-bg-main); } .ds-team { margin: 24px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--color-line); } .ds-team li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; padding: 12px; border-bottom: 1px solid var(--color-line); border-left: 1px solid transparent; font-family: 'Fira Sans', ui-sans-serif, system-ui, sans-serif; font-size: 1.0625rem; font-weight: 500; color: var(--color-strong); } .ds-team li.is-me { background: var(--color-bg-raised); border-left-color: var(--color-primary); } .ds-team b { margin-left: 8px; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.75rem; font-weight: 400; color: var(--color-primary-soft); } .ds-role { font-size: 0.9375rem; font-weight: 400; color: var(--color-muted); }"
+    },
+    {
+      "name": "Screen Viewer",
+      "kind": "custom",
+      "description": "Native modal dialog on a solid Sidebar Charcoal backdrop: mono counter, square 44px default icon controls, the screen fitted to the height, an optional caption.",
+      "html": "<div class=\"ds-viewer\" role=\"dialog\" aria-label=\"Aionlinecourse screens\"><div class=\"ds-viewer-top\"><p class=\"ds-count\"><span>01</span> / 09</p><button class=\"ds-ctl\" aria-label=\"Close\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg></button></div><div class=\"ds-viewer-screen\"></div><div class=\"ds-viewer-nav\"><button class=\"ds-ctl\" aria-label=\"Previous screen\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m15 18-6-6 6-6\"/></svg></button><button class=\"ds-ctl\" aria-label=\"Next screen\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 18 6-6-6-6\"/></svg></button></div></div>",
+      "css": ".ds-viewer { display: flex; flex-direction: column; gap: 24px; min-height: 360px; padding: 24px 20px; background: var(--color-bg-sunken); color: var(--color-text); } .ds-viewer-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; } .ds-count { margin: 0; font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.875rem; color: var(--color-muted); } .ds-count span { color: var(--color-strong); } .ds-viewer-screen { flex: 1; min-height: 200px; aspect-ratio: 2864 / 1398; background: var(--color-bg-main); animation: ds-wipe 420ms var(--ease-out-expo) both; } .ds-viewer-nav { display: flex; justify-content: center; gap: 12px; } .ds-ctl { display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; background: var(--color-bg-sunken); border: 1px solid var(--color-line-strong); border-radius: 0; color: var(--color-strong); cursor: pointer; transition: background-color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo); } .ds-ctl svg { width: 20px; height: 20px; } .ds-ctl:hover { background: var(--color-bg-raised); border-color: var(--color-text); } .ds-ctl:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; } @keyframes ds-wipe { from { opacity: 0.4; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0); } } @media (prefers-reduced-motion: reduce) { .ds-viewer-screen { animation: none; } }"
     }
   ],
   "narrative": {
     "northStar": "The Open Workspace",
-    "overview": "The site is a One Dark code editor opened on Hozaifa's real work, in a professional register. The editor is carried by structure, not ornament: a window with a title bar, an explorer that doubles as navigation, tab strips, a status bar, file names that label sections, and a git-log timeline. Inside that chrome the writing is set like a well-made product page, in a humanist sans, so a recruiter or client reads prose while the developer's world stays visible at the edges.\n\nSurfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.\n\nMotion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back to the workspace reverses it. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette (technology logos excepted, as content), and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.",
+    "overview": "The site is a One Dark code editor opened on Hozaifa's real work, in a professional register. The editor is carried by structure, not ornament: a window with a title bar, an explorer that doubles as navigation, tab strips, a status bar, file names that label sections, and a git-log timeline. Inside that chrome the writing is set like a well-made product page, in a humanist sans, so a recruiter or client reads prose while the developer's world stays visible at the edges.\n\nSurfaces are three flat One Dark layers separated by 1px hairlines with square corners. Colour comes from syntax roles: orchid acts and marks focus or the current file, green means live or available, amber means in progress, red means error, blue underlines outbound links. Everything else is cool charcoal and gray. Density is calm: generous section rhythm, compact chrome, reading columns held to about 65 characters.\n\nMotion is brief and expo-out, and it carries continuity rather than decoration. The workspace window assembles once on load (a staggered rise). In the project explorer the selection highlight glides to the chosen file and the preview pane wipes in from the left. Opening a case study morphs the project screenshot into its place on the new page while the rest of the page slides forward, and the breadcrumb back to the workspace reverses it. On a case study each screen wipes in from the left as it scrolls into view, the commit being read lights its node orchid, and a screen opened full size fades in. Past the hero, the status bar docks to the foot of the screen with a scroll-driven reading line. State changes are 200ms colour shifts. Reduced motion collapses all of it, and browsers without view transitions swap pages instantly. Confirmed rejections: drop shadows and glows, rounded frames or media, hues outside the palette (technology logos excepted, as content), and code-punctuation ornaments (`#`, `@`, `<~>`) standing in for structure.",
     "keyCharacteristics": [
       "Editor structure (explorer, tabs, status bar, file names, commit log) carries the metaphor; no glyph ornaments.",
       "Fira Sans reads; Fira Code names files, dates, stacks, keys and status.",
       "Three flat surface layers plus 1px hairlines; no shadows anywhere.",
       "Square corners; full rounding only for status dots and commit nodes.",
       "Syntax colours as roles; one filled orchid button per view.",
-      "Expo-out motion: one-time window assembly, a gliding file highlight with a clip-path wipe, and a screenshot morph into each case study."
+      "Expo-out motion: one-time window assembly, a gliding file highlight with a clip-path wipe, a screenshot morph into each case study, and scroll-linked screen wipes down its log."
     ],
     "rules": [
       {
@@ -513,7 +542,8 @@
       "Do keep one orchid-filled button per view; secondary actions are default framed buttons, tertiary ones ghost.",
       "Do separate surfaces with the three layers and 1px Hairlines; use Line Highlight for hover and selection.",
       "Do keep each accent to its syntax role, with quiet variants as the same hue at 10% fill and 40% border.",
-      "Do use expo-out timing (`cubic-bezier(0.16, 1, 0.3, 1)`): 200ms for colour, 300ms for small transforms, 420–520ms for entrances, all collapsed under reduced motion.",
+      "Do use expo-out timing (`cubic-bezier(0.16, 1, 0.3, 1)`): 200ms for colour, 300ms for small transforms, 420–520ms for entrances and page transitions, all collapsed under reduced motion. Scroll-linked effects (the reading line, the case-study screen wipe) run linear on the scroll instead.",
+      "Do give page transitions a direction only through links that declare one (`transitionTypes` `nav-forward` / `nav-back`); the header stays pinned through them, and any other navigation swaps instantly.",
       "Do derive every number shown in chrome (years, project counts) from data."
     ],
     "donts": [
