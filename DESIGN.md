@@ -215,19 +215,19 @@ One Dark layers and syntax hues, used as roles rather than decoration: cool char
 ### Primary
 
 - **Syntax Orchid** (`primary`): the single filled action in a view, focus outlines (2px, 2px offset), the caret, the active nav underline, the icon of the open file or selected project, the node of the case-study commit being read, the frame of the pressed filter chip, and the left edge of the owner's team row and of an open directory row. Selection highlight is orchid at 38%.
-- **Soft Orchid** (`primary-soft`): orchid for small mono text that must stay legible on dark layers: file tabs under section headings, data keys (`builds`, `languages`, `phone`), footer column keys, the `stack` filter key, the work history's entry keys, the `me` key on the owner's team row, the hover fill of the primary button, and the hover/current state in the mobile menu.
+- **Soft Orchid** (`primary-soft`): orchid for small mono text that must stay legible on dark layers: file tabs under section headings, data keys (`builds`, `languages`, `phone`), footer column keys, the `stack` filter key, the work history's entry keys, the resume's contact, skill and `built` keys, the `me` key on the owner's team row, the hover fill of the primary button, and the hover/current state in the mobile menu.
 - **Orchid Ink** (`primary-ink`): text on an orchid fill (primary button, skip link).
 
 ### Secondary
 
-- **String Green** (`success`): availability and liveness only: the status-bar dot and "Open to full-time roles", the live project dot, the HEAD pill and the work history's `current` pill, the current commit node and a case study's HEAD node, the "Copied" check, and form success.
+- **String Green** (`success`): availability and liveness only: the status-bar dot and "Open to full-time roles", the live project dot, the HEAD pill and the `current` pill in the work history and on the resume, the resume's status line, the current commit node and a case study's HEAD node, the "Copied" check, and form success.
 - **Keyword Amber** (`warning`): the "In development" project status.
 - **Error Rose** (`danger`): field borders, rings and messages for invalid input; form failure status. Never decorative.
-- **Function Blue** (`info`): outbound and inline links in prose, the about page's proof and technology links, and the work history's company and project links, drawn as a 50% blue underline that turns fully blue (text and line) on hover.
+- **Function Blue** (`info`): outbound and inline links in prose, the about page's proof and technology links, the work history's company and project links, and the resume's contact, company and project links, drawn as a 50% blue underline that turns fully blue (text and line) on hover.
 
 ### Neutral
 
-- **Sidebar Charcoal** (`bg-sunken`): window chrome and panes: title bar, explorer, tab strips, status bar, project file list, fact and contact panels, inputs, the mobile menu, the footer, and the screen viewer's solid backdrop.
+- **Sidebar Charcoal** (`bg-sunken`): window chrome and panes: title bar, explorer, tab strips, status bar, project file list, fact and contact panels, the resume card, inputs, the mobile menu, the footer, and the screen viewer's solid backdrop.
 - **Editor Charcoal** (`bg-main`): the page and document canvas; the active tab sits on it so it reads as open, and so do the tags and the filtered-technology frame inside an open directory row.
 - **Line Highlight** (`bg-raised`): hover and selected rows (a resting directory row at 50% on hover), tag fills, default-button hover, the pressed filter chip, the open directory row, the owner's team row.
 - **Hairline** (`line`): every 1px frame, divider, rule and timeline rail.
@@ -242,7 +242,7 @@ One Dark layers and syntax hues, used as roles rather than decoration: cool char
 
 **The One Filled Button Rule.** Only the primary action in a view gets an orchid fill. When a stronger action is present (a case study beside a live site), the other becomes a default framed button.
 
-**The Tint, Not a New Hue Rule.** Quiet variants of an accent are the same hue at 10% fill with a 40% border (status pills, badges) or 15% fill (outline hover). Tailwind palette colours and literal white are not part of the system.
+**The Tint, Not a New Hue Rule.** Quiet variants of an accent are the same hue at 10% fill with a 40% border (status pills, badges) or 15% fill (outline hover). Tailwind palette colours and literal white are not part of the system; print alone is black on white (see Print).
 
 **The Logos Are Content Rule.** Technology logos keep their brand colours, the way project screenshots keep theirs: they are content shown at 16–20px beside a name, not UI colour, so they are the one place hues outside the palette appear, and no logo colour ever tints UI. Every logo comes through `TechIcon`, from `public/icons` where a usable file exists. A dark one-colour logo that would vanish on the canvas (Next.js, Express, Fastify, OpenAI, AWS, Prisma, shadcn/ui, CI/CD, Blueprint, T3 Stack) is redrawn in Cursor White through a CSS mask, and so is the generic API mark for REST APIs, which is not a brand. A stored file that fails at icon size is replaced by a glyph in the brand colour: MySQL's wordmark by Tabler's dolphin in MySQL blue `#4479A1`, and the solid black `drizzle.png` tile by the simple-icons mark in Drizzle lime `#C5F74F`. Technologies with no stored file use their simple-icons mark in its brand colour (Python, FastAPI, Stripe, Lemon Squeezy, discord.js); a mark whose brand colour is near-black (LangChain) or too dark to hold on the canvas (WordPress) takes Cursor White. Where no brand mark applies a generic glyph stands in, in Dim Gray, never a stand-in brand mark: a database for vector databases, a route for Mux, a document for PDF.js. A technology with nothing on file shows no logo: its name stands alone (in the about page's inventory a logo-sized gap keeps the names aligned), and in the directory's logo strip it is left out unless it is the technology being filtered on, which then shows its mono name.
 
@@ -256,22 +256,22 @@ One Dark layers and syntax hues, used as roles rather than decoration: cool char
 
 ### Hierarchy
 
-- **Display** (600, fluid 40–68px, line-height 1.04, -0.03em): the name in the hero README and the product name on a case study.
-- **Headline** (600, fluid 28–38px, line-height 1.15, -0.02em): section headings, a case study's closing heading and the work history's role titles.
-- **Lead** (400, fluid ~21–28px, line-height 1.35): the one positioning line under the display (a case study's tagline), held to about 32ch; the about page's introduction is a Lead paragraph in Cursor White held to 60ch.
-- **Title** (600, 24px, line-height 1.25, -0.015em): project titles; role titles and case-study commit messages step from 20px to 24px at sm; the title in an open directory row and an about-page capability title stay at 20px.
+- **Display** (600, fluid 40–68px, line-height 1.04, -0.03em): the name in the hero README, the product name on a case study and the name on the resume card.
+- **Headline** (600, fluid 28–38px, line-height 1.15, -0.02em): section headings, a case study's closing heading, the work history's role titles and the resume's appendix headings.
+- **Lead** (400, fluid ~21–28px, line-height 1.35): the one positioning line under the display (a case study's tagline), held to about 32ch; the about page's introduction is a Lead paragraph in Cursor White held to 60ch; the resume's designation is Lead in Comment Gray.
+- **Title** (600, 24px, line-height 1.25, -0.015em): project titles; role titles and case-study commit messages step from 20px to 24px at sm; the title in an open directory row, an about-page capability title and the resume's entry titles stay at 20px.
 - **Body** (400, 17px, line-height 1.65): reading paragraphs, held to 62–65ch. Dense descriptions use 16px with relaxed leading.
-- **Control** (15px, line-height 1.45): button labels at 500 and field text at 400; also stack and fact values, filter chip labels and the directory's built-for column.
+- **Control** (15px, line-height 1.45): button labels at 500 and field text at 400; also stack and fact values, filter chip labels, the directory's built-for column, and the resume's contact values, skill values and languages.
 - **Label** (500, 14px): form labels, section "more" links, social links.
-- **Code** (Fira Code 400, 14px): nav links, dates and durations, emails, contact handles, stack group keys, breadcrumbs, commit stat lines, the screen viewer's counter, the More projects links, the directory's `stack` key, live count and more toggle, the about inventory's group keys, the work history's entry keys.
-- **Code UI** (Fira Code 400, 13px): file names in explorers and tab strips; the case-study fact line; the directory's slugs, status lines, opens column and status summary; the about page's fact line, proof slugs and capability stacks; the work history's fact line, date lines and built slugs.
-- **Code Label** (Fira Code 400, 12px): status bar, tags, file tabs, data keys, the directory's column header and chip counts, the about inventory's project counts.
+- **Code** (Fira Code 400, 14px): nav links, dates and durations, emails, contact handles, stack group keys, breadcrumbs, commit stat lines, the screen viewer's counter, the More projects links, the directory's `stack` key, live count and more toggle, the about inventory's group keys and the resume's skill keys, the work history's entry keys.
+- **Code UI** (Fira Code 400, 13px): file names in explorers and tab strips; the case-study fact line; the directory's slugs, status lines, opens column and status summary; the about page's fact line, proof slugs and capability stacks; the work history's fact line, date lines and built slugs; the resume's date lines and stack lines.
+- **Code Label** (Fira Code 400, 12px): status bar, tags, file tabs, data keys, the directory's column header and chip counts, the about inventory's project counts, the resume's contact keys and `built` key.
 
 The named sizes are registered with the class merger (`cn()`), so a named size and a text colour on one element never cancel each other out.
 
 ### Named Rules
 
-**The Two Faces Rule.** Fira Sans reads; Fira Code names. File names, paths, dates, durations, stack names, keys, emails and status are mono; sentences are sans, even inside a mono list (the WhatsApp row switches to the sans because it is words, not data).
+**The Two Faces Rule.** Fira Sans reads; Fira Code names. File names, paths, dates, durations, stack names, keys, emails and status are mono; sentences are sans, even inside a mono list (the WhatsApp row switches to the sans because it is words, not data, and so does a language's fluency on the resume).
 
 **The Keys Label Data Rule.** Lowercase mono keys in Soft Orchid sit directly on the data they label (definition terms, panel rows, footer columns). They are never an eyebrow above a headline; a section's file name hangs below its heading on the rule.
 
@@ -284,6 +284,8 @@ The hero is a full-width editor window: title bar (40px), then a 236px explorer 
 The projects page is a single listing inside the container: from lg every directory row shares one fixed column template with the header, and an open row splits into a 416px screenshot column and text; below lg each row collapses to three lines and the filter chips scroll sideways.
 
 The about page is a single column inside the container: from lg each capability row is a 272px title column, the summary and a 192px stack column, 32px apart, stacking below lg; the technology inventory is a hairline grid of six groups (2 columns at sm, 3 at lg).
+
+The resume page is a letterhead card across the container (from lg an identity column beside a 368px contact panel), then an appendix of four sections in two columns from lg, 48px apart with 80px between rows, stacking 56px apart below lg.
 
 The works page is a single column inside the container: from sm every entry row is a 140px key column beside its content, 24px apart, the same grid for every role; below sm the key sits 8px above its content. Built projects run in one column, two from sm, three from lg.
 
@@ -321,7 +323,7 @@ Framed, typographic and quiet; a single orchid slab marks the one thing to do.
 - **Ghost:** borderless, Comment Gray label; hover fills Line Highlight and turns the label white. Used for copy-email, source-code links and the menu toggle.
 - **Link:** borderless Cursor White label that turns Soft Orchid and underlines on hover.
 - **Hover / Focus:** 200ms expo-out colour transitions; keyboard focus is the global 2px orchid outline at 2px offset. Disabled drops to 50% opacity.
-- **Resume download:** a default button labelled `resume.pdf` in mono (header and footer), `Resume.pdf` in sans (hero), or `Resume` in the docked status bar below lg, where the header hides it.
+- **Resume download:** a default button labelled `resume.pdf` in mono (header and footer), `Resume.pdf` in sans (hero), or `Resume` in the docked status bar below lg, where the header hides it. On the resume card it is the view's primary lg `Resume.pdf`, beside a default lg Print button.
 - The `outline`, `outlineSecondary` and `secondary` variants exist for the older pages; new surfaces use primary, default, ghost and link.
 
 ### Chips
@@ -414,7 +416,7 @@ Every project as one row of an `ls -l`, on the projects page. The header runs th
 Who Hozaifa is, what he builds and with what, on `/about-me`. There is no photo and no placeholder content (PRODUCT.md holds the truth rule); years, the first year and the current role are derived from data. The header runs the breadcrumb (`Workspace` back to the homepage About section, then `about-me`), `About me` in Display (Cursor White, 20px below the breadcrumb, 24px from sm), and the introduction 16px below in Lead, Cursor White, held to 60ch. Then the Case Study's fact line between Hairline rules (24px below, 32px from sm): Code UI facts in Comment Gray with screen-reader-only terms, availability first in String Green with an 8px dot, then years of experience, the year shipping began, the current role and the location with its timezone.
 
 - **What I build:** a Section Heading (`builds`) 56px below the header (80px from lg) over capability rows, each with 24px vertical padding over a bottom Hairline and a Hairline above the first. From lg a row is three columns 32px apart: the title (600, 20px, Cursor White, balanced) in 272px, the summary in Body held to 60ch, and a 192px top-aligned stack column; below lg they stack 12px apart. The proof line sits 12px under the summary: the slugs of the projects that show this work in Code UI, 20px apart, each a Cursor White link on a 50% Function Blue underline (4px offset) that turns fully blue on hover while its 14px arrow nudges 2px right. A slug opens the case study where one exists, otherwise the directory with that row open (`/projects#<slug>`). Proof comes only from projects whose own data describes the work; with none the line reads `No public project yet` in Dim Gray. The stack column lists 16px logos beside Code UI names in Comment Gray, 8px apart, wrapping in rows below lg.
-- **Technologies:** a Section Heading (`stack`, with an `All projects` more link) 64px below (96px from lg) over the full inventory in the Stack section's hairline grid: six groups (languages, frameworks, data, ui & libraries, ai, platforms & tooling), one column, two from sm, three from lg, each cell padded 20px (24px from sm) with a 14px Soft Orchid Code key over a column of 20px logos beside names in Control, Cursor White, 10px apart. A technology used by listed projects links to the directory filtered on it (`/projects?stack=`): its name takes the blue underline and turns blue on hover, followed by its project count in 12px Dim Gray mono (the word "projects" for screen readers only); an unused one is plain Cursor White text. These cells do not fill on hover.
+- **Technologies:** a Section Heading (`stack`, with an `All projects` more link) 64px below (96px from lg) over the full inventory in the Stack section's hairline grid: six groups (programming, frameworks, data, ui & libraries, ai, platforms & tooling), one column, two from sm, three from lg, each cell padded 20px (24px from sm) with a 14px Soft Orchid Code key over a column of 20px logos beside names in Control, Cursor White, 10px apart. A technology used by listed projects links to the directory filtered on it (`/projects?stack=`): its name takes the blue underline and turns blue on hover, followed by its project count in 12px Dim Gray mono (the word "projects" for screen readers only); an unused one is plain Cursor White text. These cells do not fill on hover.
 - **Close:** the Hiring Close, its line about building web products end to end.
 
 ### Work History
@@ -429,9 +431,26 @@ Every role as a changelog entry, newest first, on `/works` (the homepage Work Lo
 - **where:** the employment type and the location (area and city) in Control, joined by `·`.
 - **Close:** the Hiring Close, its line about building web products end to end.
 
+### Resume
+
+The CV on `/resume`: a letterhead card over an appendix. Dates, spans and the project selection are derived from data, and the introduction is the about page's. The breadcrumb runs `Workspace` (back to the homepage) then `resume`.
+
+- **Letterhead card:** one Sidebar Charcoal pane in a 1px Hairline frame, 24px below the breadcrumb (32px from sm), carrying every way to act. From lg a Hairline splits it into the identity column and a 368px contact panel; below lg the panel sits under it behind a top Hairline. The identity column pads 24px (32px from sm): the name as the page's h1 in Display (Cursor White, balanced), the designation 8px below in Lead, the introduction 20px below in Body, Cursor White, held to 60ch, and 24px below that the primary lg `Resume.pdf` download beside a default lg Print button, 12px apart.
+- **Contact panel:** a definition list of hairline rows, 14px vertical and 24px inline padding (32px from sm): an 88px key column in 12px Soft Orchid Code Label (`status`, `email`, `phone`, `website`, `github`, `linkedin`, `based`) beside its value in Control, Cursor White, 16px apart. The status is String Green with an 8px dot; email, phone, website and the profiles are links on the 50% Function Blue underline (4px offset) that turn fully blue on hover; `based` is the city with its timezone.
+- **Appendix:** plain CV sections 56px below the card (80px from lg): Experience beside Selected projects, then Skills beside Languages. Each section is an h2 in Headline (Cursor White) over a bottom Hairline 12px below it, its entries 24px under the rule.
+- **Experience:** every role, newest first, 32px apart. A Title at 20px (600, snug leading, Cursor White): the role, then `at` in Dim Gray at 400 and the company as a Cursor White link on the blue underline with a 16px Dim Gray outbound arrow; `at` and the company never break apart. 6px under it a Code UI line: the `current` status pill (see Chips) on the present role, the dates as `<time>`, a Dim Gray `·` and the derived span. Then, 12px apart: the summary in Body; a Control line of the projects built there, a 12px Soft Orchid mono `built` key before their titles, each a Cursor White link on the blue underline (the case study where one exists, otherwise the directory row), comma separated; and the stack as one Code UI line in Dim Gray joined by `·`.
+- **Selected projects:** the live projects, 24px apart: the title as a 20px Title link on the blue underline (the case study, otherwise `/projects#<slug>`), the ownership context 4px below in Control, Dim Gray, the description 8px below in Body, and the stack 8px below as the same Dim Gray Code UI line. An `All projects` link in 14px Code (Cursor White on the blue underline) closes the list 24px below.
+- **Skills:** the about inventory's groups as hairline rows, a Hairline above the first and 12px vertical padding over a bottom Hairline: from sm a 160px key column in 14px Soft Orchid Code (`programming`, `frameworks`, `data`, ...) beside the technologies in Control, Cursor White, comma separated, 16px apart; below sm the key sits 4px above them.
+- **Languages:** the same rows with the 160px column at every width: the language in Control, Cursor White, beside its fluency in Control, Dim Gray.
+- **Close:** the Hiring Close, its line about building web products end to end, without its `Resume.pdf` download, which the card already carries.
+
 ### Hiring Close
 
-The close of a work page, shared by the case study, the projects page, the about page and the work history: a Hairline-topped section (80px above, 112px from lg; 40px inside) with the Headline question "Hiring for a full-time role?", one Body line held to 50ch that the page supplies, and two lg actions, at the right from sm: the primary "Get in touch" (a back navigation to the homepage contact) and a default `Resume.pdf` download.
+The close of a work page, shared by five pages (the case study, the projects page, the about page, the work history and the resume): a Hairline-topped section (80px above, 112px from lg; 40px inside) with the Headline question "Hiring for a full-time role?", one Body line held to 50ch that the page supplies, and two lg actions, at the right from sm: the primary "Get in touch" (a back navigation to the homepage contact) and a default `Resume.pdf` download, left out on the resume page.
+
+### Print
+
+The resume is the page with a print layout; its Print button opens the browser's print. The print stylesheet sets an A4 page with 14mm × 16mm margins, a light colour scheme, a white background and black text. The skip link, the header and the footer hide, and so does the whole screen resume (breadcrumb, card, appendix and close). In their place a conventional CV renders from the same data the screen reads, black on white in Fira Sans at 14px with relaxed leading: the name at 24px 600, the designation and availability on one line, the contact details as one 12px line joined by `·`, and the introduction. Then Experience, Selected projects, Skills and Languages, 20px apart, each headed in 14px 600 uppercase with wide tracking over a 30% black hairline, and a heading is never left at the foot of a page. Entries are 12px apart and never split across pages: a role's position and company in 600 with its dates at the right, over its summary and 12px `Built:` and `Stack:` lines; a project's name and host over its description and stack; the skills as a 176px column of the groups' print labels (`Programming languages`) beside their technologies; the languages as one line.
 
 ## Do's and Don'ts
 
