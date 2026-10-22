@@ -15,7 +15,11 @@ export type PDTeamMemberType = {
    /** Marks the site owner's own row */
    isMe?: boolean;
 };
-type ImageType = { title: string; path: string };
+type ImageType = {
+   path: string;
+   /** What the screen shows; rendered under it and used as its alt text */
+   caption?: string;
+};
 type StatusType = {
    type: 'completed' | 'in-progress' | 'on-hold' | 'archived' | 'production';
    text: string;
@@ -29,6 +33,8 @@ export interface ProjectDetailsType {
    name: string;
    /** One line on what the product is */
    tagline: string;
+   /** What shipped, as the HEAD commit's message */
+   headline: string;
    slug: string;
    company?: PDCompanyType;
    role: string;
@@ -51,6 +57,7 @@ const projectDetails: Array<ProjectDetailsType> = [
       title: 'Aionlinecourse - AI/ML learning and project selling platform',
       name: 'Aionlinecourse',
       tagline: 'An AI/ML learning and project-selling platform',
+      headline: 'Ship AI tutorials, quizzes, a project store and live coding',
       slug: 'aionlinecourse',
       company: {
          name: 'Namespace IT',
@@ -59,43 +66,19 @@ const projectDetails: Array<ProjectDetailsType> = [
       },
       role: 'Full Stack Developer',
       duration: '6 months',
-      teamSize: '5 developers',
+      teamSize: 'Team of 5',
       description:
          'Developed AI Online Course, a modern e-learning platform powered by a Laravel GraphQL API backend and Next.js frontend. The site delivers interactive courses, coding projects, and quizzes with scalable performance, intuitive navigation, and responsive design for an engaging learning experience.',
       mainImage: '/assets/project-details/aionline/aionline-main.png',
       additionalImages: [
-         {
-            title: 'Preview 1',
-            path: '/assets/project-details/aionline/aionline-preview-1.png',
-         },
-         {
-            title: 'Preview 2',
-            path: '/assets/project-details/aionline/aionline-preview-2.png',
-         },
-         {
-            title: 'Preview 3',
-            path: '/assets/project-details/aionline/aionline-preview-3.png',
-         },
-         {
-            title: 'Preview 4',
-            path: '/assets/project-details/aionline/aionline-preview-4.png',
-         },
-         {
-            title: 'Preview 5',
-            path: '/assets/project-details/aionline/aionline-preview-5.png',
-         },
-         {
-            title: 'Preview 6',
-            path: '/assets/project-details/aionline/aionline-preview-6.png',
-         },
-         {
-            title: 'Preview 7',
-            path: '/assets/project-details/aionline/aionline-preview-7.png',
-         },
-         {
-            title: 'Preview 8',
-            path: '/assets/project-details/aionline/aionline-preview-8.png',
-         },
+         { path: '/assets/project-details/aionline/aionline-preview-1.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-2.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-3.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-4.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-5.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-6.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-7.png' },
+         { path: '/assets/project-details/aionline/aionline-preview-8.png' },
       ],
       features: [
          'AI/ML learning platform',
@@ -120,7 +103,11 @@ const projectDetails: Array<ProjectDetailsType> = [
       ],
       teamMembers: [
          { name: 'Mashpy', role: 'Project Manager' },
-         { name: 'Hozaifa Bin Masud', role: 'Developer', isMe: true },
+         {
+            name: 'Hozaifa Bin Masud',
+            role: 'Full Stack Developer',
+            isMe: true,
+         },
          { name: 'Tareq Aziz Uday', role: 'ML Engineer' },
          { name: 'Pavel', role: 'Sr. Developer' },
          { name: 'Mashruf Tahsin', role: 'AI/ML Eng. & Researcher' },

@@ -7,7 +7,7 @@ import { LuChevronLeft, LuChevronRight, LuX } from 'react-icons/lu';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-export type Screen = { path: string; alt: string };
+export type Screen = { path: string; alt: string; caption?: string };
 
 type ScreenViewerProps = {
    screens: Screen[];
@@ -95,15 +95,22 @@ const ScreenViewer = ({
                   </button>
                </div>
 
-               <figure className="relative my-4 min-h-0 flex-1 sm:my-6">
-                  <Image
-                     key={screen.path}
-                     src={screen.path}
-                     alt={screen.alt}
-                     fill
-                     sizes="(min-width: 1120px) 1120px, 100vw"
-                     className="animate-wipe object-contain"
-                  />
+               <figure className="my-4 flex min-h-0 flex-1 flex-col gap-4 sm:my-6">
+                  <div className="relative min-h-0 flex-1">
+                     <Image
+                        key={screen.path}
+                        src={screen.path}
+                        alt={screen.alt}
+                        fill
+                        sizes="(min-width: 1120px) 1120px, 100vw"
+                        className="animate-wipe object-contain"
+                     />
+                  </div>
+                  {screen.caption && (
+                     <figcaption className="mx-auto max-w-[65ch] text-center text-body text-pretty text-strong">
+                        {screen.caption}
+                     </figcaption>
+                  )}
                </figure>
 
                {screens.length > 1 && (

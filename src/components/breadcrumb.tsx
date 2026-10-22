@@ -27,9 +27,6 @@ const BreadcrumbNav = ({
 }) => (
    <nav aria-label="Breadcrumb" className={className}>
       <ol className="flex flex-wrap items-center gap-y-1 font-mono text-sm text-muted">
-         <li aria-hidden className="mr-2 text-primary">
-            /
-         </li>
          {items.map((item, index) => {
             const isCurrent = index === items.length - 1;
             return (

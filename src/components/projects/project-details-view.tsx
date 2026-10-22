@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ReactNode, useState, ViewTransition } from 'react';
 import {
    LuArrowLeft,
+   LuArrowRight,
    LuArrowUpRight,
    LuDownload,
    LuGithub,
@@ -19,6 +20,12 @@ import { useActiveSection } from '@/hooks/use-active-section';
 import { ProjectDetailsType } from '@/lib/data/project-details';
 import { RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
+
+export type NextProject = {
+   title: string;
+   href: string;
+   isCaseStudy: boolean;
+};
 
 const STATUS_LABEL: Record<ProjectDetailsType['status']['type'], string> = {
    production: 'In production',
@@ -37,26 +44,40 @@ const STACK_ORDER = [
    'Cloud',
 ];
 
-// The size screenshots are captured at; reserves their box before they load
-const SHOT_WIDTH = 2864;
-const SHOT_HEIGHT = 1398;
+// Capture sizes of the screenshots; they reserve each box before it loads
+const MAIN_SHOT = { width: 2864, height: 1324 };
+const SCREEN_SHOT = { width: 2864, height: 1398 };
 
 const hostOf = (url: string) => new URL(url).host.replace(/^www\./, '');
+const plural = (count: number, word: string) =>
+   `${count} ${word}${count === 1 ? '' : 's'}`;
 
 type CommitProps = {
    id: string;
-   file: string;
    message: string;
+   /** A `git log --stat` style line: what the commit touched, in numbers */
+   stat: string;
    isHead?: boolean;
    isActive: boolean;
    children: ReactNode;
 };
 
-/** One entry on the rail: the file it touched, its message, what it holds */
+const HeadPill = ({ className }: { className?: string }) => (
+   <span
+      className={cn(
+         'border border-success/40 bg-success/10 px-1.5 font-mono text-xs leading-5 text-success',
+         className,
+      )}
+   >
+      HEAD
+   </span>
+);
+
+/** One entry on the rail: its message, what it touched, what it holds */
 const Commit = ({
    id,
-   file,
    message,
+   stat,
    isHead,
    isActive,
    children,
@@ -82,24 +103,17 @@ const Commit = ({
          )}
       />
       <div className="min-w-0">
-         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-muted">
-            {isHead && (
-               <span className="border border-success/40 bg-success/10 px-1.5 text-xs leading-5 text-success">
-                  HEAD
-               </span>
-            )}
-            <span
-               className={cn(
-                  'transition-colors duration-300 ease-out-expo',
-                  isActive && !isHead && 'text-primary-soft',
-               )}
-            >
-               {file}
-            </span>
+         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <h2 className="text-xl leading-snug font-semibold text-balance text-strong sm:text-2xl">
+               {message}
+            </h2>
+            {isHead && <HeadPill className="hidden sm:inline-block" />}
+         </div>
+         {/* On phones the pill joins the stat line instead of taking its own */}
+         <p className="mt-1.5 flex flex-wrap items-center gap-x-2 font-mono text-sm text-muted">
+            {isHead && <HeadPill className="sm:hidden" />}
+            {stat}
          </p>
-         <h2 className="mt-2 text-xl leading-snug font-semibold text-balance text-strong sm:text-2xl">
-            {message}
-         </h2>
          <div className="mt-6">{children}</div>
       </div>
    </li>
@@ -117,20 +131,25 @@ const ZoomHint = () => (
 
 type ProjectDetailsViewProps = {
    project: ProjectDetailsType;
+   nextProject?: NextProject;
 };
 
-const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
+const ProjectDetailsView = ({
+   project,
+   nextProject,
+}: ProjectDetailsViewProps) => {
    const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
    const host = project.liveUrl ? hostOf(project.liveUrl) : null;
    const screenCount = project.additionalImages.length + 1;
    // The main image is screen 0, so the other screens open at index + 1
    const screens: Screen[] = [
-      project.mainImage,
-      ...project.additionalImages.map((image) => image.path),
-   ].map((path, index) => ({
+      { path: project.mainImage, caption: undefined },
+      ...project.additionalImages,
+   ].map(({ path, caption }, index) => ({
       path,
-      alt: `${project.name}, screen ${index + 1} of ${screenCount}`,
+      caption,
+      alt: caption ?? `${project.name}, screen ${index + 1} of ${screenCount}`,
    }));
 
    const stack = STACK_ORDER.map((category) => ({
@@ -139,6 +158,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
          .filter((tech) => tech.category === category)
          .map((tech) => tech.name),
    })).filter((group) => group.items.length > 0);
+   // The first technology of the first two groups names the stack commit
    const leadTech = stack
       .slice(0, 2)
       .map((group) => group.items[0])
@@ -164,11 +184,11 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
    ];
 
    return (
-      <article className="container pt-8 pb-20 lg:pt-12 lg:pb-28">
+      <article className="container pt-6 pb-20 sm:pt-8 lg:pt-12 lg:pb-28">
          <header>
             <BreadcrumbNav items={breadcrumbItems} />
 
-            <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mt-5 flex flex-col gap-5 sm:mt-6 sm:gap-6 lg:flex-row lg:items-end lg:justify-between">
                <div className="min-w-0">
                   <h1 className="text-display font-semibold text-balance text-strong">
                      {project.name}
@@ -184,10 +204,13 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                            href={project.liveUrl}
                            target="_blank"
                            rel="noopener noreferrer"
-                           className={buttonVariants({
-                              variant: 'primary',
-                              size: 'xl',
-                           })}
+                           className={cn(
+                              buttonVariants({
+                                 variant: 'primary',
+                                 size: 'lg',
+                              }),
+                              'sm:h-12 sm:px-6',
+                           )}
                         >
                            Visit live site
                            <LuArrowUpRight aria-hidden />
@@ -199,10 +222,13 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                            href={project.githubUrl}
                            target="_blank"
                            rel="noopener noreferrer"
-                           className={buttonVariants({
-                              variant: 'default',
-                              size: 'xl',
-                           })}
+                           className={cn(
+                              buttonVariants({
+                                 variant: 'default',
+                                 size: 'lg',
+                              }),
+                              'sm:h-12 sm:px-6',
+                           )}
                         >
                            <LuGithub aria-hidden />
                            Source code
@@ -213,7 +239,7 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                )}
             </div>
 
-            <dl className="mt-8 flex flex-wrap gap-x-6 gap-y-1 border-y border-line py-2.5 font-mono text-ui">
+            <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-1 border-y border-line py-2.5 font-mono text-ui sm:mt-8">
                <div className="flex items-center gap-2 text-success">
                   <dt className="sr-only">Status</dt>
                   <span
@@ -248,13 +274,11 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
          </header>
 
          {/* The project as a git log, newest first: HEAD is the live product */}
-         <ol aria-label="Project history" className="mt-12 lg:mt-14">
+         <ol aria-label="Project history" className="mt-10 sm:mt-12 lg:mt-14">
             <Commit
                id="commit-head"
-               file="main"
-               message={
-                  host ? `Live at ${host}` : STATUS_LABEL[project.status.type]
-               }
+               message={project.headline}
+               stat={`main · ${STATUS_LABEL[project.status.type].toLowerCase()}`}
                isHead
                isActive={activeId === 'commit-head'}
             >
@@ -281,8 +305,8 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                            <Image
                               src={screens[0].path}
                               alt={screens[0].alt}
-                              width={SHOT_WIDTH}
-                              height={SHOT_HEIGHT}
+                              width={MAIN_SHOT.width}
+                              height={MAIN_SHOT.height}
                               sizes="(min-width: 1120px) 1072px, 100vw"
                               preload
                               className="h-auto w-full"
@@ -301,40 +325,48 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
             {project.additionalImages.length > 0 && (
                <Commit
                   id="commit-screens"
-                  file="screens/"
                   message={`Add ${project.additionalImages.length} screens from the ${host ? 'live ' : ''}product`}
+                  stat={`screens/ · ${plural(project.additionalImages.length, 'file')}`}
                   isActive={activeId === 'commit-screens'}
                >
-                  <ul className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+                  {/* One screen per row, each with room for its caption */}
+                  <ol className="space-y-10 sm:space-y-14">
                      {screens.slice(1).map((screen, index) => (
                         <li key={screen.path}>
-                           <button
-                              type="button"
-                              onClick={() => setViewerIndex(index + 1)}
-                              className="group/shot relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
-                           >
-                              <Image
-                                 src={screen.path}
-                                 alt={screen.alt}
-                                 width={SHOT_WIDTH}
-                                 height={SHOT_HEIGHT}
-                                 sizes="(min-width: 1120px) 524px, (min-width: 640px) 50vw, 100vw"
-                                 className="scroll-wipe h-auto w-full"
-                              />
-                              <ZoomHint />
-                              <span className="sr-only">Open full size</span>
-                           </button>
+                           <figure>
+                              <button
+                                 type="button"
+                                 onClick={() => setViewerIndex(index + 1)}
+                                 className="group/shot relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
+                              >
+                                 <Image
+                                    src={screen.path}
+                                    alt={screen.alt}
+                                    width={SCREEN_SHOT.width}
+                                    height={SCREEN_SHOT.height}
+                                    sizes="(min-width: 1120px) 1072px, 100vw"
+                                    className="scroll-wipe h-auto w-full"
+                                 />
+                                 <ZoomHint />
+                                 <span className="sr-only">Open full size</span>
+                              </button>
+                              {screen.caption && (
+                                 <figcaption className="mt-4 max-w-[65ch] text-body text-pretty">
+                                    {screen.caption}
+                                 </figcaption>
+                              )}
+                           </figure>
                         </li>
                      ))}
-                  </ul>
+                  </ol>
                </Commit>
             )}
 
             {project.features.length > 0 && (
                <Commit
                   id="commit-features"
-                  file="features.md"
                   message={`Ship ${project.features.length} features`}
+                  stat={`features.md · ${plural(project.features.length, 'line')}`}
                   isActive={activeId === 'commit-features'}
                >
                   <ul className="grid border-t border-line sm:grid-cols-2 sm:gap-x-10">
@@ -353,8 +385,8 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
             {stack.length > 0 && (
                <Commit
                   id="commit-stack"
-                  file="stack"
                   message={`Build with ${leadTech}${otherTechCount > 0 ? `, plus ${otherTechCount} more` : ''}`}
+                  stat={`stack · ${plural(project.technologies.length, 'package')}`}
                   isActive={activeId === 'commit-stack'}
                >
                   <dl className="grid border-t border-l border-line sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]">
@@ -388,8 +420,8 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
             {team.length > 0 && (
                <Commit
                   id="commit-team"
-                  file="team"
                   message={`Work in a team of ${team.length}${project.company ? ` at ${project.company.name}` : ''}`}
+                  stat={`team · ${plural(team.length, 'author')}`}
                   isActive={activeId === 'commit-team'}
                >
                   <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-10">
@@ -398,15 +430,18 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
                            <li
                               key={member.name}
                               className={cn(
-                                 'flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 border-b border-line px-3 py-3',
-                                 member.isMe &&
-                                    'bg-bg-raised shadow-[inset_1px_0_0_var(--color-primary)]',
+                                 'flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 border-b border-l px-3 py-3',
+                                 member.isMe
+                                    ? 'border-b-line border-l-primary bg-bg-raised'
+                                    : 'border-b-line border-l-transparent',
                               )}
                            >
                               <span className="text-body font-medium text-strong">
                                  {member.name}
                                  {member.isMe && (
-                                    <span className="sr-only"> (me)</span>
+                                    <span className="ml-2 font-mono text-xs text-primary-soft">
+                                       me
+                                    </span>
                                  )}
                               </span>
                               <span className="text-control text-muted">
@@ -501,17 +536,40 @@ const ProjectDetailsView = ({ project }: ProjectDetailsViewProps) => {
             </div>
          </section>
 
-         <Link
-            href="/#projects"
-            transitionTypes={['nav-back']}
-            className="group mt-10 inline-flex items-center gap-2 font-mono text-sm text-muted transition-colors hover:text-strong"
+         <nav
+            aria-label="More projects"
+            className="mt-10 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 font-mono text-sm"
          >
-            <LuArrowLeft
-               aria-hidden
-               className="size-4 transition-transform duration-300 ease-out-expo group-hover:-translate-x-0.5"
-            />
-            Back to the workspace
-         </Link>
+            <Link
+               href="/#projects"
+               transitionTypes={['nav-back']}
+               className="group inline-flex items-center gap-2 text-muted transition-colors hover:text-strong"
+            >
+               <LuArrowLeft
+                  aria-hidden
+                  className="size-4 transition-transform duration-300 ease-out-expo group-hover:-translate-x-0.5"
+               />
+               Back to the workspace
+            </Link>
+            {nextProject && (
+               <Link
+                  href={nextProject.href}
+                  transitionTypes={
+                     nextProject.isCaseStudy ? ['nav-forward'] : ['nav-back']
+                  }
+                  className="group inline-flex items-center gap-2 text-muted transition-colors hover:text-strong"
+               >
+                  <span>
+                     Next project:{' '}
+                     <span className="text-strong">{nextProject.title}</span>
+                  </span>
+                  <LuArrowRight
+                     aria-hidden
+                     className="size-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5"
+                  />
+               </Link>
+            )}
+         </nav>
 
          <ScreenViewer
             screens={screens}
