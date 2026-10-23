@@ -3,5 +3,4 @@ export const languages = [
    { language: 'Bangla', fluency: 'Native' },
    { language: 'English', fluency: 'Conversational' },
    { language: 'Hindi', fluency: 'Conversational' },
-   { language: 'Chinese', fluency: 'Seeking' },
 ];

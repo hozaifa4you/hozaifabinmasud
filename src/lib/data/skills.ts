@@ -11,6 +11,7 @@ export const skillGroups = [
          'JavaScript',
          'PHP',
          'Go',
+         'MQL4/MQL5',
          'Python',
          'C',
          'C++',
@@ -90,6 +91,7 @@ export const skillGroups = [
          'Bun',
          'Jest',
          'Arduino',
+         'Embedded systems',
       ],
    },
 ];
