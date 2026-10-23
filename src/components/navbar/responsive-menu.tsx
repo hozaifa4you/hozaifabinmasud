@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { LuArrowRight, LuDownload } from 'react-icons/lu';
 
 import { buttonVariants } from '@/components/ui/button';
-import { MenuItem } from '@/hooks/use-menu';
+import { currentOf, MenuItem } from '@/hooks/use-menu';
 import { RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
@@ -67,10 +67,8 @@ const ResponsiveMenu = ({
                         ref={index === 0 ? firstLinkRef : undefined}
                         href={item.href}
                         onClick={onNavigate}
-                        aria-current={
-                           item.sectionId === activeId ? 'location' : undefined
-                        }
-                        className="flex h-14 items-center justify-between border-b border-line font-mono text-lg text-strong transition-colors hover:text-primary-soft aria-[current=location]:text-primary-soft"
+                        aria-current={currentOf(item, activeId)}
+                        className="flex h-14 items-center justify-between border-b border-line font-mono text-lg text-strong transition-colors hover:text-primary-soft aria-[current]:text-primary-soft"
                      >
                         {item.name}
                         <LuArrowRight

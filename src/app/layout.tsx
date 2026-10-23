@@ -5,12 +5,13 @@ import { Fira_Code, Fira_Sans } from 'next/font/google';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar/navbar';
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
+import { getLearningHref } from '@/lib/data/education';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-   title: appConfig.APP_NAME,
-   description: `${appConfig.APP_NAME_SHORT} is a full-stack developer who builds web applications end to end and ships AI features in production. Explore projects, work history and the stack behind them.`,
+   title: siteConfig.title,
+   description: `${siteConfig.name} is a full-stack developer who builds web applications end to end and ships AI features in production. Explore projects, work history and the stack behind them.`,
 };
 
 const firaSans = Fira_Sans({
@@ -38,11 +39,11 @@ export default function RootLayout({
          <body className="bg-bg-main font-sans text-text antialiased">
             <a
                href="#main"
-               className="fixed top-3 left-3 z-60 -translate-y-20 bg-primary px-4 py-2 font-medium text-primary-ink transition-transform focus-visible:translate-y-0"
+               className="fixed top-3 left-3 z-60 -translate-y-20 bg-primary px-4 py-2 font-medium text-primary-ink transition-transform focus-visible:translate-y-0 print:hidden"
             >
                Skip to content
             </a>
-            <Navbar />
+            <Navbar educationHref={getLearningHref()} />
             <main id="main">{children}</main>
             <Footer />
             <Analytics />

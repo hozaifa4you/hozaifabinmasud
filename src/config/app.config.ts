@@ -1,30 +1,12 @@
+import 'server-only';
+
+// The env vars: the deployed URL and the SMTP credentials (see .env.example).
+// Everything public about the owner is in site.config.ts.
 export const appConfig = {
-   APP_NAME: process.env.APP_NAME!,
-   NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME!,
-   APP_NAME_SHORT: process.env.APP_NAME_SHORT!,
-   NEXT_PUBLIC_APP_NAME_SHORT: process.env.NEXT_PUBLIC_APP_NAME_SHORT!,
-   FIRST_NAME: process.env.FIRST_NAME,
-   NEXT_PUBLIC_FIRST_NAME: process.env.NEXT_PUBLIC_FIRST_NAME!,
-   AUTHOR: process.env.AUTHOR!,
-   NEXT_PUBLIC_AUTHOR: process.env.NEXT_PUBLIC_AUTHOR!,
-   DESIGNATION: process.env.DESIGNATION!,
-   NEXT_PUBLIC_DESIGNATION: process.env.NEXT_PUBLIC_DESIGNATION!,
-   GITHUB_USERNAME: process.env.GITHUB_USERNAME!,
-   FACEBOOK_USERNAME: process.env.FACEBOOK_USERNAME!,
-   X_USERNAME: process.env.X_USERNAME!,
-   FIVERR_USERNAME: process.env.FIVERR_USERNAME!,
-   LINKEDIN_USERNAME: process.env.LINKEDIN_USERNAME!,
-   UPWORK_USERNAME: process.env.UPWORK_USERNAME!,
-   EMAIL: process.env.EMAIL!,
-   ADDRESS: process.env.ADDRESS!,
-   PHONE: process.env.PHONE!,
-   WEBSITE: process.env.WEBSITE!,
-   COMPANY: process.env.COMPANY!,
-   COMPANY_WEBSITE: process.env.COMPANY_WEBSITE!,
+   APP_URL: process.env.APP_URL!,
    SMTP_HOST: process.env.SMTP_HOST,
    SMTP_USERNAME: process.env.SMTP_USERNAME,
    SMTP_PASSWORD: process.env.SMTP_PASSWORD,
    SMTP_PORT: process.env.SMTP_PORT,
    SMTP_EMAIL: process.env.SMTP_EMAIL,
-   APP_URL: process.env.APP_URL!,
 };

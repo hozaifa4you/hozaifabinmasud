@@ -54,5 +54,12 @@ export const contactAction = async (prevState: unknown, newState: FormData) => {
    return {
       success: true,
       message: 'Message sent successfully! Please wait for response.',
+      // What went out, for the contact page's receipt
+      sent: {
+         name: fields.name.trim(),
+         email: fields.email.trim(),
+         subject: fields.subject.trim(),
+         at: new Date().toISOString(),
+      },
    };
 };

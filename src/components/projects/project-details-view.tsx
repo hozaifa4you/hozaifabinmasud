@@ -239,13 +239,15 @@ const ProjectDetailsView = ({
             </div>
 
             <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-1 border-y border-line py-2.5 font-mono text-ui sm:mt-8">
-               <div className="flex items-center gap-2 text-success">
+               <div>
                   <dt className="sr-only">Status</dt>
-                  <span
-                     aria-hidden
-                     className="size-2 rounded-full bg-success"
-                  />
-                  <dd>{STATUS_LABEL[project.status.type]}</dd>
+                  <dd className="flex items-center gap-2 text-success">
+                     <span
+                        aria-hidden
+                        className="size-2 rounded-full bg-success"
+                     />
+                     {STATUS_LABEL[project.status.type]}
+                  </dd>
                </div>
                <div>
                   <dt className="sr-only">Role</dt>
@@ -541,7 +543,7 @@ const ProjectDetailsView = ({
             index={viewerIndex}
             onIndexChange={setViewerIndex}
             onClose={() => setViewerIndex(null)}
-            label={project.name}
+            label={`${project.name} screens`}
          />
       </article>
    );

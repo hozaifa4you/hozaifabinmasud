@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 
 const Logo = () => {
    return (
@@ -17,7 +17,7 @@ const Logo = () => {
             className="size-5.5 transition-transform duration-300 ease-out-expo group-hover:rotate-90"
          />
          <span className="text-lg font-semibold tracking-tight">
-            {appConfig.NEXT_PUBLIC_FIRST_NAME}
+            {siteConfig.firstName}
          </span>
          <span className="sr-only">, home</span>
       </Link>

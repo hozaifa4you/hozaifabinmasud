@@ -289,19 +289,9 @@
    background: var(--color-line-strong);
 }
 
-/* Section padding */
-.section-padding {
-   @apply py-[50px];
-}
-
 /* Clip decorative overflow sideways without creating a scroll container */
 section {
    overflow-x: clip;
-}
-
-/* project details */
-.project-card {
-   @apply border border-line bg-transparent transition-colors duration-300 ease-out-expo hover:border-primary;
 }
 
 /* Case study screens wipe in from the left as they scroll into view */
@@ -315,12 +305,25 @@ section {
    }
 }
 
+/* Print: black on white A4; pages hide their screen chrome with print:hidden */
+@media print {
+   @page {
+      size: A4;
+      margin: 14mm 16mm;
+   }
+
+   html {
+      color-scheme: light;
+   }
+
+   html,
+   body {
+      background: white;
+      color: black;
+   }
+}
+
 /* The page behind an open modal dialog stays put */
 html:has(dialog[open]) {
    overflow: hidden;
-}
-
-/* Ensure proper text wrapping */
-.break-all {
-   word-break: break-all;
 }

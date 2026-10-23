@@ -3,36 +3,13 @@ import { LuArrowUpRight } from 'react-icons/lu';
 import { ContactForm } from '@/components/about-me/contact-form';
 import { CopyEmailButton } from '@/components/home/copy-email-button';
 import { SectionHeading } from '@/components/home/section-heading';
-import { appConfig } from '@/config/app.config';
-import { getSocialLinks } from '@/lib/links';
+import { siteConfig } from '@/config/site.config';
+import { getContactChannels } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
 const ContactSection = () => {
-   const email = appConfig.EMAIL;
-   const phone = appConfig.PHONE;
-   const phoneDigits = phone?.replace(/[^\d+]/g, '') ?? '';
-
-   const channels = [
-      ...(phone
-         ? [
-              { label: 'phone', value: phone, href: `tel:${phoneDigits}` },
-              {
-                 label: 'whatsapp',
-                 value: 'Message on WhatsApp',
-                 href: `https://wa.me/${phoneDigits.replace('+', '')}`,
-                 external: true,
-                 // Words, not data: set in the reading face
-                 prose: true,
-              },
-           ]
-         : []),
-      ...getSocialLinks().map((social) => ({
-         label: social.name.toLowerCase(),
-         value: social.handle,
-         href: social.href,
-         external: true,
-      })),
-   ];
+   const email = siteConfig.email;
+   const channels = getContactChannels();
 
    return (
       <section
@@ -89,9 +66,7 @@ const ContactSection = () => {
                               <span
                                  className={cn(
                                     'truncate text-strong',
-                                    'prose' in channel &&
-                                       channel.prose &&
-                                       'font-sans text-control',
+                                    channel.prose && 'font-sans text-control',
                                  )}
                               >
                                  {channel.value}

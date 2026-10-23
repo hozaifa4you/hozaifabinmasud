@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { LuArrowUpRight, LuDownload } from 'react-icons/lu';
 
 import { buttonVariants } from '@/components/ui/button';
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 import { getSocialLinks, RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +22,7 @@ const Footer = () => {
    const currentYear = new Date().getFullYear();
 
    return (
-      <footer className="mt-8 border-t border-line bg-bg-sunken">
+      <footer className="mt-8 border-t border-line bg-bg-sunken print:hidden">
          <div className="container grid gap-10 py-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
             <div>
                <Link
@@ -36,7 +36,7 @@ const Footer = () => {
                      height={20}
                      className="size-5"
                   />
-                  {appConfig.APP_NAME_SHORT}
+                  {siteConfig.name}
                </Link>
                <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-pretty">
                   Full-stack developer building web applications end to end,
@@ -98,7 +98,7 @@ const Footer = () => {
          <div className="border-t border-line">
             <div className="container flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4 text-xs text-muted">
                <span>
-                  &copy; {currentYear} {appConfig.APP_NAME_SHORT}
+                  &copy; {currentYear} {siteConfig.name}
                </span>
                <span>Built with Next.js and Tailwind CSS</span>
             </div>
