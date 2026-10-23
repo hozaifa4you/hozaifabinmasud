@@ -14,6 +14,8 @@ export interface Education {
    /** The subject or group, e.g. 'Computer Science and Engineering', 'Science' */
    subject: string;
    institution: string;
+   /** The institution's short name for titles, e.g. 'ISTT'; the full name otherwise */
+   institutionShort?: string;
    /** A short form for tight spots such as the hero status bar, e.g. 'BSc in CSE · ISTT' */
    short?: string;
    /** The awarding university or education board, when it is not the institution */
@@ -25,6 +27,13 @@ export interface Education {
    ongoing?: boolean;
    /** As it should read, e.g. 'CGPA 3.50 / 4.00'; leave out to keep it private */
    result?: string;
+   // Shown on /educations when given; leave any of them out
+   /** Main subjects or courses */
+   courses?: string[];
+   /** Projects or a thesis, one line each */
+   projects?: string[];
+   /** Awards, scholarships, competitions, roles */
+   achievements?: string[];
    demo?: boolean;
 }
 
@@ -34,10 +43,14 @@ export interface Training {
    provider: string;
    /** Where it was taken, e.g. 'Coursera', 'Udemy' */
    platform: string;
+   /** Month started, 'YYYY-MM'; shown while the course is in progress */
+   started?: string;
    /** Month finished, 'YYYY-MM'; leave out while it is in progress */
    completed?: string;
    /** The certificate's public verification link */
    certificateUrl?: string;
+   /** A scan or screenshot of the certificate under public/, e.g. '/assets/certificates/meta-front-end.png' */
+   certificateImage?: string;
    skills: string[];
    demo?: boolean;
 }
@@ -50,11 +63,21 @@ const education: Education[] = [
       degree: 'BSc',
       subject: 'Computer Science and Engineering',
       institution: 'Institute of Science, Trade & Technology (ISTT)',
+      institutionShort: 'ISTT',
       short: 'BSc in CSE · ISTT',
       city: 'Dhaka',
       start: 2022,
       end: 2026,
       ongoing: true,
+      courses: [
+         'Data Structures',
+         'Algorithms',
+         'Database Systems',
+         'Computer Networks',
+         'Software Engineering',
+      ],
+      projects: ['A course project in web development'],
+      achievements: ['Member of the programming club'],
       demo: true,
    },
    {
@@ -87,6 +110,7 @@ const trainings: Training[] = [
       title: 'IBM Full Stack Software Developer',
       provider: 'IBM',
       platform: 'Coursera',
+      started: '2025-08',
       skills: ['Node.js', 'React', 'Docker', 'Kubernetes'],
       demo: true,
    },

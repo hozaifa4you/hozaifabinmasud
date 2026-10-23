@@ -1,124 +1,55 @@
-'use client';
+import { Metadata } from 'next';
 
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { Suspense, useCallback, useState } from 'react';
-import { BsArrowLeft } from 'react-icons/bs';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import { BreadcrumbNav } from '@/components/breadcrumb';
+import { DirectionalPage } from '@/components/directional-page';
+import { EmptyLog } from '@/components/education/learning-log';
+import { LearningTabs } from '@/components/education/learning-tabs';
+import { TrainingLog } from '@/components/education/training-log';
+import { HiringClose } from '@/components/projects/hiring-close';
+import { getTrainings, hasEducationContent } from '@/lib/data/education';
 
-import { Breadcrumb } from '@/components/breadcrumb';
-import { EnhancedTrainingCard } from '@/components/home/enhanced-training-card';
-import { buttonVariants } from '@/components/ui/button';
-import { DotGridLarge, SquareBox } from '@/components/ui/icons';
-import { StatusType, trainingData } from '@/lib/education-data';
-
-const TrainingsContent = () => {
-   const searchParams = useSearchParams();
-   const [expandedTraining, setExpandedTraining] = useState<number | null>(
-      null,
-   );
-
-   const toggleTrainingExpand = useCallback((index: number) => {
-      setExpandedTraining((prevExpanded) =>
-         prevExpanded === index ? null : index,
-      );
-   }, []);
-
-   const type = searchParams.get('type');
-
-   return (
-      <section className="mb-10 overflow-hidden">
-         <div className="container">
-            <Link
-               href="/educations"
-               className={buttonVariants({
-                  size: 'xl',
-                  variant: 'outlineSecondary',
-               })}
-            >
-               <BsArrowLeft /> Educations
-            </Link>
-
-            <div className="my-5 flex flex-wrap items-center gap-3">
-               <Link
-                  className={buttonVariants({
-                     variant:
-                        !type || type == 'all' ? 'outlineSecondary' : 'default',
-                  })}
-                  href="?type=all"
-               >
-                  All
-               </Link>
-               <Link
-                  className={buttonVariants({
-                     variant:
-                        type === 'professional'
-                           ? 'outlineSecondary'
-                           : 'default',
-                  })}
-                  href="?type=professional"
-               >
-                  Professional
-               </Link>
-               <Link
-                  className={buttonVariants({
-                     variant:
-                        type === 'bootcamp' ? 'outlineSecondary' : 'default',
-                  })}
-                  href="?type=bootcamp"
-               >
-                  Bootcamp
-               </Link>
-            </div>
-
-            <ResponsiveMasonry columnsCountBreakPoints={{ 750: 1, 900: 2 }}>
-               <Masonry gutter="10px">
-                  {trainingData.map((course, index) => (
-                     <div key={index}>
-                        <EnhancedTrainingCard
-                           {...course}
-                           status={course.status as StatusType}
-                           isExpanded={expandedTraining === index}
-                           onToggleExpand={() => toggleTrainingExpand(index)}
-                           index={index}
-                        />
-                     </div>
-                  ))}
-               </Masonry>
-            </ResponsiveMasonry>
-
-            <div className="mt-5 flex items-center justify-center">
-               <Link
-                  href="#"
-                  className={buttonVariants({
-                     variant: 'outlineSecondary',
-                     size: 'lg',
-                     class: '!gap-0',
-                  })}
-               >
-                  <span className="text-primary">#</span>load_more
-               </Link>
-            </div>
-         </div>
-
-         <DotGridLarge className="absolute top-2/3 -left-5 hidden lg:block" />
-         <SquareBox className="absolute top-1/3 -right-5 hidden lg:block" />
-      </section>
-   );
+export const metadata: Metadata = {
+   title: 'Training',
+   description:
+      "Hozaifa's training, newest first: each course with its provider, completion date and certificate.",
 };
 
 const TrainingsPage = () => {
-   return (
-      <>
-         <Breadcrumb
-            title="trainings"
-            subtitle="Which trainings I have participate"
-         />
+   const trainings = getTrainings();
 
-         <Suspense fallback={<div>Loading...</div>}>
-            <TrainingsContent />
-         </Suspense>
-      </>
+   return (
+      <DirectionalPage>
+         <article className="container pt-6 pb-20 sm:pt-8 lg:pt-12 lg:pb-28">
+            <header>
+               <BreadcrumbNav
+                  items={[
+                     {
+                        href: hasEducationContent() ? '/#education' : '/',
+                        title: 'Workspace',
+                        transitionTypes: ['nav-back'],
+                     },
+                     { href: '/trainings', title: 'trainings' },
+                  ]}
+               />
+               <h1 className="mt-5 text-display font-semibold text-strong sm:mt-6">
+                  Training
+               </h1>
+               <p className="mt-4 max-w-[60ch] text-lead text-pretty">
+                  Courses finished and in progress, newest first, with each
+                  certificate where there is one.
+               </p>
+               <LearningTabs current="trainings" />
+            </header>
+
+            {trainings.length > 0 ? (
+               <TrainingLog trainings={trainings} />
+            ) : (
+               <EmptyLog>Training details are being added.</EmptyLog>
+            )}
+
+            <HiringClose line="I build web products end to end, from the API to the interface." />
+         </article>
+      </DirectionalPage>
    );
 };
 

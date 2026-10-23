@@ -6,6 +6,10 @@ const monthFormat = new Intl.DateTimeFormat('en-GB', {
    timeZone: 'UTC',
 });
 
+/** 'May 2024' from 'YYYY-MM' */
+const monthOf = (yyyyMm: string) =>
+   monthFormat.format(new Date(`${yyyyMm}-01T00:00:00Z`));
+
 /** 'BSc in Computer Science and Engineering' */
 export const qualificationOf = (entry: Education) =>
    `${entry.degree} in ${entry.subject}`;
@@ -16,6 +20,8 @@ export const yearsOf = (entry: Education) =>
 
 /** 'May 2024' for a finished course, null while it is in progress */
 export const completedOf = (training: Training) =>
-   training.completed
-      ? monthFormat.format(new Date(`${training.completed}-01T00:00:00Z`))
-      : null;
+   training.completed ? monthOf(training.completed) : null;
+
+/** 'Aug 2025' for a course in progress with a start month, otherwise null */
+export const startedOf = (training: Training) =>
+   !training.completed && training.started ? monthOf(training.started) : null;

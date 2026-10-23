@@ -541,7 +541,7 @@ const ProjectDetailsView = ({
             index={viewerIndex}
             onIndexChange={setViewerIndex}
             onClose={() => setViewerIndex(null)}
-            label={project.name}
+            label={`${project.name} screens`}
          />
       </article>
    );

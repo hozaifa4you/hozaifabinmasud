@@ -15,6 +15,7 @@ type ScreenViewerProps = {
    index: number | null;
    onIndexChange: (index: number) => void;
    onClose: () => void;
+   /** The dialog's accessible name, e.g. 'Aionlinecourse screens' */
    label: string;
 };
 
@@ -65,7 +66,7 @@ const ScreenViewer = ({
    return (
       <dialog
          ref={dialogRef}
-         aria-label={`${label} screens`}
+         aria-label={label}
          onClose={onClose}
          onKeyDown={handleKeyDown}
          onClick={handleClick}
@@ -77,19 +78,22 @@ const ScreenViewer = ({
                className="container flex w-full flex-col py-4 sm:py-6"
             >
                <div className="flex items-center justify-between gap-4">
-                  <p
-                     className="font-mono text-sm text-muted"
-                     aria-live="polite"
-                  >
-                     <span className="text-strong">{pad(index + 1)}</span>
-                     {' / '}
-                     {pad(screens.length)}
-                  </p>
+                  {/* A count of one tells the reader nothing */}
+                  {screens.length > 1 && (
+                     <p
+                        className="font-mono text-sm text-muted"
+                        aria-live="polite"
+                     >
+                        <span className="text-strong">{pad(index + 1)}</span>
+                        {' / '}
+                        {pad(screens.length)}
+                     </p>
+                  )}
                   <button
                      type="button"
                      onClick={onClose}
                      aria-label="Close"
-                     className={control}
+                     className={cn(control, 'ml-auto')}
                   >
                      <LuX aria-hidden />
                   </button>

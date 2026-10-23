@@ -26,6 +26,25 @@ const PAGES: PageTarget[] = [
       names: ['works', 'work', 'work.log', 'experience', 'jobs', 'career'],
    },
    {
+      key: 'education.md',
+      href: '/educations',
+      note: 'Degrees, institutions and results',
+      names: ['educations', 'education', 'education.md', 'study', 'academic'],
+   },
+   {
+      key: 'trainings.md',
+      href: '/trainings',
+      note: 'Courses and their certificates',
+      names: [
+         'trainings',
+         'training',
+         'trainings.md',
+         'courses',
+         'certificates',
+         'certifications',
+      ],
+   },
+   {
       key: 'stack',
       href: '/#stack',
       note: 'The technologies I work with',

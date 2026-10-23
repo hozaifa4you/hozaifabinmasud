@@ -65,8 +65,7 @@ Present in the repo (not yet individually verified by the owner):
 Placeholders, confirmed as not real; never use them as proof or build new work around them:
 
 - Fun facts in `src/lib/data.ts`.
-- Demo education and training entries in `src/lib/data/education.ts`, each marked `demo: true`. They exist to build the design with: they show locally and on Vercel previews, never on the production site, and the owner replaces them with real details.
-- The old education and training data in `src/lib/education-data.ts`, which still feeds the current `/educations` and `/trainings` pages until they are rebuilt.
+- Demo education and training entries in `src/lib/data/education.ts`, each marked `demo: true`. They exist to build the design with: they show locally and on Vercel previews, never on the production site, and the owner replaces them with real details (certificate images go under `public/`).
 
 The owner says much other content is also not final. There are no testimonials, client logos, verified metrics or press. Do not invent any of them; ask before presenting any number or claim as fact.
 
