@@ -24,6 +24,7 @@ const eslintConfig = defineConfig([
       // AI editor skills ship vendored, bundled scripts
       '.claude/**',
       '.cursor/**',
+      '.agents/**',
    ]),
 ]);
 

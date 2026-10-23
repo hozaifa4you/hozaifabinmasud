@@ -64,4 +64,4 @@ There is no test suite.
 
 ## AI tooling in the repo
 
-`.claude/` and `.cursor/` contain the vendored "impeccable" design skill with its agents and hooks. ESLint and Prettier ignore these folders; don't hand-edit them. The shared `.claude/settings.json` runs the skill's design check after Edit/Write on UI files; `.claude/settings.local.json` is gitignored for personal settings.
+`.claude/` and `.cursor/` contain the vendored "impeccable" design skill with its agents and hooks. The three.js skills (`threejs-*`, from `CloudAI-X/threejs-skills`) are installed with the `skills` CLI as copies in `.claude/skills/` for Claude Code and `.agents/skills/` for Cursor, pinned by `skills-lock.json`; update them with `bunx skills update -p`. ESLint and Prettier ignore all of these; don't hand-edit them. The shared `.claude/settings.json` runs the skill's design check after Edit/Write on UI files; `.claude/settings.local.json` is gitignored for personal settings.
