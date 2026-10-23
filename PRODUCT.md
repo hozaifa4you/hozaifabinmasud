@@ -11,7 +11,7 @@ web
 Two primary audiences, weighted equally (confirmed):
 
 - **Freelance clients** arriving from Upwork, Fiverr, LinkedIn or a shared link, deciding whether to hire Hozaifa for a project. Success: they start a conversation through the contact form or a profile link.
-- **Recruiters and hiring managers** assessing him for a full-time role. Success: they download the resume or get in touch.
+- **Recruiters and hiring managers** assessing him for a full-time role. Success: they download the resume or get in touch. Many are Bangladeshi employers who screen on certificates before skills (owner, 2026-10-23), so education and training are part of their first look.
 
 Both are evaluating fit quickly: can this person build what we need, and is there proof?
 
@@ -34,6 +34,7 @@ Three claims, all confirmed by the owner, that future work should lead with:
 - Visitors usually come from a freelance marketplace profile, LinkedIn, GitHub or a direct link, and skim before deciding.
 - Conversion points: the contact form (delivers an email to the owner through SMTP), the resume PDF (`public/hozaifa-resume.pdf`; owner chose it as the only linked PDF on 2026-10-22, and `public/hozaifa-resume-page.pdf` stays on disk unlinked), and outbound links to GitHub, LinkedIn, Upwork, Fiverr, Facebook and X.
 - Project cards link to an in-site case study when one exists, otherwise to the live product site.
+- Education and training are required, not optional (owner, 2026-10-23): once real, they appear on the homepage, the resume and their own pages (`/educations`, `/trainings`). Never propose removing those routes.
 - Deployed on Vercel; production deploys from `main`.
 
 ## Capabilities and Constraints
@@ -43,7 +44,7 @@ Three claims, all confirmed by the owner, that future work should lead with:
 - Only one project has a case study so far (`aionlinecourse`); the others link to their live sites or have no link.
 - The contact form validates input, keeps it on errors, and has a honeypot spam filter with length limits.
 - Current availability (confirmed 2026-10-21): open to full-time roles only, not taking freelance projects. Any availability line on the site must say this; re-confirm before changing it.
-- Open decisions: which further projects get case studies; real education, training and fun-fact content; real stats.
+- Open decisions: which further projects get case studies; real education and training details (the owner is filling them in); real fun-fact content; real stats.
 
 ## Brand Commitments
 
@@ -59,12 +60,13 @@ Present in the repo (not yet individually verified by the owner):
 - One case study with nine screenshots: `public/assets/project-details/aionline/`.
 - Work history entries for AI Power IT and Namespace IT in `src/lib/data/works.ts`.
 - Portrait photos in `public/alternate/` and resume PDFs in `public/`.
+- Education (owner, 2026-10-23): a BSc at ISTT (Institute of Science, Trade & Technology), in progress. The subject, years and awarding university are still to be confirmed. He also has online trainings (Coursera and others) to list.
 
 Placeholders, confirmed as not real; never use them as proof or build new work around them:
 
 - Fun facts in `src/lib/data.ts`.
-- Education entries and the stats derived from them in `src/lib/education-data.ts`.
-- Trainings and certifications in `src/lib/education-data.ts`.
+- Demo education and training entries in `src/lib/data/education.ts`, each marked `demo: true`. They exist to build the design with: they show locally and on Vercel previews, never on the production site, and the owner replaces them with real details.
+- The old education and training data in `src/lib/education-data.ts`, which still feeds the current `/educations` and `/trainings` pages until they are rebuilt.
 
 The owner says much other content is also not final. There are no testimonials, client logos, verified metrics or press. Do not invent any of them; ask before presenting any number or claim as fact.
 
