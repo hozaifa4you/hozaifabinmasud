@@ -13,6 +13,7 @@ import {
 } from 'react-icons/lu';
 
 import { hasTechIcon, TechIcon } from '@/components/tech-icon';
+import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import type { ProjectView } from '@/lib/project-view';
 import { cn } from '@/lib/utils';
@@ -147,16 +148,20 @@ const Shot = ({ entry }: { entry: DirectoryEntry }) => {
       );
    }
 
+   // Turns to face the reader each time its row opens (the closed region is
+   // inert), then leans toward the pointer
    const frame = (
-      <div className="relative aspect-[33/20] overflow-hidden border border-line bg-bg-sunken">
-         <Image
-            src={entry.image}
-            alt={`${entry.title} screenshot`}
-            fill
-            sizes="(min-width: 1024px) 416px, 100vw"
-            className="object-cover object-top"
-         />
-      </div>
+      <TiltSurface max={6} depth={1100}>
+         <div className="relative aspect-[33/20] origin-left overflow-hidden border border-line bg-bg-sunken [[role=region]:not([inert])_&]:animate-turn">
+            <Image
+               src={entry.image}
+               alt={`${entry.title} screenshot`}
+               fill
+               sizes="(min-width: 1024px) 416px, 100vw"
+               className="object-cover object-top"
+            />
+         </div>
+      </TiltSurface>
    );
 
    // Shared element: morphs into the case study's main image

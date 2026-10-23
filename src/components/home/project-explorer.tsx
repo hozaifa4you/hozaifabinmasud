@@ -17,6 +17,7 @@ import {
    LuImageOff,
 } from 'react-icons/lu';
 
+import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import type { ProjectView } from '@/lib/project-view';
 import { cn } from '@/lib/utils';
@@ -205,18 +206,22 @@ const ProjectExplorer = ({ projects }: { projects: ExplorerProject[] }) => {
                   share="morph"
                   default="none"
                >
-                  <div className="relative aspect-[33/20] self-start overflow-hidden border border-line bg-bg-sunken">
-                     <Image
-                        src={project.image}
-                        alt={`Screenshot of ${project.title}`}
-                        fill
-                        sizes="(min-width: 768px) 380px, 100vw"
-                        className="object-cover object-top"
-                     />
-                  </div>
+                  {/* Swings open from its left edge as the pane wipes in, then
+                      turns toward the pointer like a screen held in the hand */}
+                  <TiltSurface max={6} depth={1100} className="self-start">
+                     <div className="relative aspect-[33/20] origin-left animate-turn overflow-hidden border border-line bg-bg-sunken">
+                        <Image
+                           src={project.image}
+                           alt={`Screenshot of ${project.title}`}
+                           fill
+                           sizes="(min-width: 768px) 380px, 100vw"
+                           className="object-cover object-top"
+                        />
+                     </div>
+                  </TiltSurface>
                </ViewTransition>
             ) : (
-               <div className="flex aspect-[33/20] flex-col items-center justify-center gap-2 self-start border border-dashed border-line-strong bg-bg-sunken px-6 text-center">
+               <div className="flex aspect-[33/20] origin-left animate-turn flex-col items-center justify-center gap-2 self-start border border-dashed border-line-strong bg-bg-sunken px-6 text-center">
                   <LuImageOff aria-hidden className="size-6 text-muted" />
                   <p className="font-mono text-xs text-muted">
                      No public screenshot

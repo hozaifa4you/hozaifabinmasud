@@ -15,7 +15,7 @@ const ContactSection = () => {
       <section
          id="contact"
          aria-labelledby="contact-title"
-         className="container py-14 lg:py-20"
+         className="depth-in container py-14 lg:py-20"
       >
          <SectionHeading
             id="contact-title"

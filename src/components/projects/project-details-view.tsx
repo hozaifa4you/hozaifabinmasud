@@ -15,6 +15,7 @@ import { BreadcrumbItem, BreadcrumbNav } from '@/components/breadcrumb';
 import { HiringClose } from '@/components/projects/hiring-close';
 import { Screen, ScreenViewer } from '@/components/projects/screen-viewer';
 import { TechIcon } from '@/components/tech-icon';
+import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { ProjectDetailsType } from '@/lib/data/project-details';
@@ -284,39 +285,42 @@ const ProjectDetailsView = ({
                isActive={activeId === 'commit-head'}
             >
                <figure>
-                  <div className="border border-line bg-bg-sunken">
-                     <div className="flex h-9 items-center gap-2 border-b border-line px-3 font-mono text-xs text-muted">
-                        <span
-                           aria-hidden
-                           className="size-1.5 rounded-full bg-success"
-                        />
-                        {host ?? project.slug}
-                     </div>
-                     {/* Shared element: the homepage explorer's screenshot morphs into this */}
-                     <ViewTransition
-                        name={`project-shot-${project.slug}`}
-                        share="morph"
-                        default="none"
-                     >
-                        <button
-                           type="button"
-                           onClick={() => setViewerIndex(0)}
-                           className="group/shot relative block w-full cursor-zoom-in"
-                        >
-                           <Image
-                              src={screens[0].path}
-                              alt={screens[0].alt}
-                              width={MAIN_SHOT.width}
-                              height={MAIN_SHOT.height}
-                              sizes="(min-width: 1120px) 1072px, 100vw"
-                              preload
-                              className="h-auto w-full"
+                  {/* The live product's frame leans toward the pointer */}
+                  <TiltSurface max={2.5} depth={2400}>
+                     <div className="border border-line bg-bg-sunken">
+                        <div className="flex h-9 items-center gap-2 border-b border-line px-3 font-mono text-xs text-muted">
+                           <span
+                              aria-hidden
+                              className="size-1.5 rounded-full bg-success"
                            />
-                           <ZoomHint />
-                           <span className="sr-only">Open full size</span>
-                        </button>
-                     </ViewTransition>
-                  </div>
+                           {host ?? project.slug}
+                        </div>
+                        {/* Shared element: the homepage explorer's screenshot morphs into this */}
+                        <ViewTransition
+                           name={`project-shot-${project.slug}`}
+                           share="morph"
+                           default="none"
+                        >
+                           <button
+                              type="button"
+                              onClick={() => setViewerIndex(0)}
+                              className="group/shot relative block w-full cursor-zoom-in"
+                           >
+                              <Image
+                                 src={screens[0].path}
+                                 alt={screens[0].alt}
+                                 width={MAIN_SHOT.width}
+                                 height={MAIN_SHOT.height}
+                                 sizes="(min-width: 1120px) 1072px, 100vw"
+                                 preload
+                                 className="h-auto w-full"
+                              />
+                              <ZoomHint />
+                              <span className="sr-only">Open full size</span>
+                           </button>
+                        </ViewTransition>
+                     </div>
+                  </TiltSurface>
                   <figcaption className="mt-6 max-w-[65ch] text-body text-pretty">
                      {project.description}
                   </figcaption>
@@ -338,7 +342,7 @@ const ProjectDetailsView = ({
                               <button
                                  type="button"
                                  onClick={() => setViewerIndex(index + 1)}
-                                 className="group/shot relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
+                                 className="group/shot scroll-stand relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
                               >
                                  <Image
                                     src={screen.path}

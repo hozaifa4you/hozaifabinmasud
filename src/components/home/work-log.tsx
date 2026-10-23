@@ -11,7 +11,7 @@ const WorkLog = () => {
       <section
          id="work"
          aria-labelledby="work-title"
-         className="container py-14 lg:py-20"
+         className="depth-in container py-14 lg:py-20"
       >
          <SectionHeading
             id="work-title"

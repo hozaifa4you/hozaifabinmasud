@@ -59,6 +59,37 @@
 
    --animate-rise: rise 520ms var(--ease-out-expo) both;
    --animate-wipe: wipe 420ms var(--ease-out-expo) both;
+   /* Quart-out rather than expo, so the lid's swing is seen, not spent at once */
+   --animate-assemble: assemble 1000ms cubic-bezier(0.25, 1, 0.5, 1) both;
+   --animate-turn: turn 640ms var(--ease-out-expo) both;
+
+   /* The workspace window opens like a screen lid, hinged at its foot */
+   @keyframes assemble {
+      from {
+         opacity: 0;
+         transform: perspective(1600px) rotateX(16deg) translateY(28px);
+      }
+      /* Fully visible early, so the rest of the swing reads at full opacity */
+      25% {
+         opacity: 1;
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   /* A chosen screenshot turns to face the reader */
+   @keyframes turn {
+      from {
+         opacity: 0.35;
+         transform: perspective(1000px) rotateY(-18deg) translateX(-16px);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
 
    @keyframes rise {
       from {
@@ -175,33 +206,45 @@
    }
 }
 
-/* Direction: forward slides content left, back slides it right */
+/*
+ * Direction: pages turn like editor tabs on a carousel. Forward, the old page
+ * swings away to the left as the new one swings in from the right; back
+ * reverses it. Each page pivots on the edge it leaves by.
+ */
 ::view-transition-old(.nav-forward) {
    --slide-offset: -48px;
+   --swing: 7deg;
+   transform-origin: 0% 50%;
    animation:
-      140ms ease-in both vt-fade reverse,
-      420ms var(--ease-out-expo) both vt-slide reverse;
+      160ms ease-in both vt-fade reverse,
+      460ms var(--ease-out-expo) both vt-slide reverse;
 }
 
 ::view-transition-new(.nav-forward) {
    --slide-offset: 48px;
+   --swing: -7deg;
+   transform-origin: 100% 50%;
    animation:
-      220ms ease-out 140ms both vt-fade,
-      420ms var(--ease-out-expo) both vt-slide;
+      240ms ease-out 140ms both vt-fade,
+      520ms var(--ease-out-expo) both vt-slide;
 }
 
 ::view-transition-old(.nav-back) {
    --slide-offset: 48px;
+   --swing: -7deg;
+   transform-origin: 100% 50%;
    animation:
-      140ms ease-in both vt-fade reverse,
-      420ms var(--ease-out-expo) both vt-slide reverse;
+      160ms ease-in both vt-fade reverse,
+      460ms var(--ease-out-expo) both vt-slide reverse;
 }
 
 ::view-transition-new(.nav-back) {
    --slide-offset: -48px;
+   --swing: 7deg;
+   transform-origin: 0% 50%;
    animation:
-      220ms ease-out 140ms both vt-fade,
-      420ms var(--ease-out-expo) both vt-slide;
+      240ms ease-out 140ms both vt-fade,
+      520ms var(--ease-out-expo) both vt-slide;
 }
 
 @keyframes vt-fade {
@@ -215,10 +258,11 @@
 
 @keyframes vt-slide {
    from {
-      translate: var(--slide-offset);
+      transform: perspective(2600px) translateX(var(--slide-offset))
+         rotateY(var(--swing));
    }
    to {
-      translate: 0;
+      transform: none;
    }
 }
 
@@ -299,13 +343,51 @@ section {
    overflow-x: clip;
 }
 
-/* Case study screens wipe in from the left as they scroll into view */
+/*
+ * Scroll depth. Case study screens wipe in from the left and stand up to face
+ * the reader as they scroll into view; other blocks settle from a slight lean
+ * over their first 280px on screen. Only transforms move, so the text is
+ * readable at every point, and a block already on screen at load rests flat.
+ * Leaning back from a top hinge narrows the foot, so nothing widens the page.
+ */
+@keyframes depth-settle {
+   from {
+      transform: perspective(1400px) rotateX(-7deg) translateY(36px);
+   }
+   to {
+      transform: none;
+   }
+}
+
+@keyframes stand-up {
+   from {
+      transform: perspective(1400px) rotateX(-16deg) scale(0.97);
+   }
+   to {
+      transform: none;
+   }
+}
+
 @supports (animation-timeline: view()) {
    @media (prefers-reduced-motion: no-preference) {
       .scroll-wipe {
          animation: wipe linear both;
          animation-timeline: view();
          animation-range: entry 5% entry 95%;
+      }
+
+      .scroll-stand {
+         transform-origin: 50% 0%;
+         animation: stand-up linear both;
+         animation-timeline: view();
+         animation-range: entry 0px entry 360px;
+      }
+
+      .depth-in {
+         transform-origin: 50% 0%;
+         animation: depth-settle linear both;
+         animation-timeline: view();
+         animation-range: entry 0px entry 280px;
       }
    }
 }

@@ -135,7 +135,7 @@ const ContactPage = () => {
             {/* Every way to reach me, one row each; the message row is open */}
             <section
                aria-labelledby="channels-title"
-               className="mt-8 border-t border-line lg:mt-10"
+               className="depth-in mt-8 border-t border-line lg:mt-10"
             >
                <h2 id="channels-title" className="sr-only">
                   Ways to reach me

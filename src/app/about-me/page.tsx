@@ -107,7 +107,10 @@ const AboutMePage = () => {
             </header>
 
             {/* Kinds of work, each with the projects that prove it */}
-            <section aria-labelledby="builds-title" className="mt-14 lg:mt-20">
+            <section
+               aria-labelledby="builds-title"
+               className="depth-in mt-14 lg:mt-20"
+            >
                <SectionHeading
                   id="builds-title"
                   file="builds"
@@ -174,7 +177,10 @@ const AboutMePage = () => {
             </section>
 
             {/* The full technology list, each one linked to its projects */}
-            <section aria-labelledby="stack-title" className="mt-16 lg:mt-24">
+            <section
+               aria-labelledby="stack-title"
+               className="depth-in mt-16 lg:mt-24"
+            >
                <SectionHeading
                   id="stack-title"
                   file="stack"

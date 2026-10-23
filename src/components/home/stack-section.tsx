@@ -7,7 +7,7 @@ const StackSection = () => {
       <section
          id="stack"
          aria-labelledby="stack-title"
-         className="container py-14 lg:py-20"
+         className="depth-in container py-14 lg:py-20"
       >
          <SectionHeading
             id="stack-title"

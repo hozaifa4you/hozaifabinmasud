@@ -35,7 +35,7 @@ const AboutSection = () => {
       <section
          id="about"
          aria-labelledby="about-title"
-         className="container py-14 lg:py-20"
+         className="depth-in container py-14 lg:py-20"
       >
          <SectionHeading id="about-title" file="about.md" title="About me" />
 
