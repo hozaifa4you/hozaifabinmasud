@@ -17,6 +17,7 @@ import {
    LuImageOff,
 } from 'react-icons/lu';
 
+import { fanDeck, ProjectDeck, tiltDeck } from '@/components/home/project-deck';
 import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import type { ProjectView } from '@/lib/project-view';
@@ -200,34 +201,50 @@ const ProjectExplorer = ({ projects }: { projects: ExplorerProject[] }) => {
             aria-labelledby={`project-${project.slug}`}
             className="grid min-w-0 animate-wipe gap-6 p-5 sm:p-8 md:grid-cols-[minmax(0,380px)_minmax(0,1fr)] md:gap-8"
          >
-            {project.image ? (
-               <ViewTransition
-                  name={`project-shot-${project.slug}`}
-                  share="morph"
-                  default="none"
-               >
-                  {/* Swings open from its left edge as the pane wipes in, then
-                      turns toward the pointer like a screen held in the hand */}
-                  <TiltSurface max={6} depth={1100} className="self-start">
-                     <div className="relative aspect-[33/20] origin-left animate-turn overflow-hidden border border-line bg-bg-sunken">
-                        <Image
-                           src={project.image}
-                           alt={`Screenshot of ${project.title}`}
-                           fill
-                           sizes="(min-width: 768px) 380px, 100vw"
-                           className="object-cover object-top"
-                        />
+            {/* The chosen screenshot, with the next projects standing back
+                behind it from md. It swings open from its left edge as the
+                pane wipes in, then turns toward the pointer like a screen held
+                in the hand, and the pointer fans the deck */}
+            <TiltSurface
+               max={6}
+               depth={1100}
+               onTilt={tiltDeck}
+               onPointerEnter={() => fanDeck(true)}
+               onPointerLeave={() => fanDeck(false)}
+               className="self-start md:mt-3"
+            >
+               <div className="relative">
+                  <ProjectDeck
+                     projects={projects}
+                     selectedIndex={selectedIndex}
+                     onSelect={select}
+                  />
+                  {project.image ? (
+                     <ViewTransition
+                        name={`project-shot-${project.slug}`}
+                        share="morph"
+                        default="none"
+                     >
+                        <div className="relative z-10 aspect-[33/20] origin-left animate-turn overflow-hidden border border-line bg-bg-sunken">
+                           <Image
+                              src={project.image}
+                              alt={`Screenshot of ${project.title}`}
+                              fill
+                              sizes="(min-width: 768px) 380px, 100vw"
+                              className="object-cover object-top"
+                           />
+                        </div>
+                     </ViewTransition>
+                  ) : (
+                     <div className="relative z-10 flex aspect-[33/20] origin-left animate-turn flex-col items-center justify-center gap-2 border border-dashed border-line-strong bg-bg-sunken px-6 text-center">
+                        <LuImageOff aria-hidden className="size-6 text-muted" />
+                        <p className="font-mono text-xs text-muted">
+                           No public screenshot
+                        </p>
                      </div>
-                  </TiltSurface>
-               </ViewTransition>
-            ) : (
-               <div className="flex aspect-[33/20] origin-left animate-turn flex-col items-center justify-center gap-2 self-start border border-dashed border-line-strong bg-bg-sunken px-6 text-center">
-                  <LuImageOff aria-hidden className="size-6 text-muted" />
-                  <p className="font-mono text-xs text-muted">
-                     No public screenshot
-                  </p>
+                  )}
                </div>
-            )}
+            </TiltSurface>
 
             <div className="min-w-0">
                <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">

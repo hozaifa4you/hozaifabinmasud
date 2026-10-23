@@ -7,6 +7,8 @@ type TiltSurfaceProps = ComponentProps<'div'> & {
    max?: number;
    /** Perspective distance in px; shorter reads deeper */
    depth?: number;
+   /** Each frame's eased pointer position, -0.5 to 0.5 on both axes */
+   onTilt?: (x: number, y: number) => void;
 };
 
 // Only a mouse tilts the surface: touch scrolls, and reduced motion stays still
@@ -25,6 +27,7 @@ const EASE = 0.12;
 const TiltSurface = ({
    max = 4,
    depth = 1400,
+   onTilt,
    className,
    children,
    ...props
@@ -67,6 +70,8 @@ const TiltSurface = ({
             : `${(now.x * offset).toFixed(2)}px ${(now.y * offset).toFixed(2)}px`;
       }
 
+      onTilt?.(now.x, now.y);
+
       frameRef.current = settled ? 0 : requestAnimationFrame(paint);
    };
 
@@ -88,10 +93,12 @@ const TiltSurface = ({
          !window.matchMedia(TILT_QUERY).matches
       )
          return;
+      // Clamped: content may reach past the box (the project deck does)
       const rect = event.currentTarget.getBoundingClientRect();
+      const clamp = (value: number) => Math.max(-0.5, Math.min(0.5, value));
       target.current = {
-         x: (event.clientX - rect.left) / rect.width - 0.5,
-         y: (event.clientY - rect.top) / rect.height - 0.5,
+         x: clamp((event.clientX - rect.left) / rect.width - 0.5),
+         y: clamp((event.clientY - rect.top) / rect.height - 0.5),
       };
       run();
    };
