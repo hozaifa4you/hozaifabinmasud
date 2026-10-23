@@ -289,19 +289,9 @@
    background: var(--color-line-strong);
 }
 
-/* Section padding */
-.section-padding {
-   @apply py-[50px];
-}
-
 /* Clip decorative overflow sideways without creating a scroll container */
 section {
    overflow-x: clip;
-}
-
-/* project details */
-.project-card {
-   @apply border border-line bg-transparent transition-colors duration-300 ease-out-expo hover:border-primary;
 }
 
 /* Case study screens wipe in from the left as they scroll into view */
@@ -336,9 +326,4 @@ section {
 /* The page behind an open modal dialog stays put */
 html:has(dialog[open]) {
    overflow: hidden;
-}
-
-/* Ensure proper text wrapping */
-.break-all {
-   word-break: break-all;
 }

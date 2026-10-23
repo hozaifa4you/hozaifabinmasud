@@ -109,13 +109,15 @@ const ContactPage = () => {
                </p>
 
                <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-1 border-y border-line py-2.5 font-mono text-ui sm:mt-8">
-                  <div className="flex items-center gap-2 text-success">
+                  <div>
                      <dt className="sr-only">Availability</dt>
-                     <span
-                        aria-hidden
-                        className="size-2 rounded-full bg-success"
-                     />
-                     <dd>Open to full-time roles</dd>
+                     <dd className="flex items-center gap-2 text-success">
+                        <span
+                           aria-hidden
+                           className="size-2 rounded-full bg-success"
+                        />
+                        Open to full-time roles
+                     </dd>
                   </div>
                   <div>
                      <dt className="sr-only">Local time</dt>
