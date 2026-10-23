@@ -6,7 +6,7 @@ const timeFormat = new Intl.DateTimeFormat('en-GB', {
    timeZone: 'Asia/Dhaka',
    hour: '2-digit',
    minute: '2-digit',
-   hourCycle: 'h23',
+   hourCycle: 'h12',
 });
 
 const subscribe = (onChange: () => void) => {

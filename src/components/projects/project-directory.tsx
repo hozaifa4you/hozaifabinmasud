@@ -22,7 +22,7 @@ import { hasTechIcon, TechIcon } from '@/components/tech-icon';
 import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import type { ProjectView } from '@/lib/project-view';
-import { cn } from '@/lib/utils';
+import { cn, techTransitionName } from '@/lib/utils';
 
 /** A row of the directory; small projects carry no status */
 export type DirectoryEntry = Omit<ProjectView, 'status'> & {
@@ -123,9 +123,17 @@ type ChipProps = {
    isOn: boolean;
    onClick: () => void;
    withIcon?: boolean;
+   transitionName?: string;
 };
 
-const Chip = ({ label, count, isOn, onClick, withIcon = true }: ChipProps) => (
+const Chip = ({
+   label,
+   count,
+   isOn,
+   onClick,
+   withIcon = true,
+   transitionName,
+}: ChipProps) => (
    <button
       type="button"
       aria-pressed={isOn}
@@ -137,8 +145,16 @@ const Chip = ({ label, count, isOn, onClick, withIcon = true }: ChipProps) => (
             : 'border-line text-text hover:border-line-strong hover:text-strong',
       )}
    >
-      {withIcon && <TechIcon name={label} className="size-4" />}
-      {label}
+      <ViewTransition
+         name={transitionName}
+         share={{ 'nav-forward': 'tech-morph', default: 'none' }}
+         default="none"
+      >
+         <span className="inline-flex items-center gap-2">
+            {withIcon && <TechIcon name={label} className="size-4" />}
+            {label}
+         </span>
+      </ViewTransition>
       <span className="font-mono text-xs text-muted">{count}</span>
    </button>
 );
@@ -384,9 +400,7 @@ const ProjectDirectory = ({
    initialStack,
 }: ProjectDirectoryProps) => {
    const visibleFor = (name: string | null) =>
-      name
-         ? entries.filter((entry) => entry.technologies.includes(name))
-         : entries;
+      name ? entries.filter((entry) => entry.uses.includes(name)) : entries;
 
    const [filter, setFilter] = useState(initialStack);
    const [showAllStack, setShowAllStack] = useState(false);
@@ -485,6 +499,12 @@ const ProjectDirectory = ({
                      isOn={filter === tech.name}
                      onClick={() =>
                         choose(filter === tech.name ? null : tech.name)
+                     }
+                     // Arriving from the homepage stack, the technology lands here
+                     transitionName={
+                        tech.name === initialStack && filter === initialStack
+                           ? techTransitionName(tech.name)
+                           : undefined
                      }
                   />
                ))}

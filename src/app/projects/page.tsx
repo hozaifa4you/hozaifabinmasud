@@ -85,7 +85,7 @@ const ProjectsPage = async ({ searchParams }: Props) => {
    // Every technology with how many projects use it, most used first
    const counts = new Map<string, number>();
    for (const entry of entries) {
-      for (const name of entry.technologies) {
+      for (const name of entry.uses) {
          counts.set(name, (counts.get(name) ?? 0) + 1);
       }
    }

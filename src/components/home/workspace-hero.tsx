@@ -94,7 +94,7 @@ const WorkspaceHero = () => {
                   <div className="min-w-0">
                      {/* Tab strip */}
                      <div className="flex h-10 border-b border-line bg-bg-sunken font-mono text-ui">
-                        <span className="-mb-px flex items-center gap-2 border-r border-line bg-bg-main px-4 text-strong">
+                        <span className="relative -mb-px flex items-center gap-2 border-r border-line bg-bg-main px-4 text-strong before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-primary">
                            <LuFileText
                               aria-hidden
                               className="size-4 text-primary"

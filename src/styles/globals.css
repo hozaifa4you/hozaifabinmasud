@@ -327,6 +327,16 @@
    }
 }
 
+::view-transition-group(.tech-morph) {
+   animation-duration: 520ms;
+   animation-timing-function: var(--ease-out-expo);
+}
+
+::view-transition-group(.tab-edge) {
+   animation-duration: 300ms;
+   animation-timing-function: var(--ease-out-expo);
+}
+
 ::view-transition-group(site-header) {
    animation: none;
    z-index: 100;

@@ -52,7 +52,7 @@ const ProblemsPanel = ({ targets }: { targets: PageTarget[] }) => {
             <div className="flex h-10 border-b border-line">
                <h2
                   id="problems-title"
-                  className="-mb-px flex items-center gap-2 border-r border-line bg-bg-main px-4 font-mono text-xs text-strong"
+                  className="relative -mb-px flex items-center gap-2 border-r border-line bg-bg-main px-4 font-mono text-xs text-strong before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-primary"
                >
                   problems
                   <span className="border border-danger/40 bg-danger/10 px-1.5 leading-5 text-danger">

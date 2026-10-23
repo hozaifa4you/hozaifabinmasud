@@ -30,3 +30,8 @@ const HTML_ESCAPES: Record<string, string> = {
 export function escapeHtml(value: string) {
    return value.replace(/[&<>"']/g, (char) => HTML_ESCAPES[char]);
 }
+
+/** The shared view-transition name a technology carries from the homepage
+ * stack into the projects directory's filter chip */
+export const techTransitionName = (name: string) =>
+   `tech-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;

@@ -15,6 +15,8 @@ export type ProjectView = {
    description: string;
    /** Canonical names, so TechIcon finds each logo */
    technologies: string[];
+   /** The technologies plus those they imply (Next.js is React), for counts and filters */
+   uses: string[];
    status: ProjectType['status'];
    /** A real screenshot, or null; placeholders never stand in */
    image: string | null;
@@ -48,6 +50,18 @@ const canonicalStack = (names: string[]) => [
    ...new Set(names.map(normalizeTech)),
 ];
 
+const IMPLIED: Record<string, string[]> = {
+   'Next.js': ['React'],
+   NestJS: ['Node.js'],
+   Express: ['Node.js'],
+   Laravel: ['PHP'],
+   TypeScript: ['JavaScript'],
+};
+
+const withImplied = (technologies: string[]) => [
+   ...new Set(technologies.flatMap((name) => [name, ...(IMPLIED[name] ?? [])])),
+];
+
 const toProjectView = (project: ProjectType): ProjectView => {
    const details = getProjectDetails(project.slug);
    // Prefer the case study's full-size capture over the card thumbnail
@@ -60,6 +74,7 @@ const toProjectView = (project: ProjectType): ProjectView => {
       title: project.title,
       description: project.shortDesc,
       technologies: canonicalStack(project.technologies),
+      uses: withImplied(canonicalStack(project.technologies)),
       status: project.status,
       image,
       context: describeContext(project.owner),
@@ -83,6 +98,7 @@ const toSmallProjectView = (
    title: project.title,
    description: project.shortDesc,
    technologies: canonicalStack(project.tags),
+   uses: withImplied(canonicalStack(project.tags)),
    status: null,
    image: null,
    context: describeContext(project.owner as Owner),
