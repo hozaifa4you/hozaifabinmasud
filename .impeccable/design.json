@@ -114,9 +114,6 @@
           "#acaeb2",
           "#cfd1d5",
           "#eceef2"
-        ],
-        "aliases": [
-          "text-secondary (legacy alias, same value)"
         ]
       },
       "muted": {
@@ -572,7 +569,7 @@
       },
       {
         "name": "The Tint, Not a New Hue Rule",
-        "body": "Quiet variants of an accent are the same hue at 10% fill with a 40% border (status pills, badges) or 15% fill (outline hover). Tailwind palette colours and literal white are not part of the system; print alone is black on white (see Print).",
+        "body": "Quiet variants of an accent are the same hue at 10% fill with a 40% border (status pills). Tailwind palette colours and literal white are not part of the system; print alone is black on white (see Print).",
         "section": "colors"
       },
       {
