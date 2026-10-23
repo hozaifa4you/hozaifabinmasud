@@ -49,9 +49,10 @@ export interface Training {
    completed?: string;
    /** The certificate's public verification link */
    certificateUrl?: string;
-   /** A scan or screenshot of the certificate under public/, e.g. '/assets/certificates/meta-front-end.png' */
-   certificateImage?: string;
-   skills: string[];
+   /** An image of the certificate under public/, with its pixel size */
+   certificateImage?: { src: string; width: number; height: number };
+   /** What the course covered, taken from the certificate; leave out when it names nothing */
+   skills?: string[];
    demo?: boolean;
 }
 
@@ -104,42 +105,70 @@ const education: Education[] = [
    },
 ];
 
-// Newest first; in-progress courses lead
+// Newest first; in-progress courses lead. Every entry here is from the owner's
+// certificates in public/certificates (added 2026-10-23); skills are the
+// courses each certificate lists
 const trainings: Training[] = [
    {
-      title: 'IBM Full Stack Software Developer',
-      provider: 'IBM',
+      // An en dash held to the words before it, so no line starts with it
+      title: 'Master Svelte Framework – The Complete Course',
+      provider: 'Packt',
       platform: 'Coursera',
-      started: '2025-08',
-      skills: ['Node.js', 'React', 'Docker', 'Kubernetes'],
-      demo: true,
+      completed: '2025-09',
+      certificateUrl: 'https://coursera.org/verify/SDE0C840X817',
+      certificateImage: {
+         src: '/certificates/packt-master-svelte-framework-the-complete-course.webp',
+         width: 1600,
+         height: 1234,
+      },
+      skills: ['Svelte'],
    },
    {
-      title: 'Meta Front-End Developer',
-      provider: 'Meta',
+      title: 'Programming with Google Go',
+      provider: 'University of California, Irvine',
       platform: 'Coursera',
-      completed: '2024-05',
-      certificateUrl: 'https://www.coursera.org/verify/professional-cert/DEMO',
-      skills: ['React', 'JavaScript', 'Accessibility', 'UX'],
-      demo: true,
+      completed: '2025-08',
+      certificateUrl: 'https://coursera.org/verify/specialization/5O104QAPNNYI',
+      certificateImage: {
+         src: '/certificates/uci-programming-with-google-go.webp',
+         width: 1600,
+         height: 1234,
+      },
+      skills: ['Go', 'Functions', 'Methods', 'Interfaces', 'Concurrency'],
    },
    {
-      title: 'Google IT Automation with Python',
-      provider: 'Google',
+      title: 'Preparing for Google Cloud Certification: Cloud Developer',
+      provider: 'Google Cloud',
       platform: 'Coursera',
-      completed: '2023-11',
-      certificateUrl: 'https://www.coursera.org/verify/professional-cert/DEMO',
-      skills: ['Python', 'Git', 'Automation'],
-      demo: true,
+      completed: '2025-07',
+      certificateUrl:
+         'https://coursera.org/verify/professional-cert/QDCWMN4RR3UD',
+      certificateImage: {
+         src: '/certificates/google-cloud-google-cloud-developer.webp',
+         width: 1600,
+         height: 1234,
+      },
+      skills: [
+         'Google Cloud',
+         'Cloud Run',
+         'Cloud Run functions',
+         'Containers',
+         'Service orchestration',
+         'Gemini',
+      ],
    },
    {
-      title: 'Docker & Kubernetes: The Practical Guide',
-      provider: 'Maximilian Schwarzmüller',
-      platform: 'Udemy',
-      completed: '2023-02',
-      certificateUrl: 'https://www.udemy.com/certificate/DEMO/',
-      skills: ['Docker', 'Kubernetes', 'CI/CD'],
-      demo: true,
+      title: 'The AI Engineer Path',
+      provider: 'Scrimba',
+      platform: 'Scrimba',
+      completed: '2025-07',
+      certificateUrl:
+         'https://scrimba.com/certificate-cert2JbLs3qgAvfnFeT4StqV8rDV6jXPqFaRNX3fhk',
+      certificateImage: {
+         src: '/certificates/scrimba-the-ai-engineer-path.webp',
+         width: 1002,
+         height: 1326,
+      },
    },
 ];
 
@@ -157,3 +186,13 @@ export const getTrainings = () => published(trainings);
 /** Whether the homepage section, its explorer file and its nav item show */
 export const hasEducationContent = () =>
    getEducation().length > 0 || getTrainings().length > 0;
+
+/**
+ * Where "education" leads: the education page while it has entries, the
+ * training page when only training is published, null when neither is
+ */
+export const getLearningHref = () => {
+   if (getEducation().length > 0) return '/educations';
+   if (getTrainings().length > 0) return '/trainings';
+   return null;
+};

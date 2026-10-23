@@ -12,11 +12,11 @@ import { currentOf, useMenu } from '@/hooks/use-menu';
 import { RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
-const Navbar = ({ showEducation }: { showEducation: boolean }) => {
+const Navbar = ({ educationHref }: { educationHref: string | null }) => {
    const [isScrolled, setIsScrolled] = useState(false);
    const [isMenuOpen, setIsMenuOpen] = useState(false);
    const toggleRef = useRef<HTMLButtonElement>(null);
-   const { items, isHomePage } = useMenu(showEducation);
+   const { items, isHomePage } = useMenu(educationHref);
    // The hero is observed too, so no nav item is active at the top of the page
    const activeId = useActiveSection(
       [

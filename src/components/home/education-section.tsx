@@ -2,9 +2,20 @@ import Link from 'next/link';
 import { LuArrowRight, LuArrowUpRight } from 'react-icons/lu';
 
 import { DemoMark } from '@/components/education/demo-mark';
+import { InlineList } from '@/components/education/learning-log';
 import { SectionHeading } from '@/components/home/section-heading';
-import { getEducation, getTrainings } from '@/lib/data/education';
-import { completedOf, qualificationOf, yearsOf } from '@/lib/education-view';
+import {
+   getEducation,
+   getLearningHref,
+   getTrainings,
+} from '@/lib/data/education';
+import {
+   byOf,
+   completedOf,
+   qualificationOf,
+   yearsOf,
+} from '@/lib/education-view';
+import { cn } from '@/lib/utils';
 
 // The homepage shows the latest few; /trainings lists them all
 const TRAINING_LIMIT = 4;
@@ -20,7 +31,17 @@ const EducationSection = () => {
    const education = getEducation();
    const trainings = getTrainings();
    // Hidden until there is something real to show
-   if (education.length === 0 && trainings.length === 0) return null;
+   const href = getLearningHref();
+   if (!href) return null;
+   // The title names only what is published
+   const title =
+      education.length > 0 && trainings.length > 0
+         ? 'Education & training'
+         : education.length > 0
+           ? 'Education'
+           : 'Training';
+   // One list alone spans the section and needs no key under the title
+   const alone = education.length === 0 || trainings.length === 0;
 
    return (
       <section
@@ -31,17 +52,27 @@ const EducationSection = () => {
          <SectionHeading
             id="education-title"
             file="education.md"
-            title="Education & training"
-            link={{ href: '/educations', label: 'Full details' }}
+            title={title}
+            link={{ href, label: 'Full details' }}
          />
 
          <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
             {education.length > 0 && (
-               <div>
-                  <h3 className="font-mono text-sm text-primary-soft">
+               <div className={cn(alone && 'lg:col-span-2')}>
+                  <h3
+                     className={cn(
+                        'font-mono text-sm text-primary-soft',
+                        alone && 'sr-only',
+                     )}
+                  >
                      education
                   </h3>
-                  <ol className="mt-3 border-t border-line">
+                  <ol
+                     className={cn(
+                        'border-t border-line',
+                        alone ? 'lg:grid lg:grid-cols-2 lg:gap-x-16' : 'mt-3',
+                     )}
+                  >
                      {education.map((entry) => (
                         <li
                            key={`${entry.degree}-${entry.start}`}
@@ -75,11 +106,21 @@ const EducationSection = () => {
             )}
 
             {trainings.length > 0 && (
-               <div>
-                  <h3 className="font-mono text-sm text-primary-soft">
+               <div className={cn(alone && 'lg:col-span-2')}>
+                  <h3
+                     className={cn(
+                        'font-mono text-sm text-primary-soft',
+                        alone && 'sr-only',
+                     )}
+                  >
                      training
                   </h3>
-                  <ol className="mt-3 border-t border-line">
+                  <ol
+                     className={cn(
+                        'border-t border-line',
+                        alone ? 'lg:grid lg:grid-cols-2 lg:gap-x-16' : 'mt-3',
+                     )}
+                  >
                      {trainings.slice(0, TRAINING_LIMIT).map((training) => {
                         const completed = completedOf(training);
                         return (
@@ -104,12 +145,14 @@ const EducationSection = () => {
                                  {training.title}
                               </h4>
                               <p className="mt-1 text-control">
-                                 {training.provider} · {training.platform}
+                                 {byOf(training)}
                               </p>
-                              <p className="mt-2 font-mono text-ui text-muted">
-                                 <span className="sr-only">Skills: </span>
-                                 {training.skills.join(' · ')}
-                              </p>
+                              {training.skills?.length ? (
+                                 <div className="mt-2 font-mono text-ui text-muted">
+                                    <span className="sr-only">Skills: </span>
+                                    <InlineList items={training.skills} />
+                                 </div>
+                              ) : null}
                               {/* A demo link would verify nothing */}
                               {training.certificateUrl && !training.demo && (
                                  <a
@@ -132,18 +175,21 @@ const EducationSection = () => {
                         );
                      })}
                   </ol>
-                  <Link
-                     href="/trainings"
-                     className="group mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-text transition-colors duration-200 hover:text-strong"
-                  >
-                     {trainings.length > TRAINING_LIMIT
-                        ? `All ${trainings.length} trainings`
-                        : 'All trainings'}
-                     <LuArrowRight
-                        aria-hidden
-                        className="size-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5"
-                     />
-                  </Link>
+                  {/* With training alone, the heading's link already leads there */}
+                  {href !== '/trainings' && (
+                     <Link
+                        href="/trainings"
+                        className="group mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-text transition-colors duration-200 hover:text-strong"
+                     >
+                        {trainings.length > TRAINING_LIMIT
+                           ? `All ${trainings.length} trainings`
+                           : 'All trainings'}
+                        <LuArrowRight
+                           aria-hidden
+                           className="size-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5"
+                        />
+                     </Link>
+                  )}
                </div>
             )}
          </div>

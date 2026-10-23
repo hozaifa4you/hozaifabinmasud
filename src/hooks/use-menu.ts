@@ -49,8 +49,11 @@ const SECTIONS = [
    },
 ];
 
-/** `showEducation`: there are education entries to show (server-decided) */
-const useMenu = (showEducation: boolean) => {
+/**
+ * `educationHref`: where the education item leads off the homepage, or null
+ * when nothing is published (decided on the server)
+ */
+const useMenu = (educationHref: string | null) => {
    const pathname = usePathname();
    const isHomePage = pathname === '/';
    // The route segment, not the pathname: the one prerendered 404 serves every
@@ -58,7 +61,7 @@ const useMenu = (showEducation: boolean) => {
    const segment = useSelectedLayoutSegment();
 
    const items: MenuItem[] = SECTIONS.filter(
-      (section) => showEducation || section.sectionId !== 'education',
+      (section) => educationHref || section.sectionId !== 'education',
    ).map((section) =>
       isHomePage
          ? {
@@ -68,7 +71,11 @@ const useMenu = (showEducation: boolean) => {
            }
          : {
               name: section.name,
-              href: section.page,
+              // Education leads to training while only training is published
+              href:
+                 section.sectionId === 'education' && educationHref
+                    ? educationHref
+                    : section.page,
               isCurrentPage:
                  segment !== null && section.segments.includes(segment),
            },

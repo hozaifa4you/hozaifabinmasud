@@ -6,7 +6,7 @@ import { Fira_Code, Fira_Sans } from 'next/font/google';
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar/navbar';
 import { appConfig } from '@/config/app.config';
-import { hasEducationContent } from '@/lib/data/education';
+import { getLearningHref } from '@/lib/data/education';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export default function RootLayout({
             >
                Skip to content
             </a>
-            <Navbar showEducation={hasEducationContent()} />
+            <Navbar educationHref={getLearningHref()} />
             <main id="main">{children}</main>
             <Footer />
             <Analytics />

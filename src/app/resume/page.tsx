@@ -18,6 +18,7 @@ import { languages } from '@/lib/data/languages';
 import { projects } from '@/lib/data/projects';
 import { skillGroups } from '@/lib/data/skills';
 import {
+   byOf,
    completedOf,
    qualificationOf,
    startedOf,
@@ -183,7 +184,7 @@ const ResumePage = () => {
          const started = startedOf(training);
          return {
             title: training.title,
-            by: `${training.provider} · ${training.platform}`,
+            by: byOf(training),
             date:
                completedOf(training) ??
                (started ? `In progress since ${started}` : 'In progress'),
@@ -442,7 +443,7 @@ const ResumePage = () => {
                                        {training.title}
                                     </h3>
                                     <p className="mt-1 text-control text-muted">
-                                       {training.provider} · {training.platform}
+                                       {byOf(training)}
                                     </p>
                                     {/* The status pill leads, as in Experience and Education */}
                                     <p className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-ui">

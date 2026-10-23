@@ -1,6 +1,6 @@
 import type { Education, Training } from '@/lib/data/education';
 
-const monthFormat = new Intl.DateTimeFormat('en-GB', {
+const monthFormat = new Intl.DateTimeFormat('en-US', {
    month: 'short',
    year: 'numeric',
    timeZone: 'UTC',
@@ -21,6 +21,12 @@ export const yearsOf = (entry: Education) =>
 /** 'May 2024' for a finished course, null while it is in progress */
 export const completedOf = (training: Training) =>
    training.completed ? monthOf(training.completed) : null;
+
+/** 'Meta · Coursera', or the one name when the provider is the platform */
+export const byOf = (training: Training) =>
+   training.provider === training.platform
+      ? training.provider
+      : `${training.provider} · ${training.platform}`;
 
 /** 'Aug 2025' for a course in progress with a start month, otherwise null */
 export const startedOf = (training: Training) =>

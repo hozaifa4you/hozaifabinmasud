@@ -44,7 +44,7 @@ Three claims, all confirmed by the owner, that future work should lead with:
 - Only one project has a case study so far (`aionlinecourse`); the others link to their live sites or have no link.
 - The contact form validates input, keeps it on errors, and has a honeypot spam filter with length limits.
 - Current availability (confirmed 2026-10-21): open to full-time roles only, not taking freelance projects. Any availability line on the site must say this; re-confirm before changing it.
-- Open decisions: which further projects get case studies; real education and training details (the owner is filling them in); real fun-fact content; real stats.
+- Open decisions: which further projects get case studies; real education details (the owner is filling them in); real fun-fact content; real stats.
 
 ## Brand Commitments
 
@@ -60,12 +60,13 @@ Present in the repo (not yet individually verified by the owner):
 - One case study with nine screenshots: `public/assets/project-details/aionline/`.
 - Work history entries for AI Power IT and Namespace IT in `src/lib/data/works.ts`.
 - Portrait photos in `public/alternate/` and resume PDFs in `public/`.
-- Education (owner, 2026-10-23): a BSc at ISTT (Institute of Science, Trade & Technology), in progress. The subject, years and awarding university are still to be confirmed. He also has online trainings (Coursera and others) to list.
+- Education (owner, 2026-10-23): a BSc at ISTT (Institute of Science, Trade & Technology), in progress. The subject, years and awarding university are still to be confirmed.
+- Training (real, from the owner's certificates in `public/certificates/`, added 2026-10-23): Packt's Master Svelte Framework (Coursera, Sep 2025), UC Irvine's Programming with Google Go specialization (Coursera, Aug 2025), Google Cloud's Cloud Developer professional certificate (Coursera, Jul 2025) and Scrimba's The AI Engineer Path (Jul 2025). Each has its verify link and a WebP of the certificate's first page beside the PDF.
 
 Placeholders, confirmed as not real; never use them as proof or build new work around them:
 
 - Fun facts in `src/lib/data.ts`.
-- Demo education and training entries in `src/lib/data/education.ts`, each marked `demo: true`. They exist to build the design with: they show locally and on Vercel previews, never on the production site, and the owner replaces them with real details (certificate images go under `public/`).
+- Demo education entries in `src/lib/data/education.ts`, each marked `demo: true`. They exist to build the design with: they show locally and on Vercel previews, never on the production site, and the owner replaces them with real details. The training entries are real (see Evidence on Hand).
 
 The owner says much other content is also not final. There are no testimonials, client logos, verified metrics or press. Do not invent any of them; ask before presenting any number or claim as fact.
 

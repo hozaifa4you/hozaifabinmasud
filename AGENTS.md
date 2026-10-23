@@ -2,7 +2,7 @@
 
 Personal portfolio site (Next.js 16 App Router, React 19, Tailwind v4) deployed on Vercel. Day-to-day work happens on `develop`; production deploys from `main`.
 
-`PRODUCT.md` records the audiences, positioning and which content is placeholder (fun facts, education, trainings and their stats are not real). Never present placeholder content as fact.
+`PRODUCT.md` records the audiences, positioning and which content is placeholder (fun facts, stats and the demo education entries are not real; the trainings are real, from the owner's certificates). Never present placeholder content as fact.
 
 ## Commands
 

@@ -16,7 +16,8 @@ import {
 } from '@/components/education/learning-log';
 import { Screen, ScreenViewer } from '@/components/projects/screen-viewer';
 import type { Training } from '@/lib/data/education';
-import { completedOf, startedOf } from '@/lib/education-view';
+import { byOf, completedOf, startedOf } from '@/lib/education-view';
+import { cn } from '@/lib/utils';
 
 /** The trainings as a learning log; certificate images open full size */
 const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
@@ -29,9 +30,9 @@ const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
       if (!training.certificateImage) return;
       screenIndex.set(position, screens.length);
       screens.push({
-         path: training.certificateImage,
+         path: training.certificateImage.src,
          alt: `${training.title} certificate`,
-         caption: `${training.title} · ${training.provider}`,
+         caption: `${training.title} · ${byOf(training)}`,
       });
    });
 
@@ -72,15 +73,15 @@ const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
                      </CommitDate>
                      <CommitTitle>{training.title}</CommitTitle>
                      <CommitRows>
-                        <CommitRow term="by">
-                           {training.provider} · {training.platform}
-                        </CommitRow>
-                        <CommitRow term="skills">
-                           <InlineList
-                              items={training.skills}
-                              className="font-mono text-sm text-text"
-                           />
-                        </CommitRow>
+                        <CommitRow term="by">{byOf(training)}</CommitRow>
+                        {training.skills?.length ? (
+                           <CommitRow term="skills">
+                              <InlineList
+                                 items={training.skills}
+                                 className="font-mono text-sm text-text"
+                              />
+                           </CommitRow>
+                        ) : null}
                         {(verifyUrl || shot !== undefined) && (
                            <CommitRow term="certificate">
                               {verifyUrl && (
@@ -100,32 +101,44 @@ const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
                                     </span>
                                  </a>
                               )}
-                              {shot !== undefined && (
-                                 <button
-                                    type="button"
-                                    onClick={() => setViewerIndex(shot)}
-                                    className="group/shot relative mt-4 block w-full max-w-sm cursor-zoom-in border border-line bg-bg-sunken transition-colors duration-200 ease-out-expo first:mt-0 hover:border-line-strong"
-                                 >
-                                    <span className="relative block aspect-99/70">
-                                       <Image
-                                          src={screens[shot].path}
-                                          alt={screens[shot].alt}
-                                          fill
-                                          sizes="384px"
-                                          className="object-contain"
-                                       />
-                                    </span>
-                                    <span
-                                       aria-hidden
-                                       className="absolute top-3 right-3 grid size-9 place-items-center border border-line-strong bg-bg-sunken text-strong opacity-0 transition-opacity duration-200 ease-out-expo group-hover/shot:opacity-100 group-focus-visible/shot:opacity-100"
+                              {shot !== undefined &&
+                                 training.certificateImage && (
+                                    <button
+                                       type="button"
+                                       onClick={() => setViewerIndex(shot)}
+                                       className={cn(
+                                          'group/shot relative mt-4 block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo first:mt-0 hover:border-line-strong',
+                                          // The frame takes the certificate's own shape;
+                                          // a portrait one is held narrower
+                                          training.certificateImage.height >
+                                             training.certificateImage.width
+                                             ? 'max-w-60'
+                                             : 'max-w-sm',
+                                       )}
                                     >
-                                       <LuMaximize2 className="size-4" />
-                                    </span>
-                                    <span className="sr-only">
-                                       View the certificate full size
-                                    </span>
-                                 </button>
-                              )}
+                                       <Image
+                                          src={training.certificateImage.src}
+                                          alt={screens[shot].alt}
+                                          width={
+                                             training.certificateImage.width
+                                          }
+                                          height={
+                                             training.certificateImage.height
+                                          }
+                                          sizes="384px"
+                                          className="block h-auto w-full"
+                                       />
+                                       <span
+                                          aria-hidden
+                                          className="absolute top-3 right-3 grid size-9 place-items-center border border-line-strong bg-bg-sunken text-strong opacity-0 transition-opacity duration-200 ease-out-expo group-hover/shot:opacity-100 group-focus-visible/shot:opacity-100"
+                                       >
+                                          <LuMaximize2 className="size-4" />
+                                       </span>
+                                       <span className="sr-only">
+                                          View the certificate full size
+                                       </span>
+                                    </button>
+                                 )}
                            </CommitRow>
                         )}
                      </CommitRows>
