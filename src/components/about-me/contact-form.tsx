@@ -1,5 +1,4 @@
 'use client';
-
 import { useActionState, useId, useState } from 'react';
 import {
    LuCircleAlert,
@@ -18,7 +17,6 @@ type Sent = NonNullable<
    NonNullable<Awaited<ReturnType<typeof contactAction>>>['sent']
 >;
 
-// Stable, so the heading takes focus once when the receipt appears
 const focusOnMount = (node: HTMLElement | null) => node?.focus();
 
 const sentFormat = new Intl.DateTimeFormat(undefined, {
@@ -26,7 +24,6 @@ const sentFormat = new Intl.DateTimeFormat(undefined, {
    timeStyle: 'short',
 });
 
-/** What went out, held in place of the form until the visitor writes again */
 const SentReceipt = ({
    sent,
    recipient,
@@ -57,10 +54,11 @@ const SentReceipt = ({
             { key: 'to', value: recipient },
             { key: 'from', value: sent.name },
             { key: 'subject', value: sent.subject },
-         ].map((row) => (
+         ].map((row, index) => (
             <div
                key={row.key}
-               className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-baseline gap-x-4 border-b border-line py-3"
+               className="grid animate-rise grid-cols-[5.5rem_minmax(0,1fr)] items-baseline gap-x-4 border-b border-line py-3"
+               style={{ animationDelay: `${160 + index * 60}ms` }}
             >
                <dt className="font-mono text-xs text-primary-soft">
                   {row.key}
@@ -70,10 +68,12 @@ const SentReceipt = ({
                </dd>
             </div>
          ))}
-         <div className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-baseline gap-x-4 border-b border-line py-3">
+         <div
+            className="grid animate-rise grid-cols-[5.5rem_minmax(0,1fr)] items-baseline gap-x-4 border-b border-line py-3"
+            style={{ animationDelay: '340ms' }}
+         >
             <dt className="font-mono text-xs text-primary-soft">sent</dt>
             <dd className="font-mono text-ui text-strong">
-               {/* Formatted in the reader's own time zone */}
                <time dateTime={sent.at} suppressHydrationWarning>
                   {sentFormat.format(new Date(sent.at))}
                </time>
@@ -93,17 +93,13 @@ const SentReceipt = ({
    </div>
 );
 
-const ContactForm = ({
-   recipient,
-}: {
-   /** Who the receipt names; with it, a sent message shows a receipt in place of the form */
-   recipient?: string;
-}) => {
+const ContactForm = ({ recipient }: { recipient?: string }) => {
    const [state, action, pending] = useActionState(contactAction, null);
-   // The result the visitor closed with "Write another"
    const [dismissed, setDismissed] = useState<typeof state>(null);
    const nameId = useId();
    const result = state === dismissed ? null : state;
+   const shownErrors = pending ? undefined : state?.errors;
+   const shownResult = pending ? null : result;
 
    if (recipient && result?.sent) {
       return (
@@ -121,14 +117,11 @@ const ContactForm = ({
    }
 
    return (
-      // Server-side validation drives the messages, so skip the browser bubbles
       <form
          action={action}
          noValidate
-         // Back from a receipt, the form wipes in the way the receipt did
          className={cn('relative grid gap-5', dismissed && 'animate-wipe')}
       >
-         {/* Honeypot: off-screen for people, but bots tend to fill every field */}
          <div aria-hidden="true" className="absolute left-[-10000px]">
             <label>
                Leave this field empty
@@ -141,7 +134,6 @@ const ContactForm = ({
             </label>
          </div>
 
-         {/* In a wide container the message sits beside the other fields */}
          <div className="grid gap-5 @3xl:grid-cols-2">
             <div className="grid content-start gap-5">
                <div className="grid gap-5 sm:grid-cols-2 @3xl:grid-cols-1">
@@ -153,8 +145,9 @@ const ContactForm = ({
                      required
                      maxLength={100}
                      defaultValue={state?.fields?.name}
-                     error={state?.errors?.name?.[0]}
+                     error={shownErrors?.name?.[0]}
                   />
+
                   <Input
                      label="Email"
                      type="email"
@@ -163,7 +156,7 @@ const ContactForm = ({
                      required
                      maxLength={254}
                      defaultValue={state?.fields?.email}
-                     error={state?.errors?.email?.[0]}
+                     error={shownErrors?.email?.[0]}
                   />
                </div>
 
@@ -173,7 +166,7 @@ const ContactForm = ({
                   required
                   maxLength={200}
                   defaultValue={state?.fields?.subject}
-                  error={state?.errors?.subject?.[0]}
+                  error={shownErrors?.subject?.[0]}
                />
             </div>
 
@@ -185,7 +178,7 @@ const ContactForm = ({
                containerClassName="@3xl:flex @3xl:flex-col"
                className="min-h-36 resize-y @3xl:flex-1"
                defaultValue={state?.fields?.message}
-               error={state?.errors?.message?.[0]}
+               error={shownErrors?.message?.[0]}
             />
          </div>
 
@@ -195,9 +188,18 @@ const ContactForm = ({
                variant="primary"
                size="lg"
                disabled={pending}
+               className="relative overflow-hidden"
             >
                <LuSend aria-hidden />
                {pending ? 'Sending…' : 'Send message'}
+               {pending && (
+                  <span
+                     aria-hidden
+                     className="absolute inset-x-0 bottom-0 h-0.5 motion-reduce:hidden"
+                  >
+                     <span className="block h-full w-2/5 animate-sending bg-strong/70" />
+                  </span>
+               )}
             </Button>
             <p className="text-sm text-muted">
                All fields are required. Replies come by email.
@@ -208,18 +210,21 @@ const ContactForm = ({
             role="status"
             className={cn(
                'flex items-center gap-2 text-sm empty:hidden',
-               result?.success ? 'text-success' : 'text-danger',
+               shownResult?.success ? 'text-success' : 'text-danger',
             )}
          >
-            {result?.message && (
-               <>
-                  {result.success ? (
+            {shownResult?.message && (
+               <span
+                  key={`${shownResult.success}-${shownResult.message}`}
+                  className="inline-flex animate-rise items-center gap-2"
+               >
+                  {shownResult.success ? (
                      <LuCircleCheck aria-hidden className="size-4 shrink-0" />
                   ) : (
                      <LuCircleAlert aria-hidden className="size-4 shrink-0" />
                   )}
-                  {result.message}
-               </>
+                  {shownResult.message}
+               </span>
             )}
          </p>
       </form>

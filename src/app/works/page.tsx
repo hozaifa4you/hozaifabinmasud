@@ -125,6 +125,7 @@ const WorksPage = () => {
                      key={work.id}
                      aria-labelledby={titleId}
                      className={cn(
+                        'depth-in',
                         index === 0 ? 'mt-12 lg:mt-14' : 'mt-14 lg:mt-20',
                      )}
                   >

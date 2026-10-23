@@ -1,7 +1,11 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 
-/* Fonts come from next/font variables set on <html> in the root layout */
+@source not '../../.claude';
+@source not '../../.cursor';
+@source not '../../.agents';
+@source not '../../.impeccable';
+
 @theme inline {
    --font-sans:
       var(--font-fira-sans), ui-sans-serif, system-ui, -apple-system,
@@ -12,19 +16,16 @@
 }
 
 @theme {
-   /* Surfaces, darkest to lightest: sidebar, editor, line highlight */
    --color-bg-sunken: #21252b;
    --color-bg-main: #282c33;
    --color-bg-raised: #2c313a;
    --color-line: #3e4451;
    --color-line-strong: #747c8a;
 
-   /* Text */
    --color-text: #abb2bf;
    --color-strong: #e8eaee;
    --color-muted: #9298a5;
 
-   /* Syntax colours as roles */
    --color-primary: #c778dd;
    --color-primary-soft: #d49be6;
    --color-primary-ink: #1e2127;
@@ -33,12 +34,11 @@
    --color-info: #61afef;
    --color-warning: #e5c07b;
 
-   /* Type scale beyond Tailwind's defaults (xs 12, sm 14, base 16, 2xl 24) */
-   --text-ui: 0.8125rem; /* 13px: file names, tabs */
+   --text-ui: 0.8125rem;
    --text-ui--line-height: 1.5;
-   --text-control: 0.9375rem; /* 15px: buttons, inputs, lists */
+   --text-control: 0.9375rem;
    --text-control--line-height: 1.45;
-   --text-body: 1.0625rem; /* 17px: reading paragraphs */
+   --text-body: 1.0625rem;
    --text-body--line-height: 1.65;
    --text-lead: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem);
    --text-lead--line-height: 1.35;
@@ -53,6 +53,80 @@
 
    --animate-rise: rise 520ms var(--ease-out-expo) both;
    --animate-wipe: wipe 420ms var(--ease-out-expo) both;
+   --animate-assemble: assemble 1000ms cubic-bezier(0.25, 1, 0.5, 1) both;
+   --animate-screen-next: screen-next 420ms var(--ease-out-expo) both;
+   --animate-screen-prev: screen-prev 420ms var(--ease-out-expo) both;
+   --animate-acknowledge: acknowledge 200ms var(--ease-out-expo) both;
+   --animate-sending: sending 1100ms cubic-bezier(0.65, 0, 0.35, 1) infinite;
+
+   @keyframes screen-next {
+      from {
+         opacity: 0;
+         transform: translateX(48px);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes screen-prev {
+      from {
+         opacity: 0;
+         transform: translateX(-48px);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes acknowledge {
+      from {
+         opacity: 0;
+         transform: scale(0.6);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes sending {
+      from {
+         transform: translateX(-100%);
+      }
+      to {
+         transform: translateX(250%);
+      }
+   }
+
+   --animate-turn: turn 640ms var(--ease-out-expo) both;
+
+   @keyframes assemble {
+      from {
+         opacity: 0;
+         transform: perspective(1600px) rotateX(16deg) translateY(28px);
+      }
+      25% {
+         opacity: 1;
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes turn {
+      from {
+         opacity: 0.35;
+         transform: perspective(1000px) rotateY(-18deg) translateX(-16px);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
 
    @keyframes rise {
       from {
@@ -70,6 +144,7 @@
          opacity: 0.4;
          clip-path: inset(0 100% 0 0);
       }
+
       to {
          opacity: 1;
          clip-path: inset(0);
@@ -118,7 +193,6 @@
       outline-offset: 2px;
    }
 
-   /* Land anchored sections below the sticky header */
    [id] {
       scroll-margin-top: 5rem;
    }
@@ -140,10 +214,6 @@
    }
 }
 
-/*
- * View transitions (React <ViewTransition>, triggered by route navigations).
- * Only named participants animate: the page root swaps instantly.
- */
 ::view-transition {
    pointer-events: none;
 }
@@ -153,7 +223,6 @@
    animation: none;
 }
 
-/* Shared element: a project screenshot morphs into its case study hero */
 ::view-transition-group(.morph) {
    animation-duration: 520ms;
    animation-timing-function: var(--ease-out-expo);
@@ -169,33 +238,40 @@
    }
 }
 
-/* Direction: forward slides content left, back slides it right */
 ::view-transition-old(.nav-forward) {
    --slide-offset: -48px;
+   --swing: 7deg;
+   transform-origin: 0% 50%;
    animation:
-      140ms ease-in both vt-fade reverse,
-      420ms var(--ease-out-expo) both vt-slide reverse;
+      160ms ease-in both vt-fade reverse,
+      460ms var(--ease-out-expo) both vt-slide reverse;
 }
 
 ::view-transition-new(.nav-forward) {
    --slide-offset: 48px;
+   --swing: -7deg;
+   transform-origin: 100% 50%;
    animation:
-      220ms ease-out 140ms both vt-fade,
-      420ms var(--ease-out-expo) both vt-slide;
+      240ms ease-out 140ms both vt-fade,
+      520ms var(--ease-out-expo) both vt-slide;
 }
 
 ::view-transition-old(.nav-back) {
    --slide-offset: 48px;
+   --swing: -7deg;
+   transform-origin: 100% 50%;
    animation:
-      140ms ease-in both vt-fade reverse,
-      420ms var(--ease-out-expo) both vt-slide reverse;
+      160ms ease-in both vt-fade reverse,
+      460ms var(--ease-out-expo) both vt-slide reverse;
 }
 
 ::view-transition-new(.nav-back) {
    --slide-offset: -48px;
+   --swing: 7deg;
+   transform-origin: 0% 50%;
    animation:
-      220ms ease-out 140ms both vt-fade,
-      420ms var(--ease-out-expo) both vt-slide;
+      240ms ease-out 140ms both vt-fade,
+      520ms var(--ease-out-expo) both vt-slide;
 }
 
 @keyframes vt-fade {
@@ -209,14 +285,58 @@
 
 @keyframes vt-slide {
    from {
-      translate: var(--slide-offset);
+      transform: perspective(2600px) translateX(var(--slide-offset))
+         rotateY(var(--swing));
    }
    to {
-      translate: 0;
+      transform: none;
    }
 }
 
-/* The header is the fixed reference while content moves */
+::view-transition-group(.dir-row-move) {
+   animation-duration: 300ms;
+   animation-delay: 80ms;
+   animation-timing-function: var(--ease-out-expo);
+}
+
+::view-transition-old(.dir-row-move),
+::view-transition-new(.dir-row-move) {
+   animation-duration: 100ms;
+   animation-delay: 80ms;
+}
+
+::view-transition-old(.dir-row-out) {
+   animation: 120ms linear both dir-row-out;
+}
+
+::view-transition-new(.dir-row-in) {
+   animation: 280ms var(--ease-out-expo) 200ms both dir-row-in;
+}
+
+@keyframes dir-row-out {
+   to {
+      opacity: 0;
+      transform: translateX(-8px);
+   }
+}
+
+@keyframes dir-row-in {
+   from {
+      opacity: 0;
+      transform: translateY(10px);
+   }
+}
+
+::view-transition-group(.tech-morph) {
+   animation-duration: 520ms;
+   animation-timing-function: var(--ease-out-expo);
+}
+
+::view-transition-group(.tab-edge) {
+   animation-duration: 300ms;
+   animation-timing-function: var(--ease-out-expo);
+}
+
 ::view-transition-group(site-header) {
    animation: none;
    z-index: 100;
@@ -239,7 +359,6 @@
    }
 }
 
-/* Reading progress for the docked status bar, driven by the page scroll */
 @keyframes read-progress {
    from {
       transform: scaleX(0);
@@ -269,7 +388,6 @@
    }
 }
 
-/* Scrollbar (WebKit); Firefox uses scrollbar-color on html */
 ::-webkit-scrollbar {
    width: 10px;
    height: 10px;
@@ -288,12 +406,28 @@
    background: var(--color-line-strong);
 }
 
-/* Clip decorative overflow sideways without creating a scroll container */
 section {
    overflow-x: clip;
 }
 
-/* Case study screens wipe in from the left as they scroll into view */
+@keyframes depth-settle {
+   from {
+      transform: perspective(1400px) rotateX(-7deg) translateY(36px);
+   }
+   to {
+      transform: none;
+   }
+}
+
+@keyframes stand-up {
+   from {
+      transform: perspective(1400px) rotateX(-16deg) scale(0.97);
+   }
+   to {
+      transform: none;
+   }
+}
+
 @supports (animation-timeline: view()) {
    @media (prefers-reduced-motion: no-preference) {
       .scroll-wipe {
@@ -301,10 +435,73 @@ section {
          animation-timeline: view();
          animation-range: entry 5% entry 95%;
       }
+
+      .scroll-stand {
+         transform-origin: 50% 0%;
+         animation: stand-up linear both;
+         animation-timeline: view();
+         animation-range: entry 0px entry 360px;
+      }
+
+      .depth-in {
+         transform-origin: 50% 0%;
+         animation: depth-settle linear both;
+         animation-timeline: view();
+         animation-range: entry 0px entry 280px;
+      }
    }
 }
 
-/* Print: black on white A4; pages hide their screen chrome with print:hidden */
+@keyframes rail-fill {
+   from {
+      transform: scaleY(0);
+   }
+   to {
+      transform: scaleY(1);
+   }
+}
+
+@keyframes node-lit {
+   from,
+   to {
+      box-shadow: 0 0 0 1px var(--color-line);
+   }
+   30%,
+   70% {
+      box-shadow: 0 0 0 1px var(--color-primary);
+   }
+}
+
+@supports (animation-timeline: view()) {
+   .rail-fill {
+      view-timeline: --rail block;
+   }
+
+   .rail-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: var(--color-line-strong);
+      transform-origin: top;
+      animation: rail-fill linear both;
+      animation-timeline: --rail;
+      animation-range: cover 50vh cover calc(100% - 50vh);
+   }
+
+   .node-lit {
+      animation: node-lit linear both;
+      animation-timeline: view();
+      animation-range: cover calc(50vh - 50px) cover calc(50vh + 70px);
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .rail-fill::after,
+      .node-lit {
+         animation-duration: auto !important;
+      }
+   }
+}
+
 @media print {
    @page {
       size: A4;
@@ -322,7 +519,51 @@ section {
    }
 }
 
-/* The page behind an open modal dialog stays put */
+.screen-viewer::backdrop {
+   background-color: var(--color-bg-sunken);
+   opacity: 0;
+   transition:
+      opacity 520ms var(--ease-out-expo),
+      display 520ms allow-discrete,
+      overlay 520ms allow-discrete;
+}
+
+.screen-viewer[open]::backdrop {
+   opacity: 1;
+}
+
+@starting-style {
+   .screen-viewer[open]::backdrop {
+      opacity: 0;
+   }
+}
+
+.screen-viewer[data-closing]::backdrop {
+   opacity: 0;
+   transition-duration: 300ms;
+}
+
+.screen-viewer .viewer-chrome {
+   transition: opacity 200ms var(--ease-out-expo) 240ms;
+}
+
+@starting-style {
+   .screen-viewer[open] .viewer-chrome {
+      opacity: 0;
+   }
+}
+
+.screen-viewer[data-closing] .viewer-chrome {
+   opacity: 0;
+   transition-delay: 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .screen-viewer .viewer-chrome {
+      transition-delay: 0ms;
+   }
+}
+
 html:has(dialog[open]) {
    overflow: hidden;
 }

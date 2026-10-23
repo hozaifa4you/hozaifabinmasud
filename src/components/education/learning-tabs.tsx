@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ViewTransition } from 'react';
 import { LuFileText } from 'react-icons/lu';
 
 import { cn } from '@/lib/utils';
@@ -23,7 +24,7 @@ const LearningTabs = ({ current }: { current: 'education' | 'trainings' }) => (
                aria-current={isCurrent ? 'page' : undefined}
                className={cn(
                   // On phones the two tabs share the strip, so no empty cell trails them
-                  '-mb-px flex flex-1 items-center justify-center gap-2 border-r border-line px-4 font-mono text-xs transition-colors duration-200 ease-out-expo max-sm:last:border-r-0 sm:flex-none sm:justify-start',
+                  'relative -mb-px flex flex-1 items-center justify-center gap-2 border-r border-line px-4 font-mono text-xs transition-colors duration-200 ease-out-expo max-sm:last:border-r-0 sm:flex-none sm:justify-start',
                   isCurrent
                      ? 'bg-bg-main text-strong'
                      : 'text-muted hover:bg-bg-raised hover:text-strong',
@@ -37,6 +38,19 @@ const LearningTabs = ({ current }: { current: 'education' | 'trainings' }) => (
                   )}
                />
                {tab.file}
+               {isCurrent && (
+                  // Slides to the other tab as the page changes
+                  <ViewTransition
+                     name="learning-tab-edge"
+                     share="tab-edge"
+                     default="none"
+                  >
+                     <span
+                        aria-hidden
+                        className="absolute inset-x-0 top-0 h-px bg-primary"
+                     />
+                  </ViewTransition>
+               )}
             </Link>
          );
       })}

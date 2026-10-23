@@ -39,8 +39,13 @@ const Input = ({
             aria-describedby={error ? errorId : rest['aria-describedby']}
             className={cn(fieldClassName, 'h-11', className)}
          />
+         {/* Keyed on the message, so a new one wipes in as the field turns red */}
          {error && (
-            <p id={errorId} className="text-sm text-danger">
+            <p
+               key={error}
+               id={errorId}
+               className="animate-wipe text-sm text-danger"
+            >
                {error}
             </p>
          )}

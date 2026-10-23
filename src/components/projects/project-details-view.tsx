@@ -13,8 +13,13 @@ import {
 
 import { BreadcrumbItem, BreadcrumbNav } from '@/components/breadcrumb';
 import { HiringClose } from '@/components/projects/hiring-close';
-import { Screen, ScreenViewer } from '@/components/projects/screen-viewer';
+import {
+   Screen,
+   screenOrigin,
+   ScreenViewer,
+} from '@/components/projects/screen-viewer';
 import { TechIcon } from '@/components/tech-icon';
+import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { ProjectDetailsType } from '@/lib/data/project-details';
@@ -46,6 +51,9 @@ const STACK_ORDER = [
 // Capture sizes of the screenshots; they reserve each box before it loads
 const MAIN_SHOT = { width: 2864, height: 1324 };
 const SCREEN_SHOT = { width: 2864, height: 1398 };
+// Shared by the page's screenshots and the viewer, which shows the same file
+// while its full-size one loads
+const SHOT_SIZES = '(min-width: 1120px) 1072px, 100vw';
 
 const hostOf = (url: string) => new URL(url).host.replace(/^www\./, '');
 const plural = (count: number, word: string) =>
@@ -87,7 +95,7 @@ const Commit = ({
    >
       <span
          aria-hidden
-         className="absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
+         className="rail-fill absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
       />
       {/* HEAD stays green; the commit being read lights orchid */}
       <span
@@ -149,6 +157,7 @@ const ProjectDetailsView = ({
       path,
       caption,
       alt: caption ?? `${project.name}, screen ${index + 1} of ${screenCount}`,
+      thumbSizes: SHOT_SIZES,
    }));
 
    const stack = STACK_ORDER.map((category) => ({
@@ -284,39 +293,43 @@ const ProjectDetailsView = ({
                isActive={activeId === 'commit-head'}
             >
                <figure>
-                  <div className="border border-line bg-bg-sunken">
-                     <div className="flex h-9 items-center gap-2 border-b border-line px-3 font-mono text-xs text-muted">
-                        <span
-                           aria-hidden
-                           className="size-1.5 rounded-full bg-success"
-                        />
-                        {host ?? project.slug}
-                     </div>
-                     {/* Shared element: the homepage explorer's screenshot morphs into this */}
-                     <ViewTransition
-                        name={`project-shot-${project.slug}`}
-                        share="morph"
-                        default="none"
-                     >
-                        <button
-                           type="button"
-                           onClick={() => setViewerIndex(0)}
-                           className="group/shot relative block w-full cursor-zoom-in"
-                        >
-                           <Image
-                              src={screens[0].path}
-                              alt={screens[0].alt}
-                              width={MAIN_SHOT.width}
-                              height={MAIN_SHOT.height}
-                              sizes="(min-width: 1120px) 1072px, 100vw"
-                              preload
-                              className="h-auto w-full"
+                  {/* The live product's frame leans toward the pointer */}
+                  <TiltSurface max={2.5} depth={2400}>
+                     <div className="border border-line bg-bg-sunken">
+                        <div className="flex h-9 items-center gap-2 border-b border-line px-3 font-mono text-xs text-muted">
+                           <span
+                              aria-hidden
+                              className="size-1.5 rounded-full bg-success"
                            />
-                           <ZoomHint />
-                           <span className="sr-only">Open full size</span>
-                        </button>
-                     </ViewTransition>
-                  </div>
+                           {host ?? project.slug}
+                        </div>
+                        {/* Shared element: the homepage explorer's screenshot morphs into this */}
+                        <ViewTransition
+                           name={`project-shot-${project.slug}`}
+                           share="morph"
+                           default="none"
+                        >
+                           <button
+                              type="button"
+                              onClick={() => setViewerIndex(0)}
+                              data-screen-index={0}
+                              className="group/shot relative block w-full cursor-zoom-in"
+                           >
+                              <Image
+                                 src={screens[0].path}
+                                 alt={screens[0].alt}
+                                 width={MAIN_SHOT.width}
+                                 height={MAIN_SHOT.height}
+                                 sizes={SHOT_SIZES}
+                                 preload
+                                 className="h-auto w-full"
+                              />
+                              <ZoomHint />
+                              <span className="sr-only">Open full size</span>
+                           </button>
+                        </ViewTransition>
+                     </div>
+                  </TiltSurface>
                   <figcaption className="mt-6 max-w-[65ch] text-body text-pretty">
                      {project.description}
                   </figcaption>
@@ -338,14 +351,15 @@ const ProjectDetailsView = ({
                               <button
                                  type="button"
                                  onClick={() => setViewerIndex(index + 1)}
-                                 className="group/shot relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
+                                 data-screen-index={index + 1}
+                                 className="group/shot scroll-stand relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
                               >
                                  <Image
                                     src={screen.path}
                                     alt={screen.alt}
                                     width={SCREEN_SHOT.width}
                                     height={SCREEN_SHOT.height}
-                                    sizes="(min-width: 1120px) 1072px, 100vw"
+                                    sizes={SHOT_SIZES}
                                     className="scroll-wipe h-auto w-full"
                                  />
                                  <ZoomHint />
@@ -544,6 +558,7 @@ const ProjectDetailsView = ({
             onIndexChange={setViewerIndex}
             onClose={() => setViewerIndex(null)}
             label={`${project.name} screens`}
+            originOf={screenOrigin}
          />
       </article>
    );

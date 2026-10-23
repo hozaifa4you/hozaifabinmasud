@@ -40,8 +40,13 @@ export const Textarea = ({
             aria-describedby={error ? errorId : rest['aria-describedby']}
             className={cn(fieldClassName, 'py-2.5 leading-relaxed', className)}
          />
+         {/* Keyed on the message, so a new one wipes in as the field turns red */}
          {error && (
-            <p id={errorId} className="text-sm text-danger">
+            <p
+               key={error}
+               id={errorId}
+               className="animate-wipe text-sm text-danger"
+            >
                {error}
             </p>
          )}

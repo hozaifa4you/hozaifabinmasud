@@ -16,7 +16,6 @@ const MONTHS = [
    'dec',
 ];
 
-/** Parses the data's "July 2021" / "Dec 2023" dates to the first of the month */
 const parseMonthYear = (value: string) => {
    const [month, year] = value.trim().split(/\s+/);
    return new Date(
@@ -26,7 +25,6 @@ const parseMonthYear = (value: string) => {
    );
 };
 
-/** Inclusive month count, the way CVs and LinkedIn count a role */
 const monthsBetween = (start: Date, end: Date) =>
    (end.getFullYear() - start.getFullYear()) * 12 +
    (end.getMonth() - start.getMonth()) +
@@ -35,6 +33,7 @@ const monthsBetween = (start: Date, end: Date) =>
 const formatSpan = (months: number) => {
    const years = Math.floor(months / 12);
    const rest = months % 12;
+
    return [
       years > 0 && `${years} yr${years > 1 ? 's' : ''}`,
       rest > 0 && `${rest} mo${rest > 1 ? 's' : ''}`,
@@ -46,12 +45,9 @@ const formatSpan = (months: number) => {
 const formatMonthYear = (date: Date) =>
    date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 
-// "2023-12" from local date parts. The UTC string would shift the first of
-// the month into the previous month in any timezone east of UTC (Dhaka is +6)
 const toIsoMonth = (date: Date) =>
    `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
 
-/** Work history, newest first, with spans computed from the dates */
 export const getWorkHistory = (now = new Date()) =>
    works
       .map((work) => {
@@ -71,7 +67,6 @@ export const getWorkHistory = (now = new Date()) =>
       })
       .sort((a, b) => b.sortKey - a.sortKey);
 
-/** Whole years since the first role started */
 export const getExperienceYears = (now = new Date()) => {
    const first = Math.min(
       ...works.map((work) => parseMonthYear(work.startDate).getTime()),
@@ -89,7 +84,6 @@ export const getCurrentWork = () =>
 
 export const getProjectCount = () => projects.length;
 
-// Display names for the lowercase skill keys used in works.ts
 const SKILL_NAMES: Record<string, string> = {
    nodejs: 'Node.js',
    reactjs: 'React',
@@ -104,7 +98,6 @@ const SKILL_NAMES: Record<string, string> = {
 
 export const getSkillName = (key: string) => SKILL_NAMES[key] ?? key;
 
-// Canonical spellings for the technology names typed in projects.ts
 const TECH_NAMES: Record<string, string> = {
    NextJs: 'Next.js',
    ReactJs: 'React',

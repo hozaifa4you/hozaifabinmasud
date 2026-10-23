@@ -49,7 +49,7 @@ const WorkspaceExplorer = ({ entries }: { entries: ExplorerEntry[] }) => {
          <p className="px-4 pb-3 font-mono text-xs tracking-[0.08em] text-muted uppercase">
             Explorer
          </p>
-         <ul className="font-mono text-ui">
+         <ul data-depth="6" className="font-mono text-ui">
             {entries.map((entry, index) => {
                const Icon = ICONS[entry.icon];
                const isOpen = entry.sectionId === activeId;

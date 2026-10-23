@@ -12,6 +12,7 @@ import {
    ExplorerEntry,
    WorkspaceExplorer,
 } from '@/components/home/workspace-explorer';
+import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config/site.config';
 import { getEducation, hasEducationContent } from '@/lib/data/education';
@@ -73,161 +74,170 @@ const WorkspaceHero = () => {
          aria-labelledby="hero-title"
          className="container pt-6 pb-14 lg:pt-10 lg:pb-20"
       >
-         <div className="animate-rise border border-line bg-bg-main">
-            {/* Title bar */}
-            <div className="flex h-10 items-center justify-between gap-4 border-b border-line bg-bg-sunken px-4 font-mono text-xs text-muted">
-               <span>~/{workspace}</span>
-               <span className="inline-flex items-center gap-1.5">
-                  <LuGitBranch aria-hidden className="size-3.5" />
-                  main
-               </span>
-            </div>
+         {/* With a mouse the window turns toward the pointer; its contents float
+             at their own depth over the panes */}
+         <TiltSurface max={3} depth={2000}>
+            <div className="origin-bottom animate-assemble border border-line bg-bg-main">
+               {/* Title bar */}
+               <div className="flex h-10 items-center justify-between gap-4 border-b border-line bg-bg-sunken px-4 font-mono text-xs text-muted">
+                  <span>~/{workspace}</span>
+                  <span className="inline-flex items-center gap-1.5">
+                     <LuGitBranch aria-hidden className="size-3.5" />
+                     main
+                  </span>
+               </div>
 
-            <div className="grid lg:grid-cols-[236px_minmax(0,1fr)]">
-               {/* Explorer: doubles as in-page navigation on large screens */}
-               <WorkspaceExplorer entries={getExplorer()} />
+               <div className="grid lg:grid-cols-[236px_minmax(0,1fr)]">
+                  {/* Explorer: doubles as in-page navigation on large screens */}
+                  <WorkspaceExplorer entries={getExplorer()} />
 
-               <div className="min-w-0">
-                  {/* Tab strip */}
-                  <div className="flex h-10 border-b border-line bg-bg-sunken font-mono text-ui">
-                     <span className="-mb-px flex items-center gap-2 border-r border-line bg-bg-main px-4 text-strong">
-                        <LuFileText
-                           aria-hidden
-                           className="size-4 text-primary"
-                        />
-                        README.md
-                     </span>
-                  </div>
-
-                  {/* README preview */}
-                  <div className="px-5 py-10 sm:px-10 lg:px-14 lg:py-16">
-                     <h1
-                        id="hero-title"
-                        className="animate-rise text-display font-semibold text-balance text-strong"
-                        style={delay(180)}
-                     >
-                        {name}
-                     </h1>
-                     <p
-                        className="mt-5 max-w-[32ch] animate-rise text-lead text-balance text-text"
-                        style={delay(260)}
-                     >
-                        Full-stack developer who builds web apps end to end and
-                        ships AI features in production.
-                     </p>
-                     <p
-                        className="mt-5 max-w-[62ch] animate-rise text-base leading-relaxed text-pretty text-muted sm:text-body"
-                        style={delay(320)}
-                     >
-                        React and Next.js on the front, NestJS, Laravel and
-                        Node.js behind them, and OpenAI with LangChain where a
-                        product needs to understand language.
-                        {currentWork && (
-                           <>
-                              {' '}
-                              Currently building at{' '}
-                              <a
-                                 href={`https://${currentWork.website}`}
-                                 target="_blank"
-                                 rel="noopener noreferrer"
-                                 className="text-text underline decoration-info/50 transition-colors hover:text-info hover:decoration-info"
-                              >
-                                 {currentWork.company}
-                              </a>
-                              .
-                           </>
-                        )}
-                     </p>
-
-                     <div
-                        className="mt-9 flex animate-rise flex-wrap items-center gap-3"
-                        style={delay(400)}
-                     >
-                        <a
-                           href={`mailto:${email}`}
-                           className={cn(
-                              buttonVariants({
-                                 variant: 'primary',
-                                 size: 'lg',
-                              }),
-                              'sm:h-12 sm:px-6',
-                           )}
-                        >
-                           <LuMail aria-hidden />
-                           Email me
-                        </a>
-                        <a
-                           href={RESUME_PDF}
-                           download
-                           className={cn(
-                              buttonVariants({
-                                 variant: 'default',
-                                 size: 'lg',
-                              }),
-                              'sm:h-12 sm:px-6',
-                           )}
-                        >
-                           <LuDownload aria-hidden />
-                           Resume.pdf
-                        </a>
-                        <CopyEmailButton
-                           email={email}
-                           className="max-sm:-ml-5"
-                        />
+                  <div className="min-w-0">
+                     {/* Tab strip */}
+                     <div className="flex h-10 border-b border-line bg-bg-sunken font-mono text-ui">
+                        <span className="relative -mb-px flex items-center gap-2 border-r border-line bg-bg-main px-4 text-strong before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-primary">
+                           <LuFileText
+                              aria-hidden
+                              className="size-4 text-primary"
+                           />
+                           README.md
+                        </span>
                      </div>
 
-                     <ul
-                        className="mt-8 flex animate-rise flex-wrap gap-x-6 gap-y-2 text-sm font-medium"
-                        style={delay(460)}
+                     {/* README preview */}
+                     <div
+                        data-depth="14"
+                        className="px-5 py-10 sm:px-10 lg:px-14 lg:py-16"
                      >
-                        {socials.map((social) => (
-                           <li key={social.name}>
-                              <a
-                                 href={social.href}
-                                 target="_blank"
-                                 rel="noopener noreferrer"
-                                 className="group inline-flex items-center gap-1 text-text transition-colors hover:text-strong"
-                              >
-                                 {social.name}
-                                 <LuArrowUpRight
-                                    aria-hidden
-                                    className="size-3.5 text-muted transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                                 />
-                              </a>
-                           </li>
-                        ))}
-                     </ul>
+                        <h1
+                           id="hero-title"
+                           className="animate-rise text-display font-semibold text-balance text-strong"
+                           style={delay(180)}
+                        >
+                           {name}
+                        </h1>
+                        <p
+                           className="mt-5 max-w-[32ch] animate-rise text-lead text-balance text-text"
+                           style={delay(260)}
+                        >
+                           Full-stack developer who builds web apps end to end
+                           and ships AI features in production.
+                        </p>
+                        <p
+                           className="mt-5 max-w-[62ch] animate-rise text-base leading-relaxed text-pretty text-muted sm:text-body"
+                           style={delay(320)}
+                        >
+                           React and Next.js on the front, NestJS, Laravel and
+                           Node.js behind them, and OpenAI with LangChain where
+                           a product needs to understand language.
+                           {currentWork && (
+                              <>
+                                 {' '}
+                                 Currently building at{' '}
+                                 <a
+                                    href={`https://${currentWork.website}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-text underline decoration-info/50 transition-colors hover:text-info hover:decoration-info"
+                                 >
+                                    {currentWork.company}
+                                 </a>
+                                 .
+                              </>
+                           )}
+                        </p>
+
+                        <div
+                           className="mt-9 flex animate-rise flex-wrap items-center gap-3"
+                           style={delay(400)}
+                        >
+                           <a
+                              href={`mailto:${email}`}
+                              className={cn(
+                                 buttonVariants({
+                                    variant: 'primary',
+                                    size: 'lg',
+                                 }),
+                                 'sm:h-12 sm:px-6',
+                              )}
+                           >
+                              <LuMail aria-hidden />
+                              Email me
+                           </a>
+                           <a
+                              href={RESUME_PDF}
+                              download
+                              className={cn(
+                                 buttonVariants({
+                                    variant: 'default',
+                                    size: 'lg',
+                                 }),
+                                 'sm:h-12 sm:px-6',
+                              )}
+                           >
+                              <LuDownload aria-hidden />
+                              Resume.pdf
+                           </a>
+                           <CopyEmailButton
+                              email={email}
+                              className="max-sm:-ml-5"
+                           />
+                        </div>
+
+                        <ul
+                           className="mt-8 flex animate-rise flex-wrap gap-x-6 gap-y-2 text-sm font-medium"
+                           style={delay(460)}
+                        >
+                           {socials.map((social) => (
+                              <li key={social.name}>
+                                 <a
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group inline-flex items-center gap-1 text-text transition-colors hover:text-strong"
+                                 >
+                                    {social.name}
+                                    <LuArrowUpRight
+                                       aria-hidden
+                                       className="size-3.5 text-muted transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                    />
+                                 </a>
+                              </li>
+                           ))}
+                        </ul>
+                     </div>
                   </div>
                </div>
-            </div>
 
-            {/* Status bar */}
-            <div
-               id="hero-status"
-               className="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line bg-bg-sunken px-4 py-2 font-mono text-xs text-text"
-            >
-               <span className="inline-flex items-center gap-2 text-success">
-                  <span
-                     aria-hidden
-                     className="size-2 rounded-full bg-success"
-                  />
-                  Open to full-time roles
-               </span>
-               <span>{getExperienceYears()}+ yrs experience</span>
-               <span>{getProjectCount()} projects</span>
-               {degree && (
-                  <span className="inline-flex flex-wrap items-center gap-x-2">
-                     {degree.short ?? qualificationOf(degree)}
-                     {degree.ongoing && (
-                        <span className="text-warning">in progress</span>
-                     )}
-                     {/* Held to the status bar's line height */}
-                     {degree.demo && <DemoMark className="-my-px leading-4" />}
+               {/* Status bar */}
+               <div
+                  id="hero-status"
+                  className="flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-line bg-bg-sunken px-4 py-2 font-mono text-xs text-text"
+               >
+                  <span className="inline-flex items-center gap-2 text-success">
+                     <span
+                        aria-hidden
+                        className="size-2 rounded-full bg-success"
+                     />
+                     Open to full-time roles
                   </span>
-               )}
-               <span className="sm:ml-auto">Bangladesh · GMT+6</span>
+                  <span>{getExperienceYears()}+ yrs experience</span>
+                  <span>{getProjectCount()} projects</span>
+                  {degree && (
+                     <span className="inline-flex flex-wrap items-center gap-x-2">
+                        {degree.short ?? qualificationOf(degree)}
+                        {degree.ongoing && (
+                           <span className="text-warning">in progress</span>
+                        )}
+                        {/* Held to the status bar's line height */}
+                        {degree.demo && (
+                           <DemoMark className="-my-px leading-4" />
+                        )}
+                     </span>
+                  )}
+                  <span className="sm:ml-auto">Bangladesh · GMT+6</span>
+               </div>
             </div>
-         </div>
+         </TiltSurface>
       </section>
    );
 };

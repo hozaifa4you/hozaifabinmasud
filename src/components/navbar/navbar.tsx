@@ -1,7 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+   useCallback,
+   useEffect,
+   useLayoutEffect,
+   useRef,
+   useState,
+} from 'react';
 import { LuDownload, LuMenu, LuX } from 'react-icons/lu';
 
 import { ResponsiveMenu } from './responsive-menu';
@@ -28,6 +34,45 @@ const Navbar = ({ educationHref }: { educationHref: string | null }) => {
    // On the homepage's first screen the hero explorer is the navigation;
    // the header links appear once it scrolls away
    const linksHidden = isHomePage && (activeId === null || activeId === 'home');
+   const activeHref = items.find(
+      (item) => currentOf(item, activeId) !== undefined,
+   )?.href;
+   const navRef = useRef<HTMLElement>(null);
+   const indicatorRef = useRef<HTMLSpanElement>(null);
+   const placedRef = useRef(false);
+
+   // One underline glides to the current item; a resize re-places it at once
+   useLayoutEffect(() => {
+      const nav = navRef.current;
+      const indicator = indicatorRef.current;
+      if (!nav || !indicator) return;
+      const place = (animate: boolean) => {
+         const link = activeHref
+            ? nav.querySelector<HTMLElement>(`ul a[href="${activeHref}"]`)
+            : null;
+         if (!link) {
+            indicator.style.opacity = '0';
+            return;
+         }
+         indicator.style.transition =
+            animate && placedRef.current ? '' : 'none';
+         indicator.style.opacity = '1';
+         indicator.style.transform = `translateX(${link.offsetLeft + 12}px)`;
+         indicator.style.width = `${link.offsetWidth - 24}px`;
+         placedRef.current = true;
+      };
+      place(true);
+      let isFirstReport = true;
+      const observer = new ResizeObserver(() => {
+         if (isFirstReport) {
+            isFirstReport = false;
+            return;
+         }
+         place(false);
+      });
+      observer.observe(nav);
+      return () => observer.disconnect();
+   }, [activeHref]);
 
    useEffect(() => {
       const handleScroll = () => setIsScrolled(window.scrollY > 8);
@@ -54,7 +99,11 @@ const Navbar = ({ educationHref }: { educationHref: string | null }) => {
          <div className="container flex h-16 items-center justify-between gap-6">
             <Logo />
 
-            <nav aria-label="Primary" className="hidden items-center lg:flex">
+            <nav
+               ref={navRef}
+               aria-label="Primary"
+               className="relative hidden items-center lg:flex"
+            >
                <ul
                   className={cn(
                      'flex items-center transition-[opacity,visibility] duration-300 ease-out-expo',
@@ -75,18 +124,16 @@ const Navbar = ({ educationHref }: { educationHref: string | null }) => {
                               )}
                            >
                               {item.name}
-                              <span
-                                 aria-hidden
-                                 className={cn(
-                                    'absolute inset-x-3 bottom-1 h-px origin-left bg-primary transition-transform duration-300 ease-out-expo',
-                                    isActive ? 'scale-x-100' : 'scale-x-0',
-                                 )}
-                              />
                            </Link>
                         </li>
                      );
                   })}
                </ul>
+               <span
+                  ref={indicatorRef}
+                  aria-hidden
+                  className="pointer-events-none absolute bottom-1 left-0 h-px bg-primary opacity-0 transition-[transform,width,opacity] duration-300 ease-out-expo"
+               />
                <a
                   href={RESUME_PDF}
                   download

@@ -47,7 +47,7 @@ const EducationSection = () => {
       <section
          id="education"
          aria-labelledby="education-title"
-         className="container py-14 lg:py-20"
+         className="depth-in container py-14 lg:py-20"
       >
          <SectionHeading
             id="education-title"

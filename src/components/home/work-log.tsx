@@ -11,7 +11,7 @@ const WorkLog = () => {
       <section
          id="work"
          aria-labelledby="work-title"
-         className="container py-14 lg:py-20"
+         className="depth-in container py-14 lg:py-20"
       >
          <SectionHeading
             id="work-title"
@@ -30,7 +30,7 @@ const WorkLog = () => {
                   {/* Rail and commit node */}
                   <span
                      aria-hidden
-                     className="absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
+                     className="rail-fill absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
                   />
                   <span
                      aria-hidden
@@ -38,7 +38,7 @@ const WorkLog = () => {
                         'relative mt-1.5 size-5 rounded-full border-[5px] border-bg-main',
                         work.isCurrent
                            ? 'bg-success ring-1 ring-success/50'
-                           : 'bg-line-strong ring-1 ring-line',
+                           : 'node-lit bg-line-strong ring-1 ring-line',
                      )}
                   />
 

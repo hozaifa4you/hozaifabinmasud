@@ -14,10 +14,19 @@ import {
    InProgressPill,
    LogCommit,
 } from '@/components/education/learning-log';
-import { Screen, ScreenViewer } from '@/components/projects/screen-viewer';
+import {
+   Screen,
+   screenOrigin,
+   ScreenViewer,
+} from '@/components/projects/screen-viewer';
+import { TiltSurface } from '@/components/tilt-surface';
 import type { Training } from '@/lib/data/education';
 import { byOf, completedOf, startedOf } from '@/lib/education-view';
 import { cn } from '@/lib/utils';
+
+// Shared by the certificate thumbnails and the viewer, which shows the same
+// file while its full-size one loads
+const CERTIFICATE_SIZES = '384px';
 
 /** The trainings as a learning log; certificate images open full size */
 const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
@@ -33,6 +42,7 @@ const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
          path: training.certificateImage.src,
          alt: `${training.title} certificate`,
          caption: `${training.title} · ${byOf(training)}`,
+         thumbSizes: CERTIFICATE_SIZES,
       });
    });
 
@@ -103,11 +113,12 @@ const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
                               )}
                               {shot !== undefined &&
                                  training.certificateImage && (
-                                    <button
-                                       type="button"
-                                       onClick={() => setViewerIndex(shot)}
+                                    // Held like the paper it is: it leans toward the pointer
+                                    <TiltSurface
+                                       max={5}
+                                       depth={1100}
                                        className={cn(
-                                          'group/shot relative mt-4 block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo first:mt-0 hover:border-line-strong',
+                                          'mt-4 first:mt-0',
                                           // The frame takes the certificate's own shape;
                                           // a portrait one is held narrower
                                           training.certificateImage.height >
@@ -116,28 +127,35 @@ const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
                                              : 'max-w-sm',
                                        )}
                                     >
-                                       <Image
-                                          src={training.certificateImage.src}
-                                          alt={screens[shot].alt}
-                                          width={
-                                             training.certificateImage.width
-                                          }
-                                          height={
-                                             training.certificateImage.height
-                                          }
-                                          sizes="384px"
-                                          className="block h-auto w-full"
-                                       />
-                                       <span
-                                          aria-hidden
-                                          className="absolute top-3 right-3 grid size-9 place-items-center border border-line-strong bg-bg-sunken text-strong opacity-0 transition-opacity duration-200 ease-out-expo group-hover/shot:opacity-100 group-focus-visible/shot:opacity-100"
+                                       <button
+                                          type="button"
+                                          onClick={() => setViewerIndex(shot)}
+                                          data-screen-index={shot}
+                                          className="group/shot relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
                                        >
-                                          <LuMaximize2 className="size-4" />
-                                       </span>
-                                       <span className="sr-only">
-                                          View the certificate full size
-                                       </span>
-                                    </button>
+                                          <Image
+                                             src={training.certificateImage.src}
+                                             alt={screens[shot].alt}
+                                             width={
+                                                training.certificateImage.width
+                                             }
+                                             height={
+                                                training.certificateImage.height
+                                             }
+                                             sizes={CERTIFICATE_SIZES}
+                                             className="block h-auto w-full"
+                                          />
+                                          <span
+                                             aria-hidden
+                                             className="absolute top-3 right-3 grid size-9 place-items-center border border-line-strong bg-bg-sunken text-strong opacity-0 transition-opacity duration-200 ease-out-expo group-hover/shot:opacity-100 group-focus-visible/shot:opacity-100"
+                                          >
+                                             <LuMaximize2 className="size-4" />
+                                          </span>
+                                          <span className="sr-only">
+                                             View the certificate full size
+                                          </span>
+                                       </button>
+                                    </TiltSurface>
                                  )}
                            </CommitRow>
                         )}
@@ -154,6 +172,7 @@ const TrainingLog = ({ trainings }: { trainings: Training[] }) => {
                onIndexChange={setViewerIndex}
                onClose={() => setViewerIndex(null)}
                label="Certificates"
+               originOf={screenOrigin}
             />
          )}
       </>

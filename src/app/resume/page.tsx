@@ -68,7 +68,7 @@ const Appendix = ({
    className?: string;
    children: ReactNode;
 }) => (
-   <section aria-labelledby={id} className={className}>
+   <section aria-labelledby={id} className={cn('depth-in', className)}>
       <h2
          id={id}
          className="border-b border-line pb-3 text-headline font-semibold text-strong"

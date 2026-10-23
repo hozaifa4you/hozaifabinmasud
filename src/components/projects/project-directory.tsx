@@ -2,7 +2,13 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useId, useState, ViewTransition } from 'react';
+import {
+   startTransition,
+   useEffect,
+   useId,
+   useState,
+   ViewTransition,
+} from 'react';
 import {
    LuArrowRight,
    LuArrowUpRight,
@@ -13,9 +19,10 @@ import {
 } from 'react-icons/lu';
 
 import { hasTechIcon, TechIcon } from '@/components/tech-icon';
+import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
 import type { ProjectView } from '@/lib/project-view';
-import { cn } from '@/lib/utils';
+import { cn, techTransitionName } from '@/lib/utils';
 
 /** A row of the directory; small projects carry no status */
 export type DirectoryEntry = Omit<ProjectView, 'status'> & {
@@ -116,9 +123,17 @@ type ChipProps = {
    isOn: boolean;
    onClick: () => void;
    withIcon?: boolean;
+   transitionName?: string;
 };
 
-const Chip = ({ label, count, isOn, onClick, withIcon = true }: ChipProps) => (
+const Chip = ({
+   label,
+   count,
+   isOn,
+   onClick,
+   withIcon = true,
+   transitionName,
+}: ChipProps) => (
    <button
       type="button"
       aria-pressed={isOn}
@@ -130,8 +145,16 @@ const Chip = ({ label, count, isOn, onClick, withIcon = true }: ChipProps) => (
             : 'border-line text-text hover:border-line-strong hover:text-strong',
       )}
    >
-      {withIcon && <TechIcon name={label} className="size-4" />}
-      {label}
+      <ViewTransition
+         name={transitionName}
+         share={{ 'nav-forward': 'tech-morph', default: 'none' }}
+         default="none"
+      >
+         <span className="inline-flex items-center gap-2">
+            {withIcon && <TechIcon name={label} className="size-4" />}
+            {label}
+         </span>
+      </ViewTransition>
       <span className="font-mono text-xs text-muted">{count}</span>
    </button>
 );
@@ -147,16 +170,20 @@ const Shot = ({ entry }: { entry: DirectoryEntry }) => {
       );
    }
 
+   // Turns to face the reader each time its row opens (the closed region is
+   // inert), then leans toward the pointer
    const frame = (
-      <div className="relative aspect-[33/20] overflow-hidden border border-line bg-bg-sunken">
-         <Image
-            src={entry.image}
-            alt={`${entry.title} screenshot`}
-            fill
-            sizes="(min-width: 1024px) 416px, 100vw"
-            className="object-cover object-top"
-         />
-      </div>
+      <TiltSurface max={6} depth={1100}>
+         <div className="relative aspect-[33/20] origin-left overflow-hidden border border-line bg-bg-sunken [[role=region]:not([inert])_&]:animate-turn">
+            <Image
+               src={entry.image}
+               alt={`${entry.title} screenshot`}
+               fill
+               sizes="(min-width: 1024px) 416px, 100vw"
+               className="object-cover object-top"
+            />
+         </div>
+      </TiltSurface>
    );
 
    // Shared element: morphs into the case study's main image
@@ -373,9 +400,7 @@ const ProjectDirectory = ({
    initialStack,
 }: ProjectDirectoryProps) => {
    const visibleFor = (name: string | null) =>
-      name
-         ? entries.filter((entry) => entry.technologies.includes(name))
-         : entries;
+      name ? entries.filter((entry) => entry.uses.includes(name)) : entries;
 
    const [filter, setFilter] = useState(initialStack);
    const [showAllStack, setShowAllStack] = useState(false);
@@ -403,15 +428,19 @@ const ProjectDirectory = ({
    }, [entries]);
 
    const choose = (name: string | null) => {
-      setFilter(name);
-      // Keep a screenshot in view: open the first match when none is open
-      const matches = visibleFor(name);
-      setOpenSlugs((current) =>
-         matches.length === 0 ||
-         matches.some((entry) => current.has(entry.slug))
-            ? current
-            : new Set([...current, matches[0].slug]),
-      );
+      // A transition, so the rows animate: those that leave fade aside, those
+      // that stay glide to their new places, and new ones rise in
+      startTransition(() => {
+         setFilter(name);
+         // Keep a screenshot in view: open the first match when none is open
+         const matches = visibleFor(name);
+         setOpenSlugs((current) =>
+            matches.length === 0 ||
+            matches.some((entry) => current.has(entry.slug))
+               ? current
+               : new Set([...current, matches[0].slug]),
+         );
+      });
       const url = new URL(window.location.href);
       if (name) url.searchParams.set(STACK_PARAM, name);
       else url.searchParams.delete(STACK_PARAM);
@@ -471,6 +500,12 @@ const ProjectDirectory = ({
                      onClick={() =>
                         choose(filter === tech.name ? null : tech.name)
                      }
+                     // Arriving from the homepage stack, the technology lands here
+                     transitionName={
+                        tech.name === initialStack && filter === initialStack
+                           ? techTransitionName(tech.name)
+                           : undefined
+                     }
                   />
                ))}
                {hiddenChips > 0 && (
@@ -511,13 +546,22 @@ const ProjectDirectory = ({
             </div>
             <ul aria-label="Projects">
                {visible.map((entry) => (
-                  <Row
+                  // Keyed for identity across filters; the screenshot's own
+                  // named boundary inside still morphs into the case study
+                  <ViewTransition
                      key={entry.slug}
-                     entry={entry}
-                     filter={filter}
-                     isOpen={openSlugs.has(entry.slug)}
-                     onToggle={() => toggle(entry.slug)}
-                  />
+                     enter="dir-row-in"
+                     exit="dir-row-out"
+                     update="dir-row-move"
+                     default="none"
+                  >
+                     <Row
+                        entry={entry}
+                        filter={filter}
+                        isOpen={openSlugs.has(entry.slug)}
+                        onToggle={() => toggle(entry.slug)}
+                     />
+                  </ViewTransition>
                ))}
             </ul>
          </div>

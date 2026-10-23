@@ -4,3 +4,5 @@ coverage
 .claude
 .cursor
 .impeccable
+.agents
+skills-lock.json
