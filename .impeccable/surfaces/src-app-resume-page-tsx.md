@@ -7,7 +7,7 @@ related_targets: ["src/components/resume"]
 
 # Resume
 
-Scope: `/resume` (src/app/resume/page.tsx and src/components/resume/). Mode: Read. Audience: recruiters first, clients second. Job: read the CV on screen, download the PDF, or print a clean A4 copy. Constraints (owner, 2026-10-22): no placeholder education or trainings; one PDF only (public/hozaifa-resume.pdf); the summary is the shared about introduction; the page prints as a clean CV. Every date and span derived from data. The owner first picked "resume.json", then re-chose "Business card + appendix" on the same hand (same day).
+Scope: `/resume` (src/app/resume/page.tsx and src/components/resume/). Mode: Read. Audience: recruiters first, clients second. Job: read the CV on screen, download the PDF, or print a clean A4 copy. Constraints (owner, 2026-10-22): one PDF only (public/hozaifa-resume.pdf); the summary is the shared about introduction; the page prints as a clean CV. Every date and span derived from data. Education and training are required (owner, 2026-10-23): they sit right after Experience (the second appendix row from lg, and next in phone and print order), every training is listed, and the sections read from getEducation()/getTrainings(), so demo entries show locally and on previews with the demo mark ("(demo)" in print) and never in production. The owner first picked "resume.json", then re-chose "Business card + appendix" on the same hand (same day).
 
 ## Direction contract
 
@@ -15,7 +15,7 @@ THESIS: The resume opens on a business card: name, role, the one-paragraph intro
 
 OWN-WORLD: The Open Workspace. The card is a Sidebar Charcoal pane with a 1px Hairline frame, split by a hairline into the identity column and the contact panel; contact keys in Soft Orchid Fira Code, values in Cursor White; availability green; links blue-underlined. Appendix headings at Headline size on hairline rules, dates in Fira Code. Print: black on white, Fira Sans, hairline rules.
 
-STORY: A recruiter reads who he is and how to reach him in the first screen, downloads the PDF or prints, then scans experience, selected projects, skills and languages below.
+STORY: A recruiter reads who he is and how to reach him in the first screen, downloads the PDF or prints, then scans experience, education and training, selected projects, skills and languages below.
 
 FIRST VIEWPORT: Breadcrumb; the card across the container: the name at display size, the designation, the introduction, Resume.pdf (primary) and Print; at the right (below on phones) the contact panel: status, email, phone, website, GitHub, LinkedIn, based. Under the card the appendix starts with Experience and Selected projects side by side.
 

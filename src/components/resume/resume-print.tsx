@@ -14,6 +14,20 @@ export type ResumeData = {
       built: string[];
       stack: string[];
    }[];
+   education: {
+      qualification: string;
+      institution: string;
+      dates: string;
+      result: string | null;
+      demo: boolean;
+   }[];
+   trainings: {
+      title: string;
+      by: string;
+      date: string;
+      url: string | null;
+      demo: boolean;
+   }[];
    projects: {
       name: string;
       description: string;
@@ -72,6 +86,55 @@ const ResumePrint = ({ data }: { data: ResumeData }) => (
             </div>
          ))}
       </Section>
+
+      {/* Sample entries only print off production, and say so */}
+      {data.education.length > 0 && (
+         <Section title="Education">
+            {data.education.map((entry) => (
+               <div
+                  key={entry.qualification + entry.dates}
+                  className="break-inside-avoid"
+               >
+                  <p className="flex justify-between gap-4">
+                     <span>
+                        <span className="font-semibold">
+                           {entry.qualification}
+                        </span>
+                        {entry.demo && ' (demo)'}
+                     </span>
+                     <span className="shrink-0">{entry.dates}</span>
+                  </p>
+                  <p>{entry.institution}</p>
+                  {entry.result && (
+                     <p className="text-xs">Result: {entry.result}</p>
+                  )}
+               </div>
+            ))}
+         </Section>
+      )}
+
+      {data.trainings.length > 0 && (
+         <Section title="Training">
+            {data.trainings.map((training) => (
+               <div
+                  key={training.title + training.date}
+                  className="break-inside-avoid"
+               >
+                  <p className="flex justify-between gap-4">
+                     <span>
+                        <span className="font-semibold">{training.title}</span>,{' '}
+                        {training.by}
+                        {training.demo && ' (demo)'}
+                     </span>
+                     <span className="shrink-0">{training.date}</span>
+                  </p>
+                  {training.url && (
+                     <p className="text-xs">Verify: {training.url}</p>
+                  )}
+               </div>
+            ))}
+         </Section>
+      )}
 
       <Section title="Selected projects">
          {data.projects.map((project) => (
