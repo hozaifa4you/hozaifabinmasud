@@ -12,7 +12,6 @@
       "format:check": "prettier --check ."
    },
    "dependencies": {
-      "@radix-ui/react-separator": "^1.2.0",
       "@vercel/analytics": "^2.0.1",
       "@vercel/speed-insights": "^2.0.0",
       "class-variance-authority": "^0.7.1",

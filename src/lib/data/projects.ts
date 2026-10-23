@@ -1,5 +1,3 @@
-import { hasProjectDetails } from './project-details';
-
 const projects: ProjectType[] = [
    {
       id: 1,
@@ -259,31 +257,9 @@ export interface ProjectType {
       repo: string;
    };
 }
-const projectCount = projects.length;
-
-type ProjectLink = { href: string; external: boolean };
-
-// Detail page when one exists, otherwise the live site; null means no link
-const getProjectLink = ({
-   slug,
-   status,
-   website,
-}: {
-   slug: string;
-   status?: ProjectType['status'];
-   website?: string;
-}): ProjectLink | null => {
-   if (hasProjectDetails(slug)) {
-      return { href: `/projects/${slug}`, external: false };
-   }
-   if (status === 'live' && website) {
-      return { href: `https://${website}`, external: true };
-   }
-   return null;
-};
 
 // Stand-in image for projects without a screenshot; not a real preview
 const PLACEHOLDER_IMAGE = '/alternate/products/5.png';
 const hasScreenshot = (image: string) => image !== PLACEHOLDER_IMAGE;
 
-export { projects, smallProjects, projectCount, getProjectLink, hasScreenshot };
+export { projects, smallProjects, hasScreenshot };
