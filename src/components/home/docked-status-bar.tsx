@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 const FILES: Record<string, string> = {
    projects: 'projects/',
    work: 'work.log',
+   education: 'education.md',
    stack: 'stack',
    about: 'about.md',
 };

@@ -14,6 +14,8 @@ export interface Education {
    /** The subject or group, e.g. 'Computer Science and Engineering', 'Science' */
    subject: string;
    institution: string;
+   /** A short form for tight spots such as the hero status bar, e.g. 'BSc in CSE · ISTT' */
+   short?: string;
    /** The awarding university or education board, when it is not the institution */
    awardedBy?: string;
    city: string;
@@ -48,6 +50,7 @@ const education: Education[] = [
       degree: 'BSc',
       subject: 'Computer Science and Engineering',
       institution: 'Institute of Science, Trade & Technology (ISTT)',
+      short: 'BSc in CSE · ISTT',
       city: 'Dhaka',
       start: 2022,
       end: 2026,
@@ -126,3 +129,7 @@ export const getEducation = () => published(education);
 
 /** The trainings to show: real entries everywhere, demo ones off production */
 export const getTrainings = () => published(trainings);
+
+/** Whether the homepage section, its explorer file and its nav item show */
+export const hasEducationContent = () =>
+   getEducation().length > 0 || getTrainings().length > 0;

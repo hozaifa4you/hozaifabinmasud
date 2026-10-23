@@ -6,6 +6,7 @@ import {
    LuMail,
 } from 'react-icons/lu';
 
+import { DemoMark } from '@/components/education/demo-mark';
 import { CopyEmailButton } from '@/components/home/copy-email-button';
 import {
    ExplorerEntry,
@@ -13,7 +14,9 @@ import {
 } from '@/components/home/workspace-explorer';
 import { buttonVariants } from '@/components/ui/button';
 import { appConfig } from '@/config/app.config';
+import { getEducation, hasEducationContent } from '@/lib/data/education';
 import { projects } from '@/lib/data/projects';
+import { qualificationOf } from '@/lib/education-view';
 import { getSocialLinks, RESUME_PDF } from '@/lib/links';
 import {
    getCurrentWork,
@@ -22,7 +25,8 @@ import {
 } from '@/lib/profile';
 import { cn } from '@/lib/utils';
 
-const explorer: ExplorerEntry[] = [
+// The education file joins the explorer only when there are entries to show
+const getExplorer = (): ExplorerEntry[] => [
    { name: 'README.md', href: '#home', icon: 'doc', sectionId: 'home' },
    {
       name: 'projects/',
@@ -35,6 +39,16 @@ const explorer: ExplorerEntry[] = [
       })),
    },
    { name: 'work.log', href: '#work', icon: 'doc', sectionId: 'work' },
+   ...(hasEducationContent()
+      ? [
+           {
+              name: 'education.md',
+              href: '#education',
+              icon: 'doc' as const,
+              sectionId: 'education',
+           },
+        ]
+      : []),
    { name: 'stack', href: '#stack', icon: 'data', sectionId: 'stack' },
    { name: 'about.md', href: '#about', icon: 'doc', sectionId: 'about' },
    { name: 'contact', href: '#contact', icon: 'send', sectionId: 'contact' },
@@ -50,6 +64,8 @@ const WorkspaceHero = () => {
    const currentWork = getCurrentWork();
    const socials = getSocialLinks().slice(0, 2);
    const workspace = appConfig.NEXT_PUBLIC_FIRST_NAME?.toLowerCase() ?? 'dev';
+   // The latest qualification, for employers who screen on it first
+   const degree = getEducation()[0];
 
    return (
       <section
@@ -69,7 +85,7 @@ const WorkspaceHero = () => {
 
             <div className="grid lg:grid-cols-[236px_minmax(0,1fr)]">
                {/* Explorer: doubles as in-page navigation on large screens */}
-               <WorkspaceExplorer entries={explorer} />
+               <WorkspaceExplorer entries={getExplorer()} />
 
                <div className="min-w-0">
                   {/* Tab strip */}
@@ -199,6 +215,16 @@ const WorkspaceHero = () => {
                </span>
                <span>{getExperienceYears()}+ yrs experience</span>
                <span>{getProjectCount()} projects</span>
+               {degree && (
+                  <span className="inline-flex flex-wrap items-center gap-x-2">
+                     {degree.short ?? qualificationOf(degree)}
+                     {degree.ongoing && (
+                        <span className="text-warning">in progress</span>
+                     )}
+                     {/* Held to the status bar's line height */}
+                     {degree.demo && <DemoMark className="-my-px leading-4" />}
+                  </span>
+               )}
                <span className="sm:ml-auto">Bangladesh · GMT+6</span>
             </div>
          </div>

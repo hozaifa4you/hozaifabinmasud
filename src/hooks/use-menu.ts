@@ -18,23 +18,48 @@ export const currentOf = (item: MenuItem, activeId: string | null) => {
    return item.isCurrentPage ? 'page' : undefined;
 };
 
-// The site reads as a workspace: every nav item is one of its files
+// The site reads as a workspace: every nav item is one of its files.
+// `segments` are the routes that make an item current off the homepage.
 const SECTIONS = [
-   { name: 'projects/', sectionId: 'projects', page: '/projects' },
-   { name: 'work.log', sectionId: 'work', page: '/works' },
-   { name: 'stack', sectionId: 'stack', page: '/#stack' },
-   { name: 'about.md', sectionId: 'about', page: '/about-me' },
-   { name: 'contact', sectionId: 'contact', page: '/contact' },
+   {
+      name: 'projects/',
+      sectionId: 'projects',
+      page: '/projects',
+      segments: ['projects'],
+   },
+   { name: 'work.log', sectionId: 'work', page: '/works', segments: ['works'] },
+   {
+      name: 'education.md',
+      sectionId: 'education',
+      page: '/educations',
+      segments: ['educations', 'trainings'],
+   },
+   { name: 'stack', sectionId: 'stack', page: '/#stack', segments: [] },
+   {
+      name: 'about.md',
+      sectionId: 'about',
+      page: '/about-me',
+      segments: ['about-me'],
+   },
+   {
+      name: 'contact',
+      sectionId: 'contact',
+      page: '/contact',
+      segments: ['contact'],
+   },
 ];
 
-const useMenu = () => {
+/** `showEducation`: there are education entries to show (server-decided) */
+const useMenu = (showEducation: boolean) => {
    const pathname = usePathname();
    const isHomePage = pathname === '/';
    // The route segment, not the pathname: the one prerendered 404 serves every
    // missing path, and its segment is the same on the server and the client
    const segment = useSelectedLayoutSegment();
 
-   const items: MenuItem[] = SECTIONS.map((section) =>
+   const items: MenuItem[] = SECTIONS.filter(
+      (section) => showEducation || section.sectionId !== 'education',
+   ).map((section) =>
       isHomePage
          ? {
               name: section.name,
@@ -44,7 +69,8 @@ const useMenu = () => {
          : {
               name: section.name,
               href: section.page,
-              isCurrentPage: segment !== null && section.page === `/${segment}`,
+              isCurrentPage:
+                 segment !== null && section.segments.includes(segment),
            },
    );
 

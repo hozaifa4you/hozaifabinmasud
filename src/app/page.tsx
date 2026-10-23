@@ -2,6 +2,7 @@ import { DirectionalPage } from '@/components/directional-page';
 import { AboutSection } from '@/components/home/about-section';
 import { ContactSection } from '@/components/home/contact-section';
 import { DockedStatusBar } from '@/components/home/docked-status-bar';
+import { EducationSection } from '@/components/home/education-section';
 import { ProjectsSection } from '@/components/home/projects-section';
 import { StackSection } from '@/components/home/stack-section';
 import { WorkLog } from '@/components/home/work-log';
@@ -18,6 +19,7 @@ const Home = () => {
             <WorkspaceHero />
             <ProjectsSection />
             <WorkLog />
+            <EducationSection />
             <StackSection />
             <AboutSection />
             <ContactSection />
