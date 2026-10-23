@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 
+/* The AI skill folders are full of example class names; keep them out of the CSS */
+@source not '../../.claude';
+@source not '../../.cursor';
+@source not '../../.agents';
+@source not '../../.impeccable';
+
 /* Fonts come from next/font variables set on <html> in the root layout */
 @theme inline {
    --font-sans:
