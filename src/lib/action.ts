@@ -1,5 +1,4 @@
 'use server';
-
 import 'server-only';
 
 import { appConfig } from '@/config/app.config';
@@ -10,7 +9,6 @@ const getField = (formData: FormData, key: string) => {
 };
 
 export const contactAction = async (prevState: unknown, newState: FormData) => {
-   // Returned on failure so the form can refill what the visitor typed
    const fields = {
       name: getField(newState, 'name'),
       email: getField(newState, 'email'),
@@ -54,7 +52,6 @@ export const contactAction = async (prevState: unknown, newState: FormData) => {
    return {
       success: true,
       message: 'Message sent successfully! Please wait for response.',
-      // What went out, for the contact page's receipt
       sent: {
          name: fields.name.trim(),
          email: fields.email.trim(),

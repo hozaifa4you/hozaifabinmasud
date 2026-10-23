@@ -13,7 +13,11 @@ import {
 
 import { BreadcrumbItem, BreadcrumbNav } from '@/components/breadcrumb';
 import { HiringClose } from '@/components/projects/hiring-close';
-import { Screen, ScreenViewer } from '@/components/projects/screen-viewer';
+import {
+   Screen,
+   screenOrigin,
+   ScreenViewer,
+} from '@/components/projects/screen-viewer';
 import { TechIcon } from '@/components/tech-icon';
 import { TiltSurface } from '@/components/tilt-surface';
 import { buttonVariants } from '@/components/ui/button';
@@ -47,6 +51,9 @@ const STACK_ORDER = [
 // Capture sizes of the screenshots; they reserve each box before it loads
 const MAIN_SHOT = { width: 2864, height: 1324 };
 const SCREEN_SHOT = { width: 2864, height: 1398 };
+// Shared by the page's screenshots and the viewer, which shows the same file
+// while its full-size one loads
+const SHOT_SIZES = '(min-width: 1120px) 1072px, 100vw';
 
 const hostOf = (url: string) => new URL(url).host.replace(/^www\./, '');
 const plural = (count: number, word: string) =>
@@ -88,7 +95,7 @@ const Commit = ({
    >
       <span
          aria-hidden
-         className="absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
+         className="rail-fill absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
       />
       {/* HEAD stays green; the commit being read lights orchid */}
       <span
@@ -150,6 +157,7 @@ const ProjectDetailsView = ({
       path,
       caption,
       alt: caption ?? `${project.name}, screen ${index + 1} of ${screenCount}`,
+      thumbSizes: SHOT_SIZES,
    }));
 
    const stack = STACK_ORDER.map((category) => ({
@@ -304,6 +312,7 @@ const ProjectDetailsView = ({
                            <button
                               type="button"
                               onClick={() => setViewerIndex(0)}
+                              data-screen-index={0}
                               className="group/shot relative block w-full cursor-zoom-in"
                            >
                               <Image
@@ -311,7 +320,7 @@ const ProjectDetailsView = ({
                                  alt={screens[0].alt}
                                  width={MAIN_SHOT.width}
                                  height={MAIN_SHOT.height}
-                                 sizes="(min-width: 1120px) 1072px, 100vw"
+                                 sizes={SHOT_SIZES}
                                  preload
                                  className="h-auto w-full"
                               />
@@ -342,6 +351,7 @@ const ProjectDetailsView = ({
                               <button
                                  type="button"
                                  onClick={() => setViewerIndex(index + 1)}
+                                 data-screen-index={index + 1}
                                  className="group/shot scroll-stand relative block w-full cursor-zoom-in border border-line transition-colors duration-200 ease-out-expo hover:border-line-strong"
                               >
                                  <Image
@@ -349,7 +359,7 @@ const ProjectDetailsView = ({
                                     alt={screen.alt}
                                     width={SCREEN_SHOT.width}
                                     height={SCREEN_SHOT.height}
-                                    sizes="(min-width: 1120px) 1072px, 100vw"
+                                    sizes={SHOT_SIZES}
                                     className="scroll-wipe h-auto w-full"
                                  />
                                  <ZoomHint />
@@ -548,6 +558,7 @@ const ProjectDetailsView = ({
             onIndexChange={setViewerIndex}
             onClose={() => setViewerIndex(null)}
             label={`${project.name} screens`}
+            originOf={screenOrigin}
          />
       </article>
    );

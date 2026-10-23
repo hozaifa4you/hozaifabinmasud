@@ -46,7 +46,7 @@ const CopyEmailButton = ({
          )}
       >
          {copied ? (
-            <LuCheck aria-hidden className="text-success" />
+            <LuCheck aria-hidden className="animate-acknowledge text-success" />
          ) : (
             <LuCopy aria-hidden />
          )}

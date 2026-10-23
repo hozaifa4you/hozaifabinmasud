@@ -21,7 +21,6 @@ const eslintConfig = defineConfig([
       'out/**',
       'build/**',
       'next-env.d.ts',
-      // AI editor skills ship vendored, bundled scripts
       '.claude/**',
       '.cursor/**',
       '.agents/**',

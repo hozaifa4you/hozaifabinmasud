@@ -16,7 +16,7 @@ const LogCommit = ({
    <li className="group relative grid grid-cols-[20px_minmax(0,1fr)] gap-x-5 pb-14 last:pb-0 sm:gap-x-7 lg:pb-20">
       <span
          aria-hidden
-         className="absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
+         className="rail-fill absolute top-3 bottom-0 left-[9.5px] w-px bg-line group-last:hidden"
       />
       <span
          aria-hidden
@@ -24,7 +24,7 @@ const LogCommit = ({
             'relative mt-1.5 size-5 rounded-full border-[5px] border-bg-main',
             inProgress
                ? 'bg-warning ring-1 ring-warning/50'
-               : 'bg-line-strong ring-1 ring-line',
+               : 'node-lit bg-line-strong ring-1 ring-line',
          )}
       />
       <div className="min-w-0">{children}</div>

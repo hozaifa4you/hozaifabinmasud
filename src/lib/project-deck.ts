@@ -15,24 +15,13 @@ import {
    WebGLRenderer,
 } from 'three';
 
-// The project deck: behind the chosen screenshot (an HTML image), the next
-// projects stand back in real depth like a stack of open tabs, their top
-// edges showing. Flat unlit panes with hairline edges, fading toward the
-// canvas colour as they recede: tonal depth, never light or shadow. Loaded
-// on demand with three.js, so nothing here runs until the projects are near.
-
 export type DeckProject = { slug: string; image: string | null };
 
 export type DeckColors = {
-   /** The pane the deck sits on; receding cards fade toward it */
    bg: string;
-   /** Card edges */
    line: string;
-   /** The face of a project with no screenshot */
    sunken: string;
-   /** Its dashed frame, as the HTML empty frame draws it */
    lineStrong: string;
-   /** Its label */
    muted: string;
 };
 
@@ -45,16 +34,16 @@ export type Deck = {
    onPick: (handler: (index: number) => void) => void;
 };
 
-const VISIBLE = 3; // cards standing behind the chosen one
-const ASPECT = 33 / 20; // the screenshot frame
+const VISIBLE = 3;
+const ASPECT = 33 / 20;
 const FOV = 30;
-const PEEK = 9; // px of each card's top edge at rest
-const PEEK_FAN = 14; // and when the pointer fans the deck
-const STEP_Z = 70; // depth between cards at rest
+const PEEK = 9;
+const PEEK_FAN = 14;
+const STEP_Z = 70;
 const STEP_Z_FAN = 120;
-const EASE = 0.14; // how far each frame closes on its target
+const EASE = 0.14;
 
-const vertexShader = /* glsl */ `
+const vertexShader = `
    uniform vec4 uCrop;
    varying vec2 vUv;
    varying vec2 vFrame;
@@ -65,11 +54,7 @@ const vertexShader = /* glsl */ `
    }
 `;
 
-// The face carries a 1px Hairline at any depth and fades toward the pane
-// colour by depth. The fade runs in sRGB, as the eye reads it, so a light
-// screenshot recedes as far as a dark one. An unloaded image shows the sunken
-// face rather than black
-const fragmentShader = /* glsl */ `
+const fragmentShader = `
    uniform sampler2D uMap;
    uniform vec3 uBg;
    uniform vec3 uSunken;
@@ -83,6 +68,7 @@ const fragmentShader = /* glsl */ `
    vec3 toSrgb(vec3 c) {
       return mix(c * 12.92, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(vec3(0.0031308), c));
    }
+
    vec3 toLinear(vec3 c) {
       return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)), step(vec3(0.04045), c));
    }
@@ -107,14 +93,12 @@ type Card = {
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-/** Card strength by slot: 1 in front, fading to nothing past the last card */
 const strengthAt = (slot: number) => {
    if (slot <= 1) return lerp(1, 0.45, slot);
    if (slot > VISIBLE) return Math.max(0, 0.18 * (VISIBLE + 1 - slot));
    return 0.45 - 0.135 * (slot - 1);
 };
 
-/** A face for a project with no public screenshot, drawn like the HTML one */
 const placeholderTexture = (colors: DeckColors) => {
    const canvas = document.createElement('canvas');
    canvas.width = 660;
@@ -145,7 +129,6 @@ const placeholderTexture = (colors: DeckColors) => {
    return texture;
 };
 
-/** object-fit: cover, anchored to the top, as the HTML frame shows it */
 const coverTop = (texture: Texture) => {
    const image = texture.image as { width: number; height: number };
    const aspect = image.width / image.height;
@@ -154,10 +137,6 @@ const coverTop = (texture: Texture) => {
       : { x: ASPECT / aspect, y: 1, ox: (1 - ASPECT / aspect) / 2, oy: 0 };
 };
 
-/**
- * `rise` is how far the canvas reaches above the screenshot, in px: the room
- * the peeking edges have
- */
 export const createDeck = (
    projects: DeckProject[],
    colors: DeckColors,
@@ -192,11 +171,9 @@ export const createDeck = (
    let width = 0;
    let height = 0;
    let frameHeight = 0;
-   let depth = 1; // camera distance at which 1 world unit is 1 px
+   let depth = 1;
    let selected = 0;
    let fan = 0;
-   // The deck fans while a mouse is over it, and briefly while a selection
-   // glides, so the cards are seen travelling between slots
    let hovered = false;
    let gliding = false;
    const tilt = { x: 0, y: 0 };
@@ -236,7 +213,6 @@ export const createDeck = (
       return { index, mesh, slot: VISIBLE + 1, target: VISIBLE + 1 };
    });
 
-   /** Slot 0 is the chosen screenshot; 1..VISIBLE stand behind it in order */
    const slotOf = (index: number) =>
       (index - selected + projects.length) % projects.length;
 
@@ -246,13 +222,10 @@ export const createDeck = (
       const step = lerp(STEP_Z, STEP_Z_FAN, fan);
       const z = -slot * step;
       const scale = depth / (depth - z);
-      // The frame's top edge, seen at z = 0, sits rise / 2 below the centre
-      // line plus half the frame; each card shows `peek` px more above it
       const frameTop = frameHeight / 2 - rise / 2;
       const top = (frameTop + slot * peek) / scale;
       card.mesh.scale.set(frameHeight * ASPECT, frameHeight, 1);
       card.mesh.position.set(
-         // Deeper cards drift against the pointer: parallax by depth
          -tilt.x * slot * 10,
          top - frameHeight / 2 + tilt.y * slot * 6,
          z,
@@ -263,7 +236,6 @@ export const createDeck = (
       card.mesh.visible = strength > 0.01;
       const uniforms = card.mesh.material.uniforms;
       uniforms.uStrength.value = strength;
-      // One CSS px on screen at this depth, as a share of the card
       const px = 1 / scale;
       uniforms.uHairline.value.set(
          px / (frameHeight * ASPECT),

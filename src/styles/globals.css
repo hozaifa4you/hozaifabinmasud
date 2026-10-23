@@ -1,13 +1,11 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 
-/* The AI skill folders are full of example class names; keep them out of the CSS */
 @source not '../../.claude';
 @source not '../../.cursor';
 @source not '../../.agents';
 @source not '../../.impeccable';
 
-/* Fonts come from next/font variables set on <html> in the root layout */
 @theme inline {
    --font-sans:
       var(--font-fira-sans), ui-sans-serif, system-ui, -apple-system,
@@ -18,19 +16,16 @@
 }
 
 @theme {
-   /* Surfaces, darkest to lightest: sidebar, editor, line highlight */
    --color-bg-sunken: #21252b;
    --color-bg-main: #282c33;
    --color-bg-raised: #2c313a;
    --color-line: #3e4451;
    --color-line-strong: #747c8a;
 
-   /* Text */
    --color-text: #abb2bf;
    --color-strong: #e8eaee;
    --color-muted: #9298a5;
 
-   /* Syntax colours as roles */
    --color-primary: #c778dd;
    --color-primary-soft: #d49be6;
    --color-primary-ink: #1e2127;
@@ -39,12 +34,11 @@
    --color-info: #61afef;
    --color-warning: #e5c07b;
 
-   /* Type scale beyond Tailwind's defaults (xs 12, sm 14, base 16, 2xl 24) */
-   --text-ui: 0.8125rem; /* 13px: file names, tabs */
+   --text-ui: 0.8125rem;
    --text-ui--line-height: 1.5;
-   --text-control: 0.9375rem; /* 15px: buttons, inputs, lists */
+   --text-control: 0.9375rem;
    --text-control--line-height: 1.45;
-   --text-body: 1.0625rem; /* 17px: reading paragraphs */
+   --text-body: 1.0625rem;
    --text-body--line-height: 1.65;
    --text-lead: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem);
    --text-lead--line-height: 1.35;
@@ -59,17 +53,61 @@
 
    --animate-rise: rise 520ms var(--ease-out-expo) both;
    --animate-wipe: wipe 420ms var(--ease-out-expo) both;
-   /* Quart-out rather than expo, so the lid's swing is seen, not spent at once */
    --animate-assemble: assemble 1000ms cubic-bezier(0.25, 1, 0.5, 1) both;
+   --animate-screen-next: screen-next 420ms var(--ease-out-expo) both;
+   --animate-screen-prev: screen-prev 420ms var(--ease-out-expo) both;
+   --animate-acknowledge: acknowledge 200ms var(--ease-out-expo) both;
+   --animate-sending: sending 1100ms cubic-bezier(0.65, 0, 0.35, 1) infinite;
+
+   @keyframes screen-next {
+      from {
+         opacity: 0;
+         transform: translateX(48px);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes screen-prev {
+      from {
+         opacity: 0;
+         transform: translateX(-48px);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes acknowledge {
+      from {
+         opacity: 0;
+         transform: scale(0.6);
+      }
+      to {
+         opacity: 1;
+         transform: none;
+      }
+   }
+
+   @keyframes sending {
+      from {
+         transform: translateX(-100%);
+      }
+      to {
+         transform: translateX(250%);
+      }
+   }
+
    --animate-turn: turn 640ms var(--ease-out-expo) both;
 
-   /* The workspace window opens like a screen lid, hinged at its foot */
    @keyframes assemble {
       from {
          opacity: 0;
          transform: perspective(1600px) rotateX(16deg) translateY(28px);
       }
-      /* Fully visible early, so the rest of the swing reads at full opacity */
       25% {
          opacity: 1;
       }
@@ -79,7 +117,6 @@
       }
    }
 
-   /* A chosen screenshot turns to face the reader */
    @keyframes turn {
       from {
          opacity: 0.35;
@@ -107,6 +144,7 @@
          opacity: 0.4;
          clip-path: inset(0 100% 0 0);
       }
+
       to {
          opacity: 1;
          clip-path: inset(0);
@@ -155,7 +193,6 @@
       outline-offset: 2px;
    }
 
-   /* Land anchored sections below the sticky header */
    [id] {
       scroll-margin-top: 5rem;
    }
@@ -177,10 +214,6 @@
    }
 }
 
-/*
- * View transitions (React <ViewTransition>, triggered by route navigations).
- * Only named participants animate: the page root swaps instantly.
- */
 ::view-transition {
    pointer-events: none;
 }
@@ -190,7 +223,6 @@
    animation: none;
 }
 
-/* Shared element: a project screenshot morphs into its case study hero */
 ::view-transition-group(.morph) {
    animation-duration: 520ms;
    animation-timing-function: var(--ease-out-expo);
@@ -206,11 +238,6 @@
    }
 }
 
-/*
- * Direction: pages turn like editor tabs on a carousel. Forward, the old page
- * swings away to the left as the new one swings in from the right; back
- * reverses it. Each page pivots on the edge it leaves by.
- */
 ::view-transition-old(.nav-forward) {
    --slide-offset: -48px;
    --swing: 7deg;
@@ -266,7 +293,40 @@
    }
 }
 
-/* The header is the fixed reference while content moves */
+::view-transition-group(.dir-row-move) {
+   animation-duration: 300ms;
+   animation-delay: 80ms;
+   animation-timing-function: var(--ease-out-expo);
+}
+
+::view-transition-old(.dir-row-move),
+::view-transition-new(.dir-row-move) {
+   animation-duration: 100ms;
+   animation-delay: 80ms;
+}
+
+::view-transition-old(.dir-row-out) {
+   animation: 120ms linear both dir-row-out;
+}
+
+::view-transition-new(.dir-row-in) {
+   animation: 280ms var(--ease-out-expo) 200ms both dir-row-in;
+}
+
+@keyframes dir-row-out {
+   to {
+      opacity: 0;
+      transform: translateX(-8px);
+   }
+}
+
+@keyframes dir-row-in {
+   from {
+      opacity: 0;
+      transform: translateY(10px);
+   }
+}
+
 ::view-transition-group(site-header) {
    animation: none;
    z-index: 100;
@@ -289,7 +349,6 @@
    }
 }
 
-/* Reading progress for the docked status bar, driven by the page scroll */
 @keyframes read-progress {
    from {
       transform: scaleX(0);
@@ -319,7 +378,6 @@
    }
 }
 
-/* Scrollbar (WebKit); Firefox uses scrollbar-color on html */
 ::-webkit-scrollbar {
    width: 10px;
    height: 10px;
@@ -338,18 +396,10 @@
    background: var(--color-line-strong);
 }
 
-/* Clip decorative overflow sideways without creating a scroll container */
 section {
    overflow-x: clip;
 }
 
-/*
- * Scroll depth. Case study screens wipe in from the left and stand up to face
- * the reader as they scroll into view; other blocks settle from a slight lean
- * over their first 280px on screen. Only transforms move, so the text is
- * readable at every point, and a block already on screen at load rests flat.
- * Leaning back from a top hinge narrows the foot, so nothing widens the page.
- */
 @keyframes depth-settle {
    from {
       transform: perspective(1400px) rotateX(-7deg) translateY(36px);
@@ -392,7 +442,56 @@ section {
    }
 }
 
-/* Print: black on white A4; pages hide their screen chrome with print:hidden */
+@keyframes rail-fill {
+   from {
+      transform: scaleY(0);
+   }
+   to {
+      transform: scaleY(1);
+   }
+}
+
+@keyframes node-lit {
+   from,
+   to {
+      box-shadow: 0 0 0 1px var(--color-line);
+   }
+   30%,
+   70% {
+      box-shadow: 0 0 0 1px var(--color-primary);
+   }
+}
+
+@supports (animation-timeline: view()) {
+   .rail-fill {
+      view-timeline: --rail block;
+   }
+
+   .rail-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: var(--color-line-strong);
+      transform-origin: top;
+      animation: rail-fill linear both;
+      animation-timeline: --rail;
+      animation-range: cover 50vh cover calc(100% - 50vh);
+   }
+
+   .node-lit {
+      animation: node-lit linear both;
+      animation-timeline: view();
+      animation-range: cover calc(50vh - 50px) cover calc(50vh + 70px);
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .rail-fill::after,
+      .node-lit {
+         animation-duration: auto !important;
+      }
+   }
+}
+
 @media print {
    @page {
       size: A4;
@@ -410,7 +509,51 @@ section {
    }
 }
 
-/* The page behind an open modal dialog stays put */
+.screen-viewer::backdrop {
+   background-color: var(--color-bg-sunken);
+   opacity: 0;
+   transition:
+      opacity 520ms var(--ease-out-expo),
+      display 520ms allow-discrete,
+      overlay 520ms allow-discrete;
+}
+
+.screen-viewer[open]::backdrop {
+   opacity: 1;
+}
+
+@starting-style {
+   .screen-viewer[open]::backdrop {
+      opacity: 0;
+   }
+}
+
+.screen-viewer[data-closing]::backdrop {
+   opacity: 0;
+   transition-duration: 300ms;
+}
+
+.screen-viewer .viewer-chrome {
+   transition: opacity 200ms var(--ease-out-expo) 240ms;
+}
+
+@starting-style {
+   .screen-viewer[open] .viewer-chrome {
+      opacity: 0;
+   }
+}
+
+.screen-viewer[data-closing] .viewer-chrome {
+   opacity: 0;
+   transition-delay: 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .screen-viewer .viewer-chrome {
+      transition-delay: 0ms;
+   }
+}
+
 html:has(dialog[open]) {
    overflow: hidden;
 }

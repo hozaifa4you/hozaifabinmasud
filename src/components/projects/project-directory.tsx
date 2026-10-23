@@ -2,7 +2,13 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useId, useState, ViewTransition } from 'react';
+import {
+   startTransition,
+   useEffect,
+   useId,
+   useState,
+   ViewTransition,
+} from 'react';
 import {
    LuArrowRight,
    LuArrowUpRight,
@@ -408,15 +414,19 @@ const ProjectDirectory = ({
    }, [entries]);
 
    const choose = (name: string | null) => {
-      setFilter(name);
-      // Keep a screenshot in view: open the first match when none is open
-      const matches = visibleFor(name);
-      setOpenSlugs((current) =>
-         matches.length === 0 ||
-         matches.some((entry) => current.has(entry.slug))
-            ? current
-            : new Set([...current, matches[0].slug]),
-      );
+      // A transition, so the rows animate: those that leave fade aside, those
+      // that stay glide to their new places, and new ones rise in
+      startTransition(() => {
+         setFilter(name);
+         // Keep a screenshot in view: open the first match when none is open
+         const matches = visibleFor(name);
+         setOpenSlugs((current) =>
+            matches.length === 0 ||
+            matches.some((entry) => current.has(entry.slug))
+               ? current
+               : new Set([...current, matches[0].slug]),
+         );
+      });
       const url = new URL(window.location.href);
       if (name) url.searchParams.set(STACK_PARAM, name);
       else url.searchParams.delete(STACK_PARAM);
@@ -516,13 +526,22 @@ const ProjectDirectory = ({
             </div>
             <ul aria-label="Projects">
                {visible.map((entry) => (
-                  <Row
+                  // Keyed for identity across filters; the screenshot's own
+                  // named boundary inside still morphs into the case study
+                  <ViewTransition
                      key={entry.slug}
-                     entry={entry}
-                     filter={filter}
-                     isOpen={openSlugs.has(entry.slug)}
-                     onToggle={() => toggle(entry.slug)}
-                  />
+                     enter="dir-row-in"
+                     exit="dir-row-out"
+                     update="dir-row-move"
+                     default="none"
+                  >
+                     <Row
+                        entry={entry}
+                        filter={filter}
+                        isOpen={openSlugs.has(entry.slug)}
+                        onToggle={() => toggle(entry.slug)}
+                     />
+                  </ViewTransition>
                ))}
             </ul>
          </div>

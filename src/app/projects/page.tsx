@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { ViewTransition } from 'react';
 
 import { BreadcrumbNav } from '@/components/breadcrumb';
 import { DirectionalPage } from '@/components/directional-page';
@@ -128,16 +129,15 @@ const ProjectsPage = async ({ searchParams }: Props) => {
                      ).length;
                      if (count === 0) return null;
                      return (
-                        <div
-                           key={status}
-                           className={`flex items-center gap-2 ${className}`}
-                        >
-                           <span
-                              aria-hidden
-                              className={`size-2 rounded-full ${dot}`}
-                           />
+                        <div key={status}>
                            <dt className="sr-only">{label}</dt>
-                           <dd>
+                           <dd
+                              className={`flex items-center gap-2 ${className}`}
+                           >
+                              <span
+                                 aria-hidden
+                                 className={`size-2 rounded-full ${dot}`}
+                              />
                               {count} {label}
                            </dd>
                         </div>
@@ -162,7 +162,10 @@ const ProjectsPage = async ({ searchParams }: Props) => {
                initialStack={initialStack}
             />
 
-            <HiringClose line="I build web products like these end to end, from the API to the interface." />
+            {/* When a filter shortens the list, the close glides up with it */}
+            <ViewTransition default="none" update="dir-row-move">
+               <HiringClose line="I build web products like these end to end, from the API to the interface." />
+            </ViewTransition>
          </div>
       </DirectionalPage>
    );
