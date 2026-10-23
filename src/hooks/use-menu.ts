@@ -1,4 +1,4 @@
-import { usePathname } from 'next/navigation';
+import { usePathname, useSelectedLayoutSegment } from 'next/navigation';
 
 export interface MenuItem {
    /** Workspace file name shown as the label */
@@ -30,6 +30,9 @@ const SECTIONS = [
 const useMenu = () => {
    const pathname = usePathname();
    const isHomePage = pathname === '/';
+   // The route segment, not the pathname: the one prerendered 404 serves every
+   // missing path, and its segment is the same on the server and the client
+   const segment = useSelectedLayoutSegment();
 
    const items: MenuItem[] = SECTIONS.map((section) =>
       isHomePage
@@ -41,9 +44,7 @@ const useMenu = () => {
          : {
               name: section.name,
               href: section.page,
-              isCurrentPage:
-                 pathname === section.page ||
-                 pathname.startsWith(`${section.page}/`),
+              isCurrentPage: segment !== null && section.page === `/${segment}`,
            },
    );
 
