@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
    title: 'Contact',
+   alternates: { canonical: '/contact' },
    description:
       'Reach Hozaifa: send a message from this page, or use email, phone, WhatsApp, LinkedIn or GitHub. Open to full-time roles.',
 };

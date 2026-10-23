@@ -19,11 +19,13 @@ import { getEducation, hasEducationContent } from '@/lib/data/education';
 import { qualificationOf, yearsOf } from '@/lib/education-view';
 import { cn } from '@/lib/utils';
 
-export const metadata: Metadata = {
+export const generateMetadata = (): Metadata => ({
    title: 'Education',
    description:
       "Hozaifa's education, newest first: each qualification with its institution, result and details.",
-};
+   alternates: { canonical: '/educations' },
+   ...(getEducation().length === 0 && { robots: { index: false } }),
+});
 
 const EducationsPage = () => {
    const education = getEducation();

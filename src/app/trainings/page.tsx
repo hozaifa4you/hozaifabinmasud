@@ -8,11 +8,13 @@ import { TrainingLog } from '@/components/education/training-log';
 import { HiringClose } from '@/components/projects/hiring-close';
 import { getTrainings, hasEducationContent } from '@/lib/data/education';
 
-export const metadata: Metadata = {
+export const generateMetadata = (): Metadata => ({
    title: 'Training',
    description:
       "Hozaifa's training, newest first: each course with its provider, completion date and certificate.",
-};
+   alternates: { canonical: '/trainings' },
+   ...(getTrainings().length === 0 && { robots: { index: false } }),
+});
 
 const TrainingsPage = () => {
    const trainings = getTrainings();

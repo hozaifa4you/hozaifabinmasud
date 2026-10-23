@@ -1,9 +1,15 @@
+import type { Metadata } from 'next';
+
 import { BreadcrumbNav } from '@/components/breadcrumb';
 import { DirectionalPage } from '@/components/directional-page';
 import { ProblemsPanel } from '@/components/not-found/problems-panel';
 import { hasProjectDetails } from '@/lib/data/project-details';
 import { projects, smallProjects } from '@/lib/data/projects';
 import { PageTarget } from '@/lib/nearest-page';
+
+export const metadata: Metadata = {
+   title: 'Page not found',
+};
 
 // The real pages a broken path may have meant; placeholder pages are left out
 const PAGES: PageTarget[] = [

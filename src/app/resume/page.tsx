@@ -38,6 +38,7 @@ const sectionList = new Intl.ListFormat('en-GB', {
 // once there are entries to publish
 export const generateMetadata = (): Metadata => ({
    title: 'Resume',
+   alternates: { canonical: '/resume' },
    description: `Hozaifa's resume: ${sectionList.format([
       'experience',
       ...(getEducation().length > 0 ? ['education'] : []),

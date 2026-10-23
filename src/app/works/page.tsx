@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
    title: 'Work history',
+   alternates: { canonical: '/works' },
    description:
       'Every role Hozaifa has held: what he did, what he built there and the stack, newest first.',
 };

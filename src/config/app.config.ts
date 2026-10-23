@@ -1,7 +1,5 @@
 import 'server-only';
 
-// The env vars: the deployed URL and the SMTP credentials (see .env.example).
-// Everything public about the owner is in site.config.ts.
 export const appConfig = {
    APP_URL: process.env.APP_URL!,
    SMTP_HOST: process.env.SMTP_HOST,

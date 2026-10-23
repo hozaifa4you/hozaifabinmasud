@@ -20,6 +20,7 @@ import {
 
 export const metadata: Metadata = {
    title: 'About me',
+   alternates: { canonical: '/about-me' },
    description:
       'Who Hozaifa is, what he builds with the projects that prove it, and every technology he works with.',
 };

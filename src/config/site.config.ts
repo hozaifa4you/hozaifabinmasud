@@ -1,5 +1,6 @@
 export const siteConfig = {
    name: 'Hozaifa B. Masud',
+   fullName: 'Hozaifa Bin Masud',
    firstName: 'Hozaifa',
    title: 'Hozaifa B. Masud - Full Stack Developer & AI Savvy',
    designation: 'Software Engineer',

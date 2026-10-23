@@ -44,6 +44,12 @@
         "value": "#c5f74f",
         "createdAt": "2026-10-22T01:51:10.391Z",
         "reason": "Sanctioned exception: brand colour of a technology logo glyph in tech-icon.tsx, under DESIGN.md's Logos Are Content rule (owner chose brand-coloured logos, 2026-10-22)"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "${family}",
+        "createdAt": "2026-10-23T12:25:37.656Z",
+        "reason": "False positive: the family parameter of the Google Fonts loader in share-image.tsx, which only loads Fira Sans and Fira Code"
       }
     ]
   }

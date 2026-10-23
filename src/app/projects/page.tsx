@@ -14,6 +14,7 @@ import { toProjectView, toSmallProjectView } from '@/lib/project-view';
 
 export const metadata: Metadata = {
    title: 'Projects',
+   alternates: { canonical: '/projects' },
    description:
       'Every project Hozaifa has built: screenshots, status, stack and links, filterable by technology.',
 };

@@ -1,17 +1,34 @@
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Fira_Code, Fira_Sans } from 'next/font/google';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar/navbar';
 import { siteConfig } from '@/config/site.config';
 import { getLearningHref } from '@/lib/data/education';
+import { siteDescription, siteUrl } from '@/lib/seo';
 import '@/styles/globals.css';
 
+// Pages don't set `openGraph`: Next fills its title and description from the
+// page's, and a page's own `openGraph` would replace this whole object
 export const metadata: Metadata = {
-   title: siteConfig.title,
-   description: `${siteConfig.name} is a full-stack developer who builds web applications end to end and ships AI features in production. Explore projects, work history and the stack behind them.`,
+   metadataBase: new URL(siteUrl),
+   title: { default: siteConfig.title, template: `%s | ${siteConfig.name}` },
+   description: siteDescription,
+   applicationName: siteConfig.name,
+   authors: [{ name: siteConfig.name, url: siteUrl }],
+   creator: siteConfig.name,
+   openGraph: { type: 'website', siteName: siteConfig.name, locale: 'en_US' },
+   twitter: { card: 'summary_large_image' },
+   robots: {
+      googleBot: { 'max-image-preview': 'large', 'max-snippet': -1 },
+   },
+};
+
+export const viewport: Viewport = {
+   themeColor: '#282c33',
+   colorScheme: 'dark',
 };
 
 const firaSans = Fira_Sans({
