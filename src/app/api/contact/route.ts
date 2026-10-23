@@ -2,15 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import z from 'zod';
 
 import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 import { transporter } from '@/lib/nodemailer';
 import { escapeHtml } from '@/lib/utils';
 
 export const POST = async (request: NextRequest) => {
-   // Invalid JSON falls through to the schema and gets a 422
    const body = await request.json().catch(() => null);
 
-   // Honeypot: people never see this field, so a value means a bot.
-   // Answer like a normal send so the bot has no reason to retry.
    if (body?.botField) {
       return NextResponse.json({ success: true });
    }
@@ -22,7 +20,6 @@ export const POST = async (request: NextRequest) => {
             .trim()
             .min(1, 'Name is required')
             .max(100, 'Name must be 100 characters or less'),
-         // An empty field and a malformed address get different messages
          email: z
             .string()
             .trim()
@@ -49,9 +46,8 @@ export const POST = async (request: NextRequest) => {
 
    try {
       await transporter.sendMail({
-         // Send from our own address so SPF/DMARC pass; replies go to the visitor
          from: {
-            name: appConfig.APP_NAME_SHORT,
+            name: siteConfig.name,
             address: appConfig.SMTP_EMAIL,
          },
          replyTo: { name: data.name, address: data.email },

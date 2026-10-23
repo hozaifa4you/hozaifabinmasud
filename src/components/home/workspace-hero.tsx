@@ -13,7 +13,7 @@ import {
    WorkspaceExplorer,
 } from '@/components/home/workspace-explorer';
 import { buttonVariants } from '@/components/ui/button';
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 import { getEducation, hasEducationContent } from '@/lib/data/education';
 import { projects } from '@/lib/data/projects';
 import { qualificationOf } from '@/lib/education-view';
@@ -59,11 +59,11 @@ const getExplorer = (): ExplorerEntry[] => [
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
 const WorkspaceHero = () => {
-   const name = appConfig.APP_NAME_SHORT;
-   const email = appConfig.EMAIL;
+   const name = siteConfig.name;
+   const email = siteConfig.email;
    const currentWork = getCurrentWork();
    const socials = getSocialLinks().slice(0, 2);
-   const workspace = appConfig.NEXT_PUBLIC_FIRST_NAME?.toLowerCase() ?? 'dev';
+   const workspace = siteConfig.firstName.toLowerCase();
    // The latest qualification, for employers who screen on it first
    const degree = getEducation()[0];
 

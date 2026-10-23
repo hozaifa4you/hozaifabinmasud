@@ -11,7 +11,7 @@ import { HiringClose } from '@/components/projects/hiring-close';
 import { PrintButton } from '@/components/resume/print-button';
 import { ResumeData, ResumePrint } from '@/components/resume/resume-print';
 import { buttonVariants } from '@/components/ui/button';
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 import { ABOUT_INTRO } from '@/lib/data/about';
 import { getEducation, getTrainings } from '@/lib/data/education';
 import { languages } from '@/lib/data/languages';
@@ -88,7 +88,7 @@ const ResumePage = () => {
    const selected = projects
       .filter((project) => project.status === 'live')
       .map(toProjectView);
-   const website = `https://${appConfig.WEBSITE}`;
+   const website = `https://${siteConfig.website}`;
 
    const contact: { key: string; value: ReactNode }[] = [
       {
@@ -103,16 +103,16 @@ const ResumePage = () => {
       {
          key: 'email',
          value: (
-            <a href={`mailto:${appConfig.EMAIL}`} className={linkClass}>
-               {appConfig.EMAIL}
+            <a href={`mailto:${siteConfig.email}`} className={linkClass}>
+               {siteConfig.email}
             </a>
          ),
       },
       {
          key: 'phone',
          value: (
-            <a href={`tel:${appConfig.PHONE}`} className={linkClass}>
-               {appConfig.PHONE}
+            <a href={`tel:${siteConfig.phone}`} className={linkClass}>
+               {siteConfig.phone}
             </a>
          ),
       },
@@ -125,7 +125,7 @@ const ResumePage = () => {
                rel="noopener noreferrer"
                className={linkClass}
             >
-               {appConfig.WEBSITE}
+               {siteConfig.website}
                <span className="sr-only"> (opens in a new tab)</span>
             </a>
          ),
@@ -144,22 +144,22 @@ const ResumePage = () => {
             </a>
          ),
       })),
-      { key: 'based', value: `${appConfig.ADDRESS} · GMT+6` },
+      { key: 'based', value: `${siteConfig.address} · GMT+6` },
    ];
 
    const printData: ResumeData = {
-      name: appConfig.AUTHOR,
-      label: appConfig.DESIGNATION,
+      name: siteConfig.name,
+      label: siteConfig.designation,
       summary: ABOUT_INTRO,
       availability: AVAILABILITY,
       contact: [
-         appConfig.EMAIL,
-         appConfig.PHONE,
-         appConfig.WEBSITE,
+         siteConfig.email,
+         siteConfig.phone,
+         siteConfig.website,
          ...socials.map((social) =>
             social.href.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, ''),
          ),
-         appConfig.ADDRESS,
+         siteConfig.address,
       ],
       work: history.map((work) => ({
          position: work.title,
@@ -233,9 +233,9 @@ const ResumePage = () => {
                         id="resume-name"
                         className="text-display font-semibold text-balance text-strong"
                      >
-                        {appConfig.AUTHOR}
+                        {siteConfig.name}
                      </h1>
-                     <p className="mt-2 text-lead">{appConfig.DESIGNATION}</p>
+                     <p className="mt-2 text-lead">{siteConfig.designation}</p>
                      <p className="mt-5 max-w-[60ch] text-body text-pretty text-strong">
                         {ABOUT_INTRO}
                      </p>

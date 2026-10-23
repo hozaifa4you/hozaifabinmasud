@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { LuDownload, LuFileText, LuMail } from 'react-icons/lu';
 
 import { buttonVariants } from '@/components/ui/button';
+import { siteConfig } from '@/config/site.config';
 import { useActiveSection } from '@/hooks/use-active-section';
 import { RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
@@ -21,7 +22,7 @@ const FILES: Record<string, string> = {
  * The hero's status bar, docked to the bottom of the screen once the hero has
  * scrolled away: the file being read, reading progress and the two actions.
  */
-const DockedStatusBar = ({ email }: { email: string }) => {
+const DockedStatusBar = () => {
    const [isDocked, setIsDocked] = useState(false);
    const activeId = useActiveSection(['home', ...Object.keys(FILES)], true);
    const file = (activeId && FILES[activeId]) || 'README.md';
@@ -99,7 +100,7 @@ const DockedStatusBar = ({ email }: { email: string }) => {
             </span>
             <div className="flex shrink-0 items-center gap-2">
                <a
-                  href={`mailto:${email}`}
+                  href={`mailto:${siteConfig.email}`}
                   className={cn(
                      buttonVariants({ variant: 'default', size: 'sm' }),
                      'max-sm:h-10',

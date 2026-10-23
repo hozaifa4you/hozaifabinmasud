@@ -40,7 +40,7 @@ Three claims, all confirmed by the owner, that future work should lead with:
 ## Capabilities and Constraints
 
 - Sections and routes: home, projects (plus `/projects/[slug]` case studies), works, education and trainings, about me, contact, resume.
-- All content is hardcoded TypeScript data in `src/lib/`; there is no CMS. Personal details (name, designation, social usernames, email, phone, address) come from environment variables.
+- All content is hardcoded TypeScript data in `src/lib/`; there is no CMS. Personal details (name, designation, social usernames, email, phone, address) are in `src/config/site.config.ts`; only the deploy URL and the SMTP credentials are environment variables.
 - Only one project has a case study so far (`aionlinecourse`); the others link to their live sites or have no link.
 - The contact form validates input, keeps it on errors, and has a honeypot spam filter with length limits.
 - Current availability (confirmed 2026-10-21): open to full-time roles only, not taking freelance projects. Any availability line on the site must say this; re-confirm before changing it.

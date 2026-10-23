@@ -7,7 +7,7 @@ import { BreadcrumbNav } from '@/components/breadcrumb';
 import { LocalTime } from '@/components/contact/local-time';
 import { DirectionalPage } from '@/components/directional-page';
 import { CopyEmailButton } from '@/components/home/copy-email-button';
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 import { getContactChannels, RESUME_PDF } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
@@ -84,7 +84,7 @@ const ChannelRow = ({
 const hostOf = (href: string) => new URL(href).hostname.replace(/^www\./, '');
 
 const ContactPage = () => {
-   const email = appConfig.EMAIL;
+   const email = siteConfig.email;
    const channels = getContactChannels();
 
    return (
@@ -168,7 +168,7 @@ const ContactPage = () => {
                      <div className="px-3 pt-2 pb-7 lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-x-5 lg:px-4 lg:pb-8">
                         {/* A container, so the form lays out by the width it gets */}
                         <div className="@container lg:col-start-2">
-                           <ContactForm recipient={appConfig.APP_NAME_SHORT} />
+                           <ContactForm recipient={siteConfig.name} />
                         </div>
                      </div>
                   </li>

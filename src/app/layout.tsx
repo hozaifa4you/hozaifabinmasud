@@ -5,13 +5,13 @@ import { Fira_Code, Fira_Sans } from 'next/font/google';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar/navbar';
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 import { getLearningHref } from '@/lib/data/education';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-   title: appConfig.APP_NAME,
-   description: `${appConfig.APP_NAME_SHORT} is a full-stack developer who builds web applications end to end and ships AI features in production. Explore projects, work history and the stack behind them.`,
+   title: siteConfig.title,
+   description: `${siteConfig.name} is a full-stack developer who builds web applications end to end and ships AI features in production. Explore projects, work history and the stack behind them.`,
 };
 
 const firaSans = Fira_Sans({

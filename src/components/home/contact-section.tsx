@@ -3,12 +3,12 @@ import { LuArrowUpRight } from 'react-icons/lu';
 import { ContactForm } from '@/components/about-me/contact-form';
 import { CopyEmailButton } from '@/components/home/copy-email-button';
 import { SectionHeading } from '@/components/home/section-heading';
-import { appConfig } from '@/config/app.config';
+import { siteConfig } from '@/config/site.config';
 import { getContactChannels } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
 const ContactSection = () => {
-   const email = appConfig.EMAIL;
+   const email = siteConfig.email;
    const channels = getContactChannels();
 
    return (
