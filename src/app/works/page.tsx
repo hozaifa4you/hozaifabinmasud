@@ -39,7 +39,6 @@ const listFormat = new Intl.ListFormat('en-GB', {
    type: 'conjunction',
 });
 
-/** One hairline row of an entry: a mono key, then its content */
 const EntryRow = ({
    term,
    children,
